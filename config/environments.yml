@@ -1,0 +1,8 @@
+env:
+  prod:
+    username: 'software-devs@sohohouse.com'
+    password: 'left mysterious silk share'
+
+  stag:
+    username: 'manikanth.erukulla@sohohouse.com'
+    password: 'password'

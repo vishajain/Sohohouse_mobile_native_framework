@@ -1,0 +1,37 @@
+ios:
+  iphoneX:
+    stag:
+      real:
+        udid: XXXXX-XXXXXX-XXXXXXX-XXXXXXXXX
+        platform_version: 12.2
+      simulator:
+        udid: D6DBBF52-3671-4177-9D62-4214E82E1C9E
+        platform_version: 12.2
+    prod:
+      real:
+        udid: XXXXX-XXXXXX-XXXXXXX-XXXXXXXXX
+        platform_version: 12.2
+      simulator:
+        udid: D6DBBF52-3671-4177-9D62-4214E82E1C9E
+        platform_version: 12.2
+  iphone6:
+    stag:
+      real:
+        udid: XXXXX-XXXXXX-XXXXXXX-XXXXXXXXX
+        platform_version: 12.2
+      simulator:
+        udid: XXXXX-XXXXXX-XXXXXXX-XXXXXXXXX
+        platform_version: 12.2
+    prod:
+      real:
+        udid: XXXXX-XXXXXX-XXXXXXX-XXXXXXXXX
+        platform_version: 12.2
+      simulator:
+        udid: D6DBBF52-3671-4177-9D62-4214E82E1C9E
+        platform_version: 12.2
+  bundle:
+    stag: com.sohohouse.enterprise.staging
+    prod: com.sohohouse.enterprise.production
+  app_path:
+    stag: /Users/manikanth.erukulla/apps/ios/stag/DigitalHouse.app
+    prod: /Users/manikanth.erukulla/apps/ios/prod/DigitalHouse.app
