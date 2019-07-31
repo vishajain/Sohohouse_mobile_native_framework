@@ -2,45 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="273ca14e-e725-4ce7-943f-c2a480720614" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/automation-Poc.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/untitled3.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Gemfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Gemfile.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/capabilities.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/functions_common.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/screenrecord.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/android_device_details.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/environments.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/ios_device_details.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/native_mobile/features/features/support/env.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/native_mobile/features/login.feature" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/native_mobile/features/onboarding.feature" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/native_mobile/features/sample.feature" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/native_mobile/library/account_lib.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/native_mobile/library/blackslate_lib.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/native_mobile/library/home_lib.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/native_mobile/library/login_screen.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/native_mobile/library/myplanner_lib.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/native_mobile/library/onboarding_screens.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/native_mobile/library/whatson_lib.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/native_mobile/pageobjects/account_objects.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/native_mobile/pageobjects/blackslate_objects.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/native_mobile/pageobjects/home_objects.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/native_mobile/pageobjects/login_objects.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/native_mobile/pageobjects/myplanner_objects.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/native_mobile/pageobjects/onboarding_objects.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/native_mobile/pageobjects/whatson_objects.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/native_mobile/step_definitions/login_steps.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/native_mobile/step_definitions/onboarding_steps.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/native_mobile/support/drivers/Android_driver.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/native_mobile/support/drivers/Appium_Helpers.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/native_mobile/support/drivers/Ios_driver.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/native_mobile/support/drivers/base_driver.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/native_mobile/support/sample.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/yes" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/yes.pub" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -125,8 +89,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/native_mobile/support/drivers/Ios_driver.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="419">
-              <caret line="46" column="38" lean-forward="true" selection-start-line="46" selection-start-column="38" selection-end-line="46" selection-end-column="38" />
+            <state relative-caret-position="89">
+              <caret line="24" column="14" lean-forward="true" selection-start-line="24" selection-start-column="14" selection-end-line="24" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -384,7 +348,7 @@
       <workItem from="1564485281515" duration="14386000" />
       <workItem from="1564523134526" duration="56000" />
       <workItem from="1564562513936" duration="232000" />
-      <workItem from="1564562762543" duration="2100000" />
+      <workItem from="1564562762543" duration="2856000" />
     </task>
     <servers />
   </component>
@@ -394,7 +358,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="65276000" />
+    <option name="totallyTimeSpent" value="66032000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -614,8 +578,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/native_mobile/support/drivers/Ios_driver.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="419">
-          <caret line="46" column="38" lean-forward="true" selection-start-line="46" selection-start-column="38" selection-end-line="46" selection-end-column="38" />
+        <state relative-caret-position="89">
+          <caret line="24" column="14" lean-forward="true" selection-start-line="24" selection-start-column="14" selection-end-line="24" selection-end-column="14" />
         </state>
       </provider>
     </entry>
