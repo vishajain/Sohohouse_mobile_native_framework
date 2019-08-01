@@ -167,7 +167,7 @@ class OnboardingScreens
 
   def user_clicks_OK()
 
-    @device_onboarding_objects.ok_button.click
+    Common.wait_for(10){@device_onboarding_objects.ok_button.click}
 
   end
 

@@ -1,0 +1,37 @@
+android:
+  nexus5x:
+    stag:
+      real:
+        udid: XXXXX-XXXXXX-XXXXXXX-XXXXXXXXX
+        platform_version: 12.2
+      simulator:
+        udid: emulator-5554
+        platform_version: 8.1
+    prod:
+      real:
+        udid: XXXXX-XXXXXX-XXXXXXX-XXXXXXXXX
+        platform_version: 12.2
+      simulator:
+        udid: D6DBBF52-3671-4177-9D62-4214E82E1C9E
+        platform_version: 12.2
+  samsung8:
+    stag:
+      real:
+        udid: XXXXX-XXXXXX-XXXXXXX-XXXXXXXXX
+        platform_version: 12.2
+      simulator:
+        udid: XXXXX-XXXXXX-XXXXXXX-XXXXXXXXX
+        platform_version: 12.2
+    prod:
+      real:
+        udid: XXXXX-XXXXXX-XXXXXXX-XXXXXXXXX
+        platform_version: 12.2
+      simulator:
+        udid: D6DBBF52-3671-4177-9D62-4214E82E1C9E
+        platform_version: 12.2
+  bundle:
+    stag: com.sohohouse.houseseven.staging
+    prod: com.sohohouse.seven
+  app_path:
+    stag: /Users/manikanth.erukulla/apps/android/stag/app-qa.apk
+    prod: /Users/manikanth.erukulla/apps/android/prod/app-prod.apk

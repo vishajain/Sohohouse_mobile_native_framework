@@ -5,15 +5,13 @@ require 'test/unit/assertions'
 require_relative '../support/drivers/base_driver'
 require_relative '../library/login_screen'
 require_relative '../pageobjects/login_objects'
-
 include Test::Unit::Assertions
-
 
   Given(/^app is launched$/) do
 
     Base_driver.setapp()
 
-    sleep 20
+    sleep 10
 
   end
 
@@ -36,4 +34,3 @@ include Test::Unit::Assertions
     $loginscreen.user_clicks_go
 
   end
-
