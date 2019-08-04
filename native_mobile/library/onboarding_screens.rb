@@ -18,7 +18,7 @@ class OnboardingScreens
 
     else
 
-      @device_onboarding_objects = Android_Onboarding_Objects.new
+      @device_onboarding_objects = Android_Onboarding_Objects.new($driver, $driver_appium)
 
     end
 
@@ -118,7 +118,7 @@ class OnboardingScreens
 
   def user_continues_from_makePersonal()
 
-    @device_onboarding_objects.next_button.click
+    Common.wait_for(10){@device_onboarding_objects.next_button.click}
 
   end
 
@@ -135,7 +135,7 @@ class OnboardingScreens
 
     def user_continues_from_IntroNotice()
 
-      @device_onboarding_objects.continue_button.click
+      Common.wait_for(10){@device_onboarding_objects.continue_button.click}
 
     end
 
@@ -151,7 +151,7 @@ class OnboardingScreens
 
   def user_clicks_next()
 
-    @device_onboarding_objects.next_button.click
+    Common.wait_for(10){@device_onboarding_objects.next_button.click}
 
   end
 
@@ -180,8 +180,5 @@ class OnboardingScreens
     end
 
   end
-
-
-
 
   end

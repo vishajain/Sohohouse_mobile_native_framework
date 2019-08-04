@@ -28,7 +28,7 @@ class LoginScreen
 
   def verify_user_is_on_login_page()
 
-      if  Common.wait_for(5) {@device_login_objects.welcome_home.displayed?}
+      if  Common.wait_for(15) {@device_login_objects.welcome_home.displayed?}
 
         return true
 

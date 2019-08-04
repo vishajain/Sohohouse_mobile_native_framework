@@ -5,10 +5,10 @@ require "test/unit"
 
 class Ios_Onboarding_Objects
   
-    def initialize(driver, driver_appium)
-      @driver_appium = driver_appium
-      @driver = driver
-    end
+  def initialize(driver, driver_appium)
+    @driver_appium = driver_appium
+    @driver = driver
+  end
   
   def terms_text
     @driver.find_element(:name => "Terms and conditions")
@@ -27,9 +27,7 @@ class Ios_Onboarding_Objects
   end
 
   def houserules_text
-
-      @driver.find_element(:name => "House rules")
-
+    @driver.find_element(:name => "House rules")
   end
 
   def next_button
@@ -80,17 +78,45 @@ end
 
 class Android_Onboarding_Objects
 
+  def initialize(driver, driver_appium)
+    @driver_appium = driver_appium
+    @driver = driver
+  end
+
+  def welcome_text
+    @driver.find_element(:xpath => "//android.widget.TextView[@text = 'Welcome to Soho House']")
+  end
+
   def next_button
     @driver.find_element(:id => "com.sohohouse.seven:id/title_card_next_button")
   end
 
-  def continue_next_button
-    @driver.find_element(:id => "com.sohohouse.seven:id/continue_button")
+  def makepersonal_text
+    @driver.find_element(:xpath => "//android.widget.TextView[@text = 'Make it personal']")
+  end
+
+  def intronotice_text
+    @driver.find_element(:xpath => "//android.widget.TextView[@text = 'Introducing Noticeboard']")
   end
 
   def continue_button
-    @driver.find_element(:id => "com.sohohouse.seven:id/onboarding_house_accept_button")
+    @driver.find_element(:id => "com.sohohouse.seven:id/continue_button")
   end
 
+  def noticeboard_text
+    @driver.find_element(:xpath => "//android.widget.TextView[@text = 'Noticeboard']")
+  end
+
+  def notification_pref_text
+    @driver.find_element(:xpath => "//android.widget.TextView[@text = 'Notification preferences']")
+  end
+
+  def ok_button
+    @driver.find_element(:xpath => "//android.widget.Button[@text = 'OK']")
+  end
+
+  def youareset_text
+    @driver.find_element(:xpath => "//android.widget.TextView[@text = 'You're all set']")
+  end
 
 end

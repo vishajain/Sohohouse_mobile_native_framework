@@ -59,14 +59,6 @@ class Android_Login_Objects
       $driver.find_element(:xpath => "//android.widget.TextView[@text = 'Welcome home']")
   end
 
-  # def email_textfield1
-  #   $driver.find_elements(:xpath => "//android.widget.EditText[@text = 'Email address']")
-  # end
-  #
-  # def password_textfield1
-  #   $driver.find_elements(:xpath => "//android.widget.EditText[@text = 'Password']")
-  # end
-
   def go_button
     $driver.find_element(:xpath => "//android.widget.Button[@text = 'Sign in']")
   end

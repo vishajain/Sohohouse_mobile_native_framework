@@ -5,6 +5,7 @@ require 'test/unit/assertions'
 require_relative '../support/drivers/base_driver'
 require_relative '../library/login_screen'
 require_relative '../pageobjects/login_objects'
+require_relative '../library/onboarding_screens'
 include Test::Unit::Assertions
 
   Given(/^app is launched$/) do
@@ -32,5 +33,7 @@ include Test::Unit::Assertions
   And(/^user clicks on go button$/) do
 
     $loginscreen.user_clicks_go
+
+    $onboardingscreens = OnboardingScreens.new
 
   end

@@ -38,38 +38,27 @@ module Base_driver
 
   def self.captureArguments
 
-    env_arr         = ARGV[0].split('=')
-    device_arr      = ARGV[1].split('=')
-    phone_arr       = ARGV[2].split('=')
-    devicetype_arr  = ARGV[3].split('=')
+    $env    =  ENV['env']
+    $device = ENV['device']
+    $phone  =  ENV['phone']
+    $devicetype =  ENV['devicetype']
 
-    $env    =  env_arr[1]
-    $device = device_arr[1]
-    $phone  =  phone_arr[1]
-    $devicetype =  devicetype_arr[1]
+      if $env != "stag" and $env != "prod"
 
-    begin
+        puts "Incorrect environment provided. Please enter env as either stag or prod"
+        Cucumber.wants_to_quit = true
 
-      if $env != "stag" || $env != "prod"
+      elsif $device != "ios" and $device != "android"
 
-        puts "Please enter env as either stag or prod"
+        puts "Incorrect device provided. Please enter device as either ios or android"
+        Cucumber.wants_to_quit = true
 
-      elsif $device != "ios" || $device != "android"
+      elsif $devicetype != "simulator" and $devicetype != "real"
 
-        puts "Please enter device as either ios or android"
-
-      elsif $devicetype != "simulator" || $devicetype != "real"
-
-        puts "Please enter devicetype as either simulator or real"
+        puts "Incorrect device type provided. Please enter devicetype as either simulator or real"
+        Cucumber.wants_to_quit = true
 
       end
-
-    rescue
-
-      puts "Unable to capture the arguments properly. Please have a look"
-      exit
-
-    end
 
   end
 
