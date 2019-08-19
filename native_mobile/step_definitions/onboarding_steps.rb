@@ -22,7 +22,7 @@ Given(/^user clicks on go button and sees T & C screen$/) do
 
     puts e.inspect
 
-    Common.scenario_failed
+    Common.scenario_failed_and_quit
 
   end
 
@@ -46,8 +46,7 @@ Given(/^user accepts T & C and sees Help us improve screen$/) do
 
     puts e.inspect
 
-    Common.print_scenario_failed
-    Common.scenario_failed
+    Common.scenario_failed_and_quit
 
   end
 
@@ -72,7 +71,7 @@ Given(/^user allows help improve and sees House rules screen$/) do
 
     puts e.inspect
 
-    Common.scenario_failed
+    Common.scenario_failed_and_quit
 
   end
 
@@ -96,7 +95,7 @@ Given(/^user accepts House rules and sees my planner screen$/) do
 
     puts e.inspect
 
-    Common.scenario_failed
+    Common.scenario_failed_and_quit
 
   end
 
@@ -118,7 +117,7 @@ Given(/^user continue without syncing and sees welcome screen$/) do
 
     puts e.inspect
 
-    Common.scenario_failed
+    Common.scenario_failed_and_quit
 
   end
 
@@ -142,7 +141,7 @@ Given(/^user continues from welcome screen and sees make it personal screen$/) d
 
     puts e.inspect
 
-    Common.scenario_failed
+    Common.scenario_failed_and_quit
 
   end
 
@@ -169,7 +168,7 @@ Given("user continues from make it personal and sees Introducing Noticeboard scr
 
     puts e.inspect
 
-    Common.scenario_failed
+    Common.scenario_failed_and_quit
 
   end
 
@@ -191,7 +190,7 @@ Given("user continues from Notice intro and sees Noticeboard screen") do
 
     puts e.inspect
 
-    Common.scenario_failed
+    Common.scenario_failed_and_quit
 
   end
 
@@ -213,7 +212,7 @@ Given("user continues from Noticeboard and sees Notification preferences screen"
 
     puts e.inspect
 
-    Common.scenario_failed
+    Common.scenario_failed_and_quit
 
   end
 
@@ -239,7 +238,7 @@ Given("user continues from Notification preferences and sees You're all set scre
 
     puts e.inspect
 
-    Common.scenario_failed
+    Common.scenario_failed_and_quit
 
   end
 

@@ -2,17 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="273ca14e-e725-4ce7-943f-c2a480720614" name="Default Changelist" comment="commit">
+      <change afterPath="$PROJECT_DIR$/native_mobile/step_definitions/whatson_steps.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/functions_common.rb" beforeDir="false" afterPath="$PROJECT_DIR$/common/functions_common.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/screenrecord.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/native_mobile/features/features/support/env.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/environments.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/environments.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/ios_device_details.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/ios_device_details.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cucumber.yml" beforeDir="false" afterPath="$PROJECT_DIR$/cucumber.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/native_mobile/features/login.feature" beforeDir="false" afterPath="$PROJECT_DIR$/native_mobile/features/login.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/native_mobile/features/sample.feature" beforeDir="false" afterPath="$PROJECT_DIR$/native_mobile/features/sample.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/native_mobile/library/home_lib.rb" beforeDir="false" afterPath="$PROJECT_DIR$/native_mobile/library/home_screen.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/native_mobile/library/login_screen.rb" beforeDir="false" afterPath="$PROJECT_DIR$/native_mobile/library/login_screen.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/native_mobile/library/onboarding_screens.rb" beforeDir="false" afterPath="$PROJECT_DIR$/native_mobile/library/onboarding_screens.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/native_mobile/library/whatson_lib.rb" beforeDir="false" afterPath="$PROJECT_DIR$/native_mobile/library/whatson_screen.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/native_mobile/pageobjects/home_objects.rb" beforeDir="false" afterPath="$PROJECT_DIR$/native_mobile/pageobjects/home_objects.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/native_mobile/pageobjects/login_objects.rb" beforeDir="false" afterPath="$PROJECT_DIR$/native_mobile/pageobjects/login_objects.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/native_mobile/pageobjects/onboarding_objects.rb" beforeDir="false" afterPath="$PROJECT_DIR$/native_mobile/pageobjects/onboarding_objects.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/native_mobile/pageobjects/whatson_objects.rb" beforeDir="false" afterPath="$PROJECT_DIR$/native_mobile/pageobjects/whatson_objects.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/native_mobile/step_definitions/login_steps.rb" beforeDir="false" afterPath="$PROJECT_DIR$/native_mobile/step_definitions/login_steps.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/native_mobile/step_definitions/onboarding_steps.rb" beforeDir="false" afterPath="$PROJECT_DIR$/native_mobile/step_definitions/onboarding_steps.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/native_mobile/support/drivers/base_driver.rb" beforeDir="false" afterPath="$PROJECT_DIR$/native_mobile/support/drivers/base_driver.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/native_mobile/support/drivers/Ios_driver.rb" beforeDir="false" afterPath="$PROJECT_DIR$/native_mobile/support/drivers/Ios_driver.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/native_mobile/support/sample.rb" beforeDir="false" afterPath="$PROJECT_DIR$/native_mobile/support/sample.rb" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -25,83 +32,65 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/ios_device_details.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="480">
+              <caret line="32" column="34" selection-start-line="32" selection-start-column="34" selection-end-line="32" selection-end-column="34" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/native_mobile/features/whatson.feature">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="225">
+              <caret line="15" column="29" selection-start-line="15" selection-start-column="29" selection-end-line="15" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/native_mobile/step_definitions/whatson_steps.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1230">
+              <caret line="82" selection-start-line="82" selection-end-line="82" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/native_mobile/library/whatson_screen.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="81" column="47" selection-start-line="81" selection-start-column="47" selection-end-line="81" selection-end-column="47" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/native_mobile/library/onboarding_screens.rb">
+        <entry file="file://$PROJECT_DIR$/config/environments.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1887">
-              <caret line="153" column="69" selection-start-line="153" selection-start-column="69" selection-end-line="153" selection-end-column="69" />
+            <state relative-caret-position="195">
+              <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/common/functions_common.rb">
+        <entry file="file://$PROJECT_DIR$/native_mobile/pageobjects/whatson_objects.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" selection-start-line="10" selection-end-line="10" />
+            <state relative-caret-position="480">
+              <caret line="32" selection-start-line="32" selection-end-line="32" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/native_mobile/step_definitions/onboarding_steps.rb">
+        <entry file="file://$PROJECT_DIR$/config/testdata.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="368">
-              <caret line="157" column="32" selection-start-line="157" selection-start-column="32" selection-end-line="157" selection-end-column="32" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/native_mobile/pageobjects/onboarding_objects.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="463">
-              <caret line="122" selection-start-line="122" selection-end-line="122" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/native_mobile/pageobjects/login_objects.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="282">
-              <caret line="57" selection-start-line="57" selection-end-line="59" selection-end-column="5" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/native_mobile/features/onboarding.feature">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="224">
-              <caret line="38" column="49" selection-start-line="38" selection-start-column="49" selection-end-line="38" selection-end-column="49" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cucumber.yml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="1" column="68" selection-start-line="1" selection-start-column="68" selection-end-line="1" selection-end-column="68" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Gemfile">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
-              <caret line="29" column="10" selection-start-line="29" selection-start-column="10" selection-end-line="29" selection-end-column="10" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/native_mobile/step_definitions/login_steps.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="465">
-              <caret line="31" selection-start-line="31" selection-end-line="31" />
+            <state relative-caret-position="120">
+              <caret line="8" selection-start-line="8" selection-end-line="8" />
             </state>
           </provider>
         </entry>
@@ -124,6 +113,10 @@
       <find>@onboardingscreens</find>
       <find>send</find>
       <find>@device_login_objects.email_textfield[0].send_keys(email)</find>
+      <find>$dri</find>
+      <find>found</find>
+      <find>ele</find>
+      <find>puts</find>
     </findStrings>
     <replaceStrings>
       <replace>$driver</replace>
@@ -140,35 +133,44 @@
         <option value="$PROJECT_DIR$/native_mobile/library/login_lib.rb" />
         <option value="$PROJECT_DIR$/native_mobile/step_definitions/hooks.rb" />
         <option value="$PROJECT_DIR$/native_mobile/support/helpers/Appium_Helpers.rb" />
-        <option value="$PROJECT_DIR$/native_mobile/support/sample.rb" />
         <option value="$PROJECT_DIR$/native_mobile/support/drivers/Base_driver.rb" />
-        <option value="$PROJECT_DIR$/config/environments.yml" />
-        <option value="$PROJECT_DIR$/native_mobile/features/login.feature" />
-        <option value="$PROJECT_DIR$/native_mobile/features/sample.feature" />
-        <option value="$PROJECT_DIR$/native_mobile/support/drivers/Ios_driver.rb" />
-        <option value="$PROJECT_DIR$/config/ios_device_details.yml" />
         <option value="$PROJECT_DIR$/config/android_device_details.yml" />
         <option value="$PROJECT_DIR$/native_mobile/support/drivers/Android_driver.rb" />
-        <option value="$PROJECT_DIR$/native_mobile/library/login_screen.rb" />
-        <option value="$PROJECT_DIR$/native_mobile/support/drivers/base_driver.rb" />
         <option value="$PROJECT_DIR$/rakefile.rb" />
         <option value="$PROJECT_DIR$/Rakefile.rb" />
-        <option value="$PROJECT_DIR$/native_mobile/pageobjects/login_objects.rb" />
         <option value="$PROJECT_DIR$/native_mobile/features/onboarding.feature" />
-        <option value="$PROJECT_DIR$/common/functions_common.rb" />
-        <option value="$PROJECT_DIR$/cucumber.yml" />
-        <option value="$PROJECT_DIR$/native_mobile/step_definitions/onboarding_steps.rb" />
-        <option value="$PROJECT_DIR$/native_mobile/step_definitions/login_steps.rb" />
         <option value="$PROJECT_DIR$/native_mobile/pageobjects/onboarding_objects.rb" />
         <option value="$PROJECT_DIR$/native_mobile/library/onboarding_screens.rb" />
+        <option value="$PROJECT_DIR$/native_mobile/features/login.feature" />
+        <option value="$PROJECT_DIR$/native_mobile/step_definitions/login_steps.rb" />
+        <option value="$PROJECT_DIR$/native_mobile/features/sample.feature" />
+        <option value="$PROJECT_DIR$/native_mobile/step_definitions/onboarding_steps.rb" />
+        <option value="$PROJECT_DIR$/native_mobile/library/login_screen.rb" />
+        <option value="$PROJECT_DIR$/native_mobile/pageobjects/login_objects.rb" />
+        <option value="$PROJECT_DIR$/config/environments.yml" />
+        <option value="$PROJECT_DIR$/native_mobile/step_definitions/home_steps.rb" />
+        <option value="$PROJECT_DIR$/native_mobile/features/whats_on.feature.rb" />
+        <option value="$PROJECT_DIR$/native_mobile/pageobjects/home_objects.rb" />
+        <option value="$PROJECT_DIR$/native_mobile/features/home.feature" />
+        <option value="$PROJECT_DIR$/native_mobile/features/whatson.feature" />
+        <option value="$PROJECT_DIR$/native_mobile/support/drivers/Ios_driver.rb" />
+        <option value="$PROJECT_DIR$/native_mobile/support/drivers/base_driver.rb" />
+        <option value="$PROJECT_DIR$/config/ios_device_details.yml" />
+        <option value="$PROJECT_DIR$/cucumber.yml" />
+        <option value="$PROJECT_DIR$/native_mobile/library/home_screen.rb" />
+        <option value="$PROJECT_DIR$/common/functions_common.rb" />
+        <option value="$PROJECT_DIR$/native_mobile/step_definitions/whatson_steps.rb" />
+        <option value="$PROJECT_DIR$/native_mobile/support/sample.rb" />
+        <option value="$PROJECT_DIR$/config/testdata.yml" />
+        <option value="$PROJECT_DIR$/native_mobile/pageobjects/whatson_objects.rb" />
+        <option value="$PROJECT_DIR$/native_mobile/library/whatson_screen.rb" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-191" />
-    <option name="y" value="-1057" />
-    <option name="width" value="1920" />
-    <option name="height" value="1002" />
+  <component name="ProjectFrameBounds">
+    <option name="y" value="23" />
+    <option name="width" value="1440" />
+    <option name="height" value="822" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -176,6 +178,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -191,19 +194,12 @@
             <path>
               <item name="automation-Poc" type="b2602c69:ProjectViewProjectNode" />
               <item name="automation-Poc" type="462c0819:PsiDirectoryNode" />
-              <item name="native_mobile" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="automation-Poc" type="b2602c69:ProjectViewProjectNode" />
               <item name="automation-Poc" type="462c0819:PsiDirectoryNode" />
               <item name="native_mobile" type="462c0819:PsiDirectoryNode" />
-              <item name="features" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="automation-Poc" type="b2602c69:ProjectViewProjectNode" />
-              <item name="automation-Poc" type="462c0819:PsiDirectoryNode" />
-              <item name="native_mobile" type="462c0819:PsiDirectoryNode" />
-              <item name="library" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="automation-Poc" type="b2602c69:ProjectViewProjectNode" />
@@ -215,13 +211,12 @@
               <item name="automation-Poc" type="b2602c69:ProjectViewProjectNode" />
               <item name="automation-Poc" type="462c0819:PsiDirectoryNode" />
               <item name="native_mobile" type="462c0819:PsiDirectoryNode" />
-              <item name="step_definitions" type="462c0819:PsiDirectoryNode" />
+              <item name="support" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -360,7 +355,11 @@
       <workItem from="1564573241217" duration="404000" />
       <workItem from="1564585995712" duration="6562000" />
       <workItem from="1564651572291" duration="405000" />
-      <workItem from="1564655749526" duration="25044000" />
+      <workItem from="1564655749526" duration="61124000" />
+      <workItem from="1565252288388" duration="21102000" />
+      <workItem from="1565442537347" duration="12778000" />
+      <workItem from="1565523000343" duration="9307000" />
+      <workItem from="1565970045700" duration="1144000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <created>1564570526195</created>
@@ -385,7 +384,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="99255000" />
+    <option name="totallyTimeSpent" value="179666000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -397,12 +396,12 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-191" y="-1057" width="1920" height="1002" extended-state="6" />
+    <frame x="0" y="23" width="1440" height="822" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24174654" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22603719" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32747254" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32739726" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.3299748" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -411,7 +410,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.32896304" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.41978022" />
+      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.25616437" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="bottom" id="Favorites" order="12" weight="0.32953367" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -471,56 +470,10 @@
     <SUITE FILE_PATH="coverage/automation_Poc@Scenario__Add_two_iumbers.rcov" NAME="Scenario: Add two iumbers Coverage Results" MODIFIED="1564053070913" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/native_mobile" MODULE_NAME="automation-Poc" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/native_mobile/pageobjects/android/login_objects.rb" />
-    <entry file="file://$PROJECT_DIR$/native_mobile/pageobjects/ios/login_objects.rb" />
-    <entry file="file://$PROJECT_DIR$/native_mobile/pageobjects/whatson_objects.rb">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/native_mobile/library/whatson_lib.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/native_mobile/pageobjects/myplanner_objects.rb">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/native_mobile/library/account_lib.rb">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/native_mobile/library/blackslate_lib.rb">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/native_mobile/pageobjects/account_objects.rb">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/native_mobile/pageobjects/blackslate_objects.rb">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/native_mobile/pageobjects/home_objects.rb">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/native_mobile/step_definitions/hooks.rb" />
-    <entry file="file://$PROJECT_DIR$/native_mobile/support/helpers/step_definition_helper.rb" />
-    <entry file="file://$APPLICATION_HOME_DIR$/rubystubs23/basic_object.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="109">
-          <caret line="228" column="21" lean-forward="true" selection-start-line="228" selection-start-column="21" selection-end-line="228" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.6.3/gems/test-unit-2.5.5/lib/test/unit/assertions.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="288">
           <caret line="35" column="11" selection-start-line="35" selection-start-column="11" selection-end-line="35" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/native_mobile/features/sample.feature">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="26" selection-start-line="4" selection-start-column="26" selection-end-line="4" selection-end-column="26" />
         </state>
       </provider>
     </entry>
@@ -534,70 +487,11 @@
     <entry file="file://$PROJECT_DIR$/native_mobile/library/myplanner_lib.rb">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/native_mobile/features/login.feature">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="18" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/common/capabilities.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="163">
-          <caret line="28" column="20" lean-forward="true" selection-start-line="28" selection-start-column="20" selection-end-line="28" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/ios_device_details.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="44" lean-forward="true" selection-start-line="22" selection-start-column="44" selection-end-line="22" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/native_mobile/support/drivers/Ios_driver.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/native_mobile/support/drivers/Android_driver.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="71">
-          <caret line="11" column="38" selection-start-line="11" selection-start-column="38" selection-end-line="11" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/android_device_details.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="14" selection-start-line="7" selection-start-column="14" selection-end-line="7" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/environments.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" selection-start-line="8" selection-end-line="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/native_mobile/library/home_lib.rb">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/native_mobile/features/features/support/env.rb">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/screenshots/screenshot.rb">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/failshot__03_08_2019__22_43_01.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/screenshots/failshot__03_08_2019__23_06_46.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/common/capabilities.rb" />
+    <entry file="file://$PROJECT_DIR$/native_mobile/features/features/support/env.rb" />
+    <entry file="file://$PROJECT_DIR$/screenshots/screenshot.rb" />
+    <entry file="file://$PROJECT_DIR$/failshot__03_08_2019__22_43_01.png" />
+    <entry file="file://$PROJECT_DIR$/screenshots/failshot__03_08_2019__23_06_46.png" />
     <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.6.3/gems/cucumber-3.1.2/lib/cucumber/constantize.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
@@ -609,34 +503,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2985">
           <caret line="199" column="10" selection-start-line="199" selection-start-column="10" selection-end-line="199" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/native_mobile/support/sample.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="37" selection-start-line="14" selection-start-column="37" selection-end-line="14" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/native_mobile/support/drivers/Appium_Helpers.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="37" column="5" selection-start-line="37" selection-start-column="5" selection-end-line="37" selection-end-column="67" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/native_mobile/library/login_screen.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="305">
-          <caret line="33" selection-start-line="33" selection-end-line="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/native_mobile/support/drivers/base_driver.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-41">
-          <caret line="39" lean-forward="true" selection-start-line="39" selection-end-line="39" />
         </state>
       </provider>
     </entry>
@@ -654,81 +520,222 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Rakefile.rb">
+    <entry file="file://$PROJECT_DIR$/Rakefile.rb" />
+    <entry file="file://$PROJECT_DIR$/screenshots/failshot__04_08_2019__15_34_59.png" />
+    <entry file="file://$PROJECT_DIR$/screenshots/failshot__04_08_2019__15_47_53.png" />
+    <entry file="file://$PROJECT_DIR$/screenshots/failshot__04_08_2019__15_53_30.png" />
+    <entry file="file://$PROJECT_DIR$/common/screenrecord.rb" />
+    <entry file="file://$PROJECT_DIR$/screenshots/failshot__04_08_2019__16_17_30.png" />
+    <entry file="file://$PROJECT_DIR$/screenshots/failshot__06_08_2019__15_39_16.png" />
+    <entry file="file://$PROJECT_DIR$/native_mobile/support/drivers/Android_driver.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="35" selection-start-line="5" selection-start-column="28" selection-end-line="5" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/native_mobile/pageobjects/login_objects.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="57" selection-start-line="57" selection-end-line="59" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/screenshots/failshot__04_08_2019__15_34_59.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/screenshots/failshot__04_08_2019__15_47_53.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/screenshots/failshot__04_08_2019__15_53_30.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/native_mobile/step_definitions/login_steps.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="31" selection-start-line="31" selection-end-line="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/common/screenrecord.rb">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cucumber.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="68" selection-start-line="1" selection-start-column="68" selection-end-line="1" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/common/functions_common.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/native_mobile/features/onboarding.feature">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="38" column="49" selection-start-line="38" selection-start-column="49" selection-end-line="38" selection-end-column="49" />
+        <state relative-caret-position="855">
+          <caret line="57" lean-forward="true" selection-start-line="57" selection-end-line="57" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/native_mobile/pageobjects/onboarding_objects.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="463">
-          <caret line="122" selection-start-line="122" selection-end-line="122" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/screenshots/failshot__04_08_2019__16_17_30.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/native_mobile/step_definitions/onboarding_steps.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="157" column="32" selection-start-line="157" selection-start-column="32" selection-end-line="157" selection-end-column="32" />
+        <state relative-caret-position="105">
+          <caret line="7" selection-start-line="7" selection-end-line="10" selection-end-column="5" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/native_mobile/library/onboarding_screens.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1887">
-          <caret line="153" column="69" selection-start-line="153" selection-start-column="69" selection-end-line="153" selection-end-column="69" />
+        <state relative-caret-position="240">
+          <caret line="16" column="61" lean-forward="true" selection-start-line="16" selection-start-column="61" selection-end-line="16" selection-end-column="86" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/native_mobile/features/sample.feature">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="48" lean-forward="true" selection-start-line="12" selection-start-column="48" selection-end-line="12" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/native_mobile/step_definitions/onboarding_steps.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="310">
+          <caret line="240" column="35" selection-start-line="240" selection-start-column="35" selection-end-line="240" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/screenshots/failshot__07_08_2019__16_11_44.png" />
+    <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.6.3/gems/cucumber-wire-0.0.1/lib/cucumber/wire/step_definition.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="34" selection-start-line="5" selection-start-column="34" selection-end-line="5" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.6.3/gems/selenium-webdriver-3.142.3/lib/selenium/webdriver/remote/w3c/bridge.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="283" column="14" selection-start-line="283" selection-start-column="14" selection-end-line="283" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/android_device_details.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="10" selection-start-line="13" selection-start-column="10" selection-end-line="13" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/native_mobile/features/onboarding.feature">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="19" lean-forward="true" selection-start-line="1" selection-start-column="19" selection-end-line="1" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/native_mobile/features/whats_on.feature.rb" />
+    <entry file="file://$PROJECT_DIR$/native_mobile/library/login_screen.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="14" lean-forward="true" selection-start-line="6" selection-start-column="14" selection-end-line="6" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/native_mobile/support/drivers/Appium_Helpers.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="32" selection-start-line="32" selection-end-line="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/native_mobile/support/drivers/base_driver.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="23" column="25" selection-start-line="23" selection-start-column="25" selection-end-line="23" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/native_mobile/support/drivers/Ios_driver.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="900">
+          <caret line="60" column="45" selection-start-line="60" selection-start-column="45" selection-end-line="60" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/native_mobile/step_definitions/login_steps.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/native_mobile/features/login.feature">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="10" selection-start-line="8" selection-start-column="10" selection-end-line="8" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/native_mobile/features/home.feature">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="22" selection-start-line="15" selection-start-column="22" selection-end-line="15" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cucumber.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="74" selection-start-line="2" selection-start-column="74" selection-end-line="2" selection-end-column="74" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/native_mobile/step_definitions/home_steps.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="18" column="33" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/native_mobile/library/home_screen.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="477">
+          <caret line="82" column="8" selection-start-line="82" selection-start-column="8" selection-end-line="82" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/functions_common.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="245">
+          <caret line="40" column="43" lean-forward="true" selection-start-line="40" selection-start-column="43" selection-end-line="40" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/native_mobile/support/sample.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/native_mobile/pageobjects/login_objects.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="499">
+          <caret line="67" column="6" selection-start-line="67" selection-start-column="6" selection-end-line="67" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/native_mobile/pageobjects/home_objects.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="31" column="5" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/ios_device_details.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="32" column="34" selection-start-line="32" selection-start-column="34" selection-end-line="32" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/native_mobile/features/whatson.feature">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="29" selection-start-line="15" selection-start-column="29" selection-end-line="15" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/native_mobile/step_definitions/whatson_steps.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1230">
+          <caret line="82" selection-start-line="82" selection-end-line="82" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/native_mobile/pageobjects/whatson_objects.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="32" selection-start-line="32" selection-end-line="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/testdata.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/native_mobile/library/whatson_screen.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="81" column="47" selection-start-line="81" selection-start-column="47" selection-end-line="81" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/environments.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
         </state>
       </provider>
     </entry>

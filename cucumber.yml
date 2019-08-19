@@ -1,2 +1,3 @@
-iphoneX: env=stag device=iosxs phone=iphoneX devicetype=simulator -f pretty native_mobile/features/onboarding.feature -r native_mobile/step_definitions
-nexus5x: env=stag device=android phone=nexus5x devicetype=simulator --tags=~@ios -f pretty native_mobile/features/onboarding.feature -r native_mobile/step_definitions
+iphoneX-stag: env=stag device=ios phone=iphoneX devicetype=simulator -f pretty native_mobile/features/whatson.feature -r native_mobile/step_definitions
+iphoneX-prod: env=prod device=ios phone=iphoneX devicetype=simulator -f pretty native_mobile/features/onboarding.feature -r native_mobile/step_definitions
+nexus5x-stag: env=stag device=android phone=nexus5x devicetype=simulator --tags=~@ios -f pretty native_mobile/features/onboarding.feature -r native_mobile/step_definitions

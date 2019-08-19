@@ -2,7 +2,12 @@ env:
   prod:
     username: 'software-devs@sohohouse.com'
     password: 'left mysterious silk share'
-
+    name: 'Devs'
+    house: 'Paris'
+    profile: 'Every House'
   stag:
     username: 'manikanth.erukulla@sohohouse.com'
     password: 'password'
+    name: 'Manikanth'
+    house: 'Little Beach House Barcelona'
+    profile: 'Local'

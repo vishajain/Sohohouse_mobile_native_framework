@@ -4,7 +4,7 @@ Feature: Login
   Background:
 
 
-  @valid-login @smoke
+  @valid-login @smoke @regression
   Scenario: Login with valid user credentials
     Given app is launched
     And user is on sign in screen

@@ -36,4 +36,6 @@ include Test::Unit::Assertions
 
     $onboardingscreens = OnboardingScreens.new
 
+    $homescreen = HomeScreen.new
+
   end

@@ -1,0 +1,8 @@
+data:
+  run-id: '1'
+  event:
+    name: 'New Member event email'
+  screen:
+    name: 'Screening Event Automation'
+  Gym:
+    name: 'Gym Event Automation'

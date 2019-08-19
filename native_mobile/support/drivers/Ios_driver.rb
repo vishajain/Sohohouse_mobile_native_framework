@@ -19,6 +19,12 @@ module Ios_driver
 
       $driver.manage.timeouts.implicit_wait = 5
 
+      $action = Appium::TouchAction.new
+
+      $dimensions_width = $driver.manage.window.size.width
+
+      $dimensions_height = $driver.manage.window.size.height
+
 
   end
 
@@ -53,7 +59,7 @@ module Ios_driver
                   'useNewWDA'=> true,
                   'waitForQuiescence' => false,
                   'autoAcceptAlerts' => true,
-                  'noReset' => false
+                  'noReset' => true
               }
           }
 
