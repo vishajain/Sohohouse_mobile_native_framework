@@ -91,6 +91,11 @@ class Android_Onboarding_Objects
     @driver.find_element(:id => "com.sohohouse.seven:id/title_card_next_button")
   end
 
+
+  def next_button_1
+    @driver.find_element(:id => "com.sohohouse.seven:id/continue_button")
+  end
+
   def makepersonal_text
     @driver.find_element(:xpath => "//android.widget.TextView[@text = 'Make it personal']")
   end
@@ -99,8 +104,12 @@ class Android_Onboarding_Objects
     @driver.find_element(:xpath => "//android.widget.TextView[@text = 'Introducing Noticeboard']")
   end
 
+  def intronotice_continue
+    @driver.find_element(:id => "com.sohohouse.seven:id/onboarding_house_accept_button")
+  end
+
   def continue_button
-    @driver.find_element(:id => "com.sohohouse.seven:id/continue_button")
+    @driver.find_element(:id => "com.sohohouse.seven:id/onboarding_house_accept_button")
   end
 
   def noticeboard_text
@@ -115,8 +124,8 @@ class Android_Onboarding_Objects
     @driver.find_element(:xpath => "//android.widget.Button[@text = 'OK']")
   end
 
-  def youareset_text
-    @driver.find_element(:xpath => "//android.widget.TextView[@text = 'You're all set']")
+  def you_are_set_text
+    @driver.find_element(:id => "com.sohohouse.seven:id/title_card_title")
   end
 
 end

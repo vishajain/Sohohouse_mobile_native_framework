@@ -30,7 +30,6 @@ class Ios_Whatson_Objects
     # @member_event_name = name + " " + run_id
     @driver.find_elements(:name =>""+member_event_name+"")
   end
-
 end
 
 class Android_Whatson_Objects
@@ -38,6 +37,29 @@ class Android_Whatson_Objects
   def initialize(driver, driver_appium)
     @driver_appium = driver_appium
     @driver = driver
+  end
+
+  def whatson_filter
+    @driver.find_element(:id => "com.sohohouse.seven:id/filter_btn")
+  end
+
+  def whatson_options(button)
+
+    @driver.find_element(:xpath => "//android.widget.TextView[@text = \"#{button}\"]")
+
+  end
+
+  def whatson_title
+    @driver.find_element(:id => "com.sohohouse.seven:id/whats_on_header")
+  end
+
+  def member_event
+    config       = {props: YAML.load_file(File.join(File.dirname(__FILE__), '../../config/testdata.yml'))}
+    # run_id       = config[:props]["data"]["run-id"]
+    member_event_name         = config[:props]["data"]["event"]["name"]
+    # @member_event_name = name + " " + run_id\
+     @driver.find_elements(:xpath => "android.widget.TextView[@text = \"#{member_event_name}\"]")
+     # @driver.find_elements(:xpath =>"'android.widget.TextView[@text = "+member_event_name+"]'")
   end
 
 end

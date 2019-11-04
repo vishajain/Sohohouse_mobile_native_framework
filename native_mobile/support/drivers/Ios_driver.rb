@@ -40,7 +40,7 @@ module Ios_driver
 
       @app_path         = @config[:props][$device]["app_path"][$env]
 
-      #  ,
+      #  'useNewWDA'=> true,,
 
       @capabilities =
           {
@@ -56,10 +56,10 @@ module Ios_driver
                   'xcodeOrgId' => '9E4LTRQ997',
                   'xcodeSigningId' => 'iPhone Developer',
                   'ConnectHardwareKeyboard' => false,
-                  'useNewWDA'=> true,
                   'waitForQuiescence' => false,
                   'autoAcceptAlerts' => true,
                   'noReset' => true
+
               }
           }
 

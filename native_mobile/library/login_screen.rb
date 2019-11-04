@@ -36,6 +36,7 @@ class LoginScreen
 
   end
 
+
   def user_enters_email_password(validity)
 
     if validity == "valid"
