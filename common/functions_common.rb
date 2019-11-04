@@ -33,50 +33,42 @@ module Common
   end
 
 
-  def Common.swipe_and_search(obj,func)
-    element = obj + "." + func
-    swipe_down_count = 0
-    $found = 0
-    puts "I am in swipe and search"
-    puts "elements size is #{element.size}"
-    if Common.wait_for(2){element.size} > 0
-
-      locat = element[0].location
-
-      x =  locat["x"]
-      y =  locat["y"]
-      if y > $dimensions_height
-        swipe_down_count = swipe_down_count + 1
-        Common.swipe_down
-      elsif x==0 and y==100
-        swipe_down_count = swipe_down_count + 1
-        Common.swipe_down
-      end
-    end
+  def homescreen_navigate
 
     loop do
-      puts "I am in loop"
-      if Common.wait_for(4){element.size} > 0
-        puts "swipe count #{swipe_down_count}"
-        $found = 1
+
+      if Common.wait_for(5){@device_home_objects.homeBtn.size} > 0
+
+        @device_home_objects.homeBtn[0].click
+
         break
+
       else
-        if swipe_down_count < 5
-          puts "I am in swipe"
-          Common.swipe_down
-          swipe_down_count = swipe_down_count+1
-        else
-          $found = 0
-          break
-        end
+
+        Common.wait_for(5) {@device_home_objects.left_link.click}
+
       end
+
     end
-    if $found==1
-      puts "found"
-      return true
-    else
-      puts "not found"
-      return false
+
+  end
+
+  def myplanner_navigate
+
+    loop do
+
+      if Common.wait_for(5){@device_home_objects.myplanner_btn_1.size} > 0
+
+        @device_home_objects.myplanner_btn.click
+
+        break
+
+      else
+
+        Common.wait_for(5) {@device_home_objects.left_link.click}
+
+      end
+
     end
 
   end
@@ -87,9 +79,19 @@ module Common
     if $device == "ios"
       $action.press({:x => ($dimensions_width*0.5), :y => ($dimensions_height*0.5)}).wait(100).move_to({:x => ($dimensions_width*0.5), :y => ($dimensions_height*0.3)}).release.perform
     else
-       $driver.execute_script('mobile:scroll', direction: 'down')
+       Appium::TouchAction.new.swipe(start_y: 700, end_y: 0).perform
     end
-    sleep 1
+
+  end
+
+  def self.swipe_top()
+
+    if $device == "ios"
+      $action.press({:x => ($dimensions_width*0.1), :y => ($dimensions_height*0.6)}).wait(100).move_to({:x => ($dimensions_width*0.1), :y => ($dimensions_height*0.9)}).release.perform
+      sleep 1
+    else
+      Appium::TouchAction.new.swipe(start_y: 150, end_y: 700).perform
+    end
   end
 
 end

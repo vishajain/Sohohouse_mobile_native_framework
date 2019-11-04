@@ -7,16 +7,17 @@ require 'yaml'
 require_relative '../pageobjects/whatson_objects'
 
 class WhatsonScreen
-  extend Common
+
+  include Common
 
   def initialize()
 
     if $device == "ios"
-
+      @device_home_objects = Ios_Home_Objects.new($driver, $driver_appium)
       @device_whatson_objects = Ios_Whatson_Objects.new($driver, $driver_appium)
 
     else
-
+      @device_home_objects = Android_Home_Objects.new($driver, $driver_appium)
       @device_whatson_objects = Android_Whatson_Objects.new($driver, $driver_appium)
 
     end
@@ -54,6 +55,12 @@ class WhatsonScreen
 
   end
 
+  def events_click(button)
+
+    Common.wait_for(5){@device_whatson_objects.whatson_options(button).click}
+
+  end
+
   def  verify_multiple_events
 
     if Common.wait_for(2){@device_whatson_objects.mutiple_events.size} > 0
@@ -85,15 +92,15 @@ class WhatsonScreen
     end
 
     loop do
-
-      locat = @device_whatson_objects.member_event[0].location
-      y =  locat["y"]
-
-      if Common.wait_for(2){@device_whatson_objects.member_event.size} > 0 and y > 0
+      if Common.wait_for(5){@device_whatson_objects.member_event.size} > 0
+         locat = @device_whatson_objects.member_event[0].location
+          y =  locat["y"]
+      end
+      if Common.wait_for(5){@device_whatson_objects.member_event.size} > 0 and y > 0
         @found = 1
         break
       else
-        if swipe_down_count < 5
+        if swipe_down_count < 6
            Common.swipe_down
            sleep 1
            swipe_down_count = swipe_down_count+1
@@ -120,5 +127,6 @@ class WhatsonScreen
     end
 
   end
+
 
 end

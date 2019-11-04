@@ -16,6 +16,7 @@ include Test::Unit::Assertions
 
   end
 
+
   And(/^user is on sign in screen$/) do
 
     $loginscreen = LoginScreen.new

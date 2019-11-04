@@ -18,20 +18,20 @@ ios:
     stag:
       real:
         udid: XXXXX-XXXXXX-XXXXXXX-XXXXXXXXX
-        platform_version: 12.2
+        platform_version: 12.3
       simulator:
-        udid: XXXXX-XXXXXX-XXXXXXX-XXXXXXXXX
+        udid: B377173E-13A4-4DA3-86A3-220AE2690544
         platform_version: 12.2
     prod:
       real:
-        udid: XXXXX-XXXXXX-XXXXXXX-XXXXXXXXX
+        udid: ad6ce140e9909f9a6907504e929626df7301fde3
         platform_version: 12.2
       simulator:
         udid: D6DBBF52-3671-4177-9D62-4214E82E1C9E
         platform_version: 12.2
   bundle:
     stag: com.sohohouse.houseseven.staging
-    prod: com.sohohouse.enterprise.production
+    prod: com.sohohouse.houseseven
   app_path:
     stag: /Users/manikanth.erukulla/apps/ios/stag/DigitalHouse.app
     prod: /Users/manikanth.erukulla/apps/ios/prod/DigitalHouse.app

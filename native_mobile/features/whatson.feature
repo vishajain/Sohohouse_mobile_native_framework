@@ -4,7 +4,7 @@ Feature: What's on screen
 
   Background:
 
-  @smoke
+  @smoke @login-ex
   Scenario: Pre-requisite for What's on screen testing
     Given app is launched
     And user is on sign in screen
@@ -13,11 +13,7 @@ Feature: What's on screen
 
   @smoke
   Scenario: Validate Whatson screen title
-    When user clicks on what's on button
-    Then user sees what's on screen title
-
-  @smoke
-  Scenario: Validate Whatson screen title
+    Given username is visible
     When user clicks on what's on button
     Then user sees what's on screen title
 
@@ -35,4 +31,9 @@ Feature: What's on screen
   Scenario: Search for the member event
     When the member event is found
     Then tap on the member event
+
+  @smoke @hook
+    Scenario: Go back to the home page
+    When member is not on home screen
+    Then member is navigated to the home screen
 
