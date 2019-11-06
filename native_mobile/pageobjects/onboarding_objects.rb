@@ -34,6 +34,10 @@ class Ios_Onboarding_Objects
     @driver.find_element(:name => "Next")
   end
 
+  def continue_button_to_notify_pref
+    @driver.find_element(:name => "Next")
+  end
+
   def myplanner_text
     @driver.find_element(:name => "My planner")
   end
@@ -109,6 +113,10 @@ class Android_Onboarding_Objects
   end
 
   def continue_button
+    @driver.find_element(:id => "com.sohohouse.seven:id/onboarding_house_accept_button")
+  end
+
+  def continue_button_to_notify_pref
     @driver.find_element(:id => "com.sohohouse.seven:id/onboarding_house_accept_button")
   end
 

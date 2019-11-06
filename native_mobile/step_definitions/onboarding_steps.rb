@@ -129,7 +129,7 @@ end
 
 When("user clicks on next") do
 
-  $onboardingscreens.user_clicks_continue
+  $onboardingscreens.user_clicks_continue_to_notify_pref
 
 end
 

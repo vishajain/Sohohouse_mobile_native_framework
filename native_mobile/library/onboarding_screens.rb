@@ -168,6 +168,13 @@ class OnboardingScreens
 
   end
 
+  def user_clicks_continue_to_notify_pref()
+
+    Common.wait_for(10){@device_onboarding_objects.continue_button_to_notify_pref.click}
+
+  end
+
+
   def verify_Notification_pref_screen()
 
     if Common.wait_for(10){@device_onboarding_objects.notification_pref_text.displayed?}
