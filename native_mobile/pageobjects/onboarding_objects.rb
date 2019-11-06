@@ -70,7 +70,7 @@ class Ios_Onboarding_Objects
     @driver.find_element(:name => "OK")
   end
 
-  def youareset_text
+  def you_are_set_text
     @driver.find_element(:name => "You're all set")
   end
 
