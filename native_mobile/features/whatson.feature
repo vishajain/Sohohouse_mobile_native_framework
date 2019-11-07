@@ -27,10 +27,10 @@ Feature: What's on screen
     And Screenings button is visible
     And Gym classes button is visible
 
-  @smoke
-  Scenario: Search for the member event
-    When the member event is found
-    Then tap on the member event
+#  @smoke
+#  Scenario: Search for the member event
+#    When the member event is found
+#    Then tap on the member event
 
   @smoke @hook
     Scenario: Go back to the home page

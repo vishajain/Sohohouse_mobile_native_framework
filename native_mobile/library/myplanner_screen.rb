@@ -67,15 +67,14 @@ class MyplannerScreen
 
       Common.wait_for(5) {@device_myplanner_objects.events_with_list[0].click}
 
-      if $device == "ios"
+        @device_home_objects.navigate_back_to_my_planner.click
 
-         @device_home_objects.navigate_back.click
-      else
-        @device_home_objects.navigate_back_1.click
-      end
       return true
+
     else
+
       return false
+
     end
 
   end
@@ -127,15 +126,8 @@ class MyplannerScreen
 
     if Common.wait_for(5) {@device_myplanner_objects.explore_screenings_btn.size} == 0
 
-      # @device_home_objects.whats_on[1].click
-      # @device_home_objects.myplanner_btn[2].click
-      #  @device_home_objects.myplanner_btn.click
       Common.wait_for(5) {@device_myplanner_objects.screenings_with_list[0].click}
-      if $device == "ios"
-        @device_home_objects.navigate_back.click
-      else
-        @device_home_objects.navigate_back_1.click
-      end
+        @device_home_objects.navigate_back_to_my_planner.click
       return true
     else
       return false
@@ -195,13 +187,12 @@ class MyplannerScreen
 
       Common.wait_for(5) {@device_myplanner_objects.classes_with_list[0].click}
 
-      if $device == "ios"
-        @device_home_objects.navigate_back.click
-      else
-        @device_home_objects.navigate_back_1.click
-      end
+        @device_home_objects.navigate_back_to_my_planner.click
+
       return true
+
     else
+
       return false
     end
   end

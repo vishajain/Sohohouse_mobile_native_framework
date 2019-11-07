@@ -8,6 +8,6 @@ env:
   stag:
     username: 'nigel.spooner@sohohouse.com'
     password: 'password'
-    name: 'Manikanth'
-    house: 'Little Beach House Barcelona'
+    name: 'SFFactory'
+    house: 'Shoreditch House'
     profile: 'Local'
