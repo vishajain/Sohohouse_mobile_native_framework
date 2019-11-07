@@ -101,6 +101,10 @@ class Ios_Home_Objects
     @driver.find_element(:xpath => "//XCUIElementTypeOther/XCUIElementTypeButton[1]")
   end
 
+  def navigate_back_to_my_planner
+    @driver.find_element(:xpath => "//XCUIElementTypeOther/XCUIElementTypeButton[1]")
+  end
+
   def browse_houses_navigate_back
     @driver.find_element(:xpath => "//XCUIElementTypeOther/XCUIElementTypeButton[1]")
   end
@@ -209,8 +213,7 @@ class Android_Home_Objects
 
   end
 
-
-  def navigate_back_1
+  def navigate_back_to_my_planner
     @driver.find_element(:xpath =>"//android.widget.ImageButton[@content-desc='Navigate up']")
   end
 

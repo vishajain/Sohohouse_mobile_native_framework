@@ -21,6 +21,7 @@ Feature: My Planner screen
   Scenario: Validate events section is present
     Then Events section is present
 
+
   @smoke
   Scenario: Validate event bookings if present under Events section
     Given user sees my planner screen title

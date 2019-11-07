@@ -25,16 +25,16 @@ class Ios_Myplanner_Objects
 
   end
 
-
   def events_with_list
 
-    @driver.find_elements(:xpath => "//XCUIElementTypeCell//XCUIElementTypeStaticText[@name = 'Events']//parent::XCUIElementTypeCell/following-sibling::XCUIElementTypeCell[1]/XCUIElementTypeStaticText")
+    @driver.find_elements(:xpath => "//XCUIElementTypeCell//XCUIElementTypeStaticText[@name = 'Events']//parent::XCUIElementTypeCell/following-sibling::XCUIElementTypeCell[1]//XCUIElementTypeStaticText")
 
   end
 
   def explore_events_btn
     @driver.find_elements(:name => "Explore events")
   end
+
 
   def screenings_section
     @driver.find_element(:name => "Screenings")

@@ -61,7 +61,7 @@ class Android_Blackslate_Objects
   end
 
   def house_name
-    @driver.find_element(:xpath => "//android.widget.Button[1]")
+    @driver.find_element(:id => "com.sohohouse.seven:id/text")
   end
 
   def browse_houses

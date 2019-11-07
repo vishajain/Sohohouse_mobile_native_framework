@@ -29,8 +29,8 @@ Then("blackslate screen is opened") do
     sleep 2
 
     $blackslatescreen = BlackslateScreen.new
-
-    assert_equal($blackslatescreen.verify_house_name,"Little Beach House Barcelona", "Unable to open the blackslate")
+    house_name = $blackslatescreen.verify_house_name
+    assert_equal(house_name, $house, "Unable to open the blackslate")
 
 end
 

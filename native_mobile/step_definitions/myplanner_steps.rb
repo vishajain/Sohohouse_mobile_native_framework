@@ -29,7 +29,7 @@ When("user clicks on my planner button") do
 end
 
 Then("user sees my planner screen title") do
-  Common.swipe_top
+    Common.swipe_top
     sleep 2
     $myplannerscreen = MyplannerScreen.new
     $whatsonscreen = WhatsonScreen.new

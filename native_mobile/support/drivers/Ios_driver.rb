@@ -58,7 +58,7 @@ module Ios_driver
                   'ConnectHardwareKeyboard' => false,
                   'waitForQuiescence' => false,
                   'autoAcceptAlerts' => true,
-                  'noReset' => false
+                  'noReset' => true
 
               }
           }

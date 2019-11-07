@@ -36,17 +36,17 @@ class BlackslateScreen
 
     Common.wait_for(20) {@device_blackslate_objects.house_name.click}
 
-    if Common.wait_for(20) {@device_blackslate_objects.browse_houses.displayed?}
-
+    # if Common.wait_for(20) {@device_blackslate_objects.house_name.displayed?}
+    #
       Common.wait_for(20) {@device_blackslate_objects.browse_houses_back_button.click}
 
       return true
 
-    else
+    # else
+    #
+    #   return false
 
-      return false
-
-    end
+    # end
 
   end
 
