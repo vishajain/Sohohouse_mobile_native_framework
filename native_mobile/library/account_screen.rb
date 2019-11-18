@@ -35,9 +35,19 @@ class AccountScreen
 
       if Common.wait_for(20) {@device_account_objects.edit_profile_screen.displayed?}
 
-        Common.wait_for(20){@device_account_objects.icon_back_header.click}
+        if $device == "ios"
 
-        return true
+          Common.wait_for(20){@device_account_objects.icon_left.click}
+
+          return true
+
+        else
+
+          Common.wait_for(20){@device_account_objects.navigate_up.click}
+
+          return true
+
+        end
 
       end
 
@@ -157,9 +167,19 @@ class AccountScreen
 
       if Common.wait_for(20) {@device_account_objects.favourite_houses.displayed?}
 
-        Common.wait_for(20){@device_account_objects.icon_left.click}
+        if $device == "ios"
 
-        return true
+          Common.wait_for(20){@device_account_objects.icon_left.click}
+
+          return true
+
+        else
+
+          Common.wait_for(20){@device_account_objects.navigate_up.click}
+
+          return true
+
+        end
 
       end
 
@@ -231,7 +251,7 @@ class AccountScreen
       @device_account_objects.faq.click
 
       # if Common.wait_for(20) {@device_account_objects.faq.displayed?}
-      sleep 15
+      sleep 20
 
       Common.wait_for(20){@device_account_objects.icon_left.click}
 

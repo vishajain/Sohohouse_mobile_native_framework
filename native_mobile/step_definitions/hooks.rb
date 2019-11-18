@@ -3,15 +3,26 @@ require 'cucumber'
 require 'report_builder'
 #
 at_exit do
-  ReportBuilder.configure do |config|
-  config.json_path = 'results/cucumber_json'
-  config.report_path = 'results/reports/Test_Exec_Report'
-  config.report_types = [:html]
-  config.report_tabs = [:overview, :features, :scenarios, :errors]
-  config.report_title = 'My Test Results'
-  config.compress_images = false
-end
-ReportBuilder.build_report
+  if $device == "ios"
+    ReportBuilder.configure do |config|
+    config.json_path = 'results/cucumber_json/ios'
+    config.report_path = 'results/reports/iOS_Test_Exec_Report'
+    config.report_types = [:html]
+    config.report_tabs = [:overview, :features, :scenarios, :errors]
+    config.report_title = 'My Test Results'
+    config.compress_images = false
+    end
+  else
+    ReportBuilder.configure do |config|
+      config.json_path = 'results/cucumber_json/android'
+      config.report_path = 'results/reports/Android_Test_Exec_Report'
+      config.report_types = [:html]
+      config.report_tabs = [:overview, :features, :scenarios, :errors]
+      config.report_title = 'My Test Results'
+      config.compress_images = false
+    end
+  end
+  ReportBuilder.build_report
 end
 
 After do |scenario|

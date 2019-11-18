@@ -70,7 +70,7 @@ class OnboardingScreens
 
   def user_accepts_house_rules()
 
-    Common.wait_for(10){@device_onboarding_objects.next_button.click}
+    Common.wait_for(15){@device_onboarding_objects.next_button.click}
 
   end
 
@@ -123,7 +123,7 @@ class OnboardingScreens
       Common.wait_for(10){@device_onboarding_objects.next_button.click}
 
     else
-
+      sleep 2
       Common.wait_for(15){@device_onboarding_objects.next_button_1.click}
 
     end

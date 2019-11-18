@@ -53,7 +53,7 @@ Feature: Account screen
   Scenario: Validate contact us link
     Then user sees and taps on contact us link
 
-  @smoke
+  @smoke @android
   Scenario: Validate faq link
     Then user sees and taps on faq link
 

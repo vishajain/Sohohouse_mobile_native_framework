@@ -32,5 +32,6 @@ gem'rubocop', require: false
 gem 'rspec', '~> 3.9'
 gem 'report_builder', '~> 1.8'
 gem 'cucumber-report-format', '~> 0.0.3'
+gem 'browserstack-local'
 
 

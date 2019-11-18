@@ -9,13 +9,13 @@ module Ios_driver
 
   def Ios_driver.start_app()
 
-    puts "Launching Soho House ios App"
+     puts "Launching Soho House ios App"
 
-    set_ios_capabilities
-
-      $driver_appium = Appium::Driver.new(@capabilities, true)
-
-      $driver = $driver_appium.start_driver
+      if $run == "local"
+          set_ios_capabilities_local
+      elsif $run == "cloud"
+          set_ios_capabilities_cloud
+      end
 
       $driver.manage.timeouts.implicit_wait = 5
 
@@ -25,10 +25,9 @@ module Ios_driver
 
       $dimensions_height = $driver.manage.window.size.height
 
-
   end
 
-  def Ios_driver.set_ios_capabilities()
+  def Ios_driver.set_ios_capabilities_local
 
       @config = {props: YAML.load_file(File.join(File.dirname(__FILE__), '../../../config/ios_device_details.yml'))}
 
@@ -41,13 +40,12 @@ module Ios_driver
       @app_path         = @config[:props][$device]["app_path"][$env]
 
       #  'useNewWDA'=> true,,
-
       @capabilities =
           {
               caps:
               {
                   'platformName' => 'iOS',
-                  'deviceName' => 'iPhone',
+                  'deviceName' => 'iPhone XS Max',
                   'platformVersion' => @platform_version ,
                   'udid' =>   @udid  ,
                   'app' =>  @app_path,
@@ -58,10 +56,37 @@ module Ios_driver
                   'ConnectHardwareKeyboard' => false,
                   'waitForQuiescence' => false,
                   'autoAcceptAlerts' => true,
-                  'noReset' => true
-
+                  'noReset' => false
               }
           }
+      $driver_appium = Appium::Driver.new(@capabilities, true)
+
+      $driver = $driver_appium.start_driver
+
+  end
+
+  def Ios_driver.set_ios_capabilities_cloud
+
+      username = 'patrickgleeson1'
+      access_key = 'r3bbzzgobTf5rppywrmx'
+
+      caps = {}
+      caps['build'] = 'Soho house ios tests'
+      caps['name'] = 'single_test'
+      caps['device'] = 'iPhone XS Max'
+      caps['platformName'] = 'iOS'
+      caps['os_version'] = '12'
+      caps['browserstack.debug'] = true
+      caps['autoAcceptAlerts'] = true
+      caps['noReset'] = false
+      caps['app'] = 'bs://9f694e96766543ff9bfd98e98ae9caf57cddb7f2'
+
+      $driver_appium = Appium::Driver.new({
+                                              'caps' => caps,
+                                              'appium_lib' => {
+                                                  :server_url => "http://#{username}:#{access_key}@hub-cloud.browserstack.com/wd/hub"
+                                              }}, true)
+      $driver = $driver_appium.start_driver
 
   end
 

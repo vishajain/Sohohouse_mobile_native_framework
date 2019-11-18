@@ -43,7 +43,7 @@ Feature: Home Screen
     And MY PLANNER button should be visible
     And ACCOUNT button should be visible
 
-  @smoke @android @hook
+  @smoke @android
   Scenario: Validate android home screen footer
     Then HOME button should be seen in menu bar
     And WHAT'S ON button should be seen in menu bar

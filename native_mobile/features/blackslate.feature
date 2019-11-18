@@ -25,13 +25,16 @@ Feature: Blackslate screen
   Scenario: Validate membership card link  and its navigation to membership card screen
     Then user taps on membership card to navigate to membership card screen
 
-  @smoke
+  @smoke @ios
   Scenario: Validate book a bedroom link and its navigation to bedrooms screen
     Then user taps on book a bedroom to see bedrooms screen
 
   @smoke
   Scenario: Validate contact a house link and its navigation to contact us screen
     Then user taps on contact a house link to see contact a house screen
-    Then navigate back to home screen
 
+  @smoke
+  Scenario: Validate contact a house link and its navigation to contact us screen
+    Then user taps on house rules link to see house rules
+    Then navigate back to home screen
 
