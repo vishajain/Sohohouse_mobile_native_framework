@@ -11,19 +11,18 @@ module Android_driver
 
     puts "Launching Soho House android App"
 
-    set_android_capabilities
-
-    $driver_appium = Appium::Driver.new(@capabilities, true)
-
-    $driver = $driver_appium.start_driver
+    if $run == "local"
+      set_android_capabilities_local
+    elsif $run == "cloud"
+      set_android_capabilities_cloud
+    end
 
     $driver.manage.timeouts.implicit_wait = 5
-
 
   end
 
 
-  def Android_driver.set_android_capabilities()
+  def Android_driver.set_android_capabilities_local()
 
     @config = {props: YAML.load_file(File.join(File.dirname(__FILE__), '../../../config/android_device_details.yml'))}
 
@@ -54,7 +53,35 @@ module Android_driver
                 }
         }
 
+    $driver_appium = Appium::Driver.new(@capabilities, true)
+
+    $driver = $driver_appium.start_driver
+
   end
 
+  def Android_driver.set_android_capabilities_cloud
+
+    username = 'patrickgleeson1'
+    access_key = 'r3bbzzgobTf5rppywrmx'
+
+    username = 'patrickgleeson1'
+    access_key = 'r3bbzzgobTf5rppywrmx'
+
+    caps = {}
+    caps['build'] = 'Soho house android tests'
+    caps['name'] = 'single_test'
+    caps['device'] = 'Samsung Galaxy S8 Plus'
+    caps['platformName'] = 'android'
+    caps['browserstack.debug'] = true
+    caps['app'] = 'bs://c708dba26745f7448bc72f902aa095580ed25865'
+
+    $driver_appium = Appium::Driver.new({
+                                            'caps' => caps,
+                                            'appium_lib' => {
+                                                :server_url => "http://#{username}:#{access_key}@hub-cloud.browserstack.com/wd/hub"
+                                            }}, true)
+    $driver = $driver_appium.start_driver
+
+  end
 
 end

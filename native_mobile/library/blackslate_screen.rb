@@ -70,7 +70,7 @@ class BlackslateScreen
 
       Common.wait_for(10){@device_blackslate_objects.book_a_bedroom.click}
 
-      sleep 4
+      sleep 12
 
       Common.wait_for(20) {@device_blackslate_objects.icon_left.click}
 
@@ -86,7 +86,7 @@ class BlackslateScreen
 
       Common.wait_for(10){@device_blackslate_objects.contact_a_house.click}
 
-      sleep 4
+      sleep 20
 
       Common.wait_for(20) {@device_blackslate_objects.icon_left.click}
 
@@ -102,7 +102,7 @@ class BlackslateScreen
 
       Common.wait_for(10){@device_blackslate_objects.house_rules.click}
 
-      sleep 4
+      sleep 20
 
       Common.wait_for(20) {@device_blackslate_objects.icon_left.click}
 

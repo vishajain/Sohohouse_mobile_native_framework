@@ -15,7 +15,7 @@ class Ios_Onboarding_Objects
   end
 
   def accept_terms
-    @driver.find_element(:name => "Accept")
+    @driver.find_element(:name => "Accept & Continue")
   end
 
   def helpus_text

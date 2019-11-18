@@ -30,7 +30,7 @@ android:
         udid: D6DBBF52-3671-4177-9D62-4214E82E1C9E
         platform_version: 12.2
   bundle:
-    stag: com.sohohouse.houseseven.staging
+    stag: com.sohohouse.seven
     prod: com.sohohouse.seven
   app_path:
     stag: /Users/manikanth.erukulla/apps/android/stag/app-qa.apk

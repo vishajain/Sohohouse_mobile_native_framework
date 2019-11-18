@@ -164,11 +164,13 @@ class Android_Account_Objects
 
   end
 
-
   def stay_section
     @driver.find_element(:xpath => "//android.widget.TextView[@text = 'Sign out']")
   end
 
+  def navigate_up
+    @driver.find_element(:xpath => "//android.widget.ImageButton[@content-desc = 'Navigate up']")
+  end
 
   def icon_left
     @driver.find_element(:id => "com.sohohouse.seven:id/toolbar_back_btn")

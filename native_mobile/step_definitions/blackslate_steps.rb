@@ -15,7 +15,7 @@ include Test::Unit::Assertions
 
 When("user taps on blackslate to view the blackslate screen") do
 
-    sleep 2
+    sleep 4
 
     $homescreen.verify_blackslate_screen
 
@@ -59,8 +59,6 @@ Then("user taps on book a bedroom to see bedrooms screen") do
 
   assert_true($blackslatescreen.verify_book_a_bedroom,"Unable to navigate to book a bedroom screen")
 
-  sleep 5
-
 end
 
 
@@ -75,7 +73,7 @@ Then("user taps on contact a house link to see contact a house screen") do
 end
 
 
-Then("user taps on house rules to see house rules screen") do
+Then("user taps on house rules link to see house rules") do
 
   sleep 2
 

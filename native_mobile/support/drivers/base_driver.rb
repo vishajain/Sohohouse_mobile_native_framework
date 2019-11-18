@@ -42,6 +42,7 @@ module Base_driver
     $device = ENV['device']
     $phone  =  ENV['phone']
     $devicetype =  ENV['devicetype']
+    $run  = ENV['run']
 
       if $env != "stag" and $env != "prod"
 

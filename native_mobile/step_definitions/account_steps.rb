@@ -70,9 +70,9 @@ Then("user sees and taps on past bookings link") do
 end
 
 
-Then("user sees and taps on change password link") do
+ Then("user sees and taps on change password link") do
 
-    sleep 2
+    sleep 4
 
     assert_true($accountscreen.verify_change_password,"Unable to tap on change password link")
 

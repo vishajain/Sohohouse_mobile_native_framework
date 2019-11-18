@@ -67,7 +67,15 @@ class Ios_Home_Objects
   end
 
   def footer_buttons(button)
-    @driver.find_element(:name => ""+button+"")
+    if button == "HOME"
+        @driver.find_element(:xpath => "//XCUIElementTypeTabBar//XCUIElementTypeButton[1]")
+    elsif button == "WHAT'S ON"
+        @driver.find_element(:xpath => "//XCUIElementTypeTabBar//XCUIElementTypeButton[2]")
+    elsif button == "MY PLANNER"
+        @driver.find_element(:xpath => "//XCUIElementTypeTabBar//XCUIElementTypeButton[3]")
+    elsif button == "ACCOUNT"
+        @driver.find_element(:xpath => "//XCUIElementTypeTabBar//XCUIElementTypeButton[4]")
+    end
   end
 
   def homeBtn
@@ -85,7 +93,7 @@ class Ios_Home_Objects
 
   def myplanner_btn
     # @driver.find_elements(:xpath => "//XCUIElementTypeTabBar[1]/XCUIElementTypeButton")
-    @driver.find_element(:name => "MY PLANNER")
+    @driver.find_element(:xpath => "//XCUIElementTypeTabBar//XCUIElementTypeButton[3]")
   end
 
   def myplanner_btn_1
@@ -108,8 +116,9 @@ class Ios_Home_Objects
   def browse_houses_navigate_back
     @driver.find_element(:xpath => "//XCUIElementTypeOther/XCUIElementTypeButton[1]")
   end
+
   def account_button
-    @driver.find_element(:name => "ACCOUNT")
+    @driver.find_element(:xpath => "//XCUIElementTypeTabBar//XCUIElementTypeButton[4]")
   end
 
 end

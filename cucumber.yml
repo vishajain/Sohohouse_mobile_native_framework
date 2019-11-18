@@ -1,5 +1,7 @@
-iphoneX-stag: env=stag device=ios phone=iphoneX devicetype=simulator --tags=~@android -f pretty --format json --out=results/cucumber_json/report_iOS.json native_mobile/features/myplanner.feature -r native_mobile/step_definitions
-iphoneX-prod: env=prod device=ios phone=iphoneX devicetype=simulator -f pretty native_mobile/features/aaaaonboarding.feature -r native_mobile/step_definitions
+iphoneX-stag-cloud: env=stag device=ios phone=iphoneX devicetype=real run=cloud --tags=~@login-ex --tags=~@android -f pretty --format json --out=results/cucumber_json/ios/report_iOS.json native_mobile/features -r native_mobile/step_definitions
+iphoneX-stag-local: env=stag device=ios phone=iphoneX devicetype=simulator run=local --tags=~@login-ex --tags=~@android -f pretty --format json --out=results/cucumber_json/ios/report_iOS.json native_mobile/features -r native_mobile/step_definitions
+iphoneX-prod-local: env=prod device=ios phone=iphoneX devicetype=simulator run=local -f pretty native_mobile/features/aaaaonboarding.feature -r native_mobile/step_definitions
 iphone6-stag: env=stag device=ios phone=iphone6 devicetype=simulator -f pretty native_mobile/features -r native_mobile/step_definitions --tags ~@login-ex
-nexus5x-stag: env=stag device=android phone=nexus5x devicetype=simulator --tags=~@login-ex --tags=~@ios -f pretty --format json --out=results/cucumber_json/report.json native_mobile/features -r native_mobile/step_definitions
+nexus5x-stag-local: env=stag device=android phone=nexus5x devicetype=simulator run=local --tags=~@login-ex --tags=~@ios -f pretty --format json --out=results/cucumber_json/android/report_android.json native_mobile/features -r native_mobile/step_definitions
+nexus5x-stag-cloud: env=stag device=android phone=nexus5x devicetype=real run=local --tags=~@login-ex --tags=~@ios -f pretty --format json --out=results/cucumber_json/android/report_android.json native_mobile/features -r native_mobile/step_definitions
 iphone6-prod: env=prod device=ios phone=iphone6 devicetype=real -f pretty native_mobile/features/aaaaonboarding.feature -r native_mobile/step_definitions
