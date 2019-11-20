@@ -73,7 +73,7 @@ module Android_driver
     caps['device'] = 'Samsung Galaxy S8 Plus'
     caps['platformName'] = 'android'
     caps['browserstack.debug'] = true
-    caps['app'] = 'bs://c708dba26745f7448bc72f902aa095580ed25865'
+    caps['app'] = 'bs://33cbf62d8397f814f7c5b5d9c9fe3c80e73cd13f'
 
     $driver_appium = Appium::Driver.new({
                                             'caps' => caps,
