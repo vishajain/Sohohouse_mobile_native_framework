@@ -12,17 +12,6 @@ require_relative '../../common/functions_common'
 include Test::Unit::Assertions
 
 
-When("user clicks on Account button on home screen") do
-
-    sleep 2
-
-    $homescreen.verify_account_click
-
-    $accountscreen = AccountScreen.new
-
-end
-
-
 Then("user sees and taps on view profile link") do
 
     sleep 2

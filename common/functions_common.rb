@@ -84,6 +84,16 @@ module Common
 
   end
 
+  def self.little_swipe_down
+
+    if $device == "ios"
+      $action.press({:x => ($dimensions_width*0.5), :y => ($dimensions_height*0.5)}).wait(100).move_to({:x => ($dimensions_width*0.5), :y => ($dimensions_height*0.4)}).release.perform
+    else
+      Appium::TouchAction.new.swipe(start_y: 700, end_y: 0).perform
+    end
+
+  end
+
   def self.swipe_top()
 
     if $device == "ios"
