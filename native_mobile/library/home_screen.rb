@@ -216,7 +216,9 @@ class HomeScreen
 
   def verify_account_click
 
-    Common.wait_for(15){@device_home_objects.account_button.click}
+    sleep 5
+
+    Common.wait_for(20){@device_home_objects.account_button.click}
 
   end
 

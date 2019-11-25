@@ -23,7 +23,15 @@ class Ios_Editprofile_Objects
   end
 
   def profession_input
-    @driver.find_element(:name => "Tell us what you do")
+    @driver.find_element(:xpath => "//XCUIElementTypeTable/XCUIElementTypeCell[3]/XCUIElementTypeStaticText[1]")
+  end
+
+  def text_input
+    @driver.find_element(:xpath => "//XCUIElementTypeTextField[1]")
+  end
+
+  def large_text_input
+    @driver.find_element(:xpath => "//XCUIElementTypeTextView[1]")
   end
 
   def industry
@@ -31,7 +39,7 @@ class Ios_Editprofile_Objects
   end
 
   def industry_input
-    @driver.find_element(:name => "Tell us about your field")
+    @driver.find_element(:xpath => "//XCUIElementTypePicker//XCUIElementTypePickerWheel")
   end
 
   def city
@@ -62,12 +70,16 @@ class Ios_Editprofile_Objects
     @driver.find_element(:name => "Interests")
   end
 
-  def interests_input
-    @driver.find_element(:xpath => "//XCUIElementTypeTextField[@type = 'TextField']")
+  # def interests_input
+  #   @driver.find_element(:xpath => "//XCUIElementTypeTextField[@type = 'TextField']")
+  # end
+
+  def interests_remove
+    @driver.find_elements(:xpath => "//XCUIElementTypeCollectionView//XCUIElementTypeStaticText")
   end
 
-  def done
-    @driver.find_element(:name => "Done")
+  def interests_input(interest)
+    @driver.find_element(:xpath => "//XCUIElementTypeCollectionView//XCUIElementTypeStaticText[@name='"+interest+"']")
   end
 
   def social_accounts
@@ -79,7 +91,7 @@ class Ios_Editprofile_Objects
   end
 
   def website_text
-    @driver.find_element(:xpath => "//XCUIElementTypeTextField[@value = 'yourwebsite.com']")
+    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name='Website']/following-sibling::XCUIElementTypeTextField[1]")
   end
 
   def instagram
@@ -87,7 +99,7 @@ class Ios_Editprofile_Objects
   end
 
   def instagram_text
-    @driver.find_element(:xpath => "//XCUIElementTypeTextField[@value = '@yourhandle']")
+    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name='Instagram']/following-sibling::XCUIElementTypeTextField[1]")
   end
 
   def twitter
@@ -95,7 +107,7 @@ class Ios_Editprofile_Objects
   end
 
   def twitter_text
-    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name = 'Twitter']/following-sibling::XCUIElementTypeTextField[@value = '@yourhandle']")
+    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name='Twitter']/following-sibling::XCUIElementTypeTextField[1]")
   end
 
   def linkedin
@@ -103,7 +115,7 @@ class Ios_Editprofile_Objects
   end
 
   def linkedin_text
-    @driver.find_element(:xpath => "//XCUIElementTypeTextField[@value = 'linkedin.com/in/username']")
+    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name='LinkedIn']/following-sibling::XCUIElementTypeTextField[1]")
   end
 
   def spotify
@@ -111,7 +123,7 @@ class Ios_Editprofile_Objects
   end
 
   def spotify_text
-    @driver.find_element(:xpath => "//XCUIElementTypeTextField[@value = 'open.spotify.com/user/username']")
+    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name='Spotify']/following-sibling::XCUIElementTypeTextField[1]")
   end
 
   def youtube
@@ -119,7 +131,11 @@ class Ios_Editprofile_Objects
   end
 
   def youtube_text
-    @driver.find_element(:xpath => "//XCUIElementTypeTextField[@value = 'youtube.com/user/username']")
+    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name='YouTube']/following-sibling::XCUIElementTypeTextField[1]")
+  end
+
+  def done
+    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name='Done']")
   end
 
   def save_changes
@@ -133,55 +149,6 @@ class Android_Editprofile_Objects
   def initialize(driver, driver_appium)
     @driver_appium = driver_appium
     @driver = driver
-  end
-
-  def welcome_text
-    @driver.find_element(:xpath => "//android.widget.TextView[@text = 'Welcome to Soho House']")
-  end
-
-  def next_button
-    @driver.find_element(:id => "com.sohohouse.seven:id/title_card_next_button")
-  end
-
-
-  def next_button_1
-    @driver.find_element(:id => "com.sohohouse.seven:id/continue_button")
-  end
-
-  def makepersonal_text
-    @driver.find_element(:xpath => "//android.widget.TextView[@text = 'Make it personal']")
-  end
-
-  def intronotice_text
-    @driver.find_element(:xpath => "//android.widget.TextView[@text = 'Introducing Noticeboard']")
-  end
-
-  def intronotice_continue
-    @driver.find_element(:id => "com.sohohouse.seven:id/onboarding_house_accept_button")
-  end
-
-  def continue_button
-    @driver.find_element(:id => "com.sohohouse.seven:id/onboarding_house_accept_button")
-  end
-
-  def continue_button_to_notify_pref
-    @driver.find_element(:id => "com.sohohouse.seven:id/onboarding_house_accept_button")
-  end
-
-  def noticeboard_text
-    @driver.find_element(:xpath => "//android.widget.TextView[@text = 'Noticeboard']")
-  end
-
-  def notification_pref_text
-    @driver.find_element(:xpath => "//android.widget.TextView[@text = 'Notification preferences']")
-  end
-
-  def ok_button
-    @driver.find_element(:xpath => "//android.widget.Button[@text = 'OK']")
-  end
-
-  def you_are_set_text
-    @driver.find_element(:id => "com.sohohouse.seven:id/title_card_title")
   end
 
 end

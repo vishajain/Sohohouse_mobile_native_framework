@@ -11,42 +11,27 @@ class Ios_Login_Objects
   end
 
   def welcome_home
-    begin
 
     @driver.find_element(:name => "Welcome home")
 
-    rescue
-      puts "welcome home element not found"
-    end
 
   end
 
 
   def email_textfield
-    begin
     @driver.find_element(:xpath => "//XCUIElementTypeTextField")
 
-    rescue
-    puts "welcome home element not found"
-    end
   end
 
   def password_textfield
-    begin
     @driver.find_element(:xpath => "//XCUIElementTypeSecureTextField")
 
-    rescue
-    puts "welcome home element not found"
-    end
   end
 
   def go_button
-    begin
+
     @driver.find_element(:name => "Go")
 
-    rescue
-    puts "welcome home element not found"
-    end
   end
 
 end

@@ -55,6 +55,20 @@ class AccountScreen
 
   end
 
+  def tap_View_Profile
+
+    Common.wait_for(10){@device_account_objects.account_title.click}
+
+  end
+
+
+  def tap_edit_link
+
+    Common.wait_for(10) {@device_account_objects.edit_profile_screen.click}
+
+  end
+
+
   def verify_your_membership
 
 
