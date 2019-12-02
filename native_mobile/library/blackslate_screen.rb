@@ -34,11 +34,11 @@ class BlackslateScreen
 
   def verify_house_name_click
 
-    Common.wait_for(20) {@device_blackslate_objects.house_name.click}
+    Common.wait_for(20) {@device_blackslate_objects.house_name}.click
 
-    # if Common.wait_for(20) {@device_blackslate_objects.house_name.displayed?}
+    # if Common.wait_for(20) {@device_blackslate_objects.house_name}.displayed?
     #
-      Common.wait_for(20) {@device_blackslate_objects.browse_houses_back_button.click}
+      Common.wait_for(20) {@device_blackslate_objects.browse_houses_back_button}.click
 
       return true
 
@@ -52,11 +52,11 @@ class BlackslateScreen
 
   def verify_membership_card
 
-    if Common.wait_for(20) {@device_blackslate_objects.membership_card.displayed?}
+    if Common.wait_for(20) {@device_blackslate_objects.membership_card}.displayed?
 
-      Common.wait_for(10){@device_blackslate_objects.membership_card.click}
+      Common.wait_for(10){@device_blackslate_objects.membership_card}.click
 
-      Common.wait_for(20) {@device_blackslate_objects.membership_card_back_button.click}
+      Common.wait_for(20) {@device_blackslate_objects.membership_card_back_button}.click
 
       return true
 
@@ -66,13 +66,13 @@ class BlackslateScreen
 
   def verify_book_a_bedroom
 
-    if Common.wait_for(20) {@device_blackslate_objects.book_a_bedroom.displayed?}
+    if Common.wait_for(20) {@device_blackslate_objects.book_a_bedroom}.displayed?
 
-      Common.wait_for(10){@device_blackslate_objects.book_a_bedroom.click}
+      Common.wait_for(10){@device_blackslate_objects.book_a_bedroom}.click
 
       sleep 12
 
-      Common.wait_for(20) {@device_blackslate_objects.icon_left.click}
+      Common.wait_for(20) {@device_blackslate_objects.icon_left}.click
 
       return true
 
@@ -82,13 +82,13 @@ class BlackslateScreen
 
   def verify_contact_a_house
 
-    if Common.wait_for(20) {@device_blackslate_objects.contact_a_house.displayed?}
+    if Common.wait_for(20) {@device_blackslate_objects.contact_a_house}.displayed?
 
-      Common.wait_for(10){@device_blackslate_objects.contact_a_house.click}
+      Common.wait_for(10){@device_blackslate_objects.contact_a_house}.click
 
       sleep 20
 
-      Common.wait_for(20) {@device_blackslate_objects.icon_left.click}
+      Common.wait_for(20) {@device_blackslate_objects.icon_left}.click
 
       return true
 
@@ -98,17 +98,27 @@ class BlackslateScreen
 
   def verify_house_rules
 
-    if Common.wait_for(20) {@device_blackslate_objects.house_rules.displayed?}
+    if Common.wait_for(20) {@device_blackslate_objects.house_rules}.displayed?
 
-      Common.wait_for(10){@device_blackslate_objects.house_rules.click}
+      Common.wait_for(10){@device_blackslate_objects.house_rules}.click
 
       sleep 20
 
-      Common.wait_for(20) {@device_blackslate_objects.icon_left.click}
+      Common.wait_for(20) {@device_blackslate_objects.icon_left}.click
 
       return true
 
     end
+
+  end
+
+  def home_screen_navigate
+
+    # Common.wait_for(5){@device_blackslate_objects.close_blackslate.click}
+
+    $driver.action.move_to(@device_blackslate_objects.close_blackslate).click.perform
+
+    return true
 
   end
 

@@ -12,30 +12,18 @@ require_relative '../../common/functions_common'
 include Test::Unit::Assertions
 
 When("user clicks on my planner button") do
-
-  begin
     sleep 2
     $homescreen.verify_myplanner_click
     $myplannerscreen = MyplannerScreen.new
 
-  rescue => e
-
-    puts e.inspect
-
-    Common.scenario_failed_and_noquit
-
-  end
-
 end
 
 Then("user sees my planner screen title") do
-    Common.swipe_top
-    sleep 2
-    $myplannerscreen = MyplannerScreen.new
-    $whatsonscreen = WhatsonScreen.new
-    $myplannerscreen.myplanner_navigate
-    assert_true($myplannerscreen.verify_myplanner_title,"My planner title is not present")
 
+    sleep 2
+    $whatsonscreen = WhatsonScreen.new
+    # $myplannerscreen.myplanner_navigate
+    assert_true($myplannerscreen.verify_myplanner_title,"My planner title is not present")
 
 end
 
@@ -46,7 +34,6 @@ Then("Events section is present") do
     assert_true($myplannerscreen.verify_events_section,"Events section is not present")
 
 end
-
 
 When("Events list is present") do
 
@@ -132,8 +119,6 @@ end
 
   Then("stay section is present") do
 
-    Common.swipe_down
-
       assert_true($myplannerscreen.verify_stay_section,"Stay section is not present")
 
   end
@@ -144,3 +129,9 @@ Then("member clicks on view bedroom bookings link and navigate back to my planne
       assert_true($myplannerscreen.verify_view_bedroom_bookings,"Unable to click on View bedroom bookings link")
 
   end
+
+Then("member is not on home screen from my planner screen") do
+
+  assert_true($myplannerscreen.home_screen_navigate,"Unable to navigate to home screen")
+
+end

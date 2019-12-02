@@ -73,7 +73,7 @@ class Ios_Myplanner_Objects
   end
 
   def explore_classes_btn
-    @driver.find_elements(:name => "Explore gym events")
+    @driver.find_elements(:name => "Explore gym classes")
   end
 
   def stay_section
@@ -84,6 +84,9 @@ class Ios_Myplanner_Objects
     @driver.find_element(:name => "View bedroom bookings")
   end
 
+  def homeBtn
+    @driver.find_element(:xpath => "//XCUIElementTypeTabBar//XCUIElementTypeButton[1]")
+  end
 
 end
 
@@ -168,5 +171,8 @@ class Android_Myplanner_Objects
     @driver.find_element(:xpath => "//android.widget.TextView[@text = 'View bedroom bookings']")
   end
 
+  def homeBtn
+    @driver.find_element(:xpath => "//*[@resource-id='com.sohohouse.seven:id/menu_home']/android.widget.ImageView[1]")
+  end
 
 end

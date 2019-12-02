@@ -17,7 +17,7 @@ module Ios_driver
           set_ios_capabilities_cloud
       end
 
-      $driver.manage.timeouts.implicit_wait = 5
+      $driver.manage.timeouts.implicit_wait = 10
 
       $action = Appium::TouchAction.new
 

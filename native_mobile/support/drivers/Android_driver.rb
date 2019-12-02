@@ -17,7 +17,7 @@ module Android_driver
       set_android_capabilities_cloud
     end
 
-    $driver.manage.timeouts.implicit_wait = 5
+    $driver.manage.timeouts.implicit_wait = 10
 
   end
 

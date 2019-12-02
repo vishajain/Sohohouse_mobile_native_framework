@@ -91,6 +91,11 @@ class Ios_Account_Objects
   def icon_back_header
     @driver.find_element(:name => "iconBackHeader")
   end
+
+  def homeBtn
+    @driver.find_element(:xpath => "//XCUIElementTypeTabBar//XCUIElementTypeButton[1]")
+  end
+
 end
 
 class Android_Account_Objects
@@ -180,6 +185,9 @@ class Android_Account_Objects
     @driver.find_element(:xpath => "//android.widget.ImageButton[@index='0']")
   end
 
+  def homeBtn
+    @driver.find_element(:xpath => "//*[@resource-id='com.sohohouse.seven:id/menu_home']/android.widget.ImageView[1]")
+  end
 
 end
 

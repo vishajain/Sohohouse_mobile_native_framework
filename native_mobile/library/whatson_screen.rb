@@ -5,10 +5,10 @@ require 'selenium-webdriver'
 require "test/unit"
 require 'yaml'
 require_relative '../pageobjects/whatson_objects'
+require_relative '../../common/functions_common'
 
 class WhatsonScreen
 
-  include Common
 
   def initialize()
 
@@ -71,62 +71,133 @@ class WhatsonScreen
 
 
 
+  # def find_member_event
+  #
+  #   swipe_down_count = 0
+  #
+  #   if Common.wait_for(2){@device_whatson_objects.member_event.size} > 0
+  #
+  #     locat = @device_whatson_objects.member_event[0].location
+  #
+  #     x =  locat["x"]
+  #     y =  locat["y"]
+  #
+  #     if y > $dimensions_height
+  #       swipe_down_count = swipe_down_count + 1
+  #       Common.swipe_down
+  #     elsif x==0 and y==100
+  #       swipe_down_count = swipe_down_count + 1
+  #       Common.swipe_down
+  #     end
+  #   end
+  #
+  #   loop do
+  #     if Common.wait_for(5){@device_whatson_objects.member_event.size} > 0
+  #        locat = @device_whatson_objects.member_event[0].location
+  #         y =  locat["y"]
+  #     end
+  #     if Common.wait_for(5){@device_whatson_objects.member_event.size} > 0 and y > 0
+  #       @found = 1
+  #       break
+  #     else
+  #       if swipe_down_count < 6
+  #          Common.swipe_down
+  #          sleep 1
+  #          swipe_down_count = swipe_down_count+1
+  #       else
+  #          @found = 0
+  #          break
+  #       end
+  #     end
+  #   end
+  #   if @found == 1
+  #     return true
+  #   else
+  #     return false
+  #   end
+  #
+  # end
+  #
+  # def find_member_event_click
+  #
+  #   if @found == 1
+  #    Common.wait_for(2){@device_whatson_objects.member_event[0].click}
+  #   else
+  #     puts "Member Event not found"
+  #   end
+  #
+  # end
+
+
   def find_member_event
 
-    swipe_down_count = 0
+    sleep 5
 
-    if Common.wait_for(2){@device_whatson_objects.member_event.size} > 0
+    i = 0
 
-      locat = @device_whatson_objects.member_event[0].location
+    while i <  7
 
-      x =  locat["x"]
-      y =  locat["y"]
+      if Common.wait_for(5){@device_whatson_objects.member_event}.displayed?
 
-      if y > $dimensions_height
-        swipe_down_count = swipe_down_count + 1
-        Common.swipe_down
-      elsif x==0 and y==100
-        swipe_down_count = swipe_down_count + 1
-        Common.swipe_down
-      end
-    end
+        Common.wait_for(5){@device_whatson_objects.member_event}.click
 
-    loop do
-      if Common.wait_for(5){@device_whatson_objects.member_event.size} > 0
-         locat = @device_whatson_objects.member_event[0].location
-          y =  locat["y"]
-      end
-      if Common.wait_for(5){@device_whatson_objects.member_event.size} > 0 and y > 0
-        @found = 1
+        return true
+
         break
+
       else
-        if swipe_down_count < 6
-           Common.swipe_down
-           sleep 1
-           swipe_down_count = swipe_down_count+1
-        else
-           @found = 0
-           break
-        end
+
+        Common.swipe_down
+
+        i = i+1
+
       end
+
     end
-    if @found == 1
+
+  end
+
+  def verify_member_section(section)
+
+    Common.little_swipe_down
+
+    if Common.wait_for(10){@device_whatson_objects.member_event_section(section)}.displayed?
+
       return true
-    else
-      return false
+
     end
 
   end
 
-  def find_member_event_click
 
-    if @found == 1
-     Common.wait_for(2){@device_whatson_objects.member_event[0].click}
-    else
-      puts "Member Event not found"
-    end
+  def book_member_event
+
+      # Common.wait_for(10){@device_whatson_objects.icon_plus.click}
+
+      $driver.action.move_to(@device_whatson_objects.icon_plus).click.perform
+
+      $driver.action.move_to(@device_whatson_objects.buy_tickets).click.perform
+
+      # Common.wait_for(10){@device_whatson_objects.buy_tickets.click}
 
   end
 
+  def buy_tickets_click
+
+    # Common.wait_for(5){@device_whatson_objects.buy_tickets_2.click}
+
+    $driver.action.move_to(@device_whatson_objects.buy_tickets_2).click.perform
+
+  end
+
+  def verify_you_on_guest_list(section)
+
+    if Common.wait_for(25){@device_whatson_objects.member_event_section(section)}.displayed?
+
+      return true
+
+    end
+
+  end
 
 end

@@ -65,7 +65,7 @@ class MyplannerScreen
 
     if Common.wait_for(5) {@device_myplanner_objects.explore_events_btn.size} < 1
 
-      Common.wait_for(5) {@device_myplanner_objects.events_with_list[0].click}
+      Common.wait_for(5) {@device_myplanner_objects.events_with_list[0]}.click
 
         @device_home_objects.navigate_back_to_my_planner.click
 
@@ -97,11 +97,14 @@ class MyplannerScreen
 
     if Common.wait_for(5) {@device_myplanner_objects.explore_events_btn.size} > 0
 
-      Common.wait_for(5) {@device_myplanner_objects.explore_events_btn[0].click}
+      Common.wait_for(5) {@device_myplanner_objects.explore_events_btn[0]}.click
 
       if Common.wait_for(20) {@device_whatson_objects.whatson_title.displayed?}
 
+        $homescreen.verify_myplanner_click
+
         return true
+
       end
     else
 
@@ -126,8 +129,10 @@ class MyplannerScreen
 
     if Common.wait_for(5) {@device_myplanner_objects.explore_screenings_btn.size} == 0
 
-      Common.wait_for(5) {@device_myplanner_objects.screenings_with_list[0].click}
+      Common.wait_for(5) {@device_myplanner_objects.screenings_with_list[0]}.click
+
         @device_home_objects.navigate_back_to_my_planner.click
+
       return true
     else
       return false
@@ -154,11 +159,16 @@ class MyplannerScreen
 
       Common.swipe_down
 
-      Common.wait_for(5) {@device_myplanner_objects.explore_screenings_btn[0].click}
+      Common.wait_for(5) {@device_myplanner_objects.explore_screenings_btn[0]}.click
 
       if Common.wait_for(20) {@device_whatson_objects.whatson_title.displayed?}
+
+        $homescreen.verify_myplanner_click
+
         return true
+
       end
+
     else
 
       return false
@@ -183,9 +193,9 @@ class MyplannerScreen
     Common.swipe_down
     Common.swipe_down
 
-    if Common.wait_for(5) {@device_myplanner_objects.explore_classes_btn.size} == 0
+    if Common.wait_for(5) {@device_myplanner_objects.explore_classes_btn}.size == 0
 
-      Common.wait_for(5) {@device_myplanner_objects.classes_with_list[0].click}
+      Common.wait_for(5) {@device_myplanner_objects.classes_with_list[0]}.click
 
         @device_home_objects.navigate_back_to_my_planner.click
 
@@ -220,8 +230,13 @@ class MyplannerScreen
       Common.wait_for(5) {@device_myplanner_objects.explore_classes_btn[0].click}
 
       if Common.wait_for(20) {@device_whatson_objects.whatson_title.displayed?}
+
+        $homescreen.verify_myplanner_click
+
         return true
+
       end
+
     else
 
       return false
@@ -231,6 +246,8 @@ class MyplannerScreen
   end
 
   def verify_stay_section
+    Common.swipe_down
+    Common.swipe_down
     Common.swipe_down
     Common.swipe_down
     if Common.wait_for(5) {@device_myplanner_objects.stay_section.displayed?}
@@ -245,13 +262,21 @@ class MyplannerScreen
 
     Common.wait_for(5) {@device_myplanner_objects.view_bedroom_bookings_click.click}
 
-    sleep 10
+    sleep 15
 
     Common.wait_for(20) {@device_home_objects.navigate_back.click}
 
     return true
 
-    end
+  end
+
+  def home_screen_navigate
+
+    Common.wait_for(5){@device_myplanner_objects.homeBtn.click}
+
+    return true
+
+  end
 
 end
 

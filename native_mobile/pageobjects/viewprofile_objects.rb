@@ -58,6 +58,14 @@ class Ios_Viewprofile_Objects
     @driver.find_element(:name => "website")
   end
 
+  def icon_left
+    @driver.find_element(:name => "iconLeft")
+  end
+
+  def homeBtn
+    @driver.find_element(:xpath => "//XCUIElementTypeTabBar//XCUIElementTypeButton[1]")
+  end
+
 end
 
 class Android_Viewprofile_Objects
@@ -65,6 +73,14 @@ class Android_Viewprofile_Objects
   def initialize(driver, driver_appium)
     @driver_appium = driver_appium
     @driver = driver
+  end
+
+  def navigate_up
+    @driver.find_element(:xpath => "//android.widget.ImageButton[@content-desc = 'Navigate up']")
+  end
+
+  def homeBtn
+    @driver.find_element(:xpath => "//*[@resource-id='com.sohohouse.seven:id/menu_home']/android.widget.ImageView[1]")
   end
 
 end

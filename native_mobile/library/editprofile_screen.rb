@@ -31,7 +31,7 @@ class EditProfileScreen
 
   def verify_edit_profile_screen_title
 
-    if Common.wait_for(10) {@device_editprofile_objects.edit_profile.displayed?}
+    if Common.wait_for(10) {@device_editprofile_objects.edit_profile}.displayed?
 
       return true
 
@@ -63,7 +63,7 @@ class EditProfileScreen
     $spotify_value = config[:props]["data"]["profile"][profile]["spotify"]
     $youtube_value = config[:props]["data"]["profile"][profile]["youtube"]
 
-    Common.wait_for(10){@device_editprofile_objects.profession.click}
+    Common.wait_for(10){@device_editprofile_objects.profession}.click
 
     Common.wait_for(10){@device_editprofile_objects.text_input}.clear
 
@@ -78,17 +78,17 @@ class EditProfileScreen
 
   def user_enters_industry_value
 
-    Common.wait_for(10){@device_editprofile_objects.industry.click}
+    Common.wait_for(10){@device_editprofile_objects.industry}.click
 
     @device_editprofile_objects.industry_input.send_keys($industry_value)
 
-    Common.wait_for(10){@device_editprofile_objects.industry.click}
+    Common.wait_for(10){@device_editprofile_objects.industry}.click
 
   end
 
   def user_enters_city_value
 
-    Common.wait_for(10){@device_editprofile_objects.city.click}
+    Common.wait_for(10){@device_editprofile_objects.city}.click
 
     Common.wait_for(10){@device_editprofile_objects.text_input}.clear
 
@@ -104,7 +104,7 @@ class EditProfileScreen
 
     Common.little_swipe_down
 
-    Common.wait_for(10){@device_editprofile_objects.aboutme.click}
+    Common.wait_for(10){@device_editprofile_objects.aboutme}.click
 
     Common.wait_for(10){@device_editprofile_objects.large_text_input}.clear
 
@@ -118,7 +118,7 @@ class EditProfileScreen
 
     Common.little_swipe_down
 
-    Common.wait_for(10){@device_editprofile_objects.chat.click}
+    Common.wait_for(10){@device_editprofile_objects.chat}.click
 
     Common.wait_for(10){@device_editprofile_objects.large_text_input}.clear
 
@@ -132,7 +132,7 @@ class EditProfileScreen
 
     Common.little_swipe_down
 
-    Common.wait_for(10){@device_editprofile_objects.interests.click}
+    Common.wait_for(10){@device_editprofile_objects.interests}.click
 
     element_count = Common.wait_for(10){@device_editprofile_objects.interests_remove.size}
 
@@ -162,9 +162,9 @@ class EditProfileScreen
 
     Common.little_swipe_down
 
-    Common.wait_for(10){@device_editprofile_objects.social_accounts.click}
+    Common.wait_for(10){@device_editprofile_objects.social_accounts}.click
 
-    Common.wait_for(10){@device_editprofile_objects.website_text.click}
+    Common.wait_for(10){@device_editprofile_objects.website_text}.click
 
     Common.wait_for(10){@device_editprofile_objects.website_text}.clear
 
@@ -174,7 +174,7 @@ class EditProfileScreen
 
   def user_enters_instagram_value
 
-    Common.wait_for(10){@device_editprofile_objects.instagram_text.click}
+    Common.wait_for(10){@device_editprofile_objects.instagram_text}.click
 
     Common.wait_for(10){@device_editprofile_objects.instagram_text}.clear
 
@@ -184,7 +184,7 @@ class EditProfileScreen
 
   def user_enters_twitter_value
 
-    Common.wait_for(10){@device_editprofile_objects.twitter_text.click}
+    Common.wait_for(10){@device_editprofile_objects.twitter_text}.click
 
     Common.wait_for(10){@device_editprofile_objects.twitter_text}.clear
 
@@ -196,7 +196,7 @@ class EditProfileScreen
 
   def user_enters_linkedin_value
 
-    Common.wait_for(10){@device_editprofile_objects.linkedin_text.click}
+    Common.wait_for(10){@device_editprofile_objects.linkedin_text}.click
 
     Common.wait_for(10){@device_editprofile_objects.linkedin_text}.clear
 
@@ -206,7 +206,7 @@ class EditProfileScreen
 
   def user_enters_spotify_value
 
-    Common.wait_for(10){@device_editprofile_objects.spotify_text.click}
+    Common.wait_for(10){@device_editprofile_objects.spotify_text}.click
 
     Common.wait_for(10){@device_editprofile_objects.spotify_text}.clear
 
@@ -216,7 +216,7 @@ class EditProfileScreen
 
   def user_enters_youtube_value
 
-    Common.wait_for(10){@device_editprofile_objects.youtube_text.click}
+    Common.wait_for(10){@device_editprofile_objects.youtube_text}.click
 
     Common.wait_for(10){@device_editprofile_objects.youtube_text}.clear
 
@@ -232,7 +232,7 @@ class EditProfileScreen
 
   def user_save_changes
 
-    Common.wait_for(10){@device_editprofile_objects.save_changes.click}
+    Common.wait_for(10){@device_editprofile_objects.save_changes}.click
 
   end
 
@@ -288,7 +288,7 @@ class EditProfileScreen
 
   def verify_website
 
-    if Common.wait_for(20) {@device_viewprofile_objects.website_value.displayed?}
+    if Common.wait_for(20) {@device_viewprofile_objects.website_value}.displayed?
       return true
     else
       return false
@@ -298,7 +298,7 @@ class EditProfileScreen
 
   def verify_instagram
 
-    if Common.wait_for(20) {@device_viewprofile_objects.instagram_value.displayed?}
+    if Common.wait_for(20) {@device_viewprofile_objects.instagram_value}.displayed?
       return true
     else
       return false
@@ -308,7 +308,7 @@ class EditProfileScreen
 
   def verify_twitter
 
-    if Common.wait_for(20) {@device_viewprofile_objects.twitter_value.displayed?}
+    if Common.wait_for(20) {@device_viewprofile_objects.twitter_value}.displayed?
       return true
     else
       return false
@@ -318,7 +318,7 @@ class EditProfileScreen
 
   def verify_linkedin
 
-    if Common.wait_for(20) {@device_viewprofile_objects.linkedin_value.displayed?}
+    if Common.wait_for(20) {@device_viewprofile_objects.linkedin_value}.displayed?
       return true
     else
       return false
@@ -328,7 +328,7 @@ class EditProfileScreen
 
   def verify_spotify
 
-    if Common.wait_for(20) {@device_viewprofile_objects.spotify_value.displayed?}
+    if Common.wait_for(20) {@device_viewprofile_objects.spotify_value}.displayed?
       return true
     else
       return false
@@ -338,7 +338,7 @@ class EditProfileScreen
 
   def verify_youtube
 
-    if Common.wait_for(20) {@device_viewprofile_objects.youtube_value.displayed?}
+    if Common.wait_for(20) {@device_viewprofile_objects.youtube_value}.displayed?
       return true
     else
       return false
@@ -346,6 +346,27 @@ class EditProfileScreen
 
   end
 
+  def home_screen_navigate
+
+    if $device == "ios"
+
+      Common.wait_for(20){@device_viewprofile_objects.icon_left.click}
+
+      Common.wait_for(20){@device_viewprofile_objects.homeBtn.click}
+
+      return true
+
+    else
+
+      Common.wait_for(20){@device_viewprofile_objects.navigate_up.click}
+
+      Common.wait_for(20){@device_viewprofile_objects.homeBtn.click}
+
+      return true
+
+    end
+
+  end
 
 end
 
