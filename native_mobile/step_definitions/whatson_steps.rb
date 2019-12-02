@@ -22,7 +22,9 @@ end
 Then("user sees what's on screen title") do
 
     sleep 2
+
     $whatsonscreen = WhatsonScreen.new
+
     assert_true($whatsonscreen.verify_whatson_title,"What's on title is not present")
 
 end
@@ -36,16 +38,7 @@ end
 
 Then(/^(.*) button is visible/) do |button|
 
-  begin
-
     assert_true($whatsonscreen.verify_whatson_options(button),  ""+button+"" +  "is not present" )
-
-  rescue => e
-
-    puts e.message
-
-  end
-
 
 end
 
@@ -56,21 +49,60 @@ When("there are multiple events") do
 end
 
 When("the member event is found") do
+
   $whatsonscreen.events_click("Events")
+
   $whatsonscreen.find_member_event
 
 end
 
-Then("tap on the member event") do
 
-  $whatsonscreen.find_member_event_click
+Then(/^the (.*) section is present/) do |section|
+
+  assert_true($whatsonscreen.verify_member_section(section),"section not present")
 
 end
 
+Then("the Date and time setion is present") do
+
+  assert_true($whatsonscreen.verify_member_section("Date and time"),"section not present")
+
+end
+
+Given("user sees how many tickets to buy question") do
+
+  assert_true($whatsonscreen.verify_member_section("How many tickets would you like?"),"Tickets question not present")
+
+end
+
+When("user taps on buy tickets") do
+
+  $whatsonscreen.book_member_event
+
+end
+
+And("user sees confirm payment screen") do
+
+  assert_true($whatsonscreen.verify_member_section("Confirm payment"),"Confirm payment screen not displayed")
+
+end
+
+And("user taps on buy tickets on confirm payment screen") do
+
+    $whatsonscreen.buy_tickets_click
+
+end
+
+Then("user sees you are on the guest list screen") do
+
+  assert_true($whatsonscreen.verify_you_on_guest_list("YOU'RE ON THE GUEST LIST"),"You are on the guest list screen not shown")
+
+
+end
 
 When("member is not on home screen") do
 
-  $whatsonscreen.homescreen_navigate
+  Common.homescreen_navigate
 
 end
 

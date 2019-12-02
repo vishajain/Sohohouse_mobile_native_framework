@@ -4,6 +4,7 @@ require 'selenium-webdriver'
 require 'test/unit/assertions'
 require_relative '../support/drivers/base_driver'
 require_relative '../library/home_screen'
+require_relative '../library/whatson_screen'
 require_relative '../library/account_screen'
 require_relative '../pageobjects/home_objects'
 require_relative '../pageobjects/account_objects'
@@ -122,5 +123,11 @@ Then("user sees and taps on policies link") do
 
     assert_true($accountscreen.verify_policies,"Unable to tap on Policies link")
 
+
+end
+
+Then("member is not on home screen from account screen") do
+
+    assert_true($accountscreen.home_screen_navigate,"Unable to navigate to home screen")
 
 end

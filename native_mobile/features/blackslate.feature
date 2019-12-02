@@ -36,5 +36,7 @@ Feature: Blackslate screen
   @smoke
   Scenario: Validate contact a house link and its navigation to contact us screen
     Then user taps on house rules link to see house rules
-    Then navigate back to home screen
 
+  @smoke
+  Scenario: Go back to the home page from blackslate screen
+    Then member is not on home screen from blackslate screen

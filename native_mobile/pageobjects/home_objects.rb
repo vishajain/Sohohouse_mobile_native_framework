@@ -79,7 +79,7 @@ class Ios_Home_Objects
   end
 
   def homeBtn
-    @driver.find_elements(:xpath => "//XCUIElementTypeTabBar[1]/XCUIElementTypeButton")
+    @driver.find_elements(:xpath => "//XCUIElementTypeTabBar[1]//XCUIElementTypeButton")
   end
 
   def whats_on

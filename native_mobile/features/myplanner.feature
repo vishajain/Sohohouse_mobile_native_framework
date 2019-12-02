@@ -21,10 +21,8 @@ Feature: My Planner screen
   Scenario: Validate events section is present
     Then Events section is present
 
-
   @smoke
   Scenario: Validate event bookings if present under Events section
-    Given user sees my planner screen title
     When Events list is present
     Then user taps on the first event to navigate to event details screen
 
@@ -36,12 +34,10 @@ Feature: My Planner screen
 
   @smoke
   Scenario: Validate screening section is present
-    Given user sees my planner screen title
     Then Screenings section is present
 
   @smoke
   Scenario: Validate screening bookings if present under Screening section
-    Given user sees my planner screen title
     When Screenings section is present
     Then user taps on the first screening event to navigate to event details screen
 
@@ -53,7 +49,6 @@ Feature: My Planner screen
 
   @smoke
   Scenario: Validate classes section is present
-    Given user sees my planner screen title
     Then Classes section is present
 
   @smoke
@@ -63,20 +58,14 @@ Feature: My Planner screen
 
   @smoke
   Scenario: Validate Explore gym classes button when no gym events bookings are present
-    Given user sees my planner screen title
     When no gym event bookings are present
     Then user taps on the Explore gym classes button to navigate to What's on screen
 
-  @smoke
-  Scenario: Validate stay section is present
-    Given user sees my planner screen title
-    Then stay section is present
-
 #  @smoke
-#  Scenario: Validate view bedroom bookings text link navigation
+#  Scenario: Validate stay section and view bedroom bookings link navigation
+#    Given stay section is present
 #    Then member clicks on view bedroom bookings link and navigate back to my planner
 
-  @smoke
-  Scenario: Go back to the home page
-    When member is not on home screen
-    Then member is navigated to the home screen
+  @smoke @hook
+  Scenario: Go back to the home page from my planner screen
+    Then member is not on home screen from my planner screen

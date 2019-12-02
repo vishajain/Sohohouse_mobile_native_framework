@@ -83,6 +83,8 @@ Then("user taps on house rules link to see house rules") do
 
 end
 
-Then("navigate back to home screen") do
-  $homescreen.verify_blackslate_screen
+Then("member is not on home screen from blackslate screen") do
+
+  assert_true($blackslatescreen.home_screen_navigate,"Unable to navigate to home screen")
+
 end

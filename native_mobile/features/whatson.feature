@@ -27,13 +27,26 @@ Feature: What's on screen
     And Screenings button is visible
     And Gym classes button is visible
 
-#  @smoke
-#  Scenario: Search for the member event
-#    When the member event is found
-#    Then tap on the member event
+  @smoke
+  Scenario: Validate member event sections
+    When the member event is found
+    Then the Tickets section is present
+    Then the Date and time setion is present
+    Then the Event details section is present
+    Then the Location section is present
+    Then the Cancellation policy section is present
 
-  @smoke @hook
-    Scenario: Go back to the home page
-    When member is not on home screen
-    Then member is navigated to the home screen
+
+#  @smoke
+#  Scenario: Book a member event
+#    Given user sees how many tickets to buy question
+#    When user taps on buy tickets
+#    And user sees confirm payment screen
+#    And user taps on buy tickets on confirm payment screen
+#    Then user sees you are on the guest list screen
+
+#  @smoke @hook
+#    Scenario: Go back to the home page
+#    When member is not on home screen
+#    Then member is navigated to the home screen
 

@@ -62,6 +62,5 @@ Feature: Account screen
     Then user sees and taps on policies link
 
   @smoke @hook
-  Scenario: Go back to the home page
-    When member is not on home screen
-    Then member is navigated to the home screen
+  Scenario: Go back to the home page from account screen
+    Then member is not on home screen from account screen

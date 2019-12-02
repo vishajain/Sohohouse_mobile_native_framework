@@ -1,11 +1,11 @@
 data:
   run-id: '1'
   event:
-    name: 'Member events test'
+    name: 'Mobile Automation - Do not use'
   screen:
-    name: 'Screening Event Automation'
+    name: 'Velvet Buzzsaw'
   Gym:
-    name: 'Gym Event Automation'
+    name: 'Gym Event for mobile Automation - Do not use'
   profile:
     profile1:
       profession: 'software'

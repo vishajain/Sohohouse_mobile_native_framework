@@ -29,21 +29,21 @@ class AccountScreen
   def verify_account_title
 
 
-    if Common.wait_for(20) {@device_account_objects.account_title.displayed?}
+    if Common.wait_for(20) {@device_account_objects.account_title}.displayed?
 
       @device_account_objects.account_title.click
 
-      if Common.wait_for(20) {@device_account_objects.edit_profile_screen.displayed?}
+      if Common.wait_for(20) {@device_account_objects.edit_profile_screen}.displayed?
 
         if $device == "ios"
 
-          Common.wait_for(20){@device_account_objects.icon_left.click}
+          Common.wait_for(20){@device_account_objects.icon_left}.click
 
           return true
 
         else
 
-          Common.wait_for(20){@device_account_objects.navigate_up.click}
+          Common.wait_for(20){@device_account_objects.navigate_up}.click
 
           return true
 
@@ -57,14 +57,14 @@ class AccountScreen
 
   def tap_View_Profile
 
-    Common.wait_for(10){@device_account_objects.account_title.click}
+    Common.wait_for(10){@device_account_objects.account_title}.click
 
   end
 
 
   def tap_edit_link
 
-    Common.wait_for(10) {@device_account_objects.edit_profile_screen.click}
+    Common.wait_for(10) {@device_account_objects.edit_profile_screen}.click
 
   end
 
@@ -78,7 +78,7 @@ class AccountScreen
 
       if Common.wait_for(20) {@device_account_objects.your_membership.displayed?}
 
-        Common.wait_for(20){@device_account_objects.icon_left.click}
+        Common.wait_for(20){@device_account_objects.icon_left}.click
 
         return true
 
@@ -97,7 +97,7 @@ class AccountScreen
 
       if Common.wait_for(20) {@device_account_objects.houseperks_title.displayed?}
 
-        Common.wait_for(20){@device_account_objects.icon_left.click}
+        Common.wait_for(20){@device_account_objects.icon_left}.click
 
         return true
 
@@ -110,14 +110,13 @@ class AccountScreen
 
   def verify_payment
 
-
     if Common.wait_for(20) {@device_account_objects.payment.displayed?}
 
       @device_account_objects.payment.click
 
       if Common.wait_for(20) {@device_account_objects.payment.displayed?}
 
-        Common.wait_for(20){@device_account_objects.icon_left.click}
+        Common.wait_for(20){@device_account_objects.icon_left}.click
 
         return true
 
@@ -130,7 +129,6 @@ class AccountScreen
 
   def verify_past_bookings
 
-
     if Common.wait_for(20) {@device_account_objects.past_bookings.displayed?}
 
       @device_account_objects.past_bookings.click
@@ -139,7 +137,7 @@ class AccountScreen
 
         sleep 2
 
-        Common.wait_for(20){@device_account_objects.icon_left.click}
+        Common.wait_for(20){@device_account_objects.icon_left}.click
 
         return true
 
@@ -148,6 +146,7 @@ class AccountScreen
     end
 
   end
+
 
   def verify_change_password
 
@@ -161,7 +160,7 @@ class AccountScreen
 
       if Common.wait_for(20) {@device_account_objects.change_password.displayed?}
 
-        Common.wait_for(20){@device_account_objects.icon_left.click}
+        Common.wait_for(20){@device_account_objects.icon_left}.click
 
         return true
 
@@ -183,13 +182,13 @@ class AccountScreen
 
         if $device == "ios"
 
-          Common.wait_for(20){@device_account_objects.icon_left.click}
+          Common.wait_for(20){@device_account_objects.icon_left}.click
 
           return true
 
         else
 
-          Common.wait_for(20){@device_account_objects.navigate_up.click}
+          Common.wait_for(20){@device_account_objects.navigate_up}.click
 
           return true
 
@@ -211,7 +210,7 @@ class AccountScreen
 
       if Common.wait_for(20) {@device_account_objects.notification_preferences.displayed?}
 
-        Common.wait_for(20){@device_account_objects.icon_left.click}
+        Common.wait_for(20){@device_account_objects.icon_left}.click
 
         return true
 
@@ -229,7 +228,7 @@ class AccountScreen
 
       if Common.wait_for(20) {@device_account_objects.myplanner_title.displayed?}
 
-        Common.wait_for(20){@device_account_objects.icon_left.click}
+        Common.wait_for(20){@device_account_objects.icon_left}.click
 
         return true
 
@@ -247,7 +246,7 @@ class AccountScreen
 
       if Common.wait_for(20) {@device_account_objects.contact_us.displayed?}
 
-        Common.wait_for(20){@device_account_objects.icon_left.click}
+        Common.wait_for(20){@device_account_objects.icon_left}.click
 
         return true
 
@@ -264,10 +263,10 @@ class AccountScreen
 
       @device_account_objects.faq.click
 
-      # if Common.wait_for(20) {@device_account_objects.faq.displayed?}
+      # if Common.wait_for(20) {@device_account_objects.faq}.displayed?
       sleep 20
 
-      Common.wait_for(20){@device_account_objects.icon_left.click}
+      Common.wait_for(20){@device_account_objects.icon_left}.click
 
         return true
 
@@ -286,13 +285,21 @@ class AccountScreen
 
       if Common.wait_for(20) {@device_account_objects.policies.displayed?}
 
-        Common.wait_for(20){@device_account_objects.icon_left.click}
+        Common.wait_for(20){@device_account_objects.icon_left}.click
 
         return true
 
       end
 
     end
+
+  end
+
+  def home_screen_navigate
+
+    Common.wait_for(5){@device_account_objects.homeBtn.click}
+
+    return true
 
   end
 

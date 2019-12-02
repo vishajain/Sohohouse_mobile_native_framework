@@ -4,6 +4,7 @@ require 'selenium-webdriver'
 require 'test/unit/assertions'
 require_relative '../support/drivers/base_driver'
 require_relative '../library/home_screen'
+require_relative '../library/whatson_screen'
 require_relative '../library/account_screen'
 require_relative '../pageobjects/home_objects'
 require_relative '../pageobjects/account_objects'
@@ -19,6 +20,7 @@ Given("user clicks on Account button on home screen") do
   $homescreen.verify_account_click
 
   $accountscreen = AccountScreen.new
+  $whatsonscreen = WhatsonScreen.new
 
 end
 
@@ -192,5 +194,11 @@ end
 Then(/^youtube value is shown on view profile screen$/) do
 
   assert_true($editprofilescreen.verify_youtube,"Youtube is not saved ")
+
+end
+
+Then("member is not on home screen from edit profile screen") do
+
+  assert_true($editprofilescreen.home_screen_navigate,"Unable to navigate to home screen")
 
 end

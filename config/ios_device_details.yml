@@ -5,8 +5,8 @@ ios:
         udid: XXXXX-XXXXXX-XXXXXXX-XXXXXXXXX
         platform_version: 12.2
       simulator:
-        udid: D6DBBF52-3671-4177-9D62-4214E82E1C9E
-        platform_version: 12.2
+        udid: E30DC005-BF83-4116-A825-BAE853E45284
+        platform_version: 13.2
     prod:
       real:
         udid: XXXXX-XXXXXX-XXXXXXX-XXXXXXXXX

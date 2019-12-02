@@ -37,7 +37,7 @@ class OnboardingScreens
 
   def user_accepts_Terms
 
-    Common.wait_for(10){@device_onboarding_objects.accept_terms.click}
+    Common.wait_for(10){@device_onboarding_objects.accept_terms}.click
 
   end
 
@@ -54,7 +54,7 @@ class OnboardingScreens
 
   def user_allows_helpus()
 
-    Common.wait_for(20){@device_onboarding_objects.allow_improve.click}
+    Common.wait_for(20){@device_onboarding_objects.allow_improve}.click
 
   end
 
@@ -70,7 +70,7 @@ class OnboardingScreens
 
   def user_accepts_house_rules()
 
-    Common.wait_for(15){@device_onboarding_objects.next_button.click}
+    Common.wait_for(15){@device_onboarding_objects.next_button}.click
 
   end
 
@@ -86,7 +86,7 @@ class OnboardingScreens
 
   def user_continue_without_sync()
 
-    Common.wait_for(10){@device_onboarding_objects.continue_without_sync.click}
+    Common.wait_for(10){@device_onboarding_objects.continue_without_sync}.click
 
   end
 
@@ -102,7 +102,7 @@ class OnboardingScreens
 
   def user_continues_from_welcome()
 
-    Common.wait_for(10){@device_onboarding_objects.next_button.click}
+    Common.wait_for(10){@device_onboarding_objects.next_button}.click
 
   end
 
@@ -120,11 +120,11 @@ class OnboardingScreens
 
     if $device == "ios"
 
-      Common.wait_for(10){@device_onboarding_objects.next_button.click}
+      Common.wait_for(10){@device_onboarding_objects.next_button}.click
 
     else
       sleep 2
-      Common.wait_for(15){@device_onboarding_objects.next_button_1.click}
+      Common.wait_for(15){@device_onboarding_objects.next_button_1}.click
 
     end
 
@@ -142,7 +142,7 @@ class OnboardingScreens
 
     def user_continues_from_IntroNotice()
 
-           Common.wait_for(10){@device_onboarding_objects.continue_button.click}
+           Common.wait_for(10){@device_onboarding_objects.continue_button}.click
 
     end
 
@@ -158,19 +158,19 @@ class OnboardingScreens
 
   def user_clicks_next()
 
-    Common.wait_for(10){@device_onboarding_objects.next_button.click}
+    Common.wait_for(10){@device_onboarding_objects.next_button}.click
 
   end
 
   def user_clicks_continue()
 
-    Common.wait_for(10){@device_onboarding_objects.continue_button.click}
+    Common.wait_for(10){@device_onboarding_objects.continue_button}.click
 
   end
 
   def user_clicks_continue_to_notify_pref()
 
-    Common.wait_for(10){@device_onboarding_objects.continue_button_to_notify_pref.click}
+    Common.wait_for(10){@device_onboarding_objects.continue_button_to_notify_pref}.click
 
   end
 
@@ -187,7 +187,7 @@ class OnboardingScreens
 
   def user_clicks_OK()
 
-    Common.wait_for(10){@device_onboarding_objects.ok_button.click}
+    Common.wait_for(10){@device_onboarding_objects.ok_button}.click
 
   end
 

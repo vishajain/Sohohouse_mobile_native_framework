@@ -33,7 +33,7 @@ module Common
   end
 
 
-  def homescreen_navigate
+  def Common.homescreen_navigate
 
     loop do
 
@@ -45,7 +45,7 @@ module Common
 
       else
 
-        Common.wait_for(5) {@device_home_objects.left_link.click}
+        Common.wait_for(5) {@device_home_objects.left_link}.click
 
       end
 
@@ -53,7 +53,7 @@ module Common
 
   end
 
-  def myplanner_navigate
+  def Common.myplanner_navigate
 
     loop do
 
@@ -77,6 +77,7 @@ module Common
   def self.swipe_down
 
     if $device == "ios"
+
       $action.press({:x => ($dimensions_width*0.5), :y => ($dimensions_height*0.5)}).wait(100).move_to({:x => ($dimensions_width*0.5), :y => ($dimensions_height*0.3)}).release.perform
     else
        Appium::TouchAction.new.swipe(start_y: 700, end_y: 0).perform

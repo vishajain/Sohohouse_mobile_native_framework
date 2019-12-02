@@ -15,6 +15,10 @@ class Ios_Blackslate_Objects
     @driver.find_element(:xpath => "//XCUIElementTypeCell//XCUIElementTypeStaticText")
   end
 
+  def close_blackslate
+    @driver.find_element(:xpath => "//XCUIElementTypeImage[@name='iconCloseCircleDark']")
+  end
+
   def browse_houses
     @driver.find_element(:name => "Europe")
   end
@@ -64,6 +68,10 @@ class Android_Blackslate_Objects
     @driver.find_element(:id => "com.sohohouse.seven:id/text")
   end
 
+  def close_blackslate
+    @driver.find_element(:id => "com.sohohouse.seven:id/close_button")
+  end
+
   def browse_houses
     @driver.find_element(:xpath => "//android.widget.TextView[@text='Europe']")
   end
@@ -75,7 +83,6 @@ class Android_Blackslate_Objects
   def membership_card
     @driver.find_element(:xpath => "//android.widget.Button[@text='Membership card']")
   end
-
 
   def membership_card_back_button
     @driver.find_element(:xpath => "//android.widget.Button[@text='Dismiss']")
