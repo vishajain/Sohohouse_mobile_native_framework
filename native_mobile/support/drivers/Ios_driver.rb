@@ -53,10 +53,10 @@ module Ios_driver
                   'automationName' =>  'XCUITest',
                   'xcodeOrgId' => '9E4LTRQ997',
                   'xcodeSigningId' => 'iPhone Developer',
-                  'ConnectHardwareKeyboard' => false,
+                  'ConnectHardwareKeyboard' => true,
                   'waitForQuiescence' => false,
                   'autoAcceptAlerts' => true,
-                  'noReset' => false
+                  'noReset' => true
               }
           }
       $driver_appium = Appium::Driver.new(@capabilities, true)

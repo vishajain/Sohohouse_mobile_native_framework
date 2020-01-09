@@ -49,7 +49,7 @@ module Android_driver
                     'useNewWDA'=> true,
                     'waitForQuiescence' => false,
                     'autoAcceptAlerts' => true,
-                    'noReset' => false
+                    'noReset' => true
                 }
         }
 

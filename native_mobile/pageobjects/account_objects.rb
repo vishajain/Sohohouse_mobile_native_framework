@@ -33,7 +33,6 @@ class Ios_Account_Objects
 
   def payment
     @driver.find_element(:name => "Payment")
-
   end
 
   def past_bookings
@@ -94,6 +93,47 @@ class Ios_Account_Objects
 
   def homeBtn
     @driver.find_element(:xpath => "//XCUIElementTypeTabBar//XCUIElementTypeButton[1]")
+  end
+
+  def perkTitle
+    # @driver.find_element(:xpath => "//XCUIElementTypeCell[1]")
+    @driver.find_element(:xpath => "//XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[2]")
+  end
+
+  def perkLocation
+    @driver.find_element(:xpath => "//XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[1]")
+  end
+
+  def perkContentImage
+    @driver.find_element(:xpath => "//XCUIElementTypeImage[1]")
+  end
+
+  def perkContentLocation
+    @driver.find_element(:xpath => "//XCUIElementTypeTable[1]/XCUIElementTypeCell/XCUIElementTypeStaticText[1]")
+  end
+
+  def perkContentTitle
+    @driver.find_element(:xpath => "//XCUIElementTypeTable[1]/XCUIElementTypeCell/XCUIElementTypeStaticText[2]")
+  end
+
+  def perkContentDesc
+    @driver.find_element(:xpath => "//XCUIElementTypeTable[1]/XCUIElementTypeCell/XCUIElementTypeTextView")
+  end
+
+  def current_password
+    @driver.find_element(:name => "Current password")
+  end
+
+  def new_password
+    @driver.find_element(:name => "New password")
+  end
+
+  def confirm_password
+    @driver.find_element(:name => "Confirm password")
+  end
+
+  def save_btn
+    @driver.find_element(:name => "Save")
   end
 
 end

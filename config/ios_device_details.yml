@@ -2,7 +2,7 @@ ios:
   iphoneX:
     stag:
       real:
-        udid: XXXXX-XXXXXX-XXXXXXX-XXXXXXXXX
+        udid: 00008020-000E3D9A0A86002E
         platform_version: 12.2
       simulator:
         udid: E30DC005-BF83-4116-A825-BAE853E45284

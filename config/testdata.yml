@@ -1,11 +1,14 @@
 data:
   run-id: '1'
   event:
-    name: 'Mobile Automation - Do not use'
+    paid-event: 'Mobile Automation - Do not use'
+    free-event: 'Mobile Automation-Free event-Do not use'
   screen:
-    name: 'Velvet Buzzsaw'
+    paid-event: 'The Lion King'
+    free-event: 'Film Thumb Test - The Asphalt Jungle'
   Gym:
-    name: 'Gym Event for mobile Automation - Do not use'
+    paid-event: 'Gym Event for mobile Automation - Do not use'
+    free-event: 'Mobile Automation-Free event-Do not use'
   profile:
     profile1:
       profession: 'software'
@@ -35,3 +38,11 @@ data:
       linkedin: 'https://linkedin.com/in/automtion'
       spotify: 'https://open.spotify.com/user/automation'
       youtube: 'https://www.youtube.com/user/automation'
+  non-active-local: 'app.non.active.shw.local@example.com'
+  non-active-every: 'app.non.active.every.local@example.com'
+  active-local: 'app.active.shw.local@example.com'
+  active-every: 'app.active.every.local@example.com'
+  active-plus-local: 'app.active-plus.shw.local@example.com'
+  active-plus-every: 'app.active-plus.every.local@example.com'
+  active-members-only-status: 'ACTIVE MEMBERS ONLY'
+  house-members-only-status: 'HOUSE MEMBERS ONLY'

@@ -129,23 +129,55 @@ class WhatsonScreen
   # end
 
 
-  def find_member_event
+  def find_paid_event(section)
 
-    sleep 5
+    sleep 2
 
     i = 0
 
-    while i <  7
+    while i <  8
 
-      if Common.wait_for(5){@device_whatson_objects.member_event}.displayed?
+      begin
 
-        Common.wait_for(5){@device_whatson_objects.member_event}.click
+        if section == "Events"
 
-        return true
+          Common.wait_for(12){@device_whatson_objects.paid_member_event.displayed?}
 
-        break
+          sleep 2
 
-      else
+          Common.wait_for(5){@device_whatson_objects.paid_member_event.click}
+
+          return true
+
+          break
+
+        elsif section == "Screenings"
+
+               Common.wait_for(12){@device_whatson_objects.paid_screening_event.displayed?}
+
+               sleep 2
+
+               Common.wait_for(5){@device_whatson_objects.paid_screening_event.click}
+
+               return true
+
+               break
+
+        elsif section == "Gym classes"
+
+          Common.wait_for(12){@device_whatson_objects.paid_gym_event.displayed?}
+
+          sleep 2
+
+          Common.wait_for(5){@device_whatson_objects.paid_gym_event.click}
+
+          return true
+
+          break
+
+        end
+
+      rescue
 
         Common.swipe_down
 
@@ -157,15 +189,93 @@ class WhatsonScreen
 
   end
 
+  def find_free_event(section)
+
+    sleep 2
+
+    i = 0
+
+    while i <  8
+
+      begin
+
+        if section == "Events"
+
+          Common.wait_for(12){@device_whatson_objects.free_member_event.displayed?}
+
+          sleep 2
+
+          Common.wait_for(5){@device_whatson_objects.free_member_event.click}
+
+          return true
+
+          break
+
+        elsif section == "Screenings"
+
+          Common.wait_for(12){@device_whatson_objects.free_screening_event.displayed?}
+
+          sleep 2
+
+          Common.wait_for(5){@device_whatson_objects.free_screening_event.click}
+
+          return true
+
+          break
+
+        elsif section == "Gym classes"
+
+          Common.wait_for(12){@device_whatson_objects.free_gym_event.displayed?}
+
+          sleep 2
+
+          Common.wait_for(5){@device_whatson_objects.free_gym_event.click}
+
+          return true
+
+          break
+
+        end
+
+      rescue
+
+        Common.swipe_down
+
+        i = i+1
+
+      end
+
+    end
+
+  end
+
+
   def verify_member_section(section)
 
-    Common.little_swipe_down
 
-    if Common.wait_for(10){@device_whatson_objects.member_event_section(section)}.displayed?
+    if Common.wait_for(10){@device_whatson_objects.member_event_section(section).displayed?}
+
+      Common.little_swipe_down
 
       return true
 
     end
+
+  end
+
+  def verify_content(section)
+
+  if Common.wait_for(10){@device_whatson_objects.member_event_section(section).displayed?}
+
+    return true
+
+  end
+
+  end
+
+  def cancel_guest_booking
+
+    Common.wait_for(10){@device_whatson_objects.icon_close.click}
 
   end
 
@@ -182,6 +292,33 @@ class WhatsonScreen
 
   end
 
+  def invite_guests_click
+
+    # Common.wait_for(10){@device_whatson_objects.icon_plus.click}
+
+    $driver.action.move_to(@device_whatson_objects.icon_plus).click.perform
+
+    $driver.action.move_to(@device_whatson_objects.invite_guests).click.perform
+
+    # Common.wait_for(10){@device_whatson_objects.buy_tickets.click}
+
+  end
+
+  def book_free_member_event
+
+    $driver.action.move_to(@device_whatson_objects.icon_plus).click.perform
+
+    $driver.action.move_to(@device_whatson_objects.book).click.perform
+
+  end
+
+  def book_free_gym_event
+
+    $driver.action.move_to(@device_whatson_objects.book).click.perform
+
+  end
+
+
   def buy_tickets_click
 
     # Common.wait_for(5){@device_whatson_objects.buy_tickets_2.click}
@@ -192,10 +329,140 @@ class WhatsonScreen
 
   def verify_you_on_guest_list(section)
 
-    if Common.wait_for(25){@device_whatson_objects.member_event_section(section)}.displayed?
+    if Common.wait_for(25){@device_whatson_objects.member_event_section(section).displayed?}
 
       return true
 
+    end
+
+  end
+
+  def verify_guest_list_status_on_event_screen
+
+    sleep 1
+
+    Common.swipe_top
+
+    if Common.wait_for(10){@device_whatson_objects.you_are_on_the_guest_list.displayed?}
+
+      return true
+
+    end
+
+  end
+
+  def ok_btn_click
+
+    Common.wait_for(10){@device_whatson_objects.ok_button.click}
+
+  end
+
+  def verify_cancel_booking
+
+    Common.wait_for(10){@device_whatson_objects.cancel_booking.click}
+
+    begin
+
+      Common.wait_for(10){@device_whatson_objects.cancel_booking.displayed?}
+
+    rescue
+
+      return true
+
+    end
+
+  end
+
+  def navigate_to_events_list
+
+    sleep 3
+
+    Common.wait_for(10){@device_whatson_objects.icon_left.click}
+
+  end
+
+  def scroll_to_top (section)
+
+    loop do
+
+      begin
+
+        Common.wait_for(3){@device_whatson_objects.whatson_options(section).displayed?}
+
+        return true
+
+        break
+
+      rescue
+
+        Common.swipe_top
+
+      end
+
+    end
+
+  end
+
+  def confirm_deposit_click
+
+     # @device_whatson_objects.confirm_deposit.click
+
+     $driver.action.move_to(@device_whatson_objects.confirm_deposit).click.perform
+     #
+
+  end
+
+  def book_screening_event
+
+    $driver.action.move_to(@device_whatson_objects.icon_plus).click.perform
+
+    $driver.action.move_to(@device_whatson_objects.book_and_pay).click.perform
+
+  end
+
+
+  def book_gym_event
+
+    $driver.action.move_to(@device_whatson_objects.book_and_pay).click.perform
+
+  end
+
+  def filter_click
+
+    Common.wait_for(10){@device_whatson_objects.whatson_filter.click}
+
+  end
+
+  def soho_berlien_click
+
+    i = 0
+
+    # puts "count is"
+    # puts Common.wait_for(2){@device_whatson_objects.your_houses.size}
+    while i < Common.wait_for(2){@device_whatson_objects.your_houses.size}
+
+      # puts Common.wait_for(2){@device_whatson_objects.your_houses[i]}.text
+
+      Common.wait_for(2){@device_whatson_objects.your_houses[i].click}
+
+      i=i+1
+
+    end
+
+    Common.wait_for(10){@device_whatson_objects.tap_europe.click}
+
+    Common.wait_for(10){@device_whatson_objects.tap_soho_berlin.click}
+
+    Common.wait_for(10){@device_whatson_objects.confirm.click}
+
+  end
+
+  def results_check
+
+    if Common.wait_for(10){@device_whatson_objects.berlin_result.displayed?}
+      return true
+    else
+      return false
     end
 
   end

@@ -131,3 +131,114 @@ Then("member is not on home screen from account screen") do
     assert_true($accountscreen.home_screen_navigate,"Unable to navigate to home screen")
 
 end
+
+When("user sees and taps on perks") do
+
+    assert_true($accountscreen.tap_perks,"Unable to tap on perks link")
+
+end
+
+Then("user sees perk title") do
+
+    assert_true($accountscreen.verify_perks_title,"Perks title not present")
+
+end
+
+Then("user sees perk location") do
+
+    assert_true($accountscreen.verify_perks_location,"Perks location not present")
+
+end
+
+When("user taps on the first perk on perks list") do
+
+    assert_true($accountscreen.tap_first_perk,"Unable to tap on the first perk")
+
+end
+
+Then("user sees perk image on perk screen") do
+
+    assert_true($accountscreen.verify_perk_content_image,"Perk image not present")
+
+end
+
+Then("user sees perk location on perk screen") do
+
+    assert_true($accountscreen.verify_perk_content_location,"Perk location not present")
+
+end
+
+Then("user sees perk title on perk screen") do
+
+    assert_true($accountscreen.verify_perk_content_title,"Perk title not present")
+
+end
+
+Then("user sees perk description on perk screen") do
+
+    assert_true($accountscreen.verify_perk_content_desc,"Perk image not present")
+
+end
+
+Then("user goes back to the account screen") do
+
+    $accountscreen.iconLeft
+
+    $accountscreen.iconLeft
+
+end
+
+Given("user taps on change password") do
+
+    $accountscreen.tap_change_password
+
+end
+
+When("user provides current password") do
+
+    $accountscreen.provide_current_password
+
+end
+
+And("user provides new password") do
+
+    $accountscreen.provide_new_password
+
+end
+
+And("user provides confirm password") do
+
+    $accountscreen.provide_confirm_password
+
+end
+
+And("user taps on Save button") do
+
+    $accountscreen.tap_save_btn
+
+end
+
+Then("the new password is saved") do
+
+    assert_true($accountscreen.verify_account_title,"Unable to save the password")
+
+end
+
+When("user provides changed password in current password") do
+
+    $accountscreen.provide_changed_password
+
+end
+
+And("user provides original password in new password") do
+
+    $accountscreen.provide_orignal_new_password
+
+end
+
+And("user provides original password in confirm password") do
+
+    $accountscreen.provide_orignal_confirm_password
+
+end
+

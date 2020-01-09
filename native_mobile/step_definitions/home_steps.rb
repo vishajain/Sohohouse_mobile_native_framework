@@ -108,4 +108,121 @@ end
 
   end
 
+Given("the house is open") do
 
+      assert_true($homescreen.verify_house_open,"House is not open")
+
+end
+
+
+When("the user taps on Post") do
+
+  $homescreen.post_click
+
+end
+
+Then("user is be navigated to the noticeboard screen") do
+
+  assert_true($homescreen.verify_noticeboard_title,"Notice board title is not shown")
+
+end
+
+And("user sees the house name") do
+
+  assert_true($homescreen.verify_noticeboard,"House name is not shown")
+
+end
+
+
+When("user inputs the text") do
+
+  $homescreen.input_text
+
+end
+
+
+Then("user sees the post on the home screen") do
+
+  assert_true($homescreen.verify_post_created,"Post created is not shown on the home screen")
+
+end
+
+And("user inputs the text to amend") do
+
+  $homescreen.amend_text
+
+end
+
+Then("user sees the post amended on the home screen") do
+
+  assert_true($homescreen.verify_post_amended,"Post Amended is not shown on the home screen")
+
+end
+
+
+When("user taps on delete post") do
+
+  $homescreen.tap_delete_post
+
+end
+
+Then("user sees the post deleted from the home screen") do
+
+  assert_true($homescreen.verify_post_deleted,"Post is not deleted")
+
+end
+
+
+Given("user taps on view another noticeboard") do
+
+  $homescreen.tap_view_another_noticeboard
+
+end
+
+When("the user taps on Soho house Berlin") do
+
+  $homescreen.tap_soho_house_berlin
+
+end
+
+Then("user sees Soho house berlin noticeboard") do
+
+  assert_true($homescreen.verify_soho_berlin_noticeboard, "Unable to navigate to soho house berlin noticeboard")
+
+end
+
+Then("user sees the post on the noticeboard screen") do
+
+  assert_true($homescreen.verify_create_post_another_noticeboard, "Post not created on another noticeboard")
+
+end
+
+Then("user sees the post amended on the noticeboard screen") do
+
+  assert_true($homescreen.verify_post_amended_another_noticeboard,"Post Amended is not shown on another noticeboard")
+
+end
+
+Then("user sees the post deleted on the noticeboard screen") do
+
+  assert_true($homescreen.verify_post_deleted_another_noticeboard,"Post is not deleted on another noticeboard")
+
+end
+
+And("go back to the home screen") do
+
+  $homescreen.go_back_to_home_screen
+
+end
+
+Then("user sees the posts count incremented by one") do
+
+  assert_true($homescreen.verify_posts_count,"Posts count is not incremented")
+
+end
+
+And("user closes the modal screen") do
+
+  $homescreen.tap_modal_close
+
+end

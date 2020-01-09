@@ -121,6 +121,84 @@ class Ios_Home_Objects
     @driver.find_element(:xpath => "//XCUIElementTypeTabBar//XCUIElementTypeButton[4]")
   end
 
+  def post_link
+    @driver.find_element(:name => "Post")
+  end
+
+  def noticeboard_title
+    @driver.find_element(:name => "Noticeboard")
+  end
+
+  def noticeboard_text_input
+    @driver.find_element(:xpath => "//XCUIElementTypeTextView")
+  end
+
+  def view_post
+
+    @driver.find_element(:xpath => "//XCUIElementTypeButton[@name='View another Noticeboard']//parent::XCUIElementTypeCell/following-sibling::XCUIElementTypeCell[2]//XCUIElementTypeStaticText[3]")
+
+  end
+
+  def we_are_closed
+
+    str = "We're closed"
+
+    @driver.find_element(:name => "#{str}" )
+
+  end
+
+  def delete_post
+    @driver.find_element(:name => "Delete post")
+  end
+
+  def delete_post_check
+
+    @driver.find_elements(:xpath => "//XCUIElementTypeButton[@name='View another Noticeboard']//parent::XCUIElementTypeCell/following-sibling::XCUIElementTypeCell[2]//XCUIElementTypeStaticText")
+
+  end
+
+  def view_another_noticeboard_1
+
+    @driver.find_element(:name => "View another Noticeboard")
+
+  end
+
+  def soho_house_berlin
+
+    @driver.find_element(:name => "Soho House Berlin")
+
+  end
+
+  def soho_berlin_noticeboard_title
+
+    @driver.find_element(:name => "Soho House Berlin Noticeboard")
+
+  end
+
+  def view_another_board_post
+
+    @driver.find_element(:xpath => "//XCUIElementTypeButton[@name='Switch Noticeboard']//parent::XCUIElementTypeCell/following-sibling::XCUIElementTypeCell[2]//XCUIElementTypeStaticText[3]")
+
+  end
+
+  def delete_another_board_post_check
+
+    @driver.find_elements(:xpath => "//XCUIElementTypeButton[@name='Switch Noticeboard']//parent::XCUIElementTypeCell//following-sibling::XCUIElementTypeCell")
+
+  end
+
+  def posts_today
+
+    @driver.find_element(:xpath => "//XCUIElementTypeTable/XCUIElementTypeCell[2]/XCUIElementTypeStaticText[1]")
+
+  end
+
+  def modal_close
+
+    @driver.find_element(:name => "iconXLarge")
+
+  end
+
 end
 
 class Android_Home_Objects

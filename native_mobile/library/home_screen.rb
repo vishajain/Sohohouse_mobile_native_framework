@@ -36,11 +36,7 @@ class HomeScreen
 
   def verify_username()
 
-    if Common.wait_for(20) {@device_home_objects.username.displayed?}
-
-      return true
-
-    end
+    return Common.wait_for(20) {@device_home_objects.username.displayed?}
 
   end
 
@@ -50,14 +46,9 @@ class HomeScreen
 
   end
 
-
   def verify_happening_now
 
-    if Common.wait_for(15) {@device_home_objects.happening_now.displayed?}
-
-      return true
-
-    end
+    return Common.wait_for(15) {@device_home_objects.happening_now.displayed?}
 
   end
 
@@ -121,11 +112,8 @@ class HomeScreen
 
     Common.swipe_down
 
-    if Common.wait_for(5){@device_home_objects.noticeboard.displayed?}
+    return Common.wait_for(5){@device_home_objects.noticeboard.displayed?}
 
-      return true
-
-    end
 
   end
 
@@ -194,11 +182,7 @@ class HomeScreen
 
   def verify_footer_buttons(button)
 
-    if Common.wait_for(5){@device_home_objects.footer_buttons(button).displayed?}
-
-      return true
-
-    end
+    return Common.wait_for(5){@device_home_objects.footer_buttons(button).displayed?}
 
   end
 
@@ -259,6 +243,161 @@ class HomeScreen
       return true
 
     end
+
+  end
+
+  def verify_house_open
+
+    return Common.wait_for(5){@device_home_objects.we_are_closed.displayed?}
+
+  end
+
+
+  def post_click
+
+    sleep 1
+
+    Common.wait_for(20){@device_home_objects.post_link}.click
+
+  end
+
+  def verify_noticeboard_title
+
+    return Common.wait_for(5){@device_home_objects.noticeboard_title.displayed?}
+
+  end
+
+  def input_text
+
+    $driver.action.move_to(@device_home_objects.noticeboard_text_input).click.perform
+
+    @device_home_objects.noticeboard_text_input.send_keys("How are you all")
+
+    Common.wait_for(5){@device_home_objects.noticeboard_title}.click
+
+
+  end
+
+  def amend_text
+
+    $driver.action.move_to(@device_home_objects.noticeboard_text_input).click.perform
+
+    @device_home_objects.noticeboard_text_input.send_keys(" doing")
+
+    Common.wait_for(5){@device_home_objects.noticeboard_title}.click
+
+  end
+
+  def verify_post_created
+
+    sleep 1
+
+    Common.swipe_down
+
+    str = Common.wait_for(5){@device_home_objects.view_post}.text
+
+    return str.include? "How are you all"
+
+  end
+
+  def verify_post_amended
+
+    sleep 2
+
+    Common.swipe_down
+
+    str = Common.wait_for(5){@device_home_objects.view_post}.text
+
+    return str.include? "How are you all doing"
+
+  end
+
+  def tap_delete_post
+
+    Common.wait_for(5){@device_home_objects.delete_post}.click
+
+  end
+
+  def verify_post_deleted
+
+    sleep 5
+
+    if Common.wait_for(5){@device_home_objects.delete_post_check}.size > 2
+      return false
+    else
+      return true
+    end
+
+  end
+
+  def tap_view_another_noticeboard
+
+    Common.wait_for(5){@device_home_objects.view_another_noticeboard_1}.click
+
+  end
+
+  def tap_soho_house_berlin
+
+    Common.wait_for(5){@device_home_objects.browsehouses_title}.click
+
+    Common.wait_for(5){@device_home_objects.soho_house_berlin}.click
+
+  end
+
+  def verify_soho_berlin_noticeboard
+
+    return Common.wait_for(5){@device_home_objects.soho_berlin_noticeboard_title.displayed?}
+
+  end
+
+  def verify_create_post_another_noticeboard
+
+    str = Common.wait_for(5){@device_home_objects.view_another_board_post}.text
+
+    return str.include? "How are you all"
+
+  end
+
+  def verify_post_amended_another_noticeboard
+
+    sleep 1
+
+    str = Common.wait_for(5){@device_home_objects.view_another_board_post}.text
+
+    return str.include? "How are you all doing"
+
+
+  end
+
+  def verify_post_deleted_another_noticeboard
+
+    sleep 3
+
+    if Common.wait_for(5){@device_home_objects.delete_another_board_post_check}.size > 1
+      return false
+    else
+      return true
+    end
+
+  end
+
+  def go_back_to_home_screen
+
+    Common.wait_for(5){@device_home_objects.left_link}.click
+
+  end
+
+  def verify_posts_count
+
+    str = Common.wait_for(5){@device_home_objects.posts_today}.text
+
+    return str.include? "1 POST TODAY"
+
+  end
+
+  def tap_modal_close
+
+    Common.wait_for(5){@device_home_objects.modal_close}.click
 
   end
 
