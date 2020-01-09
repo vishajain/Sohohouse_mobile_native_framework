@@ -32,7 +32,6 @@ module Common
     puts "***** THE BELOW STEP IS FAILED. HAVE A LOOK *****"
   end
 
-
   def Common.homescreen_navigate
 
     loop do
@@ -88,7 +87,7 @@ module Common
   def self.little_swipe_down
 
     if $device == "ios"
-      $action.press({:x => ($dimensions_width*0.5), :y => ($dimensions_height*0.5)}).wait(100).move_to({:x => ($dimensions_width*0.5), :y => ($dimensions_height*0.4)}).release.perform
+      $action.press({:x => ($dimensions_width*0.5), :y => ($dimensions_height*0.5)}).wait(100).move_to({:x => ($dimensions_width*0.5), :y => ($dimensions_height*0.45)}).release.perform
     else
       Appium::TouchAction.new.swipe(start_y: 700, end_y: 0).perform
     end
@@ -98,7 +97,7 @@ module Common
   def self.swipe_top()
 
     if $device == "ios"
-      $action.press({:x => ($dimensions_width*0.1), :y => ($dimensions_height*0.6)}).wait(100).move_to({:x => ($dimensions_width*0.1), :y => ($dimensions_height*0.9)}).release.perform
+      $action.press({:x => ($dimensions_width*0.5), :y => ($dimensions_height*0.4)}).wait(100).move_to({:x => ($dimensions_width*0.5), :y => ($dimensions_height*0.8)}).release.perform
       sleep 1
     else
       Appium::TouchAction.new.swipe(start_y: 150, end_y: 700).perform

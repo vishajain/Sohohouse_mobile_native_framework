@@ -303,5 +303,153 @@ class AccountScreen
 
   end
 
+  def tap_perks
+
+    Common.wait_for(20) {@device_account_objects.perks.click}
+
+    return true
+
+  end
+
+  def verify_perks_title
+
+    sleep 1
+
+    if Common.wait_for(20) {@device_account_objects.perkTitle.displayed?}
+      return true
+    else
+      return false
+    end
+
+  end
+
+  def verify_perks_location
+
+    if Common.wait_for(20) {@device_account_objects.perkLocation.displayed?}
+      return true
+    else
+      return false
+    end
+
+  end
+
+  def tap_first_perk
+
+    $driver.action.move_to(@device_account_objects.perkTitle).click.perform
+
+    # Common.wait_for(5) {@device_account_objects.perkTitle.click}
+
+    return true
+
+  end
+
+  def verify_perk_content_image
+
+    if Common.wait_for(20) {@device_account_objects.perkContentImage.displayed?}
+      return true
+    else
+      return false
+    end
+
+  end
+
+  def verify_perk_content_location
+
+    if Common.wait_for(20) {@device_account_objects.perkContentLocation.displayed?}
+      return true
+    else
+      return false
+    end
+
+  end
+
+  def verify_perk_content_title
+
+    if Common.wait_for(20) {@device_account_objects.perkContentTitle.displayed?}
+      return true
+    else
+      return false
+    end
+
+  end
+
+  def verify_perk_content_desc
+
+    if Common.wait_for(20) {@device_account_objects.perkContentDesc.displayed?}
+      return true
+    else
+      return false
+    end
+
+  end
+
+  def iconLeft
+
+    if $device == "ios"
+
+      Common.wait_for(20){@device_account_objects.icon_left}.click
+
+      return true
+
+    else
+
+      Common.wait_for(20){@device_account_objects.navigate_up}.click
+
+      return true
+
+    end
+
+  end
+
+  def tap_change_password
+
+    Common.wait_for(5){@device_account_objects.change_password}.click
+
+  end
+
+  def provide_current_password
+
+    @device_account_objects.current_password.send_keys($password)
+
+  end
+
+  def provide_new_password
+
+    @device_account_objects.new_password.send_keys("password1")
+
+  end
+
+  def provide_confirm_password
+
+    @device_account_objects.confirm_password.send_keys("password1")
+
+  end
+
+  def tap_save_btn
+
+    $action.press({:x => ($dimensions_width*0.5), :y => ($dimensions_height*0.5)}).release.perform
+
+    Common.wait_for(5){@device_account_objects.save_btn}.click
+
+  end
+
+  def provide_changed_password
+
+    @device_account_objects.current_password.send_keys("password1")
+
+  end
+
+  def provide_orignal_new_password
+
+    @device_account_objects.new_password.send_keys($password)
+
+  end
+
+  def provide_orignal_confirm_password
+
+    @device_account_objects.confirm_password.send_keys($password)
+
+  end
+
 end
 

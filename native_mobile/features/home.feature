@@ -31,6 +31,72 @@ Feature: Home Screen
     Then noticeboard section is visible
     And user taps on View another noticeboard link to see Noticeboards screen
 
+  @regression
+  Scenario: Post on the noticeboard
+#    Given the house is open
+    When the user taps on Post
+    Then user is be navigated to the noticeboard screen
+    And user sees the house name
+
+  @regression
+  Scenario: Create a post on the noticeboard for the local house
+    Given user is be navigated to the noticeboard screen
+    When user inputs the text
+    And the user taps on Post
+    Then user sees the post on the home screen
+
+  @regression
+  Scenario: Increase of posts count on the noticeboards screen
+    Given user sees the post on the home screen
+    When user taps on view another noticeboard
+    Then user sees the posts count incremented by one
+    And user closes the modal screen
+
+  @regression
+  Scenario: Amend the local house's post on the noticeboard
+    Given user sees the post on the home screen
+    When the user taps on Post
+    And user inputs the text to amend
+    And the user taps on Post
+    Then user sees the post amended on the home screen
+
+  @regression
+  Scenario: Delete the local house's post on the noticeboard
+    Given user sees the post on the home screen
+    When the user taps on Post
+    And user taps on delete post
+    Then user sees the post deleted from the home screen
+
+  @regression
+  Scenario: Navigate to other house noticeboard
+    Given user taps on view another noticeboard
+    When the user taps on Soho house Berlin
+    Then user sees Soho house berlin noticeboard
+
+  @regression
+  Scenario: Create a post on other house's noticeboard
+    Given user sees Soho house berlin noticeboard
+    When the user taps on Post
+    And user inputs the text
+    And the user taps on Post
+    Then user sees the post on the noticeboard screen
+
+  @regression
+  Scenario: Amend the post on other house's noticeboard
+    Given user sees the post on the noticeboard screen
+    When the user taps on Post
+    And user inputs the text to amend
+    And the user taps on Post
+    Then user sees the post amended on the noticeboard screen
+
+  @regression
+  Scenario: Delete the post on other house's noticeboard
+    Given user sees the post on the noticeboard screen
+    When the user taps on Post
+    And user taps on delete post
+    Then user sees the post deleted on the noticeboard screen
+    And go back to the home screen
+
   @smoke
   Scenario: Validate house perks and browse houses links
     Then user taps on house perks link to see House perks screen
@@ -49,3 +115,4 @@ Feature: Home Screen
     And WHAT'S ON button should be seen in menu bar
     And MY PLANNER bbutton should be seen in menu bar
     And ACCOUNT button should be seen in menu bar
+

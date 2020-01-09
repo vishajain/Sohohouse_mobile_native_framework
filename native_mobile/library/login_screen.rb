@@ -45,7 +45,7 @@ class LoginScreen
 
       email      = config[:props]["env"][$env]["username"]
 
-      password   = config[:props]["env"][$env]["password"]
+      $password   = config[:props]["env"][$env]["password"]
 
       $name = config[:props]["env"][$env]["name"]
 
@@ -55,10 +55,10 @@ class LoginScreen
 
       if $device == "ios"
         @device_login_objects.email_textfield.send_keys(email)
-        @device_login_objects.password_textfield.send_keys(password)
+        @device_login_objects.password_textfield.send_keys($password)
       elsif
         @device_login_objects.email_textfield[0].send_keys(email)
-        @device_login_objects.email_textfield[1].send_keys(password)
+        @device_login_objects.email_textfield[1].send_keys($password)
       end
 
     else
