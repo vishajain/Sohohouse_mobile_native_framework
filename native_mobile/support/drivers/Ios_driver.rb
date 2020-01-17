@@ -56,12 +56,13 @@ module Ios_driver
                   'ConnectHardwareKeyboard' => true,
                   'waitForQuiescence' => false,
                   'autoAcceptAlerts' => true,
-                  'noReset' => true
+                  'noReset' => $noreset
               }
           }
       $driver_appium = Appium::Driver.new(@capabilities, true)
 
       $driver = $driver_appium.start_driver
+
 
   end
 
@@ -78,7 +79,7 @@ module Ios_driver
       caps['os_version'] = '12'
       caps['browserstack.debug'] = true
       caps['autoAcceptAlerts'] = true
-      caps['noReset'] = false
+      caps['noReset'] = $noreset
       caps['app'] = 'bs://9f694e96766543ff9bfd98e98ae9caf57cddb7f2'
 
       $driver_appium = Appium::Driver.new({

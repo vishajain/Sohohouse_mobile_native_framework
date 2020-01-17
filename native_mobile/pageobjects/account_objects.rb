@@ -136,6 +136,9 @@ class Ios_Account_Objects
     @driver.find_element(:name => "Save")
   end
 
+  def sign_out
+    @driver.find_element(:name => "Sign out")
+  end
 end
 
 class Android_Account_Objects

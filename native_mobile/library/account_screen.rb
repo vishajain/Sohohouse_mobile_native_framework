@@ -5,6 +5,7 @@ require 'appium_lib'
 require 'selenium-webdriver'
 require "test/unit"
 require 'yaml'
+require_relative '../pageobjects/login_objects'
 require_relative '../pageobjects/home_objects'
 require_relative '../pageobjects/account_objects'
 require_relative '../../common/functions_common'
@@ -14,10 +15,12 @@ class AccountScreen
   def initialize()
 
     if $device == "ios"
+      @device_login_objects = Ios_Login_Objects.new($driver, $driver_appium)
       @device_home_objects = Ios_Home_Objects.new($driver, $driver_appium)
       @device_account_objects = Ios_Account_Objects.new($driver, $driver_appium)
 
     else
+      @device_login_objects = Android_Login_Objects.new($driver, $driver_appium)
       @device_home_objects = Android_Home_Objects.new($driver, $driver_appium)
       @device_account_objects = Android_Account_Objects.new($driver, $driver_appium)
 
@@ -448,6 +451,16 @@ class AccountScreen
   def provide_orignal_confirm_password
 
     @device_account_objects.confirm_password.send_keys($password)
+
+  end
+
+  def tap_sign_out
+
+    Common.swipe_down
+
+    Common.wait_for(5){@device_account_objects.sign_out}.click
+
+    return Common.wait_for(5){@device_login_objects.welcome_home.displayed?}
 
   end
 

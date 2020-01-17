@@ -57,6 +57,8 @@ class WhatsonScreen
 
   def events_click(button)
 
+    sleep 2
+
     Common.wait_for(5){@device_whatson_objects.whatson_options(button).click}
 
   end
@@ -175,7 +177,31 @@ class WhatsonScreen
 
           break
 
-        end
+        elsif section == "SW Events"
+
+          Common.wait_for(12){@device_whatson_objects.active_member_event.displayed?}
+
+          sleep 2
+
+          Common.wait_for(5){@device_whatson_objects.active_member_event.click}
+
+          return true
+
+          break
+
+        elsif section == "SW Gym"
+
+        Common.wait_for(12){@device_whatson_objects.active_gym_event.displayed?}
+
+        sleep 2
+
+        Common.wait_for(5){@device_whatson_objects.active_gym_event.click}
+
+        return true
+
+        break
+
+      end
 
       rescue
 
@@ -327,13 +353,17 @@ class WhatsonScreen
 
   end
 
-  def verify_you_on_guest_list(section)
+  def verify_you_on_guest_list
 
-    if Common.wait_for(25){@device_whatson_objects.member_event_section(section).displayed?}
+    sleep 15
 
-      return true
+    str = Common.wait_for(25){@device_whatson_objects.booking_status}.text
 
-    end
+      if str.include?("YOU'RE ON THE GUEST LIST")
+        return true
+      elsif str.include?("we'll get back to you shortly")
+        return true
+      end
 
   end
 
@@ -387,7 +417,7 @@ class WhatsonScreen
 
       begin
 
-        Common.wait_for(3){@device_whatson_objects.whatson_options(section).displayed?}
+        Common.wait_for(10){@device_whatson_objects.whatson_options(section).displayed?}
 
         return true
 
@@ -420,10 +450,23 @@ class WhatsonScreen
 
   end
 
+  def verify_book_and_pay_displayed
+
+    return Common.wait_for(10){@device_whatson_objects.book_and_pay.displayed?}
+
+  end
 
   def book_gym_event
 
+    sleep 2
+
     $driver.action.move_to(@device_whatson_objects.book_and_pay).click.perform
+
+  end
+
+  def tap_get_it_free
+
+    Common.wait_for(10){@device_whatson_objects.get_it_free.click}
 
   end
 

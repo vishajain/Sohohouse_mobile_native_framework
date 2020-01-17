@@ -37,6 +37,12 @@ class LoginScreen
   end
 
 
+  def close_app
+
+    $driver = $driver_appium.quit_driver
+
+  end
+
   def user_enters_email_password(validity)
 
     if validity == "valid"
@@ -81,7 +87,7 @@ class LoginScreen
 
   def user_clicks_go()
 
-    @device_login_objects.go_button.click
+    Common.wait_for(20){@device_login_objects.go_button}.click
 
   end
 

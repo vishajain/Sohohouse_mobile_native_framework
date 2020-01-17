@@ -17,11 +17,11 @@ Feature: Account screen
     When user clicks on Account button on home screen
     Then user sees and taps on view profile link
 
-  @smoke
+  @smoke @test
   Scenario: Validate your membership link
     Then user sees and taps on your membership link
 
-  @smoke
+  @smoke @test
   Scenario: Validate perks link
     Then user sees and taps on perks link
 

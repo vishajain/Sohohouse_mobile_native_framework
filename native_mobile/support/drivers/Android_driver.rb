@@ -49,7 +49,7 @@ module Android_driver
                     'useNewWDA'=> true,
                     'waitForQuiescence' => false,
                     'autoAcceptAlerts' => true,
-                    'noReset' => true
+                    'noReset' => $noreset
                 }
         }
 
@@ -73,6 +73,7 @@ module Android_driver
     caps['device'] = 'Samsung Galaxy S8 Plus'
     caps['platformName'] = 'android'
     caps['browserstack.debug'] = true
+    caps['noReset'] = $noreset
     caps['app'] = 'bs://33cbf62d8397f814f7c5b5d9c9fe3c80e73cd13f'
 
     $driver_appium = Appium::Driver.new({

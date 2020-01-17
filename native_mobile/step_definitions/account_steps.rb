@@ -242,3 +242,9 @@ And("user provides original password in confirm password") do
 
 end
 
+Then("user sign-off from the account") do
+
+    assert_true($accountscreen.tap_sign_out, "Unable to sign out the user")
+
+end
+

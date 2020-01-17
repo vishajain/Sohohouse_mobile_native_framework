@@ -18,6 +18,9 @@ class Ios_Whatson_Objects
     @member_free_event_name         = config[:props]["data"]["event"]["free-event"]
     @screening_free_event_name       = config[:props]["data"]["screen"]["free-event"]
     @gym_free_event_name             = config[:props]["data"]["Gym"]["free-event"]
+    @active_member_event            = config[:props]["data"]["active-site"]["member-event"]
+    @active_gym_event            = config[:props]["data"]["active-site"]["gym-event"]
+
   end
 
   def whatson_title
@@ -44,6 +47,14 @@ class Ios_Whatson_Objects
     @driver.find_element(:name =>""+@gym_paid_event_name+"")
   end
 
+  def active_member_event
+    @driver.find_element(:name =>""+@active_member_event+"")
+  end
+
+  def active_gym_event
+    @driver.find_element(:name =>""+@active_gym_event+"")
+  end
+
   def free_member_event
     @driver.find_element(:name =>""+@member_free_event_name+"")
   end
@@ -58,6 +69,10 @@ class Ios_Whatson_Objects
 
   def member_event_section(section)
     @driver.find_element(:name => ""+section+"")
+  end
+
+  def booking_status
+    @driver.find_element(:xpath => "//XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText")
   end
 
   def icon_plus
@@ -148,6 +163,47 @@ class Ios_Whatson_Objects
 
   def berlin_result
     @driver.find_element(:name => "Soho House Berlin")
+  end
+
+  def active_members_only
+    @driver.find_element(:xpath => "//XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[2]")
+    # @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name=#{@active_gym_event}]/preceding-sibling::XCUIElementTypeStaticText[1]")
+  end
+
+  def soho_warehouse_location
+    @driver.find_element(:xpath => "//XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[1]")
+  end
+
+  def find_out_more
+    @driver.find_element(:name => "Find out more")
+  end
+
+  def icon_info
+    @driver.find_element(:name => "iconInfo")
+  end
+
+  def text_displayed(content)
+    @driver.find_element(:name => "#{content}")
+  end
+
+  def subscribe_to_active
+    @driver.find_element(:name => "Subscribe to Active membership")
+  end
+
+  def subscribe_to_active_plus
+    @driver.find_element(:name => "Subscribe to Active Plus membership")
+  end
+
+  def membership_enquiry
+    @driver.find_element(:xpath => "//XCUIElementTypeTable/XCUIElementTypeCell[6]/XCUIElementTypeStaticText")
+  end
+
+  def enquiry_topic
+    @driver.find_element(:xpath => "//XCUIElementTypeTable/XCUIElementTypeCell[8]/XCUIElementTypeStaticText")
+  end
+
+  def get_it_free
+    @driver.find_element(:name =>"Get it free")
   end
 
 end

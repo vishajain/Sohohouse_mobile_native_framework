@@ -172,7 +172,7 @@ Feature: What's on screen
     Then user sees the event booking status as you are on the guest list on event details screen
 
   @smoke
-  Scenario: Cancel the PAID screening event booking
+  Scenario: Cancel the PAID gym event booking
     When user sees the event booking status as you are on the guest list on event details screen
     Then user cancels the event booking
     Then user navigates back to the events list
