@@ -318,21 +318,13 @@ class AccountScreen
 
     sleep 1
 
-    if Common.wait_for(20) {@device_account_objects.perkTitle.displayed?}
-      return true
-    else
-      return false
-    end
+    return Common.wait_for(20) {@device_account_objects.perkTitle.displayed?}
 
   end
 
   def verify_perks_location
 
-    if Common.wait_for(20) {@device_account_objects.perkLocation.displayed?}
-      return true
-    else
-      return false
-    end
+    return Common.wait_for(30) {@device_account_objects.perkLocation.displayed?}
 
   end
 
@@ -348,41 +340,26 @@ class AccountScreen
 
   def verify_perk_content_image
 
-    if Common.wait_for(20) {@device_account_objects.perkContentImage.displayed?}
-      return true
-    else
-      return false
-    end
+    return Common.wait_for(20) {@device_account_objects.perkContentImage.displayed?}
+
 
   end
 
   def verify_perk_content_location
 
-    if Common.wait_for(20) {@device_account_objects.perkContentLocation.displayed?}
-      return true
-    else
-      return false
-    end
+    return Common.wait_for(20) {@device_account_objects.perkContentLocation.displayed?}
 
   end
 
   def verify_perk_content_title
 
-    if Common.wait_for(20) {@device_account_objects.perkContentTitle.displayed?}
-      return true
-    else
-      return false
-    end
+    return Common.wait_for(20) {@device_account_objects.perkContentTitle.displayed?}
 
   end
 
   def verify_perk_content_desc
 
-    if Common.wait_for(20) {@device_account_objects.perkContentDesc.displayed?}
-      return true
-    else
-      return false
-    end
+    return Common.wait_for(20) {@device_account_objects.perkContentDesc.displayed?}
 
   end
 
@@ -461,6 +438,12 @@ class AccountScreen
     Common.wait_for(5){@device_account_objects.sign_out}.click
 
     return Common.wait_for(5){@device_login_objects.welcome_home.displayed?}
+
+  end
+
+  def verify_password_saved
+
+    return Common.wait_for(20) {@device_account_objects.notification_preferences.displayed?}
 
   end
 

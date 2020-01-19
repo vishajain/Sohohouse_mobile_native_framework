@@ -6,7 +6,7 @@ require 'selenium-webdriver'
 require "test/unit"
 require 'yaml'
 require_relative '../pageobjects/home_objects'
-require_relative '../pageobjects/blackslate_objects'
+require_relative '../pageobjects/houseboard_objects'
 require_relative '../../common/functions_common'
 
 class BlackslateScreen
@@ -28,6 +28,7 @@ class BlackslateScreen
   def verify_house_name
 
     str = Common.wait_for(20) {@device_blackslate_objects.house_name}.text
+    puts str
     return str
 
   end

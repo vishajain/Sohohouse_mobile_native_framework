@@ -176,6 +176,6 @@ end
 
 Then("user sees the home screen") do
 
-  assert_true($homescreen.verify_username,"Username is not present")
+  assert_true($homescreen.verify_greetings,"Username is not present")
 
 end

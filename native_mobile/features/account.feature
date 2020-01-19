@@ -13,28 +13,26 @@ Feature: Account screen
 
   @smoke @regression
   Scenario: Validate Account screen title
-    Given username is visible
+    Given greetings should be visible
     When user clicks on Account button on home screen
-    Then user sees and taps on view profile link
+    Then user see and taps on view profile link
 
   @smoke @test
   Scenario: Validate your membership link
-    Then user sees and taps on your membership link
+    Then user see and taps on your membership link
 
   @smoke @test
   Scenario: Validate perks link
-    Then user sees and taps on perks link
+    Then user see and taps on perks link
 
   @smoke
   Scenario: Validate perk content on house perks list
     When user sees and taps on perks
     Then user sees perk title
-    Then user sees perk location
 
   @smoke
   Scenario: Validate perk content
     When user taps on the first perk on perks list
-#    Then user sees perk image on perk screen
     Then user sees perk location on perk screen
     Then user sees perk title on perk screen
     Then user sees perk description on perk screen
@@ -42,15 +40,15 @@ Feature: Account screen
 
   @smoke
   Scenario: Validate payment link
-    Then user sees and taps on payment link
+    Then user see and taps on payment link
 
   @smoke
   Scenario: Validate past bookings link
-    Then user sees and taps on past bookings link
+    Then user see and taps on past bookings link
 
   @smoke
   Scenario: Validate change password link
-    Then user sees and taps on change password link
+    Then user see and taps on change password link
 
   @regression
   Scenario: Change the password
@@ -72,27 +70,27 @@ Feature: Account screen
 
   @smoke
   Scenario: Validate favourite houses link
-    Then user sees and taps on favourite houses link
+    Then user see and taps on favourite houses link
 
   @smoke
   Scenario: Validate notification preferences link
-    Then user sees and taps on notification preferences link
+    Then user see and taps on notification preferences link
 
   @smoke @ios
   Scenario: Validate sync calendar link
-    Then user sees and taps on sync calendar link
+    Then user see and taps on sync calendar link
 
   @smoke
   Scenario: Validate contact us link
-    Then user sees and taps on contact us link
+    Then user see and taps on contact us link
 
   @smoke @android
   Scenario: Validate faq link
-    Then user sees and taps on faq link
+    Then user see and taps on faq link
 
   @smoke
   Scenario: Validate policies link
-    Then user sees and taps on policies link
+    Then user see and taps on policies link
 
   @smoke @hook
   Scenario: Go back to the home page from account screen

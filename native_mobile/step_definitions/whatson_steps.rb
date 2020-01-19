@@ -187,7 +187,7 @@ Then("user sees Guest 1 on you are on the guest list screen") do
 
 end
 
-Then("user sees Guest 1 under Guests up to section") do
+Then("user see Guest 1 under Guests up to section") do
 
   assert_true($whatsonscreen.verify_content("Guest 1"),"Guest 1 not shown")
 

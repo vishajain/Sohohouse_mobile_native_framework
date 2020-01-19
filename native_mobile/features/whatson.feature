@@ -55,14 +55,14 @@ Feature: What's on screen
     Then user sees you are on the guest list screen
     Then user sees Guest 1 on you are on the guest list screen
     Then user taps on OK button
-    Then user sees Guest 1 under Guests up to section
+    Then user see Guest 1 under Guests up to section
     Then user sees the event booking status as you and 1 guest going on event details screen
 
 
   @smoke
   Scenario: Cancel the guest member booking - PAID event
     When user sees the event booking status as you and 1 guest going on event details screen
-    When user sees Guest 1 under Guests up to section
+    When user see Guest 1 under Guests up to section
     When user cancels Guest 1 booking
     Then Guest 1 booking should be cancelled
 
@@ -201,9 +201,10 @@ Feature: What's on screen
     Then user cancels the event booking
     Then user navigates back to the events list
 
-  @smoke @wip
+  @smoke
   Scenario: Validate the what's on filter - select the Soho House Berlin
     Given user sees the Events tab
+    And tap on Events tab
     When user taps on the filter
     And user selects Soho House Berlin house
     Then user should see the events of Soho House Berlin only

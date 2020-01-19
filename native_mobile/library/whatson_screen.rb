@@ -205,7 +205,7 @@ class WhatsonScreen
 
       rescue
 
-        Common.swipe_down
+        Common.little_swipe_down
 
         i = i+1
 

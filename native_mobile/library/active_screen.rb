@@ -116,9 +116,11 @@ class ActiveScreens
 
   def tap_left_btn
 
-    sleep 2
+    sleep 3
 
-    Common.wait_for(20) {@device_whatson_objects.icon_left.click}
+    # Common.wait_for(20) {@device_whatson_objects.icon_left.click}
+
+    $driver.action.move_to(Common.wait_for(20) {@device_whatson_objects.icon_left}).click.perform
 
   end
 

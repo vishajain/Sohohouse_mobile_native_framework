@@ -13,7 +13,7 @@ require_relative '../../common/functions_common'
 include Test::Unit::Assertions
 
 
-Then("user sees and taps on view profile link") do
+Then("user see and taps on view profile link") do
 
     sleep 2
 
@@ -24,16 +24,22 @@ Then("user sees and taps on view profile link") do
 end
 
 
-Then("user sees and taps on your membership link") do
+Then("user see and taps on your membership link") do
 
     sleep 2
 
+    begin
     assert_true($accountscreen.verify_your_membership,"Unable to tap on your membership link")
+    rescue StandardError => msg
+        puts msg.message
+        raise
+    end
+
 
 end
 
 
-Then("user sees and taps on perks link") do
+Then("user see and taps on perks link") do
 
     sleep 2
 
@@ -42,7 +48,7 @@ Then("user sees and taps on perks link") do
 end
 
 
-Then("user sees and taps on payment link") do
+Then("user see and taps on payment link") do
 
     sleep 2
 
@@ -51,7 +57,7 @@ Then("user sees and taps on payment link") do
 end
 
 
-Then("user sees and taps on past bookings link") do
+Then("user see and taps on past bookings link") do
 
     sleep 2
 
@@ -60,7 +66,7 @@ Then("user sees and taps on past bookings link") do
 end
 
 
- Then("user sees and taps on change password link") do
+ Then("user see and taps on change password link") do
 
     sleep 4
 
@@ -69,7 +75,7 @@ end
 end
 
 
-Then("user sees and taps on favourite houses link") do
+Then("user see and taps on favourite houses link") do
 
     sleep 2
 
@@ -78,7 +84,7 @@ Then("user sees and taps on favourite houses link") do
 end
 
 
-Then("user sees and taps on notification preferences link") do
+Then("user see and taps on notification preferences link") do
 
     sleep 2
 
@@ -88,7 +94,7 @@ Then("user sees and taps on notification preferences link") do
 end
 
 
-Then("user sees and taps on sync calendar link") do
+Then("user see and taps on sync calendar link") do
 
     sleep 2
 
@@ -98,7 +104,7 @@ Then("user sees and taps on sync calendar link") do
 end
 
 
-Then("user sees and taps on contact us link") do
+Then("user see and taps on contact us link") do
 
     sleep 2
 
@@ -108,7 +114,7 @@ Then("user sees and taps on contact us link") do
 end
 
 
-Then("user sees and taps on faq link") do
+Then("user see and taps on faq link") do
 
     sleep 2
 
@@ -117,7 +123,7 @@ Then("user sees and taps on faq link") do
 end
 
 
-Then("user sees and taps on policies link") do
+Then("user see and taps on policies link") do
 
     sleep 2
 
@@ -220,7 +226,7 @@ end
 
 Then("the new password is saved") do
 
-    assert_true($accountscreen.verify_account_title,"Unable to save the password")
+    assert_true($accountscreen.verify_password_saved,"New password is not saved")
 
 end
 

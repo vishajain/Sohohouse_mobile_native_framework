@@ -65,7 +65,7 @@ class Android_Blackslate_Objects
   end
 
   def house_name
-    @driver.find_element(:id => "com.sohohouse.seven:id/text")
+    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name='Open now']//parent::XCUIElementTypeCell//preceding-sibling::XCUIElementTypeCell/XCUIElementTypeStaticText")
   end
 
   def close_blackslate
