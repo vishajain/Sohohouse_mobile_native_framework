@@ -69,9 +69,6 @@ class EditProfileScreen
 
     @device_editprofile_objects.profession.send_keys($profession_value)
 
-    # touch_action = Appium::TouchAction.new.tap(@device_editprofile_objects.done)
-    # touch_action.perform
-
     $driver.action.move_to(@device_editprofile_objects.done).click.perform
 
   end

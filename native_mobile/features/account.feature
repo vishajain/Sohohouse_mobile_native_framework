@@ -4,24 +4,24 @@ Feature: Account screen
 
   Background:
 
-  @smoke @login-ex @regression
+  @smoke @login-ex @regression @notification @test
   Scenario: Pre-requisite for Account screen testing
     Given app is launched
     And user is on sign in screen
     And user enters valid email address and password
     And user clicks on go button
 
-  @smoke @regression
+  @smoke @regression @notification @test
   Scenario: Validate Account screen title
     Given greetings should be visible
     When user clicks on Account button on home screen
     Then user see and taps on view profile link
 
-  @smoke @test
+  @smoke
   Scenario: Validate your membership link
     Then user see and taps on your membership link
 
-  @smoke @test
+  @smoke
   Scenario: Validate perks link
     Then user see and taps on perks link
 
@@ -72,17 +72,67 @@ Feature: Account screen
   Scenario: Validate favourite houses link
     Then user see and taps on favourite houses link
 
+  @smoke @regression
+  Scenario: Reset favourite houses
+    When user taps on favourite houses
+    And user taps on Reset
+    And tap on Save changes
+    And user taps on favourite houses
+    Then user see only the local house in the favourite houses list
+
+  @smoke @regression
+  Scenario: User selects 40 Greek Street as a favourite house
+    When user taps on favourite houses
+    And user selects 40 Greek Street
+    And tap on Save changes
+    And user taps on favourite houses
+    Then user sees 40 Greek Street under favourite houses list
+
   @smoke
   Scenario: Validate notification preferences link
     Then user see and taps on notification preferences link
+
+  @smoke
+  Scenario: Unselect the push notification preferences
+    Given user taps on notification preferences
+    When unselect Your events push notification preference
+    When unselect Your screenings push notification preference
+    When unselect Welcome to the House push notification preference
+    Then Your events push notification preference is switched off
+    Then Your screenings push notification preference is switched off
+    Then Welcome to the House push notification preference is switched off
+    Then user goes back to the account screen
+
+  @smoke
+  Scenario: Select the push notification preferences
+    Given user taps on notification preferences
+    When select Your events push notification preference
+    When select Your screenings push notification preference
+    When select Welcome to the House push notification preference
+    Then Your events push notification preference is switched on
+    Then Your screenings push notification preference is switched on
+    Then Welcome to the House push notification preference is switched on
+    Then user goes back to the account screen
+
 
   @smoke @ios
   Scenario: Validate sync calendar link
     Then user see and taps on sync calendar link
 
+
   @smoke
   Scenario: Validate contact us link
     Then user see and taps on contact us link
+
+
+  @smoke @test
+  Scenario: User submits the enquiry using contact us form
+    Given user taps on Contact us form
+    When user provides enquiry type as General enquiry
+    And user provides enquiry topic as Positive feedback
+    And user provides enquiry message as I like your services
+    Then user submits the enquiry
+    Then user goes back to the account screen
 
   @smoke @android
   Scenario: Validate faq link

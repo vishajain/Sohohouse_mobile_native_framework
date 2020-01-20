@@ -447,5 +447,122 @@ class AccountScreen
 
   end
 
+  def tap_reset
+
+    Common.wait_for(5){@device_account_objects.reset}.click
+
+  end
+
+  def verify_local_house_displayed
+
+    return Common.wait_for(20) {@device_account_objects.local_house.displayed?}
+
+  end
+
+  def tap_favourite_houses
+
+    sleep 2
+
+    Common.wait_for(10){@device_account_objects.favourite_houses}.click
+
+  end
+
+  def tap_save_changes
+
+    Common.wait_for(5){@device_account_objects.save_changes}.click
+
+  end
+
+  def select_40_greek_street
+
+    Common.wait_for(5){@device_account_objects.tap_uk}.click
+
+    Common.wait_for(5){@device_account_objects.greek_St}.click
+
+  end
+
+  def verify_40_greek_st_displayed
+
+    return Common.wait_for(5){@device_account_objects.greek_St.displayed?}
+
+  end
+
+  def tap_notification_preferences
+
+    Common.wait_for(10){@device_account_objects.notification_preferences}.click
+
+  end
+
+  def tap_notification_pref_switch_off(link)
+
+    Common.wait_for(10){@device_account_objects.notification_pref_switch(link)}.click
+
+    sleep 2
+
+    Common.wait_for(10){@device_account_objects.notification_pref_switch(link)}.click
+
+  end
+
+  def verify_notification_pref_switch_value(link, value)
+
+    str = Common.wait_for(10){@device_account_objects.notification_pref_switch_value(link)}
+
+    return str.include? value
+
+  end
+
+  def tap_notification_pref_switch_on(link)
+
+    Common.wait_for(10){@device_account_objects.notification_pref_switch(link)}.click
+
+    sleep 1
+
+  end
+
+  def  tap_contact_us
+
+    sleep 1
+
+    Common.swipe_down
+
+    Common.wait_for(10){@device_account_objects.contact_us}.click
+
+  end
+
+  def select_enquiry_type(input)
+
+    Common.wait_for(10){@device_account_objects.enquiry_type}.click
+
+    sleep 1
+
+    @device_account_objects.enquiry_type.send_keys(input)
+
+  end
+
+  def select_enquiry_topic(input)
+
+    Common.wait_for(10){@device_account_objects.enquiry_topic1}.click
+
+    sleep 1
+
+    @device_account_objects.enquiry_topic1.send_keys(input)
+
+  end
+
+  def input_message(input)
+
+    @device_account_objects.enquiry_message.send_keys(input)
+
+  end
+
+  def tap_submit
+
+    Common.wait_for(10){@device_account_objects.done}.click
+
+    Common.wait_for(10){@device_account_objects.submit}.click
+
+  end
+
 end
+
 

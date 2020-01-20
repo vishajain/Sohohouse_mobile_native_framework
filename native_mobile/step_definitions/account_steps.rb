@@ -254,3 +254,101 @@ Then("user sign-off from the account") do
 
 end
 
+When("user taps on favourite houses") do
+
+    $accountscreen.tap_favourite_houses
+
+end
+
+When("user taps on Reset") do
+
+    $accountscreen.tap_reset
+
+end
+
+And("tap on Save changes") do
+
+    $accountscreen.tap_save_changes
+
+end
+
+Then("user see only the local house in the favourite houses list") do
+
+   assert_true($accountscreen.verify_local_house_displayed, "Favourite houses reset is not working")
+
+end
+
+And("user selects 40 Greek Street") do
+
+    $accountscreen.select_40_greek_street
+
+end
+
+Then("user sees 40 Greek Street under favourite houses list") do
+
+    assert_true($accountscreen.verify_40_greek_st_displayed, "Favourite houses reset is not working")
+
+end
+
+Given("user taps on notification preferences") do
+
+    $accountscreen.tap_notification_preferences
+
+end
+
+When(/^unselect (.*) push notification preference$/) do |link|
+
+    $accountscreen.tap_notification_pref_switch_off(link)
+
+end
+
+Then(/^(.*) push notification preference is switched off$/) do |link|
+
+    assert_true($accountscreen.verify_notification_pref_switch_value(link,"0"), "Notification pref value is not unset")
+
+end
+
+When(/^select (.*) push notification preference$/) do |link|
+
+    $accountscreen.tap_notification_pref_switch_on(link)
+
+end
+
+Then(/^(.*) push notification preference is switched on$/) do |link|
+
+    assert_true($accountscreen.verify_notification_pref_switch_value(link,"1"), "Notification pref value is still unset")
+
+end
+
+
+Given("user taps on Contact us form") do
+
+    $accountscreen.tap_contact_us
+
+end
+
+When(/^user provides enquiry type as (.*)$/) do |input|
+
+    $accountscreen.select_enquiry_type(input)
+
+end
+
+When(/^user provides enquiry topic as (.*)$/) do |input|
+
+    $accountscreen.select_enquiry_topic(input)
+
+end
+
+
+When(/^user provides enquiry message as (.*)$/) do |input|
+
+    $accountscreen.input_message(input)
+
+end
+
+Then("user submits the enquiry") do
+
+    $accountscreen.tap_submit
+
+end
+

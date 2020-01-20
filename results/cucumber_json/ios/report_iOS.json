@@ -1,0 +1,308 @@
+[
+  {
+    "uri": "native_mobile/features/account.feature",
+    "id": "account-screen",
+    "keyword": "Feature",
+    "name": "Account screen",
+    "description": "",
+    "line": 2,
+    "tags": [
+      {
+        "name": "@Account-screen",
+        "line": 1
+      }
+    ],
+    "elements": [
+      {
+        "keyword": "Background",
+        "name": "",
+        "description": "",
+        "line": 5,
+        "type": "background"
+      },
+      {
+        "id": "account-screen;pre-requisite-for-account-screen-testing",
+        "keyword": "Scenario",
+        "name": "Pre-requisite for Account screen testing",
+        "description": "",
+        "line": 8,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@Account-screen",
+            "line": 1
+          },
+          {
+            "name": "@smoke",
+            "line": 7
+          },
+          {
+            "name": "@login-ex",
+            "line": 7
+          },
+          {
+            "name": "@regression",
+            "line": 7
+          },
+          {
+            "name": "@notification",
+            "line": 7
+          },
+          {
+            "name": "@test",
+            "line": 7
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "app is launched",
+            "line": 9,
+            "match": {
+              "location": "native_mobile/step_definitions/login_steps.rb:11"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 33441366000
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "user is on sign in screen",
+            "line": 10,
+            "match": {
+              "location": "native_mobile/step_definitions/login_steps.rb:25"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 380552000
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "user enters valid email address and password",
+            "line": 11,
+            "match": {
+              "location": "native_mobile/step_definitions/login_steps.rb:33"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 7087291000
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "user clicks on go button",
+            "line": 12,
+            "match": {
+              "location": "native_mobile/step_definitions/login_steps.rb:39"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 953187000
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "native_mobile/step_definitions/hooks.rb:28"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 77000
+            }
+          }
+        ]
+      },
+      {
+        "keyword": "Background",
+        "name": "",
+        "description": "",
+        "line": 5,
+        "type": "background"
+      },
+      {
+        "id": "account-screen;validate-account-screen-title",
+        "keyword": "Scenario",
+        "name": "Validate Account screen title",
+        "description": "",
+        "line": 15,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@Account-screen",
+            "line": 1
+          },
+          {
+            "name": "@smoke",
+            "line": 14
+          },
+          {
+            "name": "@regression",
+            "line": 14
+          },
+          {
+            "name": "@notification",
+            "line": 14
+          },
+          {
+            "name": "@test",
+            "line": 14
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "greetings should be visible",
+            "line": 16,
+            "match": {
+              "location": "native_mobile/step_definitions/home_steps.rb:17"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 7382824000
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "user clicks on Account button on home screen",
+            "line": 17,
+            "match": {
+              "location": "native_mobile/step_definitions/editprofile_steps.rb:18"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 7410478000
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "user see and taps on view profile link",
+            "line": 18,
+            "match": {
+              "location": "native_mobile/step_definitions/account_steps.rb:16"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 4948285000
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "native_mobile/step_definitions/hooks.rb:28"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 33000
+            }
+          }
+        ]
+      },
+      {
+        "keyword": "Background",
+        "name": "",
+        "description": "",
+        "line": 5,
+        "type": "background"
+      },
+      {
+        "id": "account-screen;user-submits-the-enquiry-using-contact-us-form",
+        "keyword": "Scenario",
+        "name": "User submits the enquiry using contact us form",
+        "description": "",
+        "line": 139,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@Account-screen",
+            "line": 1
+          },
+          {
+            "name": "@smoke",
+            "line": 138
+          },
+          {
+            "name": "@test",
+            "line": 138
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "user taps on Contact us form",
+            "line": 140,
+            "match": {
+              "location": "native_mobile/step_definitions/account_steps.rb:324"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2467874000
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "user provides enquiry type as General enquiry",
+            "line": 141,
+            "match": {
+              "location": "native_mobile/step_definitions/account_steps.rb:330"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 8120132000
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "user provides enquiry topic as Positive feedback",
+            "line": 142,
+            "match": {
+              "location": "native_mobile/step_definitions/account_steps.rb:336"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 7578050000
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "user provides enquiry message as I like your services",
+            "line": 143,
+            "match": {
+              "location": "native_mobile/step_definitions/account_steps.rb:343"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2854815000
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "user submits the enquiry",
+            "line": 144,
+            "match": {
+              "location": "native_mobile/step_definitions/account_steps.rb:349"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2898163000
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "native_mobile/step_definitions/hooks.rb:28"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 28000
+            }
+          }
+        ]
+      }
+    ]
+  }
+]
