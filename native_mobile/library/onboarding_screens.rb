@@ -27,13 +27,10 @@ class OnboardingScreens
 
   def verify_user_is_on_onboarding_screen()
 
-    if Common.wait_for(20) {@device_onboarding_objects.terms_text.displayed?}
-
-      return true
-
-    end
+    return Common.wait_for(20) {@device_onboarding_objects.terms_text.displayed?}
 
   end
+
 
   def user_accepts_Terms
 
@@ -41,20 +38,15 @@ class OnboardingScreens
 
     Common.wait_for(25){@device_onboarding_objects.accept_terms}.click
 
-    return true
-
   end
 
 
   def verify_user_is_on_helpus_screen()
 
-    if Common.wait_for(20){@device_onboarding_objects.helpus_text.displayed?}
-
-      return true
-
-    end
+    return Common.wait_for(20){@device_onboarding_objects.helpus_text.displayed?}
 
   end
+
 
   def user_allows_helpus()
 
@@ -62,15 +54,13 @@ class OnboardingScreens
 
   end
 
+
   def verify_user_on_house_rules_screen()
 
-    if Common.wait_for(20){@device_onboarding_objects.houserules_text.displayed?}
-
-      return true
-
-    end
+    return Common.wait_for(20){@device_onboarding_objects.houserules_text.displayed?}
 
   end
+
 
   def user_accepts_house_rules()
 
@@ -80,15 +70,13 @@ class OnboardingScreens
 
   end
 
+
   def verify_user_on_myplanner_screen()
 
-    if Common.wait_for(20){@device_onboarding_objects.myplanner_text.displayed?}
-
-      return true
-
-    end
+    return Common.wait_for(20){@device_onboarding_objects.myplanner_text.displayed?}
 
   end
+
 
   def user_continue_without_sync()
 
@@ -98,13 +86,10 @@ class OnboardingScreens
 
   def verify_user_welcome_screen()
 
-    if Common.wait_for(10){@device_onboarding_objects.welcome_text.displayed?}
-
-      return true
-
-    end
+    return Common.wait_for(10){@device_onboarding_objects.welcome_text.displayed?}
 
   end
+
 
   def user_continues_from_welcome()
 
@@ -112,55 +97,39 @@ class OnboardingScreens
 
   end
 
+
   def verify_make_personal_screen()
 
-    if Common.wait_for(20){@device_onboarding_objects.makepersonal_text.displayed?}
-
-      return true
-
-    end
+    return Common.wait_for(20){@device_onboarding_objects.makepersonal_text.displayed?}
 
   end
+
 
   def user_continues_from_makePersonal()
 
-    sleep 2
-
-    if $device == "ios"
+    sleep 3
 
       Common.wait_for(20){@device_onboarding_objects.next_button}.click
 
-    else
-
-      Common.wait_for(20){@device_onboarding_objects.next_button_1}.click
-
-    end
-
   end
+
 
   def verify_Intro_Notice_screen()
 
-    if Common.wait_for(15){@device_onboarding_objects.intronotice_text.displayed?}
+    return Common.wait_for(15){@device_onboarding_objects.intronotice_text.displayed?}
 
-      return true
-
-     end
   end
 
 
-    def user_continues_from_IntroNotice()
+  def user_continues_from_IntroNotice()
 
-           Common.wait_for(20){@device_onboarding_objects.continue_button}.click
+    Common.wait_for(20){@device_onboarding_objects.continue_button}.click
 
-    end
+  end
 
   def verify_Noticeboard_screen()
 
-    if Common.wait_for(10){@device_onboarding_objects.noticeboard_text.displayed?}
-
-      return true
-
-    end
+    return Common.wait_for(10){@device_onboarding_objects.noticeboard_text.displayed?}
 
   end
 
@@ -170,6 +139,7 @@ class OnboardingScreens
 
   end
 
+
   def user_clicks_continue()
 
     Common.wait_for(20){@device_onboarding_objects.continue_button}.click
@@ -178,18 +148,14 @@ class OnboardingScreens
 
   def user_clicks_continue_to_notify_pref()
 
-    Common.wait_for(20){@device_onboarding_objects.continue_button_to_notify_pref}.click
+    Common.wait_for(25){@device_onboarding_objects.next_button}.click
 
   end
 
 
   def verify_Notification_pref_screen()
 
-    if Common.wait_for(10){@device_onboarding_objects.notification_pref_text.displayed?}
-
-      return true
-
-    end
+    return Common.wait_for(10){@device_onboarding_objects.notification_pref_text.displayed?}
 
   end
 
@@ -201,12 +167,8 @@ class OnboardingScreens
 
   def verify_youareset_screen()
 
-    if Common.wait_for(10){@device_onboarding_objects.you_are_set_text.displayed?}
-
-      return true
-
-    end
+    return Common.wait_for(10){@device_onboarding_objects.you_are_set_text.displayed?}
 
   end
 
-  end
+end

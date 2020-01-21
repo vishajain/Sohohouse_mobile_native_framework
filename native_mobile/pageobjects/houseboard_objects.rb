@@ -69,7 +69,7 @@ class Android_Blackslate_Objects
   end
 
   def close_blackslate
-    @driver.find_element(:id => "com.sohohouse.seven:id/close_button")
+    @driver.find_element(:accessibility_id => "Return home")
   end
 
   def browse_houses
@@ -77,7 +77,7 @@ class Android_Blackslate_Objects
   end
 
   def browse_houses_back_button
-    @driver.find_element(:id => "com.sohohouse.seven:id/browse_houses_back_button")
+    @driver.find_element(:accessibility_id => "Go back")
   end
 
   def membership_card

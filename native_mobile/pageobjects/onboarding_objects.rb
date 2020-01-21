@@ -33,10 +33,10 @@ class Ios_Onboarding_Objects
   def next_button
     @driver.find_element(:name => "Next")
   end
-
-  def continue_button_to_notify_pref
-    @driver.find_element(:name => "Next")
-  end
+  #
+  # def continue_button_to_notify_pref
+  #   @driver.find_element(:name => "Next")
+  # end
 
   def myplanner_text
     @driver.find_element(:name => "My planner")
@@ -88,13 +88,12 @@ class Android_Onboarding_Objects
   end
 
   def welcome_text
-    @driver.find_element(:xpath => "//android.widget.TextView[@text = 'Welcome to Soho House']")
+    @driver.find_element(:xpath => "//android.widget.TextView[contains(@text,'Welcome to Soho House')]")
   end
 
   def next_button
-    @driver.find_element(:id => "com.sohohouse.seven:id/title_card_next_button")
+    @driver.find_element(:xpath => "//android.widget.Button[contains(@text,'Next')]")
   end
-
 
   def next_button_1
     @driver.find_element(:id => "com.sohohouse.seven:id/continue_button")
@@ -113,12 +112,12 @@ class Android_Onboarding_Objects
   end
 
   def continue_button
-    @driver.find_element(:id => "com.sohohouse.seven:id/onboarding_house_accept_button")
+    @driver.find_element(:xpath => "//android.widget.Button[contains(@text,'Continue')]")
   end
 
-  def continue_button_to_notify_pref
-    @driver.find_element(:id => "com.sohohouse.seven:id/onboarding_house_accept_button")
-  end
+  # def continue_button_to_notify_pref
+  #   @driver.find_element(:id => "com.sohohouse.seven:id/onboarding_house_accept_button")
+  # end
 
   def noticeboard_text
     @driver.find_element(:xpath => "//android.widget.TextView[@text = 'Noticeboard']")
@@ -133,7 +132,7 @@ class Android_Onboarding_Objects
   end
 
   def you_are_set_text
-    @driver.find_element(:id => "com.sohohouse.seven:id/title_card_title")
+    @driver.find_element(:xpath => "//android.widget.TextView[contains(@text,'all set')]")
   end
 
 end

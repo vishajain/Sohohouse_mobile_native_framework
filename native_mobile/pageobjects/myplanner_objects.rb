@@ -99,7 +99,7 @@ class Android_Myplanner_Objects
 
   def myplanner_title
     # @driver.find_element(:xpath => "//android.widget.TextView[@text = 'Sign out']")
-    @driver.find_element(:id => "com.sohohouse.seven:id/header")
+    @driver.find_element(:accessibility_id => "My planner")
   end
 
   def events_section
@@ -172,7 +172,7 @@ class Android_Myplanner_Objects
   end
 
   def homeBtn
-    @driver.find_element(:xpath => "//*[@resource-id='com.sohohouse.seven:id/menu_home']/android.widget.ImageView[1]")
+    @driver.find_element(:accessibility_id => "home")
   end
 
 end

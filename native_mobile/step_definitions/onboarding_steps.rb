@@ -21,7 +21,7 @@ end
 
 When(/^user accepts T & C$/) do
 
-  assert_true($onboardingscreens.user_accepts_Terms, "T & C not clicked")
+ $onboardingscreens.user_accepts_Terms
 
 end
 

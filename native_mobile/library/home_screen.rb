@@ -25,7 +25,9 @@ class HomeScreen
 
   def verify_greetings()
 
-    str = Common.wait_for(20){@device_home_objects.greetings}
+    sleep 3
+
+    str = Common.wait_for(20){@device_home_objects.greetings}.text
 
     if str == "Good morning," || str == "Good evening," || str == "Good afternoon,"
       return true

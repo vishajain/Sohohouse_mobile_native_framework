@@ -43,7 +43,7 @@ module Android_driver
                     'platformVersion' => @platform_version ,
                     'udid' =>   @udid  ,
                     'app' =>  @app_path,
-                    'bundleId' =>   @bundleid,
+                    # 'bundleId' =>   @bundleid,
                     'appActivity' => 'com.sohohouse.seven.splash.SplashActivity',
                     'ConnectHardwareKeyboard' => false,
                     'useNewWDA'=> true,

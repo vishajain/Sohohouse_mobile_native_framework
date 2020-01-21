@@ -14,9 +14,7 @@ class Ios_Login_Objects
 
     @driver.find_element(:name => "Welcome home")
 
-
   end
-
 
   def email_textfield
     @driver.find_element(:xpath => "//XCUIElementTypeTextField")
@@ -52,11 +50,11 @@ class Android_Login_Objects
   end
 
   def email_textfield
-    @driver.find_elements(:xpath => "//*[contains(@resource-id,'text_input_item')]/android.widget.FrameLayout/android.widget.EditText")
+    @driver.find_element(:xpath => "//android.widget.EditText[contains(@text,'Email address')]")
   end
 
   def password_textfield
-    @driver.find_elements(:xpath => "//*[contains(@resource-id,'text_input_item')]/android.widget.FrameLayout/android.widget.EditText")
+    @driver.find_element(:xpath => "//android.widget.EditText[contains(@text,'Password')]")
   end
 
 

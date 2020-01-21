@@ -80,7 +80,7 @@ class Android_Viewprofile_Objects
   end
 
   def homeBtn
-    @driver.find_element(:xpath => "//*[@resource-id='com.sohohouse.seven:id/menu_home']/android.widget.ImageView[1]")
+    @driver.find_element(:accessibility_id =>  "home")
   end
 
 end

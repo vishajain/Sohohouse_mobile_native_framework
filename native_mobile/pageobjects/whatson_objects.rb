@@ -217,7 +217,7 @@ class Android_Whatson_Objects
   end
 
   def whatson_filter
-    @driver.find_element(:id => "com.sohohouse.seven:id/filter_btn")
+    @driver.find_element(:accessibility_id => "Open filter menu")
   end
 
   def whatson_options(button)
@@ -227,7 +227,7 @@ class Android_Whatson_Objects
   end
 
   def whatson_title
-    @driver.find_element(:id => "com.sohohouse.seven:id/whats_on_header")
+    @driver.find_element(:accessibility_id => "What\'s on'")
   end
 
   def member_event

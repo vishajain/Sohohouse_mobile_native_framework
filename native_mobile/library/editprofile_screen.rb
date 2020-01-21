@@ -235,111 +235,68 @@ class EditProfileScreen
 
   def verify_profession_value
 
-    if Common.wait_for(10){@device_viewprofile_objects.profession_value1}.text.include? $profession_value
-      return true
-    else
-      return false
-    end
+    return Common.wait_for(10){@device_viewprofile_objects.profession_value1}.text.include? $profession_value
 
   end
 
   def verify_industry_value
 
-    if Common.wait_for(20){@device_viewprofile_objects.industry_value}.text.include? $industry_value
-      return true
-    else
-      return false
-    end
+    return Common.wait_for(20){@device_viewprofile_objects.industry_value}.text.include? $industry_value
 
   end
 
   def verify_city_value
 
-    if Common.wait_for(20){@device_viewprofile_objects.city_value}.text.include? $city_value
-      return true
-    else
-      return false
-    end
+    return Common.wait_for(20){@device_viewprofile_objects.city_value}.text.include? $city_value
 
   end
 
   def verify_about_me_value
 
-    if Common.wait_for(20){@device_viewprofile_objects.about_me_value}.text.include? $about_me_value
-      return true
-    else
-      return false
-    end
+    return Common.wait_for(20){@device_viewprofile_objects.about_me_value}.text.include? $about_me_value
 
   end
 
   def verify_lets_chat_value
 
-    if Common.wait_for(20){@device_viewprofile_objects.lets_chat_value}.text.include? $chat_value
-      return true
-    else
-      return false
-    end
+    return Common.wait_for(20){@device_viewprofile_objects.lets_chat_value}.text.include? $chat_value
 
   end
 
   def verify_website
 
-    if Common.wait_for(20) {@device_viewprofile_objects.website_value}.displayed?
-      return true
-    else
-      return false
-    end
+    return Common.wait_for(20) {@device_viewprofile_objects.website_value}.displayed?
 
   end
 
   def verify_instagram
 
-    if Common.wait_for(20) {@device_viewprofile_objects.instagram_value}.displayed?
-      return true
-    else
-      return false
-    end
+    return Common.wait_for(20) {@device_viewprofile_objects.instagram_value}.displayed?
+
 
   end
 
   def verify_twitter
 
-    if Common.wait_for(20) {@device_viewprofile_objects.twitter_value}.displayed?
-      return true
-    else
-      return false
-    end
+    return Common.wait_for(20) {@device_viewprofile_objects.twitter_value}.displayed?
 
   end
 
   def verify_linkedin
 
-    if Common.wait_for(20) {@device_viewprofile_objects.linkedin_value}.displayed?
-      return true
-    else
-      return false
-    end
+    return Common.wait_for(20) {@device_viewprofile_objects.linkedin_value}.displayed?
 
   end
 
   def verify_spotify
 
-    if Common.wait_for(20) {@device_viewprofile_objects.spotify_value}.displayed?
-      return true
-    else
-      return false
-    end
+    return Common.wait_for(20) {@device_viewprofile_objects.spotify_value}.displayed?
 
   end
 
   def verify_youtube
 
-    if Common.wait_for(20) {@device_viewprofile_objects.youtube_value}.displayed?
-      return true
-    else
-      return false
-    end
+    return Common.wait_for(20) {@device_viewprofile_objects.youtube_value}.displayed?
 
   end
 

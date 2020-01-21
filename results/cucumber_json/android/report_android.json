@@ -1,0 +1,500 @@
+[
+  {
+    "uri": "native_mobile/features/AAonboarding.feature",
+    "id": "onboarding",
+    "keyword": "Feature",
+    "name": "Onboarding",
+    "description": "",
+    "line": 2,
+    "tags": [
+      {
+        "name": "@Onboarding-screens",
+        "line": 1
+      }
+    ],
+    "elements": [
+      {
+        "keyword": "Background",
+        "name": "",
+        "description": "",
+        "line": 4,
+        "type": "background"
+      },
+      {
+        "id": "onboarding;login-with-valid-user-credentials",
+        "keyword": "Scenario",
+        "name": "Login with valid user credentials",
+        "description": "",
+        "line": 7,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@Onboarding-screens",
+            "line": 1
+          },
+          {
+            "name": "@smoke",
+            "line": 6
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "app is launched",
+            "line": 8,
+            "match": {
+              "location": "native_mobile/step_definitions/login_steps.rb:11"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 40509078000
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "user is on sign in screen",
+            "line": 9,
+            "match": {
+              "location": "native_mobile/step_definitions/login_steps.rb:25"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 331576000
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "user enters valid email address and password",
+            "line": 10,
+            "match": {
+              "location": "native_mobile/step_definitions/login_steps.rb:33"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2116261000
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "user clicks on go button",
+            "line": 11,
+            "match": {
+              "location": "native_mobile/step_definitions/login_steps.rb:39"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 689827000
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "native_mobile/step_definitions/hooks.rb:28"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 367000
+            }
+          }
+        ]
+      },
+      {
+        "keyword": "Background",
+        "name": "",
+        "description": "",
+        "line": 4,
+        "type": "background"
+      },
+      {
+        "id": "onboarding;:-user-continues-to-see-the-make-it-personal-screen",
+        "keyword": "Scenario",
+        "name": ": User continues to see the make it personal screen",
+        "description": "",
+        "line": 35,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@Onboarding-screens",
+            "line": 1
+          },
+          {
+            "name": "@smoke",
+            "line": 34
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "When ",
+            "name": "user continue from welcome screen",
+            "line": 36,
+            "match": {
+              "location": "native_mobile/step_definitions/onboarding_steps.rb:83"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 7717091000
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "user sees make it personal screen",
+            "line": 37,
+            "match": {
+              "location": "native_mobile/step_definitions/onboarding_steps.rb:90"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1300457000
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "native_mobile/step_definitions/hooks.rb:28"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 40000
+            }
+          }
+        ]
+      },
+      {
+        "keyword": "Background",
+        "name": "",
+        "description": "",
+        "line": 4,
+        "type": "background"
+      },
+      {
+        "id": "onboarding;:-user-continues-to-see-introducing-noticeboard-screen",
+        "keyword": "Scenario",
+        "name": ": User continues to see Introducing noticeboard screen",
+        "description": "",
+        "line": 40,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@Onboarding-screens",
+            "line": 1
+          },
+          {
+            "name": "@smoke",
+            "line": 39
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "When ",
+            "name": "user selects the favourite houses",
+            "line": 41,
+            "match": {
+              "location": "native_mobile/step_definitions/onboarding_steps.rb:97"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 35000
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "user continue from make it personal screen",
+            "line": 42,
+            "match": {
+              "location": "native_mobile/step_definitions/onboarding_steps.rb:102"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 6138111000
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "user sees Introducing Noticeboard screen",
+            "line": 43,
+            "match": {
+              "location": "native_mobile/step_definitions/onboarding_steps.rb:111"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2306670000
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "native_mobile/step_definitions/hooks.rb:28"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 30000
+            }
+          }
+        ]
+      },
+      {
+        "keyword": "Background",
+        "name": "",
+        "description": "",
+        "line": 4,
+        "type": "background"
+      },
+      {
+        "id": "onboarding;:-user-continues-to-see-noticeboard-screen",
+        "keyword": "Scenario",
+        "name": ": User continues to see Noticeboard screen",
+        "description": "",
+        "line": 46,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@Onboarding-screens",
+            "line": 1
+          },
+          {
+            "name": "@smoke",
+            "line": 45
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "When ",
+            "name": "user clicks on continue",
+            "line": 47,
+            "match": {
+              "location": "native_mobile/step_definitions/onboarding_steps.rb:118"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2342635000
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "user sees Noticeboard screen",
+            "line": 48,
+            "match": {
+              "location": "native_mobile/step_definitions/onboarding_steps.rb:127"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1429179000
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "native_mobile/step_definitions/hooks.rb:28"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 36000
+            }
+          }
+        ]
+      },
+      {
+        "keyword": "Background",
+        "name": "",
+        "description": "",
+        "line": 4,
+        "type": "background"
+      },
+      {
+        "id": "onboarding;:-user-continues-to-see-notification-preferences-screen",
+        "keyword": "Scenario",
+        "name": ": User continues to see Notification preferences screen",
+        "description": "",
+        "line": 51,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@Onboarding-screens",
+            "line": 1
+          },
+          {
+            "name": "@smoke",
+            "line": 50
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "When ",
+            "name": "user clicks on next",
+            "line": 52,
+            "match": {
+              "location": "native_mobile/step_definitions/onboarding_steps.rb:134"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 5117482000
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "user sees Notification preferences screen",
+            "line": 53,
+            "match": {
+              "location": "native_mobile/step_definitions/onboarding_steps.rb:143"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 652150000
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "native_mobile/step_definitions/hooks.rb:28"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 29000
+            }
+          }
+        ]
+      },
+      {
+        "keyword": "Background",
+        "name": "",
+        "description": "",
+        "line": 4,
+        "type": "background"
+      },
+      {
+        "id": "onboarding;:-user-continues-to-see-you're-all-set-screen",
+        "keyword": "Scenario",
+        "name": ": User continues to see You're all set screen",
+        "description": "",
+        "line": 56,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@Onboarding-screens",
+            "line": 1
+          },
+          {
+            "name": "@smoke",
+            "line": 55
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "When ",
+            "name": "user clicks on OK",
+            "line": 57,
+            "match": {
+              "location": "native_mobile/step_definitions/onboarding_steps.rb:150"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2093487000
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "user shown with alert to allow",
+            "line": 58,
+            "match": {
+              "location": "native_mobile/step_definitions/onboarding_steps.rb:159"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 35000
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "user sees You're all set screen",
+            "line": 59,
+            "match": {
+              "location": "native_mobile/step_definitions/onboarding_steps.rb:164"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 630463000
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "native_mobile/step_definitions/hooks.rb:28"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 34000
+            }
+          }
+        ]
+      },
+      {
+        "keyword": "Background",
+        "name": "",
+        "description": "",
+        "line": 4,
+        "type": "background"
+      },
+      {
+        "id": "onboarding;:-user-continues-to-see-the-home-screen",
+        "keyword": "Scenario",
+        "name": ": User continues to see the home screen",
+        "description": "",
+        "line": 62,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@Onboarding-screens",
+            "line": 1
+          },
+          {
+            "name": "@smoke",
+            "line": 61
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "When ",
+            "name": "user clicks on next on all set screen",
+            "line": 63,
+            "match": {
+              "location": "native_mobile/step_definitions/onboarding_steps.rb:171"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 91558000
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "user sees the home screen",
+            "line": 64,
+            "match": {
+              "location": "native_mobile/step_definitions/onboarding_steps.rb:177"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 6459646000
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "native_mobile/step_definitions/hooks.rb:28"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 29000
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

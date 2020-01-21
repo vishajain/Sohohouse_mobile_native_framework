@@ -206,11 +206,11 @@ class Android_Account_Objects
   end
 
   def account_title
-    @driver.find_element(:id => "com.sohohouse.seven:id/more_view_profile_btn")
+    @driver.find_element(:accessibility_id => "View profile")
   end
 
   def edit_profile_screen
-    @driver.find_element(:id => "com.sohohouse.seven:id/menu_item_edit")
+    @driver.find_element(:accessibility_id => "Edit")
   end
 
   def your_membership
@@ -278,7 +278,7 @@ class Android_Account_Objects
   end
 
   def icon_left
-    @driver.find_element(:id => "com.sohohouse.seven:id/toolbar_back_btn")
+    @driver.find_element(:accessibility_id => "Go back")
   end
 
   def icon_back_header
