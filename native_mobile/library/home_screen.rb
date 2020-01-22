@@ -25,7 +25,7 @@ class HomeScreen
 
   def verify_greetings()
 
-    sleep 3
+    sleep 5
 
     str = Common.wait_for(20){@device_home_objects.greetings}.text
 

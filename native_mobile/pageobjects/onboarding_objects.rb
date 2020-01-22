@@ -30,6 +30,10 @@ class Ios_Onboarding_Objects
     @driver.find_element(:name => "House rules")
   end
 
+  def makepersonal_continue
+    @driver.find_element(:name => "Next")
+  end
+
   def next_button
     @driver.find_element(:name => "Next")
   end
@@ -92,8 +96,9 @@ class Android_Onboarding_Objects
   end
 
   def next_button
-    @driver.find_element(:xpath => "//android.widget.Button[contains(@text,'Next')]")
-  end
+     @driver.find_element(:xpath => "//android.widget.Button[contains(@text,'Next')]")
+    # @driver.find_element(:id => "#{$currentPackage+':id'+'/title_card_next_button'}")
+    end
 
   def next_button_1
     @driver.find_element(:id => "com.sohohouse.seven:id/continue_button")
@@ -101,6 +106,10 @@ class Android_Onboarding_Objects
 
   def makepersonal_text
     @driver.find_element(:xpath => "//android.widget.TextView[@text = 'Make it personal']")
+  end
+
+  def makepersonal_continue
+    @driver.find_element(:id => "#{$currentPackage+':id'+'/continue_button'}")
   end
 
   def intronotice_text

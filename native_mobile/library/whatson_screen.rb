@@ -502,11 +502,7 @@ class WhatsonScreen
 
   def results_check
 
-    if Common.wait_for(10){@device_whatson_objects.berlin_result.displayed?}
-      return true
-    else
-      return false
-    end
+    return Common.wait_for(10){@device_whatson_objects.berlin_result.displayed?}
 
   end
 

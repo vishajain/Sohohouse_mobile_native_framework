@@ -1,25 +1,7 @@
 @Account-screen
 Feature: Active functionality
 
-#  non.active.shw.local@example.com - Local House - non active
-#  active.shw.local@example.com  - Local house- active
-#  active-plus.shw.local@example.com  - Local house - active+
-#  non.active.every.local@example.com  - Every House - non active
-#  active.every.local@example.com - Every house - active
-#  active-plus.every.local@example.com  - every house - active+
-#  active-plus.shk.local@example.com - Local House - active +
-#  non.active.shk.local@example.com ->  Local House - non active
-#  active.shk.every@example.com -> Every House - active
-#
-#  gem.non.active.shw.local@example.com
-#  gem.non.active.every.local@example.com
-#  gem.active.shw.local@example.com
-#  gem.active-plus.shw.local@example.com
-#  gem.active.every.local@example.com
-#  gem.active-plus.every.local@example.com
-#  gem.active-plus.shk.local@example.com
-#  gem.non.active.shk.local@example.com
-#  gem.active.shk.every@example.com
+
 #
 #  app.non.active.shw.local@example.com
 #  app.non.active.every.local@example.com
@@ -31,15 +13,7 @@ Feature: Active functionality
 #  app.non.active.shk.local@example.com
 #  app.active.shk.every@example.com
 #
-#  web.non.active.shw.local@example.com
-#  web.non.active.every.local@example.com
-#  web.active.shw.local@example.com
-#  web.active-plus.shw.local@example.com
-#  web.active.every.local@example.com
-#  web.active-plus.every.local@example.com
-#  web.active-plus.shk.local@example.com
-#  web.non.active.shk.local@example.com
-#  web.active.shk.every@example.com
+
 
   Background:
 

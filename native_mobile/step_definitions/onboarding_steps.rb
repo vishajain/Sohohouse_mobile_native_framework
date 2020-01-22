@@ -101,8 +101,6 @@ end
 
 And(/^user continue from make it personal screen$/) do
 
-  sleep 3
-
   $onboardingscreens.user_continues_from_makePersonal
 
 end

@@ -19,6 +19,8 @@ module Android_driver
 
     $driver.manage.timeouts.implicit_wait = 10
 
+    $currentPackage =  $driver.current_package
+
   end
 
 
@@ -56,6 +58,7 @@ module Android_driver
     $driver_appium = Appium::Driver.new(@capabilities, true)
 
     $driver = $driver_appium.start_driver
+
 
   end
 

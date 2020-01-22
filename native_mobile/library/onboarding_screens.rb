@@ -107,9 +107,9 @@ class OnboardingScreens
 
   def user_continues_from_makePersonal()
 
-    sleep 3
+    sleep 6
 
-      Common.wait_for(20){@device_onboarding_objects.next_button}.click
+      Common.wait_for(20){@device_onboarding_objects.makepersonal_continue}.click
 
   end
 
