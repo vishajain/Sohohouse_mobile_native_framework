@@ -11,7 +11,6 @@ Feature: Edit Profile Screen
     And user enters valid email address and password
     And user clicks on go button
 
-
   @regression
   Scenario: Navigate to the edit profile and user inputs the profession value
     Given user clicks on Account button on home screen
@@ -30,17 +29,17 @@ Feature: Edit Profile Screen
 #    And user taps on save changes
 #    Then industry value is shown on view profile screen
 
-  @regression
-  Scenario: User inputs the city value
-#    When user taps on Edit link
-#    And user sees the Edit profile screen
-    And user provides city value
-    And user taps on save changes
-    Then city value is shown on view profile screen
+#  @regression
+#  Scenario: User inputs the city value
+##    When user taps on Edit link
+##    And user sees the Edit profile screen
+#    And user provides city value
+#    And user taps on save changes
+#    Then city value is shown on view profile screen
 
   @regression
   Scenario: User inputs the about me value
-    When user taps on Edit link
+#    When user taps on Edit link
     And user sees the Edit profile screen
     And user provides about me value
     And user taps on save changes
@@ -60,7 +59,7 @@ Feature: Edit Profile Screen
     And user sees the Edit profile screen
     And user provides interests value
     And user taps on save changes
-#    Then interests value is shown on view profile screen
+    Then interests value is shown on view profile screen
 #
   @regression
   Scenario: User inputs the website value

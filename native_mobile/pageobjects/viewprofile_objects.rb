@@ -80,15 +80,15 @@ class Android_Viewprofile_Objects
   end
 
   def homeBtn
-    @driver.find_element(:accessibility_id =>  "home")
+    @driver.find_element(:xpath => "//android.view.ViewGroup//android.widget.FrameLayout[1]/android.widget.ImageView")
   end
 
   def profession_value1
-    @driver.find_element(:xpath => "//android.widget.TextView[contains(@resource-id,'profile_city')]")
+    @driver.find_element(:xpath => "//android.widget.TextView[contains(@resource-id,'profile_occupation')]")
   end
 
   def city_value
-    @driver.find_element(:xpath => "//android.widget.TextView[contains(@resource-id,'profile_occupation')]")
+    @driver.find_element(:xpath => "//android.widget.TextView[contains(@resource-id,'profile_city')]")
   end
 
   def industry_value

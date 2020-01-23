@@ -293,7 +293,8 @@ class Android_Home_Objects
   end
 
   def account_button
-    @driver.find_element(:accessibility_id => "ACCOUNT")
+    # @driver.find_element(:accessibility_id => "ACCOUNT")
+    @driver.find_element(:xpath => "//android.view.ViewGroup//android.widget.FrameLayout[4]/android.widget.ImageView")
   end
 
   def post_link

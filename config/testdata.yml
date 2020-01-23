@@ -38,7 +38,7 @@ data:
       website: 'https://www.oops.org/'
       instagram: '@amazing'
       twitter: '@amazing'
-      linkedin: 'https://linkedin.com/in/automtion'
+      linkedin: 'https://linkedin.com/in/automation'
       spotify: 'https://open.spotify.com/user/automation'
       youtube: 'https://www.youtube.com/user/automation'
   non-active-local: 'app.non.active.shw.local@example.com'

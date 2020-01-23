@@ -1,0 +1,920 @@
+[
+  {
+    "uri": "native_mobile/features/editprofile.feature",
+    "id": "edit-profile-screen",
+    "keyword": "Feature",
+    "name": "Edit Profile Screen",
+    "description": "",
+    "line": 2,
+    "tags": [
+      {
+        "name": "@Edit-profile-screen",
+        "line": 1
+      }
+    ],
+    "elements": [
+      {
+        "keyword": "Background",
+        "name": "",
+        "description": "",
+        "line": 5,
+        "type": "background"
+      },
+      {
+        "id": "edit-profile-screen;pre-requisite-for-edit-profile-screen-testing",
+        "keyword": "Scenario",
+        "name": "Pre-requisite for Edit profile screen testing",
+        "description": "",
+        "line": 8,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@Edit-profile-screen",
+            "line": 1
+          },
+          {
+            "name": "@regression",
+            "line": 7
+          },
+          {
+            "name": "@login-ex",
+            "line": 7
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "app is launched",
+            "line": 9,
+            "match": {
+              "location": "native_mobile/step_definitions/login_steps.rb:11"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 27102343000
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "user is on sign in screen",
+            "line": 10,
+            "match": {
+              "location": "native_mobile/step_definitions/login_steps.rb:25"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 342645000
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "user enters valid email address and password",
+            "line": 11,
+            "match": {
+              "location": "native_mobile/step_definitions/login_steps.rb:33"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1982045000
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "user clicks on go button",
+            "line": 12,
+            "match": {
+              "location": "native_mobile/step_definitions/login_steps.rb:39"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 629824000
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "native_mobile/step_definitions/hooks.rb:28"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 37000
+            }
+          }
+        ]
+      },
+      {
+        "keyword": "Background",
+        "name": "",
+        "description": "",
+        "line": 5,
+        "type": "background"
+      },
+      {
+        "id": "edit-profile-screen;navigate-to-the-edit-profile-and-user-inputs-the-profession-value",
+        "keyword": "Scenario",
+        "name": "Navigate to the edit profile and user inputs the profession value",
+        "description": "",
+        "line": 15,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@Edit-profile-screen",
+            "line": 1
+          },
+          {
+            "name": "@regression",
+            "line": 14
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "user clicks on Account button on home screen",
+            "line": 16,
+            "match": {
+              "location": "native_mobile/step_definitions/editprofile_steps.rb:18"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 14134969000
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "user taps on View Profile link",
+            "line": 17,
+            "match": {
+              "location": "native_mobile/step_definitions/editprofile_steps.rb:27"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 3231504000
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "user taps on Edit link",
+            "line": 18,
+            "match": {
+              "location": "native_mobile/step_definitions/editprofile_steps.rb:34"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 3136871000
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "user sees the Edit profile screen",
+            "line": 19,
+            "match": {
+              "location": "native_mobile/step_definitions/editprofile_steps.rb:40"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 3313589000
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "user provides profession value",
+            "line": 20,
+            "match": {
+              "location": "native_mobile/step_definitions/editprofile_steps.rb:48"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 6444719000
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "user taps on save changes",
+            "line": 21,
+            "match": {
+              "location": "native_mobile/step_definitions/editprofile_steps.rb:134"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 3249675000
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "profession value is shown on view profile screen",
+            "line": 22,
+            "match": {
+              "location": "native_mobile/step_definitions/editprofile_steps.rb:140"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 12389310000
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "native_mobile/step_definitions/hooks.rb:28"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 77000
+            }
+          }
+        ]
+      },
+      {
+        "keyword": "Background",
+        "name": "",
+        "description": "",
+        "line": 5,
+        "type": "background"
+      },
+      {
+        "id": "edit-profile-screen;user-inputs-the-industry-value",
+        "keyword": "Scenario",
+        "name": "User inputs the industry value",
+        "description": "",
+        "line": 25,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@Edit-profile-screen",
+            "line": 1
+          },
+          {
+            "name": "@regression",
+            "line": 24
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "When ",
+            "name": "user taps on Edit link",
+            "line": 26,
+            "match": {
+              "location": "native_mobile/step_definitions/editprofile_steps.rb:34"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 128932000
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "user sees the Edit profile screen",
+            "line": 27,
+            "match": {
+              "location": "native_mobile/step_definitions/editprofile_steps.rb:40"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 3644905000
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "user provides industry value",
+            "line": 28,
+            "match": {
+              "location": "native_mobile/step_definitions/editprofile_steps.rb:54"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 3321214000
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "native_mobile/step_definitions/hooks.rb:28"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 37000
+            }
+          }
+        ]
+      },
+      {
+        "keyword": "Background",
+        "name": "",
+        "description": "",
+        "line": 5,
+        "type": "background"
+      },
+      {
+        "id": "edit-profile-screen;user-inputs-the-about-me-value",
+        "keyword": "Scenario",
+        "name": "User inputs the about me value",
+        "description": "",
+        "line": 41,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@Edit-profile-screen",
+            "line": 1
+          },
+          {
+            "name": "@regression",
+            "line": 40
+          }
+        ],
+        "comments": [
+          {
+            "value": "#    And user taps on save changes",
+            "line": 29
+          },
+          {
+            "value": "#    Then industry value is shown on view profile screen",
+            "line": 30
+          },
+          {
+            "value": "#  @regression",
+            "line": 32
+          },
+          {
+            "value": "#  Scenario: User inputs the city value",
+            "line": 33
+          },
+          {
+            "value": "##    When user taps on Edit link",
+            "line": 34
+          },
+          {
+            "value": "##    And user sees the Edit profile screen",
+            "line": 35
+          },
+          {
+            "value": "#    And user provides city value",
+            "line": 36
+          },
+          {
+            "value": "#    And user taps on save changes",
+            "line": 37
+          },
+          {
+            "value": "#    Then city value is shown on view profile screen",
+            "line": 38
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "And ",
+            "name": "user sees the Edit profile screen",
+            "line": 43,
+            "comments": [
+              {
+                "value": "#    When user taps on Edit link",
+                "line": 42
+              }
+            ],
+            "match": {
+              "location": "native_mobile/step_definitions/editprofile_steps.rb:40"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1126723000
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "user provides about me value",
+            "line": 44,
+            "match": {
+              "location": "native_mobile/step_definitions/editprofile_steps.rb:66"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 6286941000
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "user taps on save changes",
+            "line": 45,
+            "match": {
+              "location": "native_mobile/step_definitions/editprofile_steps.rb:134"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1501289000
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "about me value is shown on view profile screen",
+            "line": 46,
+            "match": {
+              "location": "native_mobile/step_definitions/editprofile_steps.rb:158"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2067066000
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "native_mobile/step_definitions/hooks.rb:28"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 55000
+            }
+          }
+        ]
+      },
+      {
+        "keyword": "Background",
+        "name": "",
+        "description": "",
+        "line": 5,
+        "type": "background"
+      },
+      {
+        "id": "edit-profile-screen;user-inputs-the-lets-chat-value",
+        "keyword": "Scenario",
+        "name": "User inputs the lets chat value",
+        "description": "",
+        "line": 49,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@Edit-profile-screen",
+            "line": 1
+          },
+          {
+            "name": "@regression",
+            "line": 48
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "When ",
+            "name": "user taps on Edit link",
+            "line": 50,
+            "match": {
+              "location": "native_mobile/step_definitions/editprofile_steps.rb:34"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 8898625000
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "user sees the Edit profile screen",
+            "line": 51,
+            "match": {
+              "location": "native_mobile/step_definitions/editprofile_steps.rb:40"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 3146322000
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "user provides lets chat value",
+            "line": 52,
+            "match": {
+              "location": "native_mobile/step_definitions/editprofile_steps.rb:72"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 5333948000
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "user taps on save changes",
+            "line": 53,
+            "match": {
+              "location": "native_mobile/step_definitions/editprofile_steps.rb:134"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1281259000
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "lets chat value is shown on view profile screen",
+            "line": 54,
+            "match": {
+              "location": "native_mobile/step_definitions/editprofile_steps.rb:164"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1977771000
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "native_mobile/step_definitions/hooks.rb:28"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 36000
+            }
+          }
+        ]
+      },
+      {
+        "keyword": "Background",
+        "name": "",
+        "description": "",
+        "line": 5,
+        "type": "background"
+      },
+      {
+        "id": "edit-profile-screen;user-inputs-the-interests-value",
+        "keyword": "Scenario",
+        "name": "User inputs the interests value",
+        "description": "",
+        "line": 57,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@Edit-profile-screen",
+            "line": 1
+          },
+          {
+            "name": "@regression",
+            "line": 56
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "When ",
+            "name": "user taps on Edit link",
+            "line": 58,
+            "match": {
+              "location": "native_mobile/step_definitions/editprofile_steps.rb:34"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 9654482000
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "user sees the Edit profile screen",
+            "line": 59,
+            "match": {
+              "location": "native_mobile/step_definitions/editprofile_steps.rb:40"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2594967000
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "user provides interests value",
+            "line": 60,
+            "match": {
+              "location": "native_mobile/step_definitions/editprofile_steps.rb:79"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 7497806000
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "user taps on save changes",
+            "line": 61,
+            "match": {
+              "location": "native_mobile/step_definitions/editprofile_steps.rb:134"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1161126000
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "interests value is shown on view profile screen",
+            "line": 62,
+            "match": {
+              "location": "native_mobile/step_definitions/editprofile_steps.rb:85"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 3177025000
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "native_mobile/step_definitions/hooks.rb:28"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 33000
+            }
+          }
+        ]
+      },
+      {
+        "keyword": "Background",
+        "name": "",
+        "description": "",
+        "line": 5,
+        "type": "background"
+      },
+      {
+        "id": "edit-profile-screen;user-inputs-the-website-value",
+        "keyword": "Scenario",
+        "name": "User inputs the website value",
+        "description": "",
+        "line": 65,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@Edit-profile-screen",
+            "line": 1
+          },
+          {
+            "name": "@regression",
+            "line": 64
+          }
+        ],
+        "comments": [
+          {
+            "value": "#",
+            "line": 63
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "When ",
+            "name": "user taps on Edit link",
+            "line": 66,
+            "match": {
+              "location": "native_mobile/step_definitions/editprofile_steps.rb:34"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 7012887000
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "user sees the Edit profile screen",
+            "line": 67,
+            "match": {
+              "location": "native_mobile/step_definitions/editprofile_steps.rb:40"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2636659000
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "user provides website value",
+            "line": 68,
+            "match": {
+              "location": "native_mobile/step_definitions/editprofile_steps.rb:91"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 6838977000
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "user provides instagram value",
+            "line": 69,
+            "match": {
+              "location": "native_mobile/step_definitions/editprofile_steps.rb:96"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 3473862000
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "user provides twitter value",
+            "line": 70,
+            "match": {
+              "location": "native_mobile/step_definitions/editprofile_steps.rb:102"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 4266788000
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "user provides linkedin value",
+            "line": 71,
+            "match": {
+              "location": "native_mobile/step_definitions/editprofile_steps.rb:108"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2568167000
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "user provides spotify value",
+            "line": 72,
+            "match": {
+              "location": "native_mobile/step_definitions/editprofile_steps.rb:115"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2972446000
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "user provides youtube value",
+            "line": 73,
+            "match": {
+              "location": "native_mobile/step_definitions/editprofile_steps.rb:122"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 3393116000
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "user taps on Done",
+            "line": 74,
+            "match": {
+              "location": "native_mobile/step_definitions/editprofile_steps.rb:128"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 748910000
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "user taps on save changes",
+            "line": 75,
+            "match": {
+              "location": "native_mobile/step_definitions/editprofile_steps.rb:134"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1185196000
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "website value is shown on view profile screen",
+            "line": 76,
+            "match": {
+              "location": "native_mobile/step_definitions/editprofile_steps.rb:170"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 10598572000
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "instagram value is shown on view profile screen",
+            "line": 77,
+            "match": {
+              "location": "native_mobile/step_definitions/editprofile_steps.rb:176"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 55815000
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "twitter value is shown on view profile screen",
+            "line": 78,
+            "match": {
+              "location": "native_mobile/step_definitions/editprofile_steps.rb:182"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 60613000
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "linkedin value is shown on view profile screen",
+            "line": 79,
+            "match": {
+              "location": "native_mobile/step_definitions/editprofile_steps.rb:188"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 70965000
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "spotify value is shown on view profile screen",
+            "line": 80,
+            "match": {
+              "location": "native_mobile/step_definitions/editprofile_steps.rb:194"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 79457000
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "youtube value is shown on view profile screen",
+            "line": 81,
+            "match": {
+              "location": "native_mobile/step_definitions/editprofile_steps.rb:200"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 72406000
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "native_mobile/step_definitions/hooks.rb:28"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 30000
+            }
+          }
+        ]
+      },
+      {
+        "keyword": "Background",
+        "name": "",
+        "description": "",
+        "line": 5,
+        "type": "background"
+      },
+      {
+        "id": "edit-profile-screen;go-back-to-the-home-page-from-edit-profile-screen",
+        "keyword": "Scenario",
+        "name": "Go back to the home page from edit profile screen",
+        "description": "",
+        "line": 84,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@Edit-profile-screen",
+            "line": 1
+          },
+          {
+            "name": "@smoke",
+            "line": 83
+          },
+          {
+            "name": "@regression",
+            "line": 83
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Then ",
+            "name": "member is not on home screen from edit profile screen",
+            "line": 85,
+            "match": {
+              "location": "native_mobile/step_definitions/editprofile_steps.rb:206"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 3462819000
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "native_mobile/step_definitions/hooks.rb:28"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 29000
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

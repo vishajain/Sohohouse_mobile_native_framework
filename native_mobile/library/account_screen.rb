@@ -60,7 +60,9 @@ class AccountScreen
 
   def tap_View_Profile
 
-    Common.wait_for(10){@device_account_objects.account_title}.click
+    sleep 3
+
+    Common.wait_for(15){@device_account_objects.account_title}.click
 
   end
 

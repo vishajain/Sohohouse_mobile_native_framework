@@ -67,7 +67,11 @@ class EditProfileScreen
 
     Common.wait_for(10){@device_editprofile_objects.text_input}.clear
 
-    @device_editprofile_objects.profession.send_keys($profession_value)
+    if $device == "ios"
+      @device_editprofile_objects.profession.send_keys($profession_value)
+    else
+      @device_editprofile_objects.text_input.send_keys($profession_value)
+    end
 
     $driver.action.move_to(@device_editprofile_objects.done).click.perform
 
@@ -77,9 +81,16 @@ class EditProfileScreen
 
     Common.wait_for(10){@device_editprofile_objects.industry}.click
 
-    @device_editprofile_objects.industry_input.send_keys($industry_value)
+    if $device == "ios"
+      @device_editprofile_objects.industry_input.send_keys($industry_value)
+      Common.wait_for(10){@device_editprofile_objects.industry}.click
+    else
+      @device_editprofile_objects.industry_input.replace_value($industry_value)
+      @device_editprofile_objects.industry_input.click
+      @device_editprofile_objects.industry.click
+    end
 
-    Common.wait_for(10){@device_editprofile_objects.industry}.click
+
 
   end
 
@@ -105,7 +116,11 @@ class EditProfileScreen
 
     Common.wait_for(10){@device_editprofile_objects.large_text_input}.clear
 
-    @device_editprofile_objects.aboutme.send_keys($about_me_value)
+    if $device == "ios"
+      @device_editprofile_objects.aboutme.send_keys($about_me_value)
+    else
+      @device_editprofile_objects.large_text_input.send_keys($about_me_value)
+    end
 
     $driver.action.move_to(@device_editprofile_objects.done).click.perform
 
@@ -119,7 +134,11 @@ class EditProfileScreen
 
     Common.wait_for(10){@device_editprofile_objects.large_text_input}.clear
 
-    @device_editprofile_objects.chat.send_keys($chat_value)
+    if $device == "ios"
+      @device_editprofile_objects.chat.send_keys($chat_value)
+    else
+      @device_editprofile_objects.large_text_input.send_keys($chat_value)
+    end
 
     $driver.action.move_to(@device_editprofile_objects.done).click.perform
 
@@ -145,7 +164,11 @@ class EditProfileScreen
 
     end
 
-    @device_editprofile_objects.interests.send_keys("i")
+    if $device == "ios"
+     @device_editprofile_objects.interests.send_keys("i")
+    else
+      @device_editprofile_objects.interests_input1.send_keys("i")
+    end
 
     @device_editprofile_objects.interests_input($interest1_value).click
 
@@ -165,7 +188,15 @@ class EditProfileScreen
 
     Common.wait_for(10){@device_editprofile_objects.website_text}.clear
 
-    @device_editprofile_objects.website.send_keys($website_value)
+    if $device == "ios"
+
+      @device_editprofile_objects.website.send_keys($website_value)
+
+    else
+
+      Common.wait_for(10){@device_editprofile_objects.website_text.send_keys($website_value)}
+
+    end
 
   end
 
@@ -176,6 +207,7 @@ class EditProfileScreen
     Common.wait_for(10){@device_editprofile_objects.instagram_text}.clear
 
     @device_editprofile_objects.instagram_text.send_keys($instagram_value)
+
 
   end
 
@@ -235,7 +267,21 @@ class EditProfileScreen
 
   def verify_profession_value
 
-    return Common.wait_for(10){@device_viewprofile_objects.profession_value1}.text.include? $profession_value
+    return Common.wait_for(20){@device_viewprofile_objects.profession_value1}.text.include? $profession_value
+
+  end
+
+  def verify_interests_values
+
+    if Common.wait_for(20){@device_viewprofile_objects.interests_value}.text.include? $interest1_value
+
+       if Common.wait_for(20){@device_viewprofile_objects.interests_value}.text.include? $interest2_value
+
+           return true
+
+       end
+
+    end
 
   end
 

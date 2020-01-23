@@ -206,11 +206,12 @@ class Android_Account_Objects
   end
 
   def account_title
-    @driver.find_element(:accessibility_id => "View profile")
+    @driver.find_element(:id => "#{$currentPackage+':id'+'/more_view_profile_btn'}")
+    # @driver.find_element(:accessibility_id => "View profile")
   end
 
   def edit_profile_screen
-    @driver.find_element(:accessibility_id => "Edit")
+    @driver.find_element(:id => "#{$currentPackage+':id'+'/menu_item_edit'}")
   end
 
   def your_membership
@@ -227,7 +228,6 @@ class Android_Account_Objects
 
   def payment
     @driver.find_element(:xpath => "//android.widget.TextView[@text = 'Payment']")
-
   end
 
   def past_bookings
