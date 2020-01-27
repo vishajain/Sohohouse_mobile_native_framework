@@ -12,9 +12,6 @@ module Base_driver
 
   def self.setapp()
 
-      $isios      = 0
-      $isandroid  = 0
-
       captureArguments
 
       # Appium_Helpers::start_appium()
@@ -22,12 +19,10 @@ module Base_driver
       if $device == "ios"
 
         Ios_driver::start_app()
-        $isios = 1
 
       else
 
         Android_driver::start_app()
-        $isandroid = 1
 
       end
   end
@@ -43,6 +38,7 @@ module Base_driver
     $phone  =  ENV['phone']
     $devicetype =  ENV['devicetype']
     $run  = ENV['run']
+    $noreset = ENV['noreset']
 
       if $env != "stag" and $env != "prod"
 
@@ -57,6 +53,11 @@ module Base_driver
       elsif $devicetype != "simulator" and $devicetype != "real"
 
         puts "Incorrect device type provided. Please enter devicetype as either simulator or real"
+        Cucumber.wants_to_quit = true
+
+      elsif $noreset != "true"  and $noreset != "false"
+
+        puts "Please enter the noreset value as either true or false"
         Cucumber.wants_to_quit = true
 
       end

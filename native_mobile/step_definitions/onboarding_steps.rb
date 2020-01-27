@@ -21,7 +21,7 @@ end
 
 When(/^user accepts T & C$/) do
 
-  $onboardingscreens.user_accepts_Terms
+ $onboardingscreens.user_accepts_Terms
 
 end
 
@@ -66,6 +66,8 @@ end
 
 When(/^user continue without syncing$/) do
 
+  sleep 3
+
   $onboardingscreens.user_continue_without_sync
 
 end
@@ -99,8 +101,6 @@ end
 
 And(/^user continue from make it personal screen$/) do
 
-  sleep 3
-
   $onboardingscreens.user_continues_from_makePersonal
 
 end
@@ -114,6 +114,8 @@ end
 
 
 When("user clicks on continue") do
+
+  sleep 2
 
   $onboardingscreens.user_clicks_continue
 
@@ -129,6 +131,8 @@ end
 
 When("user clicks on next") do
 
+  sleep 5
+
   $onboardingscreens.user_clicks_continue_to_notify_pref
 
 end
@@ -142,6 +146,8 @@ end
 
 
 When("user clicks on OK") do
+
+  sleep 2
 
   $onboardingscreens.user_clicks_OK
 
@@ -168,6 +174,6 @@ end
 
 Then("user sees the home screen") do
 
-  assert_true($homescreen.verify_username,"Username is not present")
+  assert_true($homescreen.verify_greetings,"Username is not present")
 
 end

@@ -19,6 +19,8 @@ module Android_driver
 
     $driver.manage.timeouts.implicit_wait = 10
 
+    $currentPackage =  $driver.current_package
+
   end
 
 
@@ -43,19 +45,20 @@ module Android_driver
                     'platformVersion' => @platform_version ,
                     'udid' =>   @udid  ,
                     'app' =>  @app_path,
-                    'bundleId' =>   @bundleid,
+                    # 'bundleId' =>   @bundleid,
                     'appActivity' => 'com.sohohouse.seven.splash.SplashActivity',
                     'ConnectHardwareKeyboard' => false,
                     'useNewWDA'=> true,
                     'waitForQuiescence' => false,
                     'autoAcceptAlerts' => true,
-                    'noReset' => true
+                    'noReset' => $noreset
                 }
         }
 
     $driver_appium = Appium::Driver.new(@capabilities, true)
 
     $driver = $driver_appium.start_driver
+
 
   end
 
@@ -73,6 +76,7 @@ module Android_driver
     caps['device'] = 'Samsung Galaxy S8 Plus'
     caps['platformName'] = 'android'
     caps['browserstack.debug'] = true
+    caps['noReset'] = $noreset
     caps['app'] = 'bs://33cbf62d8397f814f7c5b5d9c9fe3c80e73cd13f'
 
     $driver_appium = Appium::Driver.new({

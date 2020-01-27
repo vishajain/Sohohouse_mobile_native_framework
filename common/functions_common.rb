@@ -79,7 +79,7 @@ module Common
 
       $action.press({:x => ($dimensions_width*0.5), :y => ($dimensions_height*0.5)}).wait(100).move_to({:x => ($dimensions_width*0.5), :y => ($dimensions_height*0.3)}).release.perform
     else
-       Appium::TouchAction.new.swipe(start_y: 700, end_y: 0).perform
+       Appium::TouchAction.new.swipe(start_y: 1340, end_y: 350).perform
     end
 
   end
@@ -89,7 +89,7 @@ module Common
     if $device == "ios"
       $action.press({:x => ($dimensions_width*0.5), :y => ($dimensions_height*0.5)}).wait(100).move_to({:x => ($dimensions_width*0.5), :y => ($dimensions_height*0.45)}).release.perform
     else
-      Appium::TouchAction.new.swipe(start_y: 700, end_y: 0).perform
+      Appium::TouchAction.new.swipe(start_y: 850, end_y: 0).perform
     end
 
   end
@@ -100,7 +100,7 @@ module Common
       $action.press({:x => ($dimensions_width*0.5), :y => ($dimensions_height*0.4)}).wait(100).move_to({:x => ($dimensions_width*0.5), :y => ($dimensions_height*0.8)}).release.perform
       sleep 1
     else
-      Appium::TouchAction.new.swipe(start_y: 150, end_y: 700).perform
+      Appium::TouchAction.new.swipe(start_y: 600, end_y: 1550).perform
     end
   end
 

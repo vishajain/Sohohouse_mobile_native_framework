@@ -7,8 +7,11 @@ data:
     paid-event: 'The Lion King'
     free-event: 'Film Thumb Test - The Asphalt Jungle'
   Gym:
-    paid-event: 'Gym Event for mobile Automation - Do not use'
+    paid-event: 'Mobile-Gym Event-Do not use'
     free-event: 'Mobile Automation-Free event-Do not use'
+  active-site:
+    member-event: 'Soho Warehouse - Mobile Aut...'
+    gym-event: 'Soho Warehouse - Gym event ...'
   profile:
     profile1:
       profession: 'software'
@@ -35,7 +38,7 @@ data:
       website: 'https://www.oops.org/'
       instagram: '@amazing'
       twitter: '@amazing'
-      linkedin: 'https://linkedin.com/in/automtion'
+      linkedin: 'https://linkedin.com/in/automation'
       spotify: 'https://open.spotify.com/user/automation'
       youtube: 'https://www.youtube.com/user/automation'
   non-active-local: 'app.non.active.shw.local@example.com'

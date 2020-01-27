@@ -82,6 +82,12 @@ When(/^user provides interests value$/) do
 
 end
 
+Then("interests value is shown on view profile screen") do
+
+  assert_true($editprofilescreen.verify_interests_values, "Interests values are not saved properly")
+
+end
+
 When(/^user provides website value$/) do
 
   $editprofilescreen.user_enters_website_value
@@ -202,3 +208,4 @@ Then("member is not on home screen from edit profile screen") do
   assert_true($editprofilescreen.home_screen_navigate,"Unable to navigate to home screen")
 
 end
+

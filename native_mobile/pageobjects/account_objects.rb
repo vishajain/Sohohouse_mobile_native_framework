@@ -136,6 +136,66 @@ class Ios_Account_Objects
     @driver.find_element(:name => "Save")
   end
 
+  def sign_out
+    @driver.find_element(:name => "Sign out")
+  end
+
+  def reset
+    @driver.find_element(:name => "Reset")
+  end
+
+  def local_house
+    @driver.find_element(:name => "#{$house}")
+  end
+
+  def save_changes
+    @driver.find_element(:name => "Save changes")
+  end
+
+  def tap_uk
+    @driver.find_element(:name => "UK")
+  end
+
+  def greek_St
+    @driver.find_element(:name => "40 Greek Street")
+  end
+
+  def notification_pref_switch(link)
+    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name = '#{link}']/following-sibling::XCUIElementTypeSwitch")
+  end
+
+  def notification_pref_switch_value(link)
+    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name = '#{link}']/following-sibling::XCUIElementTypeSwitch").attribute("value")
+  end
+
+  def enquiry_type
+    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name = 'What type of enquiry do you have?']/parent::XCUIElementTypeCell/following-sibling::XCUIElementTypeCell/XCUIElementTypePicker/XCUIElementTypePickerWheel")
+  end
+
+  def enquiry_topic1
+
+    # @driver.find_elements(:xpath => "//XCUIElementTypeStaticText[contains(@name,'the topic of your enquiry?')]")
+
+    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[contains(@name, 'the topic of your enquiry?')]/parent::XCUIElementTypeCell/following-sibling::XCUIElementTypeCell/XCUIElementTypePicker/XCUIElementTypePickerWheel")
+
+  end
+
+  def enquiry_message
+
+    @driver.find_element(:name => "Let us know what you need help with, or share your feedback")
+
+  end
+
+  def submit
+
+    @driver.find_element(:name => "Submit")
+
+  end
+
+  def done
+    @driver.find_element(:name => "Done")
+  end
+
 end
 
 class Android_Account_Objects
@@ -146,11 +206,12 @@ class Android_Account_Objects
   end
 
   def account_title
-    @driver.find_element(:id => "com.sohohouse.seven:id/more_view_profile_btn")
+    @driver.find_element(:id => "#{$currentPackage+':id'+'/more_view_profile_btn'}")
+    # @driver.find_element(:accessibility_id => "View profile")
   end
 
   def edit_profile_screen
-    @driver.find_element(:id => "com.sohohouse.seven:id/menu_item_edit")
+    @driver.find_element(:id => "#{$currentPackage+':id'+'/menu_item_edit'}")
   end
 
   def your_membership
@@ -167,7 +228,6 @@ class Android_Account_Objects
 
   def payment
     @driver.find_element(:xpath => "//android.widget.TextView[@text = 'Payment']")
-
   end
 
   def past_bookings
@@ -209,8 +269,8 @@ class Android_Account_Objects
 
   end
 
-  def stay_section
-    @driver.find_element(:xpath => "//android.widget.TextView[@text = 'Sign out']")
+  def sign_out
+    @driver.find_element(:id => "#{$currentPackage+':id'+'/more_logout'}")
   end
 
   def navigate_up
@@ -218,7 +278,7 @@ class Android_Account_Objects
   end
 
   def icon_left
-    @driver.find_element(:id => "com.sohohouse.seven:id/toolbar_back_btn")
+    @driver.find_element(:accessibility_id => "Go back")
   end
 
   def icon_back_header
@@ -227,6 +287,10 @@ class Android_Account_Objects
 
   def homeBtn
     @driver.find_element(:xpath => "//*[@resource-id='com.sohohouse.seven:id/menu_home']/android.widget.ImageView[1]")
+  end
+
+  def cancel_yes
+    @driver.find_element(:id => "android:id/button1")
   end
 
 end

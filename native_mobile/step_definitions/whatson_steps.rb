@@ -52,7 +52,7 @@ When(/^the paid (.*) event is found/) do |section|
 
   # $whatsonscreen.events_click(section)
 
-  $whatsonscreen.find_paid_event(section)
+  assert_true($whatsonscreen.find_paid_event(section),"Event not found")
 
 end
 
@@ -100,13 +100,13 @@ When("user taps on book gym tickets on event screen") do
 
 end
 
-And("user sees confirm payment screen") do
+When("user sees confirm payment screen") do
 
   assert_true($whatsonscreen.verify_member_section("Confirm payment"),"Confirm payment screen not displayed")
 
 end
 
-And("user taps on buy tickets on confirm payment screen") do
+When("user taps on buy tickets on confirm payment screen") do
 
     $whatsonscreen.buy_tickets_click
 
@@ -115,7 +115,7 @@ end
 
 Then("user sees you are on the guest list screen") do
 
-  assert_true($whatsonscreen.verify_you_on_guest_list("YOU'RE ON THE GUEST LIST"),"You are on the guest list screen not shown")
+  assert_true($whatsonscreen.verify_you_on_guest_list,"You are on the guest list screen not shown")
 
 end
 
@@ -187,7 +187,7 @@ Then("user sees Guest 1 on you are on the guest list screen") do
 
 end
 
-Then("user sees Guest 1 under Guests up to section") do
+Then("user see Guest 1 under Guests up to section") do
 
   assert_true($whatsonscreen.verify_content("Guest 1"),"Guest 1 not shown")
 

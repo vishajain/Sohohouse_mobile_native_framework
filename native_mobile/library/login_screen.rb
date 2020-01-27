@@ -37,6 +37,12 @@ class LoginScreen
   end
 
 
+  def close_app
+
+    $driver = $driver_appium.quit_driver
+
+  end
+
   def user_enters_email_password(validity)
 
     if validity == "valid"
@@ -53,35 +59,38 @@ class LoginScreen
 
       $profile = config[:props]["env"][$env]["profile"]
 
-      if $device == "ios"
-        @device_login_objects.email_textfield.send_keys(email)
-        @device_login_objects.password_textfield.send_keys($password)
-      elsif
-        @device_login_objects.email_textfield[0].send_keys(email)
-        @device_login_objects.email_textfield[1].send_keys($password)
-      end
+      @device_login_objects.email_textfield.send_keys(email)
+      @device_login_objects.password_textfield.send_keys($password)
 
-    else
-
-      email = 'abcd@gmail.com'
-
-      password = 'abcd'
-
-      if $device == "ios"
-        @device_login_objects.email_textfield.send_keys(email)
-        @device_login_objects.password_textfield.send_keys(password)
-      elsif
-        @device_login_objects.email_textfield[0].send_keys(email)
-        @device_login_objects.email_textfield[1].send_keys(password)
-      end
-
+  #     if $device == "ios"
+  #       @device_login_objects.email_textfield.send_keys(email)
+  #       @device_login_objects.password_textfield.send_keys($password)
+  #     elsif
+  #       @device_login_objects.email_textfield[0].send_keys(email)
+  #       @device_login_objects.email_textfield[1].send_keys($password)
+  #     end
+  #
+  #   else
+  #
+  #     email = 'abcd@gmail.com'
+  #
+  #     password = 'abcd'
+  #
+  #     if $device == "ios"
+  #       @device_login_objects.email_textfield.send_keys(email)
+  #       @device_login_objects.password_textfield.send_keys(password)
+  #     elsif
+  #       @device_login_objects.email_textfield[0].send_keys(email)
+  #       @device_login_objects.email_textfield[1].send_keys(password)
+  #     end
+  #
     end
-
+  #
   end
 
   def user_clicks_go()
 
-    @device_login_objects.go_button.click
+    Common.wait_for(20){@device_login_objects.go_button}.click
 
   end
 

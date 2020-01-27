@@ -76,11 +76,59 @@ class Android_Viewprofile_Objects
   end
 
   def navigate_up
-    @driver.find_element(:xpath => "//android.widget.ImageButton[@content-desc = 'Navigate up']")
+    @driver.find_element(:accessibility_id => "Navigate up")
   end
 
   def homeBtn
-    @driver.find_element(:xpath => "//*[@resource-id='com.sohohouse.seven:id/menu_home']/android.widget.ImageView[1]")
+    @driver.find_element(:xpath => "//android.view.ViewGroup//android.widget.FrameLayout[1]/android.widget.ImageView")
+  end
+
+  def profession_value1
+    @driver.find_element(:xpath => "//android.widget.TextView[contains(@resource-id,'profile_occupation')]")
+  end
+
+  def city_value
+    @driver.find_element(:xpath => "//android.widget.TextView[contains(@resource-id,'profile_city')]")
+  end
+
+  def industry_value
+    @driver.find_element(:xpath => "//android.widget.TextView[contains(@text,'Industry')]/following-sibling::android.widget.TextView[1]")
+  end
+
+  def about_me_value
+    @driver.find_element(:xpath => "//android.widget.TextView[contains(@text,'About me')]/following-sibling::android.widget.TextView[1]")
+  end
+
+  def interests_value
+    @driver.find_element(:xpath => "//android.widget.TextView[contains(@text,'Interests')]/following-sibling::android.widget.TextView[1]")
+  end
+
+  def lets_chat_value
+    @driver.find_element(:xpath => "//android.widget.TextView[contains(@text,'chat')]/following-sibling::android.widget.TextView[1]")
+  end
+
+  def instagram_value
+    @driver.find_element(:accessibility_id => "Instagram")
+  end
+
+  def twitter_value
+    @driver.find_element(:accessibility_id => "Twitter")
+  end
+
+  def linkedin_value
+    @driver.find_element(:accessibility_id => "LinkedIn")
+  end
+
+  def spotify_value
+    @driver.find_element(:accessibility_id => "Spotify")
+  end
+
+  def youtube_value
+    @driver.find_element(:accessibility_id => "Youtube")
+  end
+
+  def website_value
+    @driver.find_element(:accessibility_id => "Website")
   end
 
 end

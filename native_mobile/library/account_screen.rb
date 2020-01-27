@@ -5,6 +5,7 @@ require 'appium_lib'
 require 'selenium-webdriver'
 require "test/unit"
 require 'yaml'
+require_relative '../pageobjects/login_objects'
 require_relative '../pageobjects/home_objects'
 require_relative '../pageobjects/account_objects'
 require_relative '../../common/functions_common'
@@ -14,10 +15,12 @@ class AccountScreen
   def initialize()
 
     if $device == "ios"
+      @device_login_objects = Ios_Login_Objects.new($driver, $driver_appium)
       @device_home_objects = Ios_Home_Objects.new($driver, $driver_appium)
       @device_account_objects = Ios_Account_Objects.new($driver, $driver_appium)
 
     else
+      @device_login_objects = Android_Login_Objects.new($driver, $driver_appium)
       @device_home_objects = Android_Home_Objects.new($driver, $driver_appium)
       @device_account_objects = Android_Account_Objects.new($driver, $driver_appium)
 
@@ -57,7 +60,9 @@ class AccountScreen
 
   def tap_View_Profile
 
-    Common.wait_for(10){@device_account_objects.account_title}.click
+    sleep 3
+
+    Common.wait_for(15){@device_account_objects.account_title}.click
 
   end
 
@@ -315,21 +320,13 @@ class AccountScreen
 
     sleep 1
 
-    if Common.wait_for(20) {@device_account_objects.perkTitle.displayed?}
-      return true
-    else
-      return false
-    end
+    return Common.wait_for(20) {@device_account_objects.perkTitle.displayed?}
 
   end
 
   def verify_perks_location
 
-    if Common.wait_for(20) {@device_account_objects.perkLocation.displayed?}
-      return true
-    else
-      return false
-    end
+    return Common.wait_for(30) {@device_account_objects.perkLocation.displayed?}
 
   end
 
@@ -345,41 +342,26 @@ class AccountScreen
 
   def verify_perk_content_image
 
-    if Common.wait_for(20) {@device_account_objects.perkContentImage.displayed?}
-      return true
-    else
-      return false
-    end
+    return Common.wait_for(20) {@device_account_objects.perkContentImage.displayed?}
+
 
   end
 
   def verify_perk_content_location
 
-    if Common.wait_for(20) {@device_account_objects.perkContentLocation.displayed?}
-      return true
-    else
-      return false
-    end
+    return Common.wait_for(20) {@device_account_objects.perkContentLocation.displayed?}
 
   end
 
   def verify_perk_content_title
 
-    if Common.wait_for(20) {@device_account_objects.perkContentTitle.displayed?}
-      return true
-    else
-      return false
-    end
+    return Common.wait_for(20) {@device_account_objects.perkContentTitle.displayed?}
 
   end
 
   def verify_perk_content_desc
 
-    if Common.wait_for(20) {@device_account_objects.perkContentDesc.displayed?}
-      return true
-    else
-      return false
-    end
+    return Common.wait_for(20) {@device_account_objects.perkContentDesc.displayed?}
 
   end
 
@@ -451,5 +433,146 @@ class AccountScreen
 
   end
 
+  def tap_sign_out
+
+    sleep 2
+
+    Common.swipe_down
+
+    sleep 1
+
+    Common.wait_for(5){@device_account_objects.sign_out}.click
+
+    if $device == "android"
+      Common.wait_for(5){@device_account_objects.cancel_yes}.click
+    end
+
+    return Common.wait_for(5){@device_login_objects.welcome_home.displayed?}
+
+  end
+
+  def verify_password_saved
+
+    return Common.wait_for(20) {@device_account_objects.notification_preferences.displayed?}
+
+  end
+
+  def tap_reset
+
+    Common.wait_for(5){@device_account_objects.reset}.click
+
+  end
+
+  def verify_local_house_displayed
+
+    return Common.wait_for(20) {@device_account_objects.local_house.displayed?}
+
+  end
+
+  def tap_favourite_houses
+
+    sleep 2
+
+    Common.wait_for(10){@device_account_objects.favourite_houses}.click
+
+  end
+
+  def tap_save_changes
+
+    Common.wait_for(5){@device_account_objects.save_changes}.click
+
+  end
+
+  def select_40_greek_street
+
+    Common.wait_for(5){@device_account_objects.tap_uk}.click
+
+    Common.wait_for(5){@device_account_objects.greek_St}.click
+
+  end
+
+  def verify_40_greek_st_displayed
+
+    return Common.wait_for(5){@device_account_objects.greek_St.displayed?}
+
+  end
+
+  def tap_notification_preferences
+
+    Common.wait_for(10){@device_account_objects.notification_preferences}.click
+
+  end
+
+  def tap_notification_pref_switch_off(link)
+
+    Common.wait_for(10){@device_account_objects.notification_pref_switch(link)}.click
+
+    sleep 2
+
+    Common.wait_for(10){@device_account_objects.notification_pref_switch(link)}.click
+
+  end
+
+  def verify_notification_pref_switch_value(link, value)
+
+    str = Common.wait_for(10){@device_account_objects.notification_pref_switch_value(link)}
+
+    return str.include? value
+
+  end
+
+  def tap_notification_pref_switch_on(link)
+
+    Common.wait_for(10){@device_account_objects.notification_pref_switch(link)}.click
+
+    sleep 1
+
+  end
+
+  def  tap_contact_us
+
+    sleep 1
+
+    Common.swipe_down
+
+    Common.wait_for(10){@device_account_objects.contact_us}.click
+
+  end
+
+  def select_enquiry_type(input)
+
+    Common.wait_for(10){@device_account_objects.enquiry_type}.click
+
+    sleep 1
+
+    @device_account_objects.enquiry_type.send_keys(input)
+
+  end
+
+  def select_enquiry_topic(input)
+
+    Common.wait_for(10){@device_account_objects.enquiry_topic1}.click
+
+    sleep 1
+
+    @device_account_objects.enquiry_topic1.send_keys(input)
+
+  end
+
+  def input_message(input)
+
+    @device_account_objects.enquiry_message.send_keys(input)
+
+  end
+
+  def tap_submit
+
+    Common.wait_for(10){@device_account_objects.done}.click
+
+    Common.wait_for(10){@device_account_objects.submit}.click
+
+  end
+
 end
+
 

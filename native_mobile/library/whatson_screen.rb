@@ -57,6 +57,8 @@ class WhatsonScreen
 
   def events_click(button)
 
+    sleep 2
+
     Common.wait_for(5){@device_whatson_objects.whatson_options(button).click}
 
   end
@@ -133,55 +135,91 @@ class WhatsonScreen
 
     sleep 2
 
-    i = 0
+    @i = 1
 
-    while i <  8
+    while @i <  10
 
       begin
 
         if section == "Events"
 
-          Common.wait_for(12){@device_whatson_objects.paid_member_event.displayed?}
+              if Common.wait_for(12){@device_whatson_objects.paid_member_event.displayed?}
 
-          sleep 2
+                sleep 2
 
-          Common.wait_for(5){@device_whatson_objects.paid_member_event.click}
+                Common.wait_for(5){@device_whatson_objects.paid_member_event.click}
 
-          return true
+                return true
 
-          break
+                break
+
+              end
+
 
         elsif section == "Screenings"
 
-               Common.wait_for(12){@device_whatson_objects.paid_screening_event.displayed?}
+               if Common.wait_for(12){@device_whatson_objects.paid_screening_event.displayed?}
 
-               sleep 2
+                 sleep 2
 
-               Common.wait_for(5){@device_whatson_objects.paid_screening_event.click}
+                 Common.wait_for(5){@device_whatson_objects.paid_screening_event.click}
 
-               return true
+                 return true
 
-               break
+                 break
+
+               end
+
 
         elsif section == "Gym classes"
 
-          Common.wait_for(12){@device_whatson_objects.paid_gym_event.displayed?}
+              if Common.wait_for(12){@device_whatson_objects.paid_gym_event.displayed?}
 
-          sleep 2
+                sleep 2
 
-          Common.wait_for(5){@device_whatson_objects.paid_gym_event.click}
+                Common.wait_for(5){@device_whatson_objects.paid_gym_event.click}
 
-          return true
+                return true
 
-          break
+                break
 
-        end
+              end
+
+        elsif section == "SW Events"
+
+              if Common.wait_for(12){@device_whatson_objects.active_member_event.displayed?}
+
+                sleep 2
+
+                Common.wait_for(5){@device_whatson_objects.active_member_event}.click
+
+                return true
+
+                break
+
+              end
+
+        elsif section == "SW Gym"
+
+              if Common.wait_for(12){@device_whatson_objects.active_gym_event.displayed?}
+
+                sleep 2
+
+                Common.wait_for(5){@device_whatson_objects.active_gym_event.click}
+
+                return true
+
+                break
+
+              end
+
+      end
 
       rescue
 
-        Common.swipe_down
+         Common.little_swipe_down
 
-        i = i+1
+         @i = @i+1
 
       end
 
@@ -195,7 +233,7 @@ class WhatsonScreen
 
     i = 0
 
-    while i <  8
+    while i <  10
 
       begin
 
@@ -327,13 +365,17 @@ class WhatsonScreen
 
   end
 
-  def verify_you_on_guest_list(section)
+  def verify_you_on_guest_list
 
-    if Common.wait_for(25){@device_whatson_objects.member_event_section(section).displayed?}
+    sleep 15
 
-      return true
+    str = Common.wait_for(25){@device_whatson_objects.booking_status}.text
 
-    end
+      if str.include?("YOU'RE ON THE GUEST LIST")
+        return true
+      elsif str.include?("we'll get back to you shortly")
+        return true
+      end
 
   end
 
@@ -341,13 +383,13 @@ class WhatsonScreen
 
     sleep 1
 
-    Common.swipe_top
+    if $device == "ios"
 
-    if Common.wait_for(10){@device_whatson_objects.you_are_on_the_guest_list.displayed?}
-
-      return true
+       Common.swipe_top
 
     end
+
+    return Common.wait_for(10){@device_whatson_objects.you_are_on_the_guest_list.displayed?}
 
   end
 
@@ -360,6 +402,12 @@ class WhatsonScreen
   def verify_cancel_booking
 
     Common.wait_for(10){@device_whatson_objects.cancel_booking.click}
+
+    if $device == "android"
+
+      Common.wait_for(10){@device_whatson_objects.cancel_yes.click}
+
+    end
 
     begin
 
@@ -383,25 +431,43 @@ class WhatsonScreen
 
   def scroll_to_top (section)
 
-    loop do
+    if $device == "ios"
 
-      begin
+      loop do
 
-        Common.wait_for(3){@device_whatson_objects.whatson_options(section).displayed?}
+        begin
 
-        return true
+          Common.wait_for(10){@device_whatson_objects.whatson_options(section).displayed?}
 
-        break
+          return true
 
-      rescue
+          break
 
-        Common.swipe_top
+        rescue
+
+          Common.swipe_top
+
+        end
 
       end
 
-    end
+    else
 
-  end
+      while @i > 0
+
+          sleep 2
+
+          Common.swipe_top
+
+          @i = @i - 1
+
+      end
+
+      return true
+
+     end
+
+    end
 
   def confirm_deposit_click
 
@@ -420,10 +486,26 @@ class WhatsonScreen
 
   end
 
+  def verify_book_and_pay_displayed
+
+    return Common.wait_for(10){@device_whatson_objects.book_and_pay.displayed?}
+
+  end
 
   def book_gym_event
 
-    $driver.action.move_to(@device_whatson_objects.book_and_pay).click.perform
+    sleep 3
+    if $device == "ios"
+      $driver.action.move_to(@device_whatson_objects.book_and_pay).click.perform
+    else
+      Common.wait_for(10){@device_whatson_objects.book_and_pay}.click
+    end
+
+  end
+
+  def tap_get_it_free
+
+    Common.wait_for(10){@device_whatson_objects.get_it_free.click}
 
   end
 
@@ -459,11 +541,7 @@ class WhatsonScreen
 
   def results_check
 
-    if Common.wait_for(10){@device_whatson_objects.berlin_result.displayed?}
-      return true
-    else
-      return false
-    end
+    return Common.wait_for(10){@device_whatson_objects.berlin_result.displayed?}
 
   end
 

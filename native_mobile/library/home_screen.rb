@@ -25,7 +25,10 @@ class HomeScreen
 
   def verify_greetings()
 
-    str = Common.wait_for(20){@device_home_objects.greetings}
+    sleep 5
+
+    str = Common.wait_for(20){@device_home_objects.greetings}.text
+
     if str == "Good morning," || str == "Good evening," || str == "Good afternoon,"
       return true
     else
@@ -188,7 +191,7 @@ class HomeScreen
 
   def verify_whatson_click
 
-    Common.wait_for(15){@device_home_objects.whats_on[1]}.click
+    Common.wait_for(15){@device_home_objects.whats_on_1}.click
 
   end
 

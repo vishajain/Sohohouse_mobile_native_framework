@@ -70,10 +70,6 @@ class Ios_Editprofile_Objects
     @driver.find_element(:name => "Interests")
   end
 
-  # def interests_input
-  #   @driver.find_element(:xpath => "//XCUIElementTypeTextField[@type = 'TextField']")
-  # end
-
   def interests_remove
     @driver.find_elements(:xpath => "//XCUIElementTypeCollectionView//XCUIElementTypeStaticText")
   end
@@ -149,6 +145,102 @@ class Android_Editprofile_Objects
   def initialize(driver, driver_appium)
     @driver_appium = driver_appium
     @driver = driver
+  end
+
+  def edit_profile
+    @driver.find_element(:xpath =>"//android.widget.TextView[@text='Edit profile']")
+  end
+
+  def member_name
+    # @driver.find_element(:name => "Accept")
+  end
+
+  def profession
+    @driver.find_element(:xpath => "//android.widget.TextView[@text='Profession']")
+  end
+
+  def profession_input
+    @driver.find_element(:xpath => "//android.widget.TextView[@text='Profession']/following-sibling::android.widget.TextView[1]")
+  end
+
+  def text_input
+    @driver.find_element(:id => "#{$currentPackage+':id'+'/bottomsheet_edit_textfield_suggestions_input'}")
+  end
+
+  def large_text_input
+    @driver.find_element(:id => "#{$currentPackage+':id'+'/freetext_bottomsheet_input'}")
+  end
+
+  def industry
+    @driver.find_element(:xpath => "//android.widget.TextView[@text='Industry']")
+  end
+
+  def industry_input
+    @driver.find_element(:xpath => "//android.widget.NumberPicker/android.widget.EditText")
+  end
+
+  def city
+    @driver.find_element(:xpath => "//android.widget.TextView[@text='City']")
+  end
+
+  def aboutme
+    @driver.find_element(:xpath => "//android.widget.TextView[@text='About me']")
+  end
+
+  def chat
+    @driver.find_element(:xpath => "//android.widget.TextView[contains(@text, 'chat')]")
+  end
+
+  def interests
+    @driver.find_element(:xpath => "//android.widget.TextView[@text='Interests']")
+  end
+
+  def interests_remove
+    @driver.find_elements(:id => "#{$currentPackage+':id'+'/pill_tv'}")
+  end
+
+  def interests_input(interest)
+    @driver.find_element(:xpath => "//android.widget.TextView[@text='"+interest+"']")
+  end
+
+  def interests_input1
+    @driver.find_element(:id => "#{$currentPackage+':id'+'/edit_interests_search_input'}")
+  end
+
+  def social_accounts
+    @driver.find_element(:xpath => "//android.widget.TextView[@text='Connect social accounts']")
+  end
+
+  def website_text
+    @driver.find_element(:xpath => "//android.widget.TextView[@text='Website']/following-sibling::android.widget.EditText")
+  end
+
+  def instagram_text
+    @driver.find_element(:xpath => "//android.widget.TextView[@text='Instagram']/following-sibling::android.widget.EditText")
+  end
+
+  def twitter_text
+    @driver.find_element(:xpath => "//android.widget.TextView[@text='Twitter']/following-sibling::android.widget.EditText")
+  end
+
+  def linkedin_text
+    @driver.find_element(:xpath => "//android.widget.TextView[@text='LinkedIn']/following-sibling::android.widget.EditText")
+  end
+
+  def spotify_text
+    @driver.find_element(:xpath => "//android.widget.TextView[@text='Spotify']/following-sibling::android.widget.EditText")
+  end
+
+  def youtube_text
+    @driver.find_element(:xpath => "//android.widget.TextView[@text='YouTube']/following-sibling::android.widget.EditText")
+  end
+
+  def done
+    @driver.find_element(:id => "#{$currentPackage+':id'+'/edit_profile_modal_done'}")
+  end
+
+  def save_changes
+    @driver.find_element(:id => "#{$currentPackage+':id'+'/edit_profile_save_btn'}")
   end
 
 end

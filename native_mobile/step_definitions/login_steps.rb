@@ -16,6 +16,11 @@ include Test::Unit::Assertions
 
   end
 
+  Then("app is closed") do
+
+    $loginscreen.close_app
+
+  end
 
   And(/^user is on sign in screen$/) do
 
