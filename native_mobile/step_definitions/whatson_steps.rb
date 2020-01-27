@@ -52,7 +52,7 @@ When(/^the paid (.*) event is found/) do |section|
 
   # $whatsonscreen.events_click(section)
 
-  $whatsonscreen.find_paid_event(section)
+  assert_true($whatsonscreen.find_paid_event(section),"Event not found")
 
 end
 

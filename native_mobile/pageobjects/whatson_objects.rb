@@ -226,7 +226,7 @@ class Android_Whatson_Objects
   end
 
   def whatson_filter
-    @driver.find_element(:accessibility_id => "Open filter menu")
+    @driver.find_element(:id => "#{$currentPackage+':id'+'/filter_btn'}")
   end
 
   def whatson_options(button)
@@ -234,43 +234,53 @@ class Android_Whatson_Objects
   end
 
   def whatson_title
-    @driver.find_element(:accessibility_id => "What\'s on'")
+    @driver.find_element(:id => "#{$currentPackage+':id'+'/whats_on_header'}")
   end
 
   def paid_member_event
-    @driver.find_element(:xpath =>"//android.widget.TextView[@text = #{@member_paid_event_name}]")
+    @driver.find_element(:xpath =>"//android.widget.TextView[@text =" + "'" +@member_paid_event_name+ "'" +"]")
   end
 
   def paid_screening_event
-    @driver.find_element(:xpath =>"//android.widget.TextView[@text = #{@screening_paid_event_name}]")
+    @driver.find_element(:xpath =>"//android.widget.TextView[@text =" + "'" +@screening_paid_event_name+ "'" +"]")
   end
 
   def paid_gym_event
-    @driver.find_element(:xpath =>"//android.widget.TextView[@text = #{@gym_paid_event_name}]")
+    @driver.find_element(:xpath =>"//android.widget.TextView[@text =" + "'" +@gym_paid_event_name+ "'" +"]")
   end
 
   def active_member_event
-    @driver.find_element(:xpath =>"//android.widget.TextView[@text = #{@active_member_event}]")
+    # @driver.find_element(:name => ""+button+"")
+    # @driver.find_element(:xpath =>"//android.widget.TextView[@text = #{@active_member_event}]")
+    @driver.find_element(:xpath =>"//android.widget.TextView[@text =" + "'" +@active_member_event+ "'" +"]")
   end
 
   def active_gym_event
-    @driver.find_element(:xpath =>"//android.widget.TextView[@text = #{@active_gym_event}]")
+    @driver.find_element(:xpath =>"//android.widget.TextView[@text =" + "'" +@active_gym_event+ "'" +"]")
   end
 
   def free_member_event
-    @driver.find_element(:xpath =>"//android.widget.TextView[@text = #{@member_free_event_name}]")
+    @driver.find_element(:xpath =>"//android.widget.TextView[@text =" + "'" +@member_free_event_name+ "'" +"]")
   end
 
   def free_screening_event
-    @driver.find_element(:xpath =>"//android.widget.TextView[@text = #{@screening_free_event_name}]")
+    @driver.find_element(:xpath =>"//android.widget.TextView[@text =" + "'" +@screening_free_event_name+ "'" +"]")
   end
 
   def free_gym_event
-    @driver.find_element(:xpath =>"//android.widget.TextView[@text = #{@gym_free_event_name}]")
+    @driver.find_element(:xpath =>"//android.widget.TextView[@text =" + "'" +@gym_free_event_name+ "'" +"]")
+  end
+
+  def cancel_yes
+    @driver.find_element(:id => "android:id/button1")
+  end
+
+  def cancel_no
+    @driver.find_element(:id => "android:id/button2")
   end
 
   def member_event_section(section)
-    @driver.find_element(:xpath =>"//android.widget.TextView[@text = #{section}]")
+    @driver.find_element(:xpath =>"//android.widget.TextView[@text =" + "'" +section+ "'" +"]")
   end
 
   def booking_status
@@ -298,7 +308,7 @@ class Android_Whatson_Objects
   end
 
   def book_and_pay
-    @driver.find_element(:id => "#{$currentPackage+':id'+'/stepper_submit_button_small'}")
+    @driver.find_element(:id => "#{$currentPackage+':id'+'/stepper_submit_button_large'}")
   end
 
   def book
@@ -318,7 +328,7 @@ class Android_Whatson_Objects
   end
 
   def icon_close
-    @driver.find_element(:id => "#{$currentPackage+':id'+'/guest_delete_button'}")
+    @driver.find_element(:id => "#{$currentPackage+':id'+'/close_button'}")
   end
 
   def ok_button
@@ -326,7 +336,7 @@ class Android_Whatson_Objects
   end
 
   def cancel_booking
-    @driver.find_element(:xpath =>"//android.widget.TextView[@text = 'Cancel booking']")
+    @driver.find_element(:xpath =>"//android.widget.Button[@text = 'Cancel booking']")
   end
 
   def icon_left
@@ -378,7 +388,7 @@ class Android_Whatson_Objects
   end
 
   def text_displayed(content)
-    @driver.find_element(:xpath =>"//android.widget.TextView[@text = '#{content}']")
+    @driver.find_element(:xpath =>"//android.widget.TextView[@text =" + "'" +content+ "'" +"]")
   end
 
   def subscribe_to_active
@@ -399,6 +409,14 @@ class Android_Whatson_Objects
 
   def get_it_free
     @driver.find_element(:id => "#{$currentPackage+':id'+'/subscribe'}")
+  end
+
+  def submit
+    @driver.find_element(:id => "#{$currentPackage+':id'+'/submit_button'}")
+  end
+
+  def house_icon
+    @driver.find_element(:id => "#{$currentPackage+':id'+'/house_icon'}")
   end
 
 end

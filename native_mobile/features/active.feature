@@ -20,21 +20,27 @@ Feature: Active functionality
 # ************ NON-ACTIVE LOCAL HOUSE MEMBER TO SOHO WAREHOUSE SCENARIOS ********************
 
 
-  @regression @testing
-  Scenario: Login to Non active - local member to soho warehouse
+  @regression @non-active-local
+  Scenario: Pre-requisite - Login to Non active - local member to soho warehouse
 #    Given user navigates to the account screen
 #    And user sign-out of the app from the previous user
     Given app is launched
     When user is on sign in screen
     And user enters non-active-local as email address
     And user enters password
-    And user clicks on go button
-    And user sees T & C screen
+    Then user clicks on go button
+
+  @regression @ios
+  Scenario: Pre-requisite - Login to Non active - User onboarding
+    When user sees T & C screen
     And user accepts T & C
     And user allows to help us
     And user accepts House rules
     And user continue without syncing
-    And user continue from welcome screen
+
+  @regression @non-active-local
+  Scenario: Pre-requisite - Login to Non active - User onboarding
+    When user continue from welcome screen
     And user continue from make it personal screen
     And user clicks on continue
     And user clicks on next
@@ -42,14 +48,14 @@ Feature: Active functionality
     And user clicks on next on all set screen
     Then greetings should be visible
 
-  @regression @testing
+  @regression @non-active-local
   Scenario: Non active - local member to SHW - User navigates to Member events section
     Given greetings should be visible
     When user clicks on what's on button
     Then user sees what's on screen title
     And tap on Events tab
 
-  @regression @testing
+  @regression @non-active-local
   Scenario: Non active - local member to SHW - Book to the PAID member event of Soho Warehouse event
     Given the paid SW Events event is found
     When user sees how many tickets to buy question
@@ -60,29 +66,29 @@ Feature: Active functionality
     Then user taps on OK button
     Then user sees the event booking status as you are on the guest list on event details screen
 
-  @regression @testing
+  @regression @non-active-local
   Scenario: Non active - local member to SHW - Cancel the PAID member event booking
     When user sees the event booking status as you are on the guest list on event details screen
     Then user cancels the event booking
     Then user navigates back to the events list
 
-  @regression @testing
+  @regression @non-active-local
   Scenario: Non active - local to SHW - User checks the status of Gym classes as "Active members only" for Soho Warehouse events
     Given tap on Gym classes tab
     When the paid SW Gym event is found
     Then user sees the status as Active members only
 
-  @regression @testing
+  @regression @non-active-local
   Scenario: Non active - local to SHW - validate the status on event details screen
     Then user sees the soho warehouse Active location
     Then user sees the Find out more button
 
-  @regression @testing
+  @regression @non-active-local
   Scenario: Non active - local to SHW - Navigate to Active membership slate
     When user taps on the symbol beside Active members only
     Then user sees Active membership slate
 
-  @regression @testing
+  @regression @non-active-local
   Scenario: Non active - local to SHW - Validate Active membership slate content
     When user sees Active membership slate
     Then user sees Active section
@@ -91,7 +97,7 @@ Feature: Active functionality
     Then user sees Subscribe to Active Plus membership link
     Then user closes the Active membership slate slate
 
-  @regression @testing
+  @regression @non-active-local
   Scenario: Non active - local to SHW - User taps on Find out more button and naviagate to Active membership slate
     Given user taps on Find out more button
     When user sees Active membership slate
@@ -100,26 +106,31 @@ Feature: Active functionality
     Then user sees Active Plus section
     Then user sees Subscribe to Active Plus membership link
 
-  @regression @testing
+  @regression @non-active-local
   Scenario: Non active - local to SHW - User subscribes to Active membership
     Given user sees Active membership slate
     When user tap on Subscribe to Active membership link
     Then user sees Contact us form
     Then user sees enquiry type as Membership enquiry
     Then user sees enquiry topic as Add Active membership
-    Then user tap on Submit link
+    Then user taps on the Submit button
+    Then user taps on OK on alert screen
+
+  @regression @non-active-local
+  Scenario: Non active - local to SHW - User navigates back to Active membership slate
     Then user tap on back button
 
-  @regression @testing
+  @regression @non-active-local
   Scenario: Non active - local to SHW - User subscribes to Active plus membership
     Given user sees Active membership slate
     When user tap on Subscribe to Active Plus membership link
     Then user sees Contact us form
     Then user sees enquiry type as Membership enquiry
     Then user sees enquiry topic as Add Active membership
-    Then user tap on Submit link
+    Then user taps on the Submit button
+    Then user taps on OK on alert screen
 
-  @regression @testing
+  @regression @non-active-local
   Scenario: Non active - local to SHW - navigate to
     Given user sees Contact us form
     When user tap on back button
@@ -136,17 +147,27 @@ Feature: Active functionality
   @regression @testing
   Scenario: Login to Non-active - every house member to soho warehouse
 
+  @regression @non-active-every
+  Scenario: Pre-requisite - Login to Non active every - local member to soho warehouse
+#    Given user navigates to the account screen
+#    And user sign-out of the app from the previous user
     Given app is launched
     When user is on sign in screen
     And user enters non-active-every as email address
     And user enters password
-    And user clicks on go button
-    And user sees T & C screen
+    Then user clicks on go button
+
+  @regression @ios
+  Scenario: Pre-requisite - Login to Non active every - User onboarding
+    When user sees T & C screen
     And user accepts T & C
     And user allows to help us
     And user accepts House rules
     And user continue without syncing
-    And user continue from welcome screen
+
+  @regression @non-active-every
+  Scenario: Pre-requisite - Login to Non active every - User onboarding
+    When user continue from welcome screen
     And user continue from make it personal screen
     And user clicks on continue
     And user clicks on next
@@ -154,14 +175,14 @@ Feature: Active functionality
     And user clicks on next on all set screen
     Then greetings should be visible
 
-  @regression @testing
+  @regression @testing @non-active-every
   Scenario: Non active every house member to SHW - User navigates to Member events section
     Given greetings should be visible
     When user clicks on what's on button
     Then user sees what's on screen title
     And tap on Events tab
 
-  @regression @testing
+  @regression @testing @non-active-every
   Scenario: Non active every house member to SHW - Book to the PAID member event of Soho Warehouse event
     Given the paid SW Events event is found
     When user sees how many tickets to buy question
@@ -172,14 +193,19 @@ Feature: Active functionality
     Then user taps on OK button
     Then user sees the event booking status as you are on the guest list on event details screen
 
-  @regression @testing
+  @regression @testing @non-active-every
   Scenario: Non active - every member to SHW - Cancel the PAID member event booking
     When user sees the event booking status as you are on the guest list on event details screen
     Then user cancels the event booking
+#    Then user taps on OK on alert screen
+
+  @regression @testing @non-active-every
+  Scenario: Non active - every member to SHW - User navigates back to the events list
     Then user navigates back to the events list
 
-  @regression @testing
+  @regression @testing @non-active-every
   Scenario: Non active every house member to SHW - User books to the 40 Greek street Member event
+    Given user sees the Events tab
     When the paid Events event is found
     And user sees how many tickets to buy question
     And user taps on buy tickets on event screen
@@ -189,13 +215,14 @@ Feature: Active functionality
     Then user taps on OK button
     Then user sees the event booking status as you are on the guest list on event details screen
 
-  @regression @testing
-  Scenario: Non active - local member to SHW - Cancel the PAID member event booking
+  @regression @testing @non-active-every
+  Scenario: Non active - every member to SHW - Cancel the PAID member event booking
     When user sees the event booking status as you are on the guest list on event details screen
     Then user cancels the event booking
+#    Then user taps on OK on alert screen
     Then user navigates back to the events list
 
-  @regression @testing
+  @regression @testing @non-active-every
   Scenario: Non active every house member to SHW - User books to the 40 Greek street GYM event
     When user sees the Gym classes tab
     Then tap on Gym classes tab
@@ -207,13 +234,14 @@ Feature: Active functionality
     Then user taps on OK button
     Then user sees the event booking status as you are on the guest list on event details screen
 
-  @regression @testing
+  @regression @testing @non-active-every
   Scenario: Non active every house member to SHW - Cancel the 40 Greek street GYM event booking
     When user sees the event booking status as you are on the guest list on event details screen
     Then user cancels the event booking
+#    Then user taps on OK on alert screen
     Then user navigates back to the events list
 
-  @regression @testing
+  @regression @testing @non-active-every
   Scenario: Non active - every house member to SHW - User checks the status of Gym classes as "Active members only" for Soho Warehouse events
     When the paid SW Gym event is found
     Then user sees the status as Active members only
@@ -221,7 +249,7 @@ Feature: Active functionality
     Then user sees the Find out more button
     Then user tap on back button
 
-  @regression @testing
+  @regression @testing @non-active-every
   Scenario: Non active - every house member - sign out
     When user clicks on Account button on home screen
     Then user sign-off from the account
@@ -229,22 +257,25 @@ Feature: Active functionality
 
 
  # ************ ACTIVE LOCAL HOUSE MEMBER TO SOHO WAREHOUSE SCENARIOS ********************
-
-  @regression @testing @active-local
-  Scenario: Login to Active - local member to soho warehouse
-#    Given user navigates to the account screen
-#    And user sign-out of the app from the previous user
+  @regression @active-local
+  Scenario: Pre-requisite - Login to Non active every - local member to soho warehouse
     Given app is launched
     When user is on sign in screen
     And user enters active-local as email address
     And user enters password
-    And user clicks on go button
-    And user sees T & C screen
+    Then user clicks on go button
+
+  @regression @ios
+  Scenario: Pre-requisite - Login to Non active every - User onboarding
+    When user sees T & C screen
     And user accepts T & C
     And user allows to help us
     And user accepts House rules
     And user continue without syncing
-    And user continue from welcome screen
+
+  @regression @active-local
+  Scenario: Pre-requisite - Login to Non active every - User onboarding
+    When user continue from welcome screen
     And user continue from make it personal screen
     And user clicks on continue
     And user clicks on next
@@ -339,20 +370,24 @@ Feature: Active functionality
  # ************ ACTIVE EVERY HOUSE MEMBER TO SOHO WAREHOUSE SCENARIOS ********************
 
   @regression @active-every
-  Scenario: Login to Active - every house member to soho warehouse
-#    Given user navigates to the account screen
-#    And user sign-out of the app from the previous user
+  Scenario: Pre-requisite - Login to Non active every - local member to soho warehouse
     Given app is launched
     When user is on sign in screen
     And user enters active-every as email address
     And user enters password
-    And user clicks on go button
-    And user sees T & C screen
+    Then user clicks on go button
+
+  @regression @ios
+  Scenario: Pre-requisite - Login to Non active every - User onboarding
+    When user sees T & C screen
     And user accepts T & C
     And user allows to help us
     And user accepts House rules
     And user continue without syncing
-    And user continue from welcome screen
+
+  @regression @active-every
+  Scenario: Pre-requisite - Login to Non active every - User onboarding
+    When user continue from welcome screen
     And user continue from make it personal screen
     And user clicks on continue
     And user clicks on next
@@ -386,7 +421,7 @@ Feature: Active functionality
 
   @regression @active-every
   Scenario: Active - every house member to SHW - User books to the 40 Greek street MEMBER event
-    Given tap on Events tab
+    Given user sees the Events tab
     When the paid Events event is found
     And user sees how many tickets to buy question
     And user taps on buy tickets on event screen
@@ -467,20 +502,24 @@ Feature: Active functionality
      # ************ ACTIVE-PLUS LOCAL HOUSE MEMBER TO SOHO WAREHOUSE SCENARIOS ********************
 
   @regression @active-plus-local
-  Scenario: Login to Active plus - local member to soho warehouse
-#    Given user navigates to the account screen
-#    And user sign-out of the app from the previous user
+  Scenario: Pre-requisite - Login to Non active every - local member to soho warehouse
     Given app is launched
     When user is on sign in screen
     And user enters active-plus-local as email address
     And user enters password
-    And user clicks on go button
-    And user sees T & C screen
+    Then user clicks on go button
+
+  @regression @ios
+  Scenario: Pre-requisite - Login to Non active every - User onboarding
+    When user sees T & C screen
     And user accepts T & C
     And user allows to help us
     And user accepts House rules
     And user continue without syncing
-    And user continue from welcome screen
+
+  @regression @active-plus-local
+  Scenario: Pre-requisite - Login to Non active every - User onboarding
+    When user continue from welcome screen
     And user continue from make it personal screen
     And user clicks on continue
     And user clicks on next
@@ -510,6 +549,9 @@ Feature: Active functionality
   Scenario: Active plus - local member to SHW - Cancel the PAID member event booking of Soho Warehouse
     When user sees the event booking status as you are on the guest list on event details screen
     Then user cancels the event booking
+
+  @regression @active-plus-local
+  Scenario: Active plus - local member to SHW - Navigate to events list screen
     Then user navigates back to the events list
 
   @regression @active-plus-local
@@ -543,20 +585,24 @@ Feature: Active functionality
  # ************ ACTIVE-PLUS EVERY HOUSE MEMBER TO SOHO WAREHOUSE SCENARIOS ********************
 
   @regression @active-plus-every
-  Scenario: Login to Active plus - every house member to soho warehouse
-#    Given user navigates to the account screen
-#    And user sign-out of the app from the previous user
+  Scenario: Pre-requisite - Login to Non active every - local member to soho warehouse
     Given app is launched
     When user is on sign in screen
     And user enters active-plus-every as email address
     And user enters password
-    And user clicks on go button
-    And user sees T & C screen
+    Then user clicks on go button
+
+  @regression @ios
+  Scenario: Pre-requisite - Login to Non active every - User onboarding
+    When user sees T & C screen
     And user accepts T & C
     And user allows to help us
     And user accepts House rules
     And user continue without syncing
-    And user continue from welcome screen
+
+  @regression @active-plus-every
+  Scenario: Pre-requisite - Login to Non active every - User onboarding
+    When user continue from welcome screen
     And user continue from make it personal screen
     And user clicks on continue
     And user clicks on next
@@ -590,6 +636,7 @@ Feature: Active functionality
 
   @regression @active-plus-every
   Scenario: Active plus - every house member to SHW - User books to the 40 Greek street MEMBER event
+    Given user sees the Events tab
     And the paid Events event is found
     And user sees how many tickets to buy question
     And user taps on buy tickets on event screen
@@ -603,6 +650,10 @@ Feature: Active functionality
   Scenario: Active plus - Every member to SHW - Cancel the PAID member event booking of 40 Greek street
     When user sees the event booking status as you are on the guest list on event details screen
     Then user cancels the event booking
+
+
+  @regression @active-plus-every
+  Scenario: Active plus - Every member to SHW - User navigates back to events list
     Then user navigates back to the events list
 
   @regression @active-plus-every
@@ -619,6 +670,9 @@ Feature: Active functionality
   Scenario: Active plus - Every house member to SHW - Cancel the 40 Greek street GYM event booking
     When user sees the event booking status as you are on the guest list on event details screen
     Then user cancels the event booking
+
+  @regression @active-plus-every
+  Scenario: Active plus - Every house member to SHW - User navigates back to the events list
     Then user navigates back to the events list
 
   @regression @active-plus-every
@@ -640,6 +694,9 @@ Feature: Active functionality
   Scenario: Active plus - Everyhouse member to SHW - User cancels the Active GYM event
     When user sees the event booking status as you are on the guest list on event details screen
     Then user cancels the event booking
+
+  @regression @active-plus-every
+  Scenario: Active plus - Everyhouse member to SHW - User navigates to the events list
     Then user navigates back to the events list
 
   @regression @active-plus-every

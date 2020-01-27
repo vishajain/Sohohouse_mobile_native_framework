@@ -87,6 +87,11 @@ class Ios_Home_Objects
      @driver.find_elements(:xpath => "//XCUIElementTypeTabBar[1]/XCUIElementTypeButton")
   end
 
+  def whats_on_1
+    # @driver.find_element(:xpath => "//XCUIElementTypeButton[@name = 'WHAT'S ON']")
+    @driver.find_element(:xpath => "//XCUIElementTypeTabBar//XCUIElementTypeButton[2]")
+  end
+
   def left_link
     @driver.find_element(:name => "iconLeft")
   end
@@ -258,6 +263,10 @@ class Android_Home_Objects
 
   def whats_on
      @driver.find_elements(:xpath => "//android.widget.FrameLayout[contains(@resource-id,'bottom_nav_bar')]//android.widget.FrameLayout")
+  end
+
+  def whats_on_1
+       @driver.find_element(:id => "#{$currentPackage+':id'+'/menu_explore'}")
   end
 
   def left_link

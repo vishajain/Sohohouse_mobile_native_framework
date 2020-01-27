@@ -138,3 +138,16 @@ Given("user taps on Get it free button") do
   $whatsonscreen.tap_get_it_free
 
 end
+
+Then("user taps on OK on alert screen") do
+
+  $activescreen.tap_ok
+
+end
+
+
+Then("user taps on the Submit button") do
+
+  $activescreen.tap_submit
+
+end

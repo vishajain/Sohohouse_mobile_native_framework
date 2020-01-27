@@ -269,8 +269,8 @@ class Android_Account_Objects
 
   end
 
-  def stay_section
-    @driver.find_element(:xpath => "//android.widget.TextView[@text = 'Sign out']")
+  def sign_out
+    @driver.find_element(:id => "#{$currentPackage+':id'+'/more_logout'}")
   end
 
   def navigate_up
@@ -287,6 +287,10 @@ class Android_Account_Objects
 
   def homeBtn
     @driver.find_element(:xpath => "//*[@resource-id='com.sohohouse.seven:id/menu_home']/android.widget.ImageView[1]")
+  end
+
+  def cancel_yes
+    @driver.find_element(:id => "android:id/button1")
   end
 
 end

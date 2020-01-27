@@ -51,7 +51,9 @@ class ActiveScreens
 
   def verify_active_members_only
 
-    return @device_whatson_objects.active_members_only.text.include? "ACTIVE MEMBERS"
+    sleep 2
+
+    return Common.wait_for(15) {@device_whatson_objects.active_members_only}.text.include? "ACTIVE MEMBERS"
 
   end
 
@@ -63,6 +65,8 @@ class ActiveScreens
 
 
   def verify_soho_warehouse_location
+
+    sleep 1
 
     return @device_whatson_objects.soho_warehouse_location.text.include? "Soho Warehouse"
 
@@ -78,7 +82,9 @@ class ActiveScreens
 
     Common.swipe_down
 
-    @device_whatson_objects.icon_info.click
+    sleep 2
+
+    Common.wait_for(15) {@device_whatson_objects.icon_info}.click
 
   end
 
@@ -96,7 +102,34 @@ class ActiveScreens
 
   def tap_link (link)
 
-    @device_whatson_objects.text_displayed(link).click
+    Common.wait_for(10) {@device_whatson_objects.text_displayed(link)}.click
+
+  end
+
+  def tap_ok
+
+    sleep 1
+
+    if $device == "android"
+
+      Common.wait_for(15) {@device_whatson_objects.cancel_yes}.click
+
+    end
+
+  end
+
+  def tap_submit
+
+    if $device == "ios"
+
+      Common.wait_for(10) {@device_whatson_objects.text_displayed("Submit")}.click
+
+    else
+
+      Common.wait_for(10) {@device_whatson_objects.submit}.click
+
+    end
+
 
   end
 

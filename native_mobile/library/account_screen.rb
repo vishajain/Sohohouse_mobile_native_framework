@@ -435,9 +435,17 @@ class AccountScreen
 
   def tap_sign_out
 
+    sleep 2
+
     Common.swipe_down
 
+    sleep 1
+
     Common.wait_for(5){@device_account_objects.sign_out}.click
+
+    if $device == "android"
+      Common.wait_for(5){@device_account_objects.cancel_yes}.click
+    end
 
     return Common.wait_for(5){@device_login_objects.welcome_home.displayed?}
 

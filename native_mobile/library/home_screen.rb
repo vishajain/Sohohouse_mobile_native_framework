@@ -191,7 +191,7 @@ class HomeScreen
 
   def verify_whatson_click
 
-    Common.wait_for(15){@device_home_objects.whats_on[1]}.click
+    Common.wait_for(15){@device_home_objects.whats_on_1}.click
 
   end
 
