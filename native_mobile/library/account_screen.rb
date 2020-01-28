@@ -229,7 +229,7 @@ class AccountScreen
 
     if Common.wait_for(20) {@device_account_objects.sync_calendar.displayed?}
 
-      @device_account_objects.sync_calendar.click
+      Common.wait_for(20) {@device_account_objects.sync_calendar}.click
 
       if Common.wait_for(20) {@device_account_objects.myplanner_title.displayed?}
 
@@ -369,6 +369,8 @@ class AccountScreen
 
     if $device == "ios"
 
+      sleep 1
+
       Common.wait_for(20){@device_account_objects.icon_left}.click
 
       return true
@@ -471,7 +473,7 @@ class AccountScreen
 
   def tap_favourite_houses
 
-    sleep 2
+    sleep 10
 
     Common.wait_for(10){@device_account_objects.favourite_houses}.click
 
@@ -492,6 +494,8 @@ class AccountScreen
   end
 
   def verify_40_greek_st_displayed
+
+    sleep 5
 
     return Common.wait_for(5){@device_account_objects.greek_St.displayed?}
 
@@ -570,6 +574,14 @@ class AccountScreen
     Common.wait_for(10){@device_account_objects.done}.click
 
     Common.wait_for(10){@device_account_objects.submit}.click
+
+    sleep 5
+
+  end
+
+  def tap_icon_left
+
+    Common.wait_for(20){@device_account_objects.icon_left}.click
 
   end
 

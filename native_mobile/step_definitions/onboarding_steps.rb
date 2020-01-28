@@ -177,3 +177,33 @@ Then("user sees the home screen") do
   assert_true($homescreen.verify_greetings,"Username is not present")
 
 end
+
+
+When("if user sees House introduction screen") do
+
+  begin
+
+  assert_true($onboardingscreens.verify_house_introduction,"House introduction screen is not present")
+
+  rescue StandardError => e
+
+    puts e.message
+
+  end
+
+end
+
+
+Then("user taps on contact membership team") do
+
+  begin
+
+  assert_true($onboardingscreens.tap_contact_membership_team,"Unable to navigate from contact memebership screen to house rules")
+
+  rescue StandardError => e
+
+    puts e.message
+
+  end
+
+end

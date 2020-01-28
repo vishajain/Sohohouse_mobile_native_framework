@@ -6,8 +6,11 @@ env:
     house: 'Paris'
     profile: 'Every House'
   stag:
-    username: 'manikanth.erukulla@sohohouse.com'
-    password: 'password'
-    name: 'Manikanth'
-    house: 'Little Beach House Barcelona'
-    profile: 'Every House'
+    mobile_automation@sohohouse.com:
+      name: 'SFFactory'
+      house: 'Little Beach House Barcelona'
+      profile: 'Every House'
+    manikanth.erukulla@sohohouse.com:
+      name: 'Manikanth'
+      house: 'Little Beach House Barcelona'
+      profile: 'Every House'

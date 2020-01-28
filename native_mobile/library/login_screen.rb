@@ -49,15 +49,15 @@ class LoginScreen
 
       config     = {props: YAML.load_file(File.join(File.dirname(__FILE__), '../../config/environments.yml'))}
 
-      email      = config[:props]["env"][$env]["username"]
+      email      = $email
 
-      $password   = config[:props]["env"][$env]["password"]
+      $password   = $pass
 
-      $name = config[:props]["env"][$env]["name"]
+      $name = config[:props]["env"][$env][$email]["name"]
 
-      $house = config[:props]["env"][$env]["house"]
+      $house = config[:props]["env"][$env][$email]["house"]
 
-      $profile = config[:props]["env"][$env]["profile"]
+      $profile = config[:props]["env"][$env][$email]["profile"]
 
       @device_login_objects.email_textfield.send_keys(email)
       @device_login_objects.password_textfield.send_keys($password)

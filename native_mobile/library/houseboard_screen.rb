@@ -28,7 +28,7 @@ class BlackslateScreen
   def verify_house_name
 
     str = Common.wait_for(20) {@device_blackslate_objects.house_name}.text
-    puts str
+
     return str
 
   end

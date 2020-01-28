@@ -267,15 +267,15 @@ class EditProfileScreen
 
   def verify_profession_value
 
-    return Common.wait_for(20){@device_viewprofile_objects.profession_value1}.text.include? $profession_value
+    return Common.wait_for(30){@device_viewprofile_objects.profession_value1}.text.include? $profession_value
 
   end
 
   def verify_interests_values
 
-    if Common.wait_for(20){@device_viewprofile_objects.interests_value}.text.include? $interest1_value
+    if Common.wait_for(25){@device_viewprofile_objects.interests_value}.text.include? $interest1_value
 
-       if Common.wait_for(20){@device_viewprofile_objects.interests_value}.text.include? $interest2_value
+       if Common.wait_for(25){@device_viewprofile_objects.interests_value}.text.include? $interest2_value
 
            return true
 
@@ -287,62 +287,62 @@ class EditProfileScreen
 
   def verify_industry_value
 
-    return Common.wait_for(20){@device_viewprofile_objects.industry_value}.text.include? $industry_value
+    return Common.wait_for(25){@device_viewprofile_objects.industry_value}.text.include? $industry_value
 
   end
 
   def verify_city_value
 
-    return Common.wait_for(20){@device_viewprofile_objects.city_value}.text.include? $city_value
+    return Common.wait_for(30){@device_viewprofile_objects.city_value}.text.include? $city_value
 
   end
 
   def verify_about_me_value
 
-    return Common.wait_for(20){@device_viewprofile_objects.about_me_value}.text.include? $about_me_value
+    return Common.wait_for(25){@device_viewprofile_objects.about_me_value}.text.include? $about_me_value
 
   end
 
   def verify_lets_chat_value
 
-    return Common.wait_for(20){@device_viewprofile_objects.lets_chat_value}.text.include? $chat_value
+    return Common.wait_for(25){@device_viewprofile_objects.lets_chat_value}.text.include? $chat_value
 
   end
 
   def verify_website
 
-    return Common.wait_for(20) {@device_viewprofile_objects.website_value}.displayed?
+    return Common.wait_for(25) {@device_viewprofile_objects.website_value}.displayed?
 
   end
 
   def verify_instagram
 
-    return Common.wait_for(20) {@device_viewprofile_objects.instagram_value}.displayed?
+    return Common.wait_for(25) {@device_viewprofile_objects.instagram_value}.displayed?
 
 
   end
 
   def verify_twitter
 
-    return Common.wait_for(20) {@device_viewprofile_objects.twitter_value}.displayed?
+    return Common.wait_for(25) {@device_viewprofile_objects.twitter_value}.displayed?
 
   end
 
   def verify_linkedin
 
-    return Common.wait_for(20) {@device_viewprofile_objects.linkedin_value}.displayed?
+    return Common.wait_for(25) {@device_viewprofile_objects.linkedin_value}.displayed?
 
   end
 
   def verify_spotify
 
-    return Common.wait_for(20) {@device_viewprofile_objects.spotify_value}.displayed?
+    return Common.wait_for(25) {@device_viewprofile_objects.spotify_value}.displayed?
 
   end
 
   def verify_youtube
 
-    return Common.wait_for(20) {@device_viewprofile_objects.youtube_value}.displayed?
+    return Common.wait_for(25) {@device_viewprofile_objects.youtube_value}.displayed?
 
   end
 

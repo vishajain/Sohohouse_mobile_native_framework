@@ -16,7 +16,7 @@ class Ios_Blackslate_Objects
   end
 
   def close_blackslate
-    @driver.find_element(:xpath => "//XCUIElementTypeImage[@name='iconCloseCircleDark']")
+    @driver.find_element(:name => "iconX")
   end
 
   def browse_houses

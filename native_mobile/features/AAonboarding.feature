@@ -16,13 +16,20 @@ Feature: Onboarding
     When user accepts T & C
     Then user sees Help us improve screen
 
+
   @ios @smoke
-  Scenario:: User continues to see the House rules screen
-    When user allows to help us
-    Then user sees House rules screen
+  Scenario:: User accepts Terms & Conditions to see Help us improve screen
+    When user sees Help us improve screen
+    Then user allows to help us
+
+  @smoke
+  Scenario:: User taps on contact memebership team if user sees house in house introduction screen
+    When if user sees House introduction screen
+    Then user taps on contact membership team
 
   @ios @smoke
   Scenario:: User accepts House rules to see my planner screen
+    Given user sees House rules screen
     When user accepts House rules
     Then user sees my planner screen
 

@@ -7,9 +7,10 @@ Feature: Edit Profile Screen
   @regression @login-ex
   Scenario: Pre-requisite for Edit profile screen testing
     Given app is launched
-    And user is on sign in screen
+    When user is on sign in screen
     And user enters valid email address and password
     And user clicks on go button
+    Then greetings should be visible
 
   @regression
   Scenario: Navigate to the edit profile and user inputs the profession value
@@ -29,18 +30,21 @@ Feature: Edit Profile Screen
 #    And user taps on save changes
 #    Then industry value is shown on view profile screen
 
-#  @regression
-#  Scenario: User inputs the city value
-##    When user taps on Edit link
-##    And user sees the Edit profile screen
-#    And user provides city value
-#    And user taps on save changes
-#    Then city value is shown on view profile screen
+  @regression @ios
+  Scenario: User inputs the city value
+#    When user taps on Edit link
+#    And user sees the Edit profile screen
+    And user provides city value
+    And user taps on save changes
+    Then city value is shown on view profile screen
+
+  @regression @ios
+  Scenario: User taps on Edit link
+    When user taps on Edit link
 
   @regression
   Scenario: User inputs the about me value
-#    When user taps on Edit link
-    And user sees the Edit profile screen
+    When user sees the Edit profile screen
     And user provides about me value
     And user taps on save changes
     Then about me value is shown on view profile screen

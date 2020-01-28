@@ -1,4 +1,4 @@
-@Account-screen
+@zzactive-screen
 Feature: Active functionality
 
 
@@ -24,7 +24,8 @@ Feature: Active functionality
   Scenario: Pre-requisite - Login to Non active - local member to soho warehouse
 #    Given user navigates to the account screen
 #    And user sign-out of the app from the previous user
-    Given app is launched
+    Given app is closed
+    And app is launched
     When user is on sign in screen
     And user enters non-active-local as email address
     And user enters password

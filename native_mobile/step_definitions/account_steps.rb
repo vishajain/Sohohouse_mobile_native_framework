@@ -188,9 +188,9 @@ end
 
 Then("user goes back to the account screen") do
 
-    $accountscreen.iconLeft
+    $accountscreen.tap_icon_left
 
-    $accountscreen.iconLeft
+    # $accountscreen.iconLeft
 
 end
 

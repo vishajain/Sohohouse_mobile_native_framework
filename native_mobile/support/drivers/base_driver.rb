@@ -39,6 +39,8 @@ module Base_driver
     $devicetype =  ENV['devicetype']
     $run  = ENV['run']
     $noreset = ENV['noreset']
+    $email = ENV['email']
+    $pass = ENV['password']
 
       if $env != "stag" and $env != "prod"
 
