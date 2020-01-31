@@ -11,8 +11,7 @@ class Ios_Home_Objects
   end
 
   def greetings
-    str = @driver.find_element(:xpath => "(//XCUIElementTypeOther/XCUIElementTypeStaticText)[1]").text
-    return str
+     @driver.find_element(:xpath => "(//XCUIElementTypeOther/XCUIElementTypeStaticText)[1]")
   end
 
   def username

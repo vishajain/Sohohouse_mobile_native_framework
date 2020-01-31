@@ -82,6 +82,18 @@ class Ios_Onboarding_Objects
     @driver.find_element(:name => "You're all set")
   end
 
+  def house_introduction
+    @driver.find_element(:name => "House introduction")
+  end
+
+  def contact_membership_team
+    @driver.find_element(:name => "Contact membership team")
+  end
+
+  def get_back_shortly
+    @driver.find_element(:xpath => "//XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeStaticText")
+  end
+
 end
 
 class Android_Onboarding_Objects

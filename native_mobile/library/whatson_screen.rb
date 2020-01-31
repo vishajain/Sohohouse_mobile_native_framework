@@ -367,13 +367,15 @@ class WhatsonScreen
 
   def verify_you_on_guest_list
 
-    sleep 15
+    sleep 18
 
     str = Common.wait_for(25){@device_whatson_objects.booking_status}.text
 
       if str.include?("YOU'RE ON THE GUEST LIST")
         return true
       elsif str.include?("we'll get back to you shortly")
+        return true
+      elsif str.include?("Thanks for your booking request")
         return true
       end
 

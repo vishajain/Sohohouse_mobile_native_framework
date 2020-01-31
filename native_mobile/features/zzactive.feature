@@ -1,4 +1,4 @@
-@Account-screen
+@zzactive-screen
 Feature: Active functionality
 
 
@@ -18,7 +18,11 @@ Feature: Active functionality
   Background:
 
 # ************ NON-ACTIVE LOCAL HOUSE MEMBER TO SOHO WAREHOUSE SCENARIOS ********************
-
+  @regression @non-active-local
+  Scenario: Pre-requisite - Login to Non active - Close app
+#    Given user navigates to the account screen
+#    And user sign-out of the app from the previous user
+    Given app is closed
 
   @regression @non-active-local
   Scenario: Pre-requisite - Login to Non active - local member to soho warehouse
@@ -81,7 +85,7 @@ Feature: Active functionality
   @regression @non-active-local
   Scenario: Non active - local to SHW - validate the status on event details screen
     Then user sees the soho warehouse Active location
-    Then user sees the Find out more button
+#    Then user sees the Find out more button
 
   @regression @non-active-local
   Scenario: Non active - local to SHW - Navigate to Active membership slate
@@ -97,47 +101,47 @@ Feature: Active functionality
     Then user sees Subscribe to Active Plus membership link
     Then user closes the Active membership slate slate
 
-  @regression @non-active-local
-  Scenario: Non active - local to SHW - User taps on Find out more button and naviagate to Active membership slate
-    Given user taps on Find out more button
-    When user sees Active membership slate
-    Then user sees Active section
-    Then user sees Subscribe to Active membership link
-    Then user sees Active Plus section
-    Then user sees Subscribe to Active Plus membership link
-
-  @regression @non-active-local
-  Scenario: Non active - local to SHW - User subscribes to Active membership
-    Given user sees Active membership slate
-    When user tap on Subscribe to Active membership link
-    Then user sees Contact us form
-    Then user sees enquiry type as Membership enquiry
-    Then user sees enquiry topic as Add Active membership
-    Then user taps on the Submit button
-    Then user taps on OK on alert screen
-
-  @regression @non-active-local
-  Scenario: Non active - local to SHW - User navigates back to Active membership slate
-    Then user tap on back button
-
-  @regression @non-active-local
-  Scenario: Non active - local to SHW - User subscribes to Active plus membership
-    Given user sees Active membership slate
-    When user tap on Subscribe to Active Plus membership link
-    Then user sees Contact us form
-    Then user sees enquiry type as Membership enquiry
-    Then user sees enquiry topic as Add Active membership
-    Then user taps on the Submit button
-    Then user taps on OK on alert screen
-
-  @regression @non-active-local
-  Scenario: Non active - local to SHW - navigate to
-    Given user sees Contact us form
-    When user tap on back button
-    When user closes the Active membership slate slate
-    When user tap on back button
-    When user clicks on Account button on home screen
-    Then user sign-off from the account
+#  @regression @non-active-local
+#  Scenario: Non active - local to SHW - User taps on Find out more button and naviagate to Active membership slate
+#    Given user taps on Find out more button
+#    When user sees Active membership slate
+#    Then user sees Active section
+#    Then user sees Subscribe to Active membership link
+#    Then user sees Active Plus section
+#    Then user sees Subscribe to Active Plus membership link
+#
+#  @regression @non-active-local
+#  Scenario: Non active - local to SHW - User subscribes to Active membership
+#    Given user sees Active membership slate
+#    When user tap on Subscribe to Active membership link
+#    Then user sees Contact us form
+#    Then user sees enquiry type as Membership enquiry
+#    Then user sees enquiry topic as Add Active membership
+#    Then user taps on the Submit button
+#    Then user taps on OK on alert screen
+#
+#  @regression @non-active-local
+#  Scenario: Non active - local to SHW - User navigates back to Active membership slate
+#    Then user tap on back button
+#
+#  @regression @non-active-local
+#  Scenario: Non active - local to SHW - User subscribes to Active plus membership
+#    Given user sees Active membership slate
+#    When user tap on Subscribe to Active Plus membership link
+#    Then user sees Contact us form
+#    Then user sees enquiry type as Membership enquiry
+#    Then user sees enquiry topic as Add Active membership
+#    Then user taps on the Submit button
+#    Then user taps on OK on alert screen
+#
+#  @regression @non-active-local
+#  Scenario: Non active - local to SHW - navigate to
+#    Given user sees Contact us form
+#    When user tap on back button
+#    When user closes the Active membership slate slate
+#    When user tap on back button
+#    When user clicks on Account button on home screen
+#    Then user sign-off from the account
     Then app is closed
 
 
@@ -246,7 +250,7 @@ Feature: Active functionality
     When the paid SW Gym event is found
     Then user sees the status as Active members only
     Then user sees the soho warehouse Active location
-    Then user sees the Find out more button
+#    Then user sees the Find out more button
     Then user tap on back button
 
   @regression @testing @non-active-every

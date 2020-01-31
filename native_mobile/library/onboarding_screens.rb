@@ -171,4 +171,40 @@ class OnboardingScreens
 
   end
 
+  def verify_house_introduction
+
+    if Common.wait_for(20){@device_onboarding_objects.house_introduction.displayed?}
+
+      Common.swipe_down
+
+      return true
+
+    end
+
+  end
+
+  def tap_contact_membership_team
+
+    Common.wait_for(10){@device_onboarding_objects.contact_membership_team}.click
+
+    sleep 15
+
+    if Common.wait_for(25){@device_onboarding_objects.get_back_shortly}.text.include? "Thanks for your booking request"
+
+       Common.wait_for(10){@device_onboarding_objects.ok_button}.click
+
+       sleep 2
+
+       Common.wait_for(10){@device_onboarding_objects.next_button}.click
+
+       return Common.wait_for(20){@device_onboarding_objects.houserules_text.displayed?}
+
+    else
+
+        return false
+
+    end
+
+  end
+
 end

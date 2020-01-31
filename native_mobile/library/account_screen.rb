@@ -60,9 +60,15 @@ class AccountScreen
 
   def tap_View_Profile
 
-    sleep 3
+    sleep 5
 
-    Common.wait_for(15){@device_account_objects.account_title}.click
+    Common.swipe_top
+
+    sleep 2
+
+    $driver.action.move_to(@device_account_objects.account_title).click.perform
+
+    # Common.wait_for(15){@device_account_objects.account_title}.click
 
   end
 
@@ -229,7 +235,7 @@ class AccountScreen
 
     if Common.wait_for(20) {@device_account_objects.sync_calendar.displayed?}
 
-      @device_account_objects.sync_calendar.click
+      Common.wait_for(20) {@device_account_objects.sync_calendar}.click
 
       if Common.wait_for(20) {@device_account_objects.myplanner_title.displayed?}
 
@@ -369,6 +375,8 @@ class AccountScreen
 
     if $device == "ios"
 
+      sleep 1
+
       Common.wait_for(20){@device_account_objects.icon_left}.click
 
       return true
@@ -471,7 +479,7 @@ class AccountScreen
 
   def tap_favourite_houses
 
-    sleep 2
+    sleep 10
 
     Common.wait_for(10){@device_account_objects.favourite_houses}.click
 
@@ -492,6 +500,8 @@ class AccountScreen
   end
 
   def verify_40_greek_st_displayed
+
+    sleep 5
 
     return Common.wait_for(5){@device_account_objects.greek_St.displayed?}
 
@@ -570,6 +580,14 @@ class AccountScreen
     Common.wait_for(10){@device_account_objects.done}.click
 
     Common.wait_for(10){@device_account_objects.submit}.click
+
+    sleep 8
+
+  end
+
+  def tap_icon_left
+
+    Common.wait_for(20){@device_account_objects.icon_left}.click
 
   end
 

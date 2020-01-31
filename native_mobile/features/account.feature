@@ -37,14 +37,11 @@ Feature: Account screen
     Then user sees perk title on perk screen
     Then user sees perk description on perk screen
     Then user goes back to the account screen
+    Then user goes back to the account screen
 
   @smoke
   Scenario: Validate payment link
     Then user see and taps on payment link
-
-  @smoke
-  Scenario: Validate past bookings link
-    Then user see and taps on past bookings link
 
   @smoke
   Scenario: Validate change password link
@@ -87,6 +84,7 @@ Feature: Account screen
     And tap on Save changes
     And user taps on favourite houses
     Then user sees 40 Greek Street under favourite houses list
+    And user goes back to the account screen
 
   @smoke
   Scenario: Validate notification preferences link
@@ -112,18 +110,18 @@ Feature: Account screen
     Then Your events push notification preference is switched on
     Then Your screenings push notification preference is switched on
     Then Welcome to the House push notification preference is switched on
-    Then user goes back to the account screen
 
+  @smoke
+  Scenario: User navigates back to the account screen
+    Then user goes back to the account screen
 
   @smoke @ios
   Scenario: Validate sync calendar link
     Then user see and taps on sync calendar link
 
-
   @smoke
   Scenario: Validate contact us link
     Then user see and taps on contact us link
-
 
   @smoke @test
   Scenario: User submits the enquiry using contact us form
