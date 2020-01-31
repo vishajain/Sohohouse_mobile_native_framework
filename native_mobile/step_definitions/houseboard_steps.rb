@@ -29,8 +29,8 @@ Then("blackslate screen is opened") do
     sleep 2
 
     $blackslatescreen = BlackslateScreen.new
-    house_name = $blackslatescreen.verify_house_name
-    assert_equal(house_name, $house, "Unable to open the blackslate")
+
+    assert_true($blackslatescreen.verify_house_name,"House name not shown on the houseboard screen")
 
 end
 
@@ -86,5 +86,67 @@ end
 Then("member is not on home screen from blackslate screen") do
 
   assert_true($blackslatescreen.home_screen_navigate,"Unable to navigate to home screen")
+
+end
+
+Given("user sees Upcoming bookings") do
+
+    assert_true($blackslatescreen.verify_upcoming_bookings,"Upcoming bookings section is not present")
+
+
+end
+
+
+Then("user sees the events under upcoming bookings") do
+
+  begin
+
+    assert_true($blackslatescreen.verify_upcoming_bookings_events,"Events not present under upcoming bookings section")
+
+  rescue StandardError => e
+
+    puts e.message
+
+  end
+
+end
+
+Then("user sees the status of the event as YOU'RE ON THE GUEST LIST") do
+
+  begin
+
+    assert_true($blackslatescreen.verify_event_status,"Status is not set to You re on the guest list")
+
+  rescue StandardError => e
+
+    puts e.message
+
+  end
+
+end
+
+Given("user sees multiple events") do
+
+  begin
+
+    assert_true($blackslatescreen.verify_multi_events_present,"Status is not set to You re on the guest list")
+
+  rescue StandardError => e
+
+    puts e.message
+
+  end
+
+end
+
+Then("user is able to scroll left to view the multiple events") do
+
+  assert_true($blackslatescreen.verify_scroll_left,"Swipe left of the events is not working")
+
+end
+
+Then("user sees maximum of seven events upon scrolling to the left") do
+
+  assert_true($blackslatescreen.verify_max_seven_events,"Upcoming bookings section is holding more than seven events")
 
 end

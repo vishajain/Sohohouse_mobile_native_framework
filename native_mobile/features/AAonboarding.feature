@@ -28,8 +28,11 @@ Feature: Onboarding
     Then user taps on contact membership team
 
   @ios @smoke
-  Scenario:: User accepts House rules to see my planner screen
+  Scenario:: User sees house rules screen
     Given user sees House rules screen
+
+  @ios @smoke
+  Scenario:: User accepts House rules
     When user accepts House rules
     Then user sees my planner screen
 

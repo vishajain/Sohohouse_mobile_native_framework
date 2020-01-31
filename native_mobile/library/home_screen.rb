@@ -293,11 +293,11 @@ class HomeScreen
 
   def verify_post_created
 
-    sleep 1
+    sleep 5
 
     Common.swipe_down
 
-    str = Common.wait_for(5){@device_home_objects.view_post}.text
+    str = Common.wait_for(10){@device_home_objects.view_post}.text
 
     return str.include? "How are you all"
 
@@ -305,11 +305,11 @@ class HomeScreen
 
   def verify_post_amended
 
-    sleep 2
+    sleep 5
 
     Common.swipe_down
 
-    str = Common.wait_for(5){@device_home_objects.view_post}.text
+    str = Common.wait_for(10){@device_home_objects.view_post}.text
 
     return str.include? "How are you all doing"
 
@@ -317,15 +317,15 @@ class HomeScreen
 
   def tap_delete_post
 
-    Common.wait_for(5){@device_home_objects.delete_post}.click
+    Common.wait_for(10){@device_home_objects.delete_post}.click
 
   end
 
   def verify_post_deleted
 
-    sleep 5
+    sleep 6
 
-    if Common.wait_for(5){@device_home_objects.delete_post_check}.size > 2
+    if Common.wait_for(10){@device_home_objects.delete_post_check}.size > 2
       return false
     else
       return true
@@ -354,6 +354,8 @@ class HomeScreen
   end
 
   def verify_create_post_another_noticeboard
+
+    sleep 3
 
     str = Common.wait_for(5){@device_home_objects.view_another_board_post}.text
 
@@ -394,7 +396,21 @@ class HomeScreen
 
     str = Common.wait_for(5){@device_home_objects.posts_today}.text
 
-    return str.include? "1 POST TODAY"
+    str_split_comma = str.split(",")
+
+    str_split_space = str_split_comma[1].split(" ")
+
+    str_split_zeroth_index_to_num = Integer(str_split_space[0])
+
+    if str_split_zeroth_index_to_num > 0
+
+      return true
+
+    else
+
+      return false
+
+    end
 
   end
 

@@ -27,9 +27,7 @@ class BlackslateScreen
 
   def verify_house_name
 
-    str = Common.wait_for(20) {@device_blackslate_objects.house_name}.text
-
-    return str
+    return Common.wait_for(20) {@device_blackslate_objects.house_name.displayed?}
 
   end
 
@@ -120,6 +118,120 @@ class BlackslateScreen
     $driver.action.move_to(@device_blackslate_objects.close_blackslate).click.perform
 
     return true
+
+  end
+
+  def verify_upcoming_bookings
+
+    return Common.wait_for(20) {@device_blackslate_objects.upcoming_bookings}.displayed?
+
+  end
+
+  def verify_upcoming_bookings_events
+
+    if Common.wait_for(20) {@device_blackslate_objects.event}.size >= 4
+      return true
+    else
+      return false
+    end
+
+  end
+
+  def verify_event_status
+
+    if Common.wait_for(20) {@device_blackslate_objects.event_status_one_event}.text.include? "YOU'RE ON THE GUEST LIST"
+      return true
+    elsif Common.wait_for(20) {@device_blackslate_objects.event_status_multi_event}.text.include? "YOU'RE ON THE GUEST LIST"
+      return true
+    end
+
+  end
+
+  def verify_multi_events_present
+
+    if Common.wait_for(20) {@device_blackslate_objects.event}.size > 4
+      return true
+    else
+      return false
+    end
+
+  end
+
+  def verify_scroll_left
+
+    locat = Common.wait_for(20) {@device_blackslate_objects.upcoming_bookings}.location
+
+    x =  locat["x"]
+    y =  locat["y"]
+
+    startY = y+55
+    endY = y+55
+
+    before_swipe_string = Common.wait_for(20) {@device_blackslate_objects.event_title_first_event}.text
+
+    Common.swipe_left(startY,endY)
+
+    sleep 3
+
+    after_swipe_string = Common.wait_for(20) {@device_blackslate_objects.event_title_first_event}.text
+
+    if  before_swipe_string == after_swipe_string
+      return false
+    else
+      return true
+    end
+
+  end
+
+  def verify_max_seven_events
+
+    locat = Common.wait_for(20) {@device_blackslate_objects.upcoming_bookings}.location
+
+    x =  locat["x"]
+    y =  locat["y"]
+
+    startY = y+55
+    endY = y+55
+    @events_count = 1
+
+    before_swipe_string = Common.wait_for(20) {@device_blackslate_objects.event_title_first_event}.text
+
+    sleep 3
+
+    loop do
+
+      puts Common.wait_for(20) {@device_blackslate_objects.event_title_first_event}.text
+      puts @events_count
+
+      Common.swipe_left(startY,endY)
+
+      after_swipe_string = Common.wait_for(20) {@device_blackslate_objects.event_title_first_event}.text
+
+      if  before_swipe_string.equal? after_swipe_string
+
+        break
+
+      else
+
+        @events_count = @events_count + 1
+
+        before_swipe_string = Common.wait_for(20) {@device_blackslate_objects.event_title_first_event}.text
+
+        sleep 3
+
+      end
+
+    end
+
+    if @events_count > 7
+
+      return false
+
+    else
+
+      return true
+
+    end
 
   end
 

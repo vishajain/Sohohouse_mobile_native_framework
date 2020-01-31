@@ -110,8 +110,10 @@ Feature: Account screen
     Then Your events push notification preference is switched on
     Then Your screenings push notification preference is switched on
     Then Welcome to the House push notification preference is switched on
-    Then user goes back to the account screen
 
+  @smoke
+  Scenario: User navigates back to the account screen
+    Then user goes back to the account screen
 
   @smoke @ios
   Scenario: Validate sync calendar link

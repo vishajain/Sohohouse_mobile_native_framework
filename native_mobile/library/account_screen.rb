@@ -60,9 +60,15 @@ class AccountScreen
 
   def tap_View_Profile
 
-    sleep 3
+    sleep 5
 
-    Common.wait_for(15){@device_account_objects.account_title}.click
+    Common.swipe_top
+
+    sleep 2
+
+    $driver.action.move_to(@device_account_objects.account_title).click.perform
+
+    # Common.wait_for(15){@device_account_objects.account_title}.click
 
   end
 
@@ -575,7 +581,7 @@ class AccountScreen
 
     Common.wait_for(10){@device_account_objects.submit}.click
 
-    sleep 5
+    sleep 8
 
   end
 

@@ -12,7 +12,7 @@ class Ios_Blackslate_Objects
   end
 
   def house_name
-    @driver.find_element(:xpath => "//XCUIElementTypeCell//XCUIElementTypeStaticText")
+    @driver.find_element(:name => ""+$house+"")
   end
 
   def close_blackslate
@@ -55,6 +55,32 @@ class Ios_Blackslate_Objects
     @driver.find_element(:name => "iconLeft")
   end
 
+  def upcoming_bookings
+    @driver.find_element(:name => "Upcoming bookings")
+  end
+
+  def event
+    @driver.find_elements(:xpath => "//XCUIElementTypeTable/XCUIElementTypeCell[3]/XCUIElementTypeStaticText")
+  end
+
+  def event_title_first_event
+    @driver.find_element(:xpath => "//XCUIElementTypeCell[3]//XCUIElementTypeStaticText[8]")
+  end
+
+  def event_title_second_event
+    @driver.find_element(:xpath => "//XCUIElementTypeCell[3]//XCUIElementTypeStaticText[3]")
+  end
+
+  def event_status_one_event
+    @driver.find_element(:xpath => "//XCUIElementTypeCell[3]//XCUIElementTypeStaticText[3]")
+  end
+
+  def event_status_multi_event
+    @driver.find_element(:xpath => "//XCUIElementTypeCell[3]//XCUIElementTypeStaticText[6]")
+  end
+
+
+
 end
 
 class Android_Blackslate_Objects
@@ -65,7 +91,7 @@ class Android_Blackslate_Objects
   end
 
   def house_name
-    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name='Open now']//parent::XCUIElementTypeCell//preceding-sibling::XCUIElementTypeCell/XCUIElementTypeStaticText")
+    @driver.find_element(:xpath => "")
   end
 
   def close_blackslate

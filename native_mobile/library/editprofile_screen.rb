@@ -267,6 +267,8 @@ class EditProfileScreen
 
   def verify_profession_value
 
+    sleep 10
+
     return Common.wait_for(30){@device_viewprofile_objects.profession_value1}.text.include? $profession_value
 
   end
@@ -292,6 +294,8 @@ class EditProfileScreen
   end
 
   def verify_city_value
+
+    sleep 10
 
     return Common.wait_for(30){@device_viewprofile_objects.city_value}.text.include? $city_value
 
