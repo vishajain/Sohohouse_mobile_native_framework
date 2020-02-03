@@ -20,7 +20,6 @@ Then("greetings should be visible") do
 
     assert_true($homescreen.verify_greetings,"Greetings not present")
 
-
 end
 
 Then("username is visible") do
@@ -33,7 +32,17 @@ end
 
 Then("happening now should be visible") do
 
+  begin
+
     assert_true($homescreen.verify_happening_now,"Happening now section is not present")
+
+  rescue
+
+    puts "Happening Now not present"
+
+    $happeningNow = "Happening now not present"
+
+  end
 
 end
 

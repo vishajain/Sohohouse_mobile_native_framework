@@ -284,9 +284,21 @@ And("user selects 40 Greek Street") do
 
 end
 
+And("user selects Shoreditch house") do
+
+    $accountscreen.select_shoreditch_house
+
+end
+
 Then("user sees 40 Greek Street under favourite houses list") do
 
     assert_true($accountscreen.verify_40_greek_st_displayed, "Favourite houses reset is not working")
+
+end
+
+Then("user sees Shoreditch house under favourite houses list") do
+
+    assert_true($accountscreen.verify_shoreditch_displayed, "Favourite houses reset is not working")
 
 end
 

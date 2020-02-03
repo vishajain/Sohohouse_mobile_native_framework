@@ -22,7 +22,7 @@ Feature: Active functionality
   Scenario: Pre-requisite - Login to Non active - Close app
 #    Given user navigates to the account screen
 #    And user sign-out of the app from the previous user
-    Given app is closed
+#    Given app is closed
 
   @regression @non-active-local
   Scenario: Pre-requisite - Login to Non active - local member to soho warehouse

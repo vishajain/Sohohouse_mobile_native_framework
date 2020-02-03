@@ -39,7 +39,7 @@ class HomeScreen
 
   def verify_username()
 
-    return Common.wait_for(20) {@device_home_objects.username.displayed?}
+    return Common.wait_for(25) {@device_home_objects.username.displayed?}
 
   end
 

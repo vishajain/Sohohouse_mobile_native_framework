@@ -160,6 +160,10 @@ class Ios_Account_Objects
     @driver.find_element(:name => "40 Greek Street")
   end
 
+  def shoreditch_house
+    @driver.find_element(:name => "Shoreditch House")
+  end
+
   def notification_pref_switch(link)
     @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name = '#{link}']/following-sibling::XCUIElementTypeSwitch")
   end

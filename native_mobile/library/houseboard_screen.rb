@@ -168,14 +168,16 @@ class BlackslateScreen
     endY = y+55
 
     before_swipe_string = Common.wait_for(20) {@device_blackslate_objects.event_title_first_event}.text
+    before_swipe_date = Common.wait_for(20) {@device_blackslate_objects.event_date_first_event}.text
 
     Common.swipe_left(startY,endY)
 
-    sleep 3
+    sleep 4
 
     after_swipe_string = Common.wait_for(20) {@device_blackslate_objects.event_title_first_event}.text
+    after_swipe_date = Common.wait_for(20) {@device_blackslate_objects.event_date_first_event}.text
 
-    if  before_swipe_string == after_swipe_string
+    if  before_swipe_string == after_swipe_string && before_swipe_date == after_swipe_date
       return false
     else
       return true
@@ -195,27 +197,31 @@ class BlackslateScreen
     @events_count = 1
 
     before_swipe_string = Common.wait_for(20) {@device_blackslate_objects.event_title_first_event}.text
-
-    sleep 3
+    before_swipe_date = Common.wait_for(20) {@device_blackslate_objects.event_date_first_event}.text
 
     loop do
 
-      puts Common.wait_for(20) {@device_blackslate_objects.event_title_first_event}.text
-      puts @events_count
-
       Common.swipe_left(startY,endY)
 
+      sleep 3
+
       after_swipe_string = Common.wait_for(20) {@device_blackslate_objects.event_title_first_event}.text
+      after_swipe_date = Common.wait_for(20) {@device_blackslate_objects.event_date_first_event}.text
 
       if  before_swipe_string.equal? after_swipe_string
 
-        break
+        if before_swipe_date.equal? after_swipe_date
+
+         break
+
+        end
 
       else
 
         @events_count = @events_count + 1
 
         before_swipe_string = Common.wait_for(20) {@device_blackslate_objects.event_title_first_event}.text
+        before_swipe_date = Common.wait_for(20) {@device_blackslate_objects.event_date_first_event}.text
 
         sleep 3
 
@@ -232,6 +238,44 @@ class BlackslateScreen
       return true
 
     end
+
+  end
+
+  def tap_first_event
+
+    @event_name = Common.wait_for(20) {@device_blackslate_objects.event_title_first_event}.text
+
+    Common.wait_for(20) {@device_blackslate_objects.event_title_first_event}.click
+
+  end
+
+  def verify_event_details_screen_navigation
+
+    return Common.wait_for(20) {@device_blackslate_objects.section_displayed(@event_name)}.displayed?
+
+  end
+
+  def tap_navigate_back
+
+    Common.wait_for(20) {@device_blackslate_objects.icon_left}.click
+
+  end
+
+  def verify_see_all_button
+
+    return Common.wait_for(20) {@device_blackslate_objects.section_displayed("See all")}.displayed?
+
+  end
+
+  def tap_see_all_btn
+
+    Common.wait_for(20) {@device_blackslate_objects.section_displayed("See all")}.click
+
+  end
+
+  def verify_my_bookings
+
+    return Common.wait_for(20) {@device_blackslate_objects.section_displayed("My bookings")}.displayed?
 
   end
 

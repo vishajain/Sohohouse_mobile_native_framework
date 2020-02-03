@@ -70,6 +70,9 @@ Feature: What's on screen
     Scenario: Cancel the PAID member event booking
     When user sees the event booking status as you are on the guest list on event details screen
     Then user cancels the event booking
+
+  @smoke
+  Scenario: User navigates back to the events list
     Then user navigates back to the events list
 
   @smoke

@@ -499,11 +499,27 @@ class AccountScreen
 
   end
 
+  def select_shoreditch_house
+
+    Common.wait_for(5){@device_account_objects.tap_uk}.click
+
+    Common.wait_for(5){@device_account_objects.shoreditch_house}.click
+
+  end
+
   def verify_40_greek_st_displayed
 
     sleep 5
 
     return Common.wait_for(5){@device_account_objects.greek_St.displayed?}
+
+  end
+
+  def verify_shoreditch_displayed
+
+    sleep 5
+
+    return Common.wait_for(5){@device_account_objects.shoreditch_house.displayed?}
 
   end
 

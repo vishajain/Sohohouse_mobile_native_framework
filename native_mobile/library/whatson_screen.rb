@@ -321,6 +321,8 @@ class WhatsonScreen
   def book_member_event
 
       # Common.wait_for(10){@device_whatson_objects.icon_plus.click}
+      #
+      sleep 1
 
       $driver.action.move_to(@device_whatson_objects.icon_plus).click.perform
 
