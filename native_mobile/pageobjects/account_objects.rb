@@ -153,7 +153,7 @@ class Ios_Account_Objects
   end
 
   def tap_uk
-    @driver.find_element(:name => "UK")
+    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[contains(@name, 'UK')]")
   end
 
   def greek_St

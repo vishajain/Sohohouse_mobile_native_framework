@@ -14,10 +14,12 @@ class HomeScreen
     if $device == "ios"
 
       @device_home_objects = Ios_Home_Objects.new($driver, $driver_appium)
+      @device_whatson_objects = Ios_Whatson_Objects.new($driver, $driver_appium)
 
     else
 
       @device_home_objects = Android_Home_Objects.new($driver, $driver_appium)
+      @device_whatson_objects = Android_Whatson_Objects.new($driver, $driver_appium)
 
     end
 
@@ -417,6 +419,161 @@ class HomeScreen
   def tap_modal_close
 
     Common.wait_for(5){@device_home_objects.modal_close}.click
+
+  end
+
+  def tap_carousel(event_name)
+
+    locat = Common.wait_for(20) {@device_home_objects.happening_now}.location
+
+    y =  locat["y"]
+
+    startY = y+55
+    endY = y+55
+
+    Common.swipe_right(startY,endY)
+
+    i = 1
+
+    while i < 8
+
+      begin
+
+        if Common.wait_for(20) {@device_home_objects.event_name(event_name).displayed?}
+
+          @device_home_objects.event_name(event_name).click
+
+          return true
+
+        end
+
+      rescue
+
+        Common.swipe_left(startY,endY)
+
+        i = i+ 1
+
+      end
+
+    end
+
+  end
+
+  def verify_user_navigation(event_name)
+
+      return Common.wait_for(20) {@device_home_objects.event_name(event_name).displayed?}
+
+  end
+
+  def verify_book_event
+
+    paid_event = true
+    guests_allowed = true
+    free_event = true
+
+    begin
+
+      Common.wait_for(20) {@device_whatson_objects.buy_tickets.displayed?}
+
+    rescue
+
+      paid_event = false
+
+    end
+
+    begin
+
+      Common.wait_for(20) {@device_whatson_objects.icon_minus.displayed?}
+
+    rescue
+
+      guests_allowed = false
+
+    end
+
+    begin
+
+      Common.wait_for(20) {@device_whatson_objects.book.displayed?}
+
+    rescue
+
+      free_event = false
+
+    end
+
+    puts paid_event
+    puts guests_allowed
+    puts free_event
+
+
+    if paid_event == true && guests_allowed == true
+
+      $whatsonscreen.book_member_event
+
+      $whatsonscreen.verify_member_section("Confirm payment")
+
+      $whatsonscreen.buy_tickets_click
+
+      $whatsonscreen.verify_you_on_guest_list
+
+      $whatsonscreen.ok_btn_click
+
+    elsif paid_event == true && guests_allowed == false
+
+      $whatsonscreen.book_no_guests_member_event
+
+      $whatsonscreen.verify_member_section("Confirm payment")
+
+      $whatsonscreen.buy_tickets_click
+
+      $whatsonscreen.verify_you_on_guest_list
+
+      $whatsonscreen.ok_btn_click
+
+    elsif paid_event == false && free_event == true
+
+      $whatsonscreen.book_no_guests_free_member_event
+
+      $whatsonscreen.verify_you_on_guest_list
+
+      $whatsonscreen.ok_btn_click
+
+    end
+
+    if $whatsonscreen.verify_guest_list_status_on_event_screen
+
+      return true
+
+    end
+
+  end
+
+  def user_navigate_to_home_screen
+
+    begin
+
+      Common.wait_for(10){@device_whatson_objects.icon_close.click}
+
+    rescue
+
+    end
+
+
+    begin
+
+      Common.wait_for(10){@device_whatson_objects.icon_left.click}
+
+    rescue
+
+    end
+
+    begin
+
+      Common.wait_for(10){@device_whatson_objects.icon_left.click}
+
+    rescue
+
+    end
 
   end
 

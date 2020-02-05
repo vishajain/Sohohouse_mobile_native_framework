@@ -33,20 +33,16 @@ end
 Then("happening now should be visible") do
 
   begin
-
     assert_true($homescreen.verify_happening_now,"Happening now section is not present")
-
   rescue
-
-    puts "Happening Now not present"
-
+    puts "Happening now section is not present"
     $happeningNow = "Happening now not present"
-
   end
 
 end
 
 Then("house notes should be visible") do
+
 
     assert_true($homescreen.verify_house_notes,"House Notes section is not present")
 
@@ -235,3 +231,46 @@ And("user closes the modal screen") do
   $homescreen.tap_modal_close
 
 end
+
+When(/^user taps on (.*) carousel/) do |event_name|
+
+  if $happeningNow != "Happening now not present"
+
+     $homescreen.tap_carousel(event_name)
+
+  else
+
+    skip_this_scenario
+
+  end
+
+
+end
+
+Then(/^user navigates to (.*) details screen/) do |event_name|
+
+  if $happeningNow != "Happening now not present"
+
+     assert_true($homescreen.verify_user_navigation(event_name),"Posts count is not incremented")
+
+  else
+
+    skip_this_scenario
+
+  end
+
+end
+
+
+Then("user books the event") do
+
+  assert_true($homescreen.verify_book_event,"Unable to book to the event")
+
+end
+
+When("user navigates back to the home screen") do
+
+  $homescreen.user_navigate_to_home_screen
+
+end
+

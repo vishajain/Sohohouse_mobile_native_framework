@@ -195,6 +195,10 @@ class Ios_Home_Objects
 
   end
 
+  def event_name(event)
+    @driver.find_element(:name => ""+event+"")
+  end
+
 end
 
 class Android_Home_Objects

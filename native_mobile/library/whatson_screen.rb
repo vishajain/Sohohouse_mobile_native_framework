@@ -332,6 +332,14 @@ class WhatsonScreen
 
   end
 
+  def book_no_guests_member_event
+    #
+    sleep 1
+
+    $driver.action.move_to(@device_whatson_objects.buy_tickets).click.perform
+
+  end
+
   def invite_guests_click
 
     # Common.wait_for(10){@device_whatson_objects.icon_plus.click}
@@ -347,6 +355,12 @@ class WhatsonScreen
   def book_free_member_event
 
     $driver.action.move_to(@device_whatson_objects.icon_plus).click.perform
+
+    $driver.action.move_to(@device_whatson_objects.book).click.perform
+
+  end
+
+  def book_no_guests_free_member_event
 
     $driver.action.move_to(@device_whatson_objects.book).click.perform
 

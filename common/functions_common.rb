@@ -113,4 +113,14 @@ module Common
 
   end
 
+  def self.swipe_right(startY, endY)
+
+    if $device == "ios"
+      $action.press({:x => 50, :y => startY}).wait(100).move_to({:x => ($dimensions_width-20), :y => endY}).release.perform
+    else
+      Appium::TouchAction.new.swipe(start_y: 1340, end_y: 350).perform
+    end
+
+  end
+
 end

@@ -44,4 +44,6 @@ include Test::Unit::Assertions
 
     $homescreen = HomeScreen.new
 
+    $whatsonscreen = WhatsonScreen.new
+
   end

@@ -501,9 +501,22 @@ class AccountScreen
 
   def select_shoreditch_house
 
-    Common.wait_for(5){@device_account_objects.tap_uk}.click
+    begin
 
-    Common.wait_for(5){@device_account_objects.shoreditch_house}.click
+      Common.wait_for(5){@device_account_objects.shoreditch_house.displayed?}
+
+    rescue
+
+      sleep 1
+
+      Common.wait_for(10){@device_account_objects.tap_uk}.click
+
+      Common.swipe_down
+
+      Common.wait_for(10){@device_account_objects.shoreditch_house}.click
+
+    end
+
 
   end
 

@@ -84,7 +84,6 @@ class Ios_Whatson_Objects
   end
 
   def buy_tickets
-
     @driver.find_element(:name =>"Buy tickets")
   end
 
@@ -298,6 +297,7 @@ class Android_Whatson_Objects
   def buy_tickets
     @driver.find_element(:id => "#{$currentPackage+':id'+'/stepper_submit_button_small'}")
   end
+
 
   def invite_guests
     @driver.find_element(:id => "#{$currentPackage+':id'+'/stepper_submit_button_small'}")

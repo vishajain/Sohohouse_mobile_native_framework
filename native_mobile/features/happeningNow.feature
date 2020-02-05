@@ -15,7 +15,6 @@ Feature: Happening Now Screen
   Scenario: Validate home screen header
     Given user is on home screen
     Then greetings should be visible
-    And username is visible
 
   @smoke
   Scenario: Select the favourite house as Shoreditch house
@@ -32,3 +31,29 @@ Feature: Happening Now Screen
     When member is not on home screen from account screen
     Then happening now should be visible
 
+  @smoke
+  Scenario: User taps on Shoreditch member event to view event details screen
+    Given  happening now should be visible
+    When user taps on Shoreditch Member event now carousel
+    Then user navigates to Shoreditch Member event now details screen
+
+  @smoke
+  Scenario: User taps on Shoreditch member event to view event details screen
+    When user navigates to Shoreditch Member event now details screen
+    Then user books the event
+
+  @smoke
+  Scenario: User navigate back to the home screen
+    When user navigates back to the home screen
+    Then greetings should be visible
+
+  @smoke
+  Scenario: User taps on Shoreditch Gym event to view event details screen
+    Given  happening now should be visible
+    When user taps on Shoreditch Gym event now carousel
+    Then user navigates to Shoreditch Gym event now details screen
+
+  @smoke
+  Scenario: User taps on Shoreditch Gym event to view event details screen
+    When user navigates to Shoreditch Gym event now details screen
+    Then user books the event
