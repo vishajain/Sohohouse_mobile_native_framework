@@ -11,9 +11,20 @@ Feature: What's on screen
     And user enters valid email address and password
     And user clicks on go button
 
+  @smoke
+  Scenario: Validate home screen header
+    Given user is on home screen
+    Then greetings should be visible
+
+  @smoke
+  Scenario: Select the favourite house as Shoreditch house
+    When user clicks on Account button on home screen
+    When user taps on favourite houses
+    And user selects 40 Greek Street
+    And tap on Save changes
+
   @smoke @wip
   Scenario: Validate Whatson screen title
-    Given username is visible
     When user clicks on what's on button
     Then user sees what's on screen title
 

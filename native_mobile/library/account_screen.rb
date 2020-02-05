@@ -493,9 +493,22 @@ class AccountScreen
 
   def select_40_greek_street
 
-    Common.wait_for(5){@device_account_objects.tap_uk}.click
 
-    Common.wait_for(5){@device_account_objects.greek_St}.click
+    begin
+
+      Common.wait_for(5){@device_account_objects.greek_St.displayed?}
+
+    rescue
+
+      sleep 1
+
+      Common.wait_for(10){@device_account_objects.tap_uk}.click
+
+      Common.swipe_down
+
+      Common.wait_for(10){@device_account_objects.greek_St}.click
+
+    end
 
   end
 

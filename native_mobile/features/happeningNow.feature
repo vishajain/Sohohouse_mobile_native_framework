@@ -22,9 +22,6 @@ Feature: Happening Now Screen
     When user taps on favourite houses
     And user selects Shoreditch house
     And tap on Save changes
-    And user taps on favourite houses
-    Then user sees Shoreditch house under favourite houses list
-    And user goes back to the account screen
 
   @smoke
   Scenario: Validate happening now section
@@ -33,13 +30,12 @@ Feature: Happening Now Screen
 
   @smoke
   Scenario: User taps on Shoreditch member event to view event details screen
-    Given  happening now should be visible
-    When user taps on Shoreditch Member event now carousel
-    Then user navigates to Shoreditch Member event now details screen
+    When user taps on Shoreditch Member event carousel
+    Then user navigates to Shoreditch Member event details screen
 
   @smoke
   Scenario: User taps on Shoreditch member event to view event details screen
-    When user navigates to Shoreditch Member event now details screen
+    When user navigates to Shoreditch Member event details screen
     Then user books the event
 
   @smoke
@@ -49,11 +45,15 @@ Feature: Happening Now Screen
 
   @smoke
   Scenario: User taps on Shoreditch Gym event to view event details screen
-    Given  happening now should be visible
-    When user taps on Shoreditch Gym event now carousel
-    Then user navigates to Shoreditch Gym event now details screen
+    When user taps on Shoreditch Gym event carousel
+    Then user navigates to Shoreditch Gym event details screen
 
   @smoke
   Scenario: User taps on Shoreditch Gym event to view event details screen
-    When user navigates to Shoreditch Gym event now details screen
+    When user navigates to Shoreditch Gym event details screen
     Then user books the event
+
+  @smoke
+  Scenario: User navigate back to the home screen
+    When user navigates back to the home screen
+    Then greetings should be visible

@@ -467,13 +467,23 @@ class HomeScreen
 
   def verify_book_event
 
-    paid_event = true
-    guests_allowed = true
-    free_event = true
 
     begin
 
-      Common.wait_for(20) {@device_whatson_objects.buy_tickets.displayed?}
+      Common.wait_for(2) {@device_whatson_objects.you_are_on_the_guest_list.displayed?}
+
+      return true
+
+    rescue
+
+
+    end
+
+    begin
+
+      Common.wait_for(2) {@device_whatson_objects.buy_tickets.displayed?}
+
+      paid_event = true
 
     rescue
 
@@ -483,17 +493,21 @@ class HomeScreen
 
     begin
 
-      Common.wait_for(20) {@device_whatson_objects.icon_minus.displayed?}
+      Common.wait_for(2) {@device_whatson_objects.buy_tickets.enabled?}
+
+      guests_allowed = false
 
     rescue
 
-      guests_allowed = false
+      guests_allowed = true
 
     end
 
     begin
 
-      Common.wait_for(20) {@device_whatson_objects.book.displayed?}
+      Common.wait_for(2) {@device_whatson_objects.book.displayed?}
+
+      free_event = true
 
     rescue
 
@@ -501,10 +515,17 @@ class HomeScreen
 
     end
 
-    puts paid_event
-    puts guests_allowed
-    puts free_event
+    begin
 
+      Common.wait_for(2) {@device_whatson_objects.book_and_pay.displayed?}
+
+      gym_paid_event = true
+
+    rescue
+
+      gym_paid_event = false
+
+    end
 
     if paid_event == true && guests_allowed == true
 
@@ -533,6 +554,18 @@ class HomeScreen
     elsif paid_event == false && free_event == true
 
       $whatsonscreen.book_no_guests_free_member_event
+
+      $whatsonscreen.verify_you_on_guest_list
+
+      $whatsonscreen.ok_btn_click
+
+    elsif gym_paid_event == true
+
+      $whatsonscreen.book_gym_event
+
+      $whatsonscreen.verify_member_section("Confirm payment")
+
+      $whatsonscreen.buy_tickets_click
 
       $whatsonscreen.verify_you_on_guest_list
 

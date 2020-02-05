@@ -52,9 +52,15 @@ Feature: Active functionality
     And user clicks on next on all set screen
     Then greetings should be visible
 
+  @smoke
+  Scenario: Select the favourite house as Greek house
+    When user clicks on Account button on home screen
+    When user taps on favourite houses
+    And user selects 40 Greek Street
+    And tap on Save changes
+
   @regression @non-active-local
   Scenario: Non active - local member to SHW - User navigates to Member events section
-    Given greetings should be visible
     When user clicks on what's on button
     Then user sees what's on screen title
     And tap on Events tab
@@ -179,9 +185,15 @@ Feature: Active functionality
     And user clicks on next on all set screen
     Then greetings should be visible
 
-  @regression @testing @non-active-every
-  Scenario: Non active every house member to SHW - User navigates to Member events section
-    Given greetings should be visible
+  @smoke
+  Scenario: Select the favourite house as Greek house
+    When user clicks on Account button on home screen
+    When user taps on favourite houses
+    And user selects 40 Greek Street
+    And tap on Save changes
+
+  @regression @non-active-every
+  Scenario: Non active - local member to SHW - User navigates to Member events section
     When user clicks on what's on button
     Then user sees what's on screen title
     And tap on Events tab
@@ -287,9 +299,15 @@ Feature: Active functionality
     And user clicks on next on all set screen
     Then greetings should be visible
 
-  @regression @testing @active-local
-  Scenario: Active - local member to SHW - User navigates to Member events section
-    Given greetings should be visible
+  @smoke
+  Scenario: Select the favourite house as Greek house
+    When user clicks on Account button on home screen
+    When user taps on favourite houses
+    And user selects 40 Greek Street
+    And tap on Save changes
+
+  @regression @active-local
+  Scenario: Non active - local member to SHW - User navigates to Member events section
     When user clicks on what's on button
     Then user sees what's on screen title
     And tap on Events tab
@@ -399,9 +417,15 @@ Feature: Active functionality
     And user clicks on next on all set screen
     Then greetings should be visible
 
+  @smoke
+  Scenario: Select the favourite house as Greek house
+    When user clicks on Account button on home screen
+    When user taps on favourite houses
+    And user selects 40 Greek Street
+    And tap on Save changes
+
   @regression @active-every
-  Scenario: Active - every house member to SHW - User navigates to Member events section
-    Given greetings should be visible
+  Scenario: Non active - local member to SHW - User navigates to Member events section
     When user clicks on what's on button
     Then user sees what's on screen title
     And tap on Events tab
@@ -531,9 +555,15 @@ Feature: Active functionality
     And user clicks on next on all set screen
     Then greetings should be visible
 
+  @smoke
+  Scenario: Select the favourite house as Greek house
+    When user clicks on Account button on home screen
+    When user taps on favourite houses
+    And user selects 40 Greek Street
+    And tap on Save changes
+
   @regression @active-plus-local
-  Scenario: Active plus - local member to SHW - User navigates to Member events section
-    Given greetings should be visible
+  Scenario: Non active - local member to SHW - User navigates to Member events section
     When user clicks on what's on button
     Then user sees what's on screen title
     And tap on Events tab
@@ -614,9 +644,15 @@ Feature: Active functionality
     And user clicks on next on all set screen
     Then greetings should be visible
 
+  @smoke
+  Scenario: Select the favourite house as Greek house
+    When user clicks on Account button on home screen
+    When user taps on favourite houses
+    And user selects 40 Greek Street
+    And tap on Save changes
+
   @regression @active-plus-every
-  Scenario: Active plus - every house member to SHW - User navigates to Member events section
-    Given greetings should be visible
+  Scenario: Non active - local member to SHW - User navigates to Member events section
     When user clicks on what's on button
     Then user sees what's on screen title
     And tap on Events tab
