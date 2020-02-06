@@ -69,7 +69,6 @@ Feature: What's on screen
     Then user see Guest 1 under Guests up to section
     Then user sees the event booking status as you and 1 guest going on event details screen
 
-
   @smoke
   Scenario: Cancel the guest member booking - PAID event
     When user sees the event booking status as you and 1 guest going on event details screen
@@ -149,7 +148,6 @@ Feature: What's on screen
     Then the About this film section is present
     Then the Location section is present
     Then the Cancellation policy section is present
-
 
   @smoke
   Scenario: Book to the FREE screening event

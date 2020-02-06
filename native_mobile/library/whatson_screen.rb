@@ -15,10 +15,12 @@ class WhatsonScreen
     if $device == "ios"
       @device_home_objects = Ios_Home_Objects.new($driver, $driver_appium)
       @device_whatson_objects = Ios_Whatson_Objects.new($driver, $driver_appium)
+      @device_account_objects = Ios_Account_Objects.new($driver, $driver_appium)
 
     else
       @device_home_objects = Android_Home_Objects.new($driver, $driver_appium)
       @device_whatson_objects = Android_Whatson_Objects.new($driver, $driver_appium)
+      @device_account_objects = Android_Account_Objects.new($driver, $driver_appium)
 
     end
 
@@ -273,6 +275,30 @@ class WhatsonScreen
 
           break
 
+        elsif section == "My planner member"
+
+          Common.wait_for(12){@device_whatson_objects.planner_member_event.displayed?}
+
+          sleep 2
+
+          Common.wait_for(5){@device_whatson_objects.planner_member_event.click}
+
+          return true
+
+          break
+
+        elsif section == "My planner gym"
+
+          Common.wait_for(12){@device_whatson_objects.planner_gym_event.displayed?}
+
+          sleep 2
+
+          Common.wait_for(5){@device_whatson_objects.planner_gym_event.click}
+
+          return true
+
+          break
+
         end
 
       rescue
@@ -407,7 +433,16 @@ class WhatsonScreen
 
     end
 
-    return Common.wait_for(10){@device_whatson_objects.you_are_on_the_guest_list.displayed?}
+    begin
+
+      return Common.wait_for(10){@device_whatson_objects.you_are_on_the_guest_list.displayed?}
+
+    rescue
+
+      return false
+
+    end
+
 
   end
 
@@ -442,7 +477,6 @@ class WhatsonScreen
   def navigate_to_events_list
 
     sleep 3
-
     Common.wait_for(10){@device_whatson_objects.icon_left.click}
 
   end
@@ -537,8 +571,6 @@ class WhatsonScreen
 
     i = 0
 
-    # puts "count is"
-    # puts Common.wait_for(2){@device_whatson_objects.your_houses.size}
     while i < Common.wait_for(2){@device_whatson_objects.your_houses.size}
 
       # puts Common.wait_for(2){@device_whatson_objects.your_houses[i]}.text
@@ -560,6 +592,79 @@ class WhatsonScreen
   def results_check
 
     return Common.wait_for(10){@device_whatson_objects.berlin_result.displayed?}
+
+  end
+
+  def verify_book_event(event)
+
+    if event.include? "My planner member"
+
+      scroll_to_top("Events")
+
+      events_click("Events")
+
+      find_free_event("My planner member")
+
+      if verify_guest_list_status_on_event_screen
+
+        navigate_to_events_list
+
+        return true
+
+      end
+
+      book_no_guests_free_member_event
+
+      verify_you_on_guest_list
+
+      ok_btn_click
+
+    elsif event.include? "My planner gym"
+
+      scroll_to_top("Gym classes")
+
+      events_click("Gym classes")
+
+      find_free_event("My planner gym")
+
+      if verify_guest_list_status_on_event_screen
+
+        navigate_to_events_list
+
+        return true
+
+      end
+
+      book_no_guests_free_member_event
+
+      verify_you_on_guest_list
+
+      ok_btn_click
+
+    end
+
+    if verify_guest_list_status_on_event_screen
+
+      navigate_to_events_list
+
+      return true
+
+    end
+
+  end
+
+  def select_shoreditch_house
+
+    filter_click
+
+    Common.wait_for(10){@device_whatson_objects.tap_uk}.click
+
+    Common.swipe_down
+
+    Common.wait_for(10){@device_whatson_objects.tap_shoreditch}.click
+
+
+    Common.wait_for(10){@device_whatson_objects.confirm}.click
 
   end
 

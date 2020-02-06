@@ -12,6 +12,9 @@ data:
   active-site:
     member-event: 'Soho Warehouse - Mobile Aut...'
     gym-event: 'Soho Warehouse - Gym event ...'
+  my-planner:
+    member-event: 'My Planner-Member-Mobile new'
+    gym-event: 'My Planner-Gym-Mobile testing'
   profile:
     profile1:
       profession: 'software'

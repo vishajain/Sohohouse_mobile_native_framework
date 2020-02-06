@@ -16,10 +16,12 @@ class BlackslateScreen
     if $device == "ios"
       @device_home_objects = Ios_Home_Objects.new($driver, $driver_appium)
       @device_blackslate_objects = Ios_Blackslate_Objects.new($driver, $driver_appium)
+      @device_whatson_objects = Ios_Whatson_Objects.new($driver, $driver_appium)
 
     else
       @device_home_objects = Android_Home_Objects.new($driver, $driver_appium)
       @device_blackslate_objects = Android_Blackslate_Objects.new($driver, $driver_appium)
+      @device_whatson_objects = Android_Whatson_Objects.new($driver, $driver_appium)
 
     end
 
@@ -276,6 +278,49 @@ class BlackslateScreen
   def verify_my_bookings
 
     return Common.wait_for(20) {@device_blackslate_objects.section_displayed("My bookings")}.displayed?
+
+  end
+
+  def verify_planner_booking_event(event)
+
+    locat = Common.wait_for(20) {@device_blackslate_objects.upcoming_bookings}.location
+
+    y =  locat["y"]
+
+    startY = y+55
+    endY = y+55
+
+    Common.swipe_right(startY,endY)
+
+    if event.include? "My planner member"
+
+      planner_event_name = $planner_member_event
+
+    elsif event.include? "My planner gym"
+
+      planner_event_name = $planner_gym_event
+
+    end
+
+    i = 0
+
+    while i < 8
+
+     begin
+
+       Common.wait_for(20) {@device_blackslate_objects.section_displayed(planner_event_name).displayed?}
+
+       return true
+
+     rescue
+
+       Common.swipe_left(startY,endY)
+
+     end
+
+      i = i+1
+
+    end
 
   end
 

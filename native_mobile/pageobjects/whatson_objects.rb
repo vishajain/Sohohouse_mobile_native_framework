@@ -20,6 +20,8 @@ class Ios_Whatson_Objects
     @gym_free_event_name             = config[:props]["data"]["Gym"]["free-event"]
     @active_member_event            = config[:props]["data"]["active-site"]["member-event"]
     @active_gym_event            = config[:props]["data"]["active-site"]["gym-event"]
+    $planner_member_event         = config[:props]["data"]["my-planner"]["member-event"]
+    $planner_gym_event         = config[:props]["data"]["my-planner"]["gym-event"]
 
   end
 
@@ -65,6 +67,14 @@ class Ios_Whatson_Objects
 
   def free_gym_event
     @driver.find_element(:name =>""+@gym_free_event_name+"")
+  end
+
+  def planner_member_event
+    @driver.find_element(:name =>""+$planner_member_event+"")
+  end
+
+  def planner_gym_event
+    @driver.find_element(:name =>""+$planner_gym_event+"")
   end
 
   def member_event_section(section)
@@ -199,6 +209,14 @@ class Ios_Whatson_Objects
 
   def get_it_free
     @driver.find_element(:name =>"Get it free")
+  end
+
+  def tap_uk
+    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[contains(@name, 'UK')]")
+  end
+
+  def tap_shoreditch
+    @driver.find_element(:name =>"Shoreditch House")
   end
 
 end

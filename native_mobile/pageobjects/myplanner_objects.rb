@@ -19,69 +19,8 @@ class Ios_Myplanner_Objects
     @driver.find_element(:name => "Events")
   end
 
-  def events_no_list
-
-    @driver.find_elements(:xpath => "//XCUIElementTypeCell//XCUIElementTypeStaticText[@name = 'Events']//parent::XCUIElementTypeCell/following-sibling::XCUIElementTypeCell[1]/XCUIElementTypeImage")
-
-  end
-
-  def events_with_list
-
-    @driver.find_elements(:xpath => "//XCUIElementTypeCell//XCUIElementTypeStaticText[@name = 'Events']//parent::XCUIElementTypeCell/following-sibling::XCUIElementTypeCell[1]//XCUIElementTypeStaticText")
-
-  end
-
-  def explore_events_btn
-    @driver.find_elements(:name => "Explore events")
-  end
-
-
-  def screenings_section
-    @driver.find_element(:name => "Screenings")
-  end
-
-  def screenings_no_list
-
-    @driver.find_elements(:xpath => "//XCUIElementTypeCell//XCUIElementTypeStaticText[@name = 'Screenings']//parent::XCUIElementTypeCell/following-sibling::XCUIElementTypeCell[1]/XCUIElementTypeImage")
-
-  end
-
-  def screenings_with_list
-
-    @driver.find_elements(:xpath => "//XCUIElementTypeCell//XCUIElementTypeStaticText[@name = 'Screenings']//parent::XCUIElementTypeCell/following-sibling::XCUIElementTypeCell[1]/XCUIElementTypeStaticText")
-
-  end
-
-  def explore_screenings_btn
-    @driver.find_elements(:name => "Explore screenings")
-  end
-
-  def classes_section
-    @driver.find_element(:name => "Classes")
-  end
-
-  def classes_no_list
-
-    @driver.find_elements(:xpath => "//XCUIElementTypeCell//XCUIElementTypeStaticText[@name = 'Classes']//parent::XCUIElementTypeCell/following-sibling::XCUIElementTypeCell[1]/XCUIElementTypeImage")
-
-  end
-
-  def classes_with_list
-
-    @driver.find_elements(:xpath => "//XCUIElementTypeCell//XCUIElementTypeStaticText[@name = 'Classes']//parent::XCUIElementTypeCell/following-sibling::XCUIElementTypeCell[1]/XCUIElementTypeStaticText")
-
-  end
-
-  def explore_classes_btn
-    @driver.find_elements(:name => "Explore gym classes")
-  end
-
-  def stay_section
-    @driver.find_element(:name => "Stay")
-  end
-
-  def view_bedroom_bookings_click
-    @driver.find_element(:name => "View bedroom bookings")
+  def text_displayed(content)
+    @driver.find_element(:name => "#{content}")
   end
 
   def homeBtn

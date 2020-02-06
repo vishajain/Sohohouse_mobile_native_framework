@@ -307,3 +307,9 @@ Then("user sees houseboard screen") do
   end
 
 end
+
+Then(/^user sees (.*) under upcoming bookings/) do |event|
+
+  assert_true($blackslatescreen.verify_planner_booking_event(event),"My planner booking is not present on the houseboard screen")
+
+end
