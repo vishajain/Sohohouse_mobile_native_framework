@@ -24,7 +24,7 @@ When("user taps on blackslate to view the blackslate screen") do
 end
 
 
-Then("blackslate screen is opened") do
+Then("houseboard screen is shown") do
 
     sleep 2
 
@@ -91,19 +91,15 @@ end
 
 Given("user sees Upcoming bookings") do
 
-    assert_true($blackslatescreen.verify_upcoming_bookings,"Upcoming bookings section is not present")
-
-
-end
-
-
-Then("user sees the events under upcoming bookings") do
-
   begin
 
-    assert_true($blackslatescreen.verify_upcoming_bookings_events,"Events not present under upcoming bookings section")
+    assert_true($blackslatescreen.verify_upcoming_bookings,"Upcoming bookings section is not present")
 
   rescue StandardError => e
+
+    puts "Upcoming bookings section is not present"
+
+    @upcomingBookingsSection = "Upcoming bookings section Not Present"
 
     puts e.message
 
@@ -111,15 +107,30 @@ Then("user sees the events under upcoming bookings") do
 
 end
 
+
+Then("user sees the events under upcoming bookings") do
+
+    if @upcomingBookingsSection  !=  "Upcoming bookings section Not Present"
+
+       assert_true($blackslatescreen.verify_upcoming_bookings_events,"Events not present under upcoming bookings section")
+
+    else
+
+      skip_this_scenario
+
+    end
+
+end
+
 Then("user sees the status of the event as YOU'RE ON THE GUEST LIST") do
 
-  begin
+  if @upcomingBookingsSection  !=  "Upcoming bookings section Not Present"
 
     assert_true($blackslatescreen.verify_event_status,"Status is not set to You re on the guest list")
 
-  rescue StandardError => e
+  else
 
-    puts e.message
+    skip_this_scenario
 
   end
 
@@ -127,13 +138,13 @@ end
 
 Given("user sees multiple events") do
 
-  begin
+  if @upcomingBookingsSection  !=  "Upcoming bookings section Not Present"
 
     assert_true($blackslatescreen.verify_multi_events_present,"Status is not set to You re on the guest list")
 
-  rescue StandardError => e
+  else
 
-    puts e.message
+    skip_this_scenario
 
   end
 
@@ -141,12 +152,164 @@ end
 
 Then("user is able to scroll left to view the multiple events") do
 
-  assert_true($blackslatescreen.verify_scroll_left,"Swipe left of the events is not working")
+  if @upcomingBookingsSection  !=  "Upcoming bookings section Not Present"
+
+     assert_true($blackslatescreen.verify_scroll_left,"Swipe left of the events is not working")
+
+  else
+
+    skip_this_scenario
+
+  end
 
 end
 
 Then("user sees maximum of seven events upon scrolling to the left") do
 
-  assert_true($blackslatescreen.verify_max_seven_events,"Upcoming bookings section is holding more than seven events")
+  if @upcomingBookingsSection  !=  "Upcoming bookings section Not Present"
+
+    assert_true($blackslatescreen.verify_max_seven_events,"Upcoming bookings section is holding more than seven events")
+
+  else
+
+    skip_this_scenario
+
+  end
+
+end
+
+And("user taps on the first event") do
+
+  if @upcomingBookingsSection  !=  "Upcoming bookings section Not Present"
+
+    $blackslatescreen.tap_first_event
+
+  else
+
+    skip_this_scenario
+
+  end
+
+end
+
+Then("user is navigated to the event details screen") do
+
+  if @upcomingBookingsSection  !=  "Upcoming bookings section Not Present"
+
+    sleep 1
+
+    assert_true($blackslatescreen.verify_event_details_screen_navigation,"Unable to navigate to the event details screen")
+
+  else
+
+    skip_this_scenario
+
+  end
+
+end
+
+When("user is navigated back") do
+
+  if @upcomingBookingsSection  !=  "Upcoming bookings section Not Present"
+
+     $blackslatescreen.tap_navigate_back
+
+  else
+
+    skip_this_scenario
+
+  end
+
+end
+
+Given("user sees See all button") do
+
+  if @upcomingBookingsSection  !=  "Upcoming bookings section Not Present"
+
+    begin
+
+      sleep 1
+
+      assert_true($blackslatescreen.verify_see_all_button,"See all button not present")
+
+    rescue StandardError => e
+
+      puts e.message
+
+      puts "See all button not present"
+
+      $seeAllBtn  =  "See all Not Present"
+
+    end
+
+  else
+
+    skip_this_scenario
+
+  end
+
+end
+
+When("user taps on See all button") do
+
+  if $seeAllBtn  !=  "See all Not Present"
+
+    $blackslatescreen.tap_see_all_btn
+
+  else
+
+    skip_this_scenario
+
+  end
+
+end
+
+Then("user is navigated to the my bookings screen") do
+
+  if $seeAllBtn  !=  "See all Not Present"
+
+    assert_true($blackslatescreen.verify_my_bookings,"User not navigated to My bookings screen")
+
+  else
+
+    skip_this_scenario
+
+  end
+
+end
+
+When("user is navigated back from my bookings screen") do
+
+  puts $seeAllBtn
+
+  if $seeAllBtn  !=  "See all Not Present"
+
+    $blackslatescreen.tap_navigate_back
+
+  else
+
+    skip_this_scenario
+
+  end
+
+end
+
+Then("user sees houseboard screen") do
+
+  if @upcomingBookingsSection  !=  "Upcoming bookings section Not Present"
+
+    assert_true($blackslatescreen.verify_house_name,"House name not shown on the houseboard screen")
+
+  else
+
+    skip_this_scenario
+
+  end
+
+end
+
+Then(/^user sees (.*) under upcoming bookings heading/) do |event|
+
+  assert_true($blackslatescreen.verify_planner_booking_event(event),"My planner booking is not present on the houseboard screen")
 
 end

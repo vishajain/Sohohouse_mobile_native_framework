@@ -16,10 +16,12 @@ class BlackslateScreen
     if $device == "ios"
       @device_home_objects = Ios_Home_Objects.new($driver, $driver_appium)
       @device_blackslate_objects = Ios_Blackslate_Objects.new($driver, $driver_appium)
+      @device_whatson_objects = Ios_Whatson_Objects.new($driver, $driver_appium)
 
     else
       @device_home_objects = Android_Home_Objects.new($driver, $driver_appium)
       @device_blackslate_objects = Android_Blackslate_Objects.new($driver, $driver_appium)
+      @device_whatson_objects = Android_Whatson_Objects.new($driver, $driver_appium)
 
     end
 
@@ -168,14 +170,16 @@ class BlackslateScreen
     endY = y+55
 
     before_swipe_string = Common.wait_for(20) {@device_blackslate_objects.event_title_first_event}.text
+    before_swipe_date = Common.wait_for(20) {@device_blackslate_objects.event_date_first_event}.text
 
     Common.swipe_left(startY,endY)
 
-    sleep 3
+    sleep 4
 
     after_swipe_string = Common.wait_for(20) {@device_blackslate_objects.event_title_first_event}.text
+    after_swipe_date = Common.wait_for(20) {@device_blackslate_objects.event_date_first_event}.text
 
-    if  before_swipe_string == after_swipe_string
+    if  before_swipe_string == after_swipe_string && before_swipe_date == after_swipe_date
       return false
     else
       return true
@@ -195,27 +199,31 @@ class BlackslateScreen
     @events_count = 1
 
     before_swipe_string = Common.wait_for(20) {@device_blackslate_objects.event_title_first_event}.text
-
-    sleep 3
+    before_swipe_date = Common.wait_for(20) {@device_blackslate_objects.event_date_first_event}.text
 
     loop do
 
-      puts Common.wait_for(20) {@device_blackslate_objects.event_title_first_event}.text
-      puts @events_count
-
       Common.swipe_left(startY,endY)
 
+      sleep 3
+
       after_swipe_string = Common.wait_for(20) {@device_blackslate_objects.event_title_first_event}.text
+      after_swipe_date = Common.wait_for(20) {@device_blackslate_objects.event_date_first_event}.text
 
       if  before_swipe_string.equal? after_swipe_string
 
-        break
+        if before_swipe_date.equal? after_swipe_date
+
+         break
+
+        end
 
       else
 
         @events_count = @events_count + 1
 
         before_swipe_string = Common.wait_for(20) {@device_blackslate_objects.event_title_first_event}.text
+        before_swipe_date = Common.wait_for(20) {@device_blackslate_objects.event_date_first_event}.text
 
         sleep 3
 
@@ -230,6 +238,85 @@ class BlackslateScreen
     else
 
       return true
+
+    end
+
+  end
+
+  def tap_first_event
+
+    Common.wait_for(20) {@device_blackslate_objects.event_title_first_event}.click
+
+  end
+
+  def verify_event_details_screen_navigation
+
+    return Common.wait_for(20) {@device_blackslate_objects.section_displayed("Tickets")}.displayed?
+
+  end
+
+  def tap_navigate_back
+
+    Common.wait_for(20) {@device_blackslate_objects.icon_left}.click
+
+  end
+
+  def verify_see_all_button
+
+    return Common.wait_for(20) {@device_blackslate_objects.section_displayed("See all")}.displayed?
+
+  end
+
+  def tap_see_all_btn
+
+    Common.wait_for(20) {@device_blackslate_objects.section_displayed("See all")}.click
+
+  end
+
+  def verify_my_bookings
+
+    return Common.wait_for(20) {@device_blackslate_objects.section_displayed("My bookings")}.displayed?
+
+  end
+
+  def verify_planner_booking_event(event)
+
+    locat = Common.wait_for(20) {@device_blackslate_objects.upcoming_bookings}.location
+
+    y =  locat["y"]
+
+    startY = y+55
+    endY = y+55
+
+    Common.swipe_right(startY,endY)
+
+    if event.include? "My planner member"
+
+      planner_event_name = $planner_member_event
+
+    elsif event.include? "My planner gym"
+
+      planner_event_name = $planner_gym_event
+
+    end
+
+    i = 0
+
+    while i < 8
+
+     begin
+
+       Common.wait_for(20) {@device_blackslate_objects.section_displayed(planner_event_name).displayed?}
+
+       return true
+
+     rescue
+
+       Common.swipe_left(startY,endY)
+
+     end
+
+      i = i+1
 
     end
 

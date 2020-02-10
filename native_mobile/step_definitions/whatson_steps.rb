@@ -147,7 +147,7 @@ end
 
 Given(/^user sees the (.*) tab/) do |section|
 
-  assert_true($whatsonscreen.scroll_to_top(section), "Unable to find the screenings tab")
+  assert_true($whatsonscreen.scroll_to_top(section), "Unable to find the #{section} tab")
 
 end
 
@@ -227,5 +227,17 @@ end
 Then("user should see the events of Soho House Berlin only") do
 
   assert_true($whatsonscreen.results_check, "Filter not working as expected")
+
+end
+
+When(/^user books to the (.*) event/) do |event|
+
+  assert_true($whatsonscreen.verify_book_event(event),"Unable to book to the event")
+
+end
+
+When("user filters Shoreditch house events") do
+
+  $whatsonscreen.select_shoreditch_house
 
 end

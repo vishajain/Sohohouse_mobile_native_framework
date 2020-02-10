@@ -493,9 +493,31 @@ class AccountScreen
 
   def select_40_greek_street
 
-    Common.wait_for(5){@device_account_objects.tap_uk}.click
+      tap_reset
 
-    Common.wait_for(5){@device_account_objects.greek_St}.click
+      sleep 5
+
+      Common.wait_for(10){@device_account_objects.tap_uk}.click
+
+      Common.swipe_down
+
+      Common.wait_for(10){@device_account_objects.greek_St}.click
+
+
+  end
+
+  def select_shoreditch_house
+
+      tap_reset
+
+      sleep 5
+
+      Common.wait_for(10){@device_account_objects.tap_uk}.click
+
+      Common.swipe_down
+
+      Common.wait_for(10){@device_account_objects.shoreditch_house}.click
+
 
   end
 
@@ -504,6 +526,14 @@ class AccountScreen
     sleep 5
 
     return Common.wait_for(5){@device_account_objects.greek_St.displayed?}
+
+  end
+
+  def verify_shoreditch_displayed
+
+    sleep 5
+
+    return Common.wait_for(5){@device_account_objects.shoreditch_house.displayed?}
 
   end
 

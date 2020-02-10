@@ -14,10 +14,12 @@ class HomeScreen
     if $device == "ios"
 
       @device_home_objects = Ios_Home_Objects.new($driver, $driver_appium)
+      @device_whatson_objects = Ios_Whatson_Objects.new($driver, $driver_appium)
 
     else
 
       @device_home_objects = Android_Home_Objects.new($driver, $driver_appium)
+      @device_whatson_objects = Android_Whatson_Objects.new($driver, $driver_appium)
 
     end
 
@@ -39,7 +41,7 @@ class HomeScreen
 
   def verify_username()
 
-    return Common.wait_for(20) {@device_home_objects.username.displayed?}
+    return Common.wait_for(25) {@device_home_objects.username.displayed?}
 
   end
 
@@ -61,18 +63,23 @@ class HomeScreen
     i = 1
 
     loop do
-      if Common.wait_for(3){@device_home_objects.house_notes}.size > 0
 
-      return true
+      begin
 
-      else
-        i = i+1
+        return Common.wait_for(3){@device_home_objects.house_notes_screen.displayed?}
+
+      rescue
+
         Common.swipe_down
-      end
 
-      if i > 4
-        return false
-        break
+        i = i + 1
+
+        if i > 5
+
+          return false
+
+        end
+
       end
 
     end
@@ -85,30 +92,41 @@ class HomeScreen
       i = 1
 
       loop do
-         if Common.wait_for(3){@device_home_objects.see_all_stories}.size > 0
 
-           @device_home_objects.see_all_stories[0].click
-           if Common.wait_for(10){@device_home_objects.house_notes_screen.displayed?}
+        begin
 
-              sleep 3
-               Common.wait_for(10){@device_home_objects.navigate_back}.click
-               return true
-               break
-           else
-             return false
-           end
+          if Common.wait_for(3){@device_home_objects.see_all_stories.displayed?}
 
-         else
-           i = i+1
-           Common.swipe_down
-         end
+            Common.wait_for(3){@device_home_objects.see_all_stories}.click
 
-         if i > 7
-           return false
-           break
-         end
+            sleep 3
+
+            if Common.wait_for(10){@device_home_objects.house_notes_screen.displayed?}
+
+              Common.wait_for(10){@device_home_objects.navigate_back}.click
+
+              return true
+
+            end
+
+          end
+
+        rescue
+
+          Common.swipe_down
+
+          i = i + 1
+
+          if i > 5
+
+            return false
+
+          end
+
+        end
 
       end
+
   end
 
   def verify_noticeboard()
@@ -116,7 +134,6 @@ class HomeScreen
     Common.swipe_down
 
     return Common.wait_for(5){@device_home_objects.noticeboard.displayed?}
-
 
   end
 
@@ -133,7 +150,6 @@ class HomeScreen
           sleep 3
           Common.wait_for(10){@device_home_objects.navigate_back}.click
           return true
-          break
         else
           return false
         end
@@ -417,6 +433,194 @@ class HomeScreen
   def tap_modal_close
 
     Common.wait_for(5){@device_home_objects.modal_close}.click
+
+  end
+
+  def tap_carousel(event_name)
+
+    locat = Common.wait_for(20) {@device_home_objects.happening_now}.location
+
+    y =  locat["y"]
+
+    startY = y+55
+    endY = y+55
+
+    Common.swipe_right(startY,endY)
+
+    i = 1
+
+    while i < 8
+
+      begin
+
+        if Common.wait_for(20) {@device_home_objects.event_name(event_name).displayed?}
+
+          @device_home_objects.event_name(event_name).click
+
+          return true
+
+        end
+
+      rescue
+
+        Common.swipe_left(startY,endY)
+
+        i = i+ 1
+
+      end
+
+    end
+
+  end
+
+  def verify_user_navigation(event_name)
+
+      return Common.wait_for(20) {@device_home_objects.event_name(event_name).displayed?}
+
+  end
+
+  def verify_book_event
+
+
+    begin
+
+      Common.wait_for(2) {@device_whatson_objects.you_are_on_the_guest_list.displayed?}
+
+      return true
+
+    rescue
+
+
+    end
+
+    begin
+
+      Common.wait_for(2) {@device_whatson_objects.buy_tickets.displayed?}
+
+      paid_event = true
+
+    rescue
+
+      paid_event = false
+
+    end
+
+    begin
+
+      Common.wait_for(2) {@device_whatson_objects.buy_tickets.enabled?}
+
+      guests_allowed = false
+
+    rescue
+
+      guests_allowed = true
+
+    end
+
+    begin
+
+      Common.wait_for(2) {@device_whatson_objects.book.displayed?}
+
+      free_event = true
+
+    rescue
+
+      free_event = false
+
+    end
+
+    begin
+
+      Common.wait_for(2) {@device_whatson_objects.book_and_pay.displayed?}
+
+      gym_paid_event = true
+
+    rescue
+
+      gym_paid_event = false
+
+    end
+
+    if paid_event == true && guests_allowed == true
+
+      $whatsonscreen.book_member_event
+
+      $whatsonscreen.verify_member_section("Confirm payment")
+
+      $whatsonscreen.buy_tickets_click
+
+      $whatsonscreen.verify_you_on_guest_list
+
+      $whatsonscreen.ok_btn_click
+
+    elsif paid_event == true && guests_allowed == false
+
+      $whatsonscreen.book_no_guests_member_event
+
+      $whatsonscreen.verify_member_section("Confirm payment")
+
+      $whatsonscreen.buy_tickets_click
+
+      $whatsonscreen.verify_you_on_guest_list
+
+      $whatsonscreen.ok_btn_click
+
+    elsif paid_event == false && free_event == true
+
+      $whatsonscreen.book_no_guests_free_member_event
+
+      $whatsonscreen.verify_you_on_guest_list
+
+      $whatsonscreen.ok_btn_click
+
+    elsif gym_paid_event == true
+
+      $whatsonscreen.book_gym_event
+
+      $whatsonscreen.verify_member_section("Confirm payment")
+
+      $whatsonscreen.buy_tickets_click
+
+      $whatsonscreen.verify_you_on_guest_list
+
+      $whatsonscreen.ok_btn_click
+
+    end
+
+    if $whatsonscreen.verify_guest_list_status_on_event_screen
+
+      return true
+
+    end
+
+  end
+
+  def user_navigate_to_home_screen
+
+    begin
+
+      Common.wait_for(10){@device_whatson_objects.icon_close.click}
+
+    rescue
+
+    end
+
+
+    begin
+
+      Common.wait_for(10){@device_whatson_objects.icon_left.click}
+
+    rescue
+
+    end
+
+    begin
+
+      Common.wait_for(10){@device_whatson_objects.icon_left.click}
+
+    rescue
+
+    end
 
   end
 

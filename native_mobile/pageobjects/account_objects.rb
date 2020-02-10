@@ -153,11 +153,15 @@ class Ios_Account_Objects
   end
 
   def tap_uk
-    @driver.find_element(:name => "UK")
+    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[contains(@name, 'UK')]")
   end
 
   def greek_St
     @driver.find_element(:name => "40 Greek Street")
+  end
+
+  def shoreditch_house
+    @driver.find_element(:name => "Shoreditch House")
   end
 
   def notification_pref_switch(link)

@@ -31,250 +31,45 @@ class MyplannerScreen
 
   def verify_myplanner_title
 
-    if Common.wait_for(20) {@device_myplanner_objects.myplanner_title.displayed?}
-
-      return true
-
-    end
+    return Common.wait_for(20) {@device_myplanner_objects.myplanner_title.displayed?}
 
   end
 
-  def verify_events_section
+  def tap_link (text)
 
-
-    if Common.wait_for(5) {@device_myplanner_objects.events_section.displayed?}
-
-      return true
-
-    end
+    Common.wait_for(20) {@device_myplanner_objects.text_displayed(text)}.click
 
   end
 
-  def verify_events_list
-
-    if Common.wait_for(5) {@device_myplanner_objects.events_with_list.size} > 2
-
-      return true
-
-    end
-
-  end
-
-
-  def verify_events_list_click
-
-    if Common.wait_for(5) {@device_myplanner_objects.explore_events_btn.size} < 1
-
-      Common.wait_for(5) {@device_myplanner_objects.events_with_list[0]}.click
-
-        @device_home_objects.navigate_back_to_my_planner.click
-
-      return true
-
-    else
-
-      return false
-
-    end
-
-  end
-
-  def verify_no_events_list
-
-    if Common.wait_for(5) {@device_myplanner_objects.explore_events_btn.size} > 0
-
-      return true
-
-    else
-
-      return false
-
-    end
-
-  end
-
-  def verify_no_events_list_click
-
-    if Common.wait_for(5) {@device_myplanner_objects.explore_events_btn.size} > 0
-
-      Common.wait_for(5) {@device_myplanner_objects.explore_events_btn[0]}.click
-
-      if Common.wait_for(20) {@device_whatson_objects.whatson_title.displayed?}
-
-        $homescreen.verify_myplanner_click
-
-        return true
-
-      end
-    else
-
-      return false
-
-    end
-
-  end
-
-  def verify_screenings_section
-
-    if Common.wait_for(5) {@device_myplanner_objects.screenings_section.displayed?}
-
-      return true
-
-    end
-
-  end
-
-  def verify_screenings_list_click
-
-
-    if Common.wait_for(5) {@device_myplanner_objects.explore_screenings_btn.size} == 0
-
-      Common.wait_for(5) {@device_myplanner_objects.screenings_with_list[0]}.click
-
-        @device_home_objects.navigate_back_to_my_planner.click
-
-      return true
-    else
-      return false
-    end
-  end
-
-  def verify_no_screenings_list
-
-    if Common.wait_for(5) {@device_myplanner_objects.explore_screenings_btn.size} > 0
-
-      return true
-
-    else
-
-      return false
-
-    end
-
-  end
-
-  def verify_no_screenings_list_click
-
-    if Common.wait_for(5) {@device_myplanner_objects.explore_screenings_btn.size} > 0
-
-      Common.swipe_down
-
-      Common.wait_for(5) {@device_myplanner_objects.explore_screenings_btn[0]}.click
-
-      if Common.wait_for(20) {@device_whatson_objects.whatson_title.displayed?}
-
-        $homescreen.verify_myplanner_click
-
-        return true
-
-      end
-
-    else
-
-      return false
-
-    end
-
-  end
-
-  def verify_classes_section
-
-    Common.swipe_down
-
-    if Common.wait_for(5) {@device_myplanner_objects.classes_section.displayed?}
-
-      return true
-
-    end
-
-  end
-
-  def verify_classes_list_click
-    Common.swipe_down
-    Common.swipe_down
-
-    if Common.wait_for(5) {@device_myplanner_objects.explore_classes_btn}.size == 0
-
-      Common.wait_for(5) {@device_myplanner_objects.classes_with_list[0]}.click
-
-        @device_home_objects.navigate_back_to_my_planner.click
-
-      return true
-
-    else
-
-      return false
-    end
-  end
-
-  def verify_no_classes_list
-    Common.swipe_down
-    Common.swipe_down
-
-    if Common.wait_for(5) {@device_myplanner_objects.explore_classes_btn.size} > 0
-
-      return true
-
-    else
-
-      return false
-
-    end
-
-  end
-
-  def verify_no_classes_list_click
-
-    if Common.wait_for(5) {@device_myplanner_objects.explore_classes_btn.size} > 0
-
-      Common.wait_for(5) {@device_myplanner_objects.explore_classes_btn[0].click}
-
-      if Common.wait_for(20) {@device_whatson_objects.whatson_title.displayed?}
-
-        $homescreen.verify_myplanner_click
-
-        return true
-
-      end
-
-    else
-
-      return false
-
-    end
-
-  end
-
-  def verify_stay_section
-    Common.swipe_down
-    Common.swipe_down
-    Common.swipe_down
-    Common.swipe_down
-    if Common.wait_for(5) {@device_myplanner_objects.stay_section.displayed?}
-
-      return true
-
-    end
-
-  end
-
-  def verify_view_bedroom_bookings
-
-    Common.wait_for(5) {@device_myplanner_objects.view_bedroom_bookings_click.click}
-
-    sleep 15
-
-    Common.wait_for(20) {@device_home_objects.navigate_back.click}
-
-    return true
-
-  end
 
   def home_screen_navigate
 
     Common.wait_for(5){@device_myplanner_objects.homeBtn.click}
 
     return true
+
+  end
+
+
+  def verify_text(text)
+
+    return Common.wait_for(20) {@device_myplanner_objects.text_displayed(text).displayed?}
+
+  end
+
+  def verify_events_on_my_planner(event)
+
+    Common.wait_for(10) {$homescreen.verify_myplanner_click}
+
+    if event.include? "My planner member"
+
+      return Common.wait_for(20) {@device_whatson_objects.planner_member_event.displayed?}
+
+    elsif event.include? "My planner gym"
+
+      return Common.wait_for(20) {@device_whatson_objects.planner_gym_event.displayed?}
+
+    end
 
   end
 

@@ -15,10 +15,12 @@ class WhatsonScreen
     if $device == "ios"
       @device_home_objects = Ios_Home_Objects.new($driver, $driver_appium)
       @device_whatson_objects = Ios_Whatson_Objects.new($driver, $driver_appium)
+      @device_account_objects = Ios_Account_Objects.new($driver, $driver_appium)
 
     else
       @device_home_objects = Android_Home_Objects.new($driver, $driver_appium)
       @device_whatson_objects = Android_Whatson_Objects.new($driver, $driver_appium)
+      @device_account_objects = Android_Account_Objects.new($driver, $driver_appium)
 
     end
 
@@ -135,9 +137,9 @@ class WhatsonScreen
 
     sleep 2
 
-    @i = 1
+    @i = 0
 
-    while @i <  10
+    while @i <  12
 
       begin
 
@@ -149,9 +151,21 @@ class WhatsonScreen
 
                 Common.wait_for(5){@device_whatson_objects.paid_member_event.click}
 
-                return true
+                sleep 2
 
-                break
+                begin
+
+                  if Common.wait_for(3){@device_whatson_objects.cancel_booking.displayed?}
+
+                    Common.wait_for(3){@device_whatson_objects.cancel_booking}.click
+
+                  end
+
+                rescue
+
+                end
+
+                return true
 
               end
 
@@ -164,9 +178,21 @@ class WhatsonScreen
 
                  Common.wait_for(5){@device_whatson_objects.paid_screening_event.click}
 
-                 return true
+                 sleep 2
 
-                 break
+                 begin
+
+                   if Common.wait_for(3){@device_whatson_objects.cancel_booking.displayed?}
+
+                     Common.wait_for(3){@device_whatson_objects.cancel_booking}.click
+
+                   end
+
+                 rescue
+
+                 end
+
+                 return true
 
                end
 
@@ -179,9 +205,21 @@ class WhatsonScreen
 
                 Common.wait_for(5){@device_whatson_objects.paid_gym_event.click}
 
-                return true
+                sleep 2
 
-                break
+                begin
+
+                  if Common.wait_for(3){@device_whatson_objects.cancel_booking.displayed?}
+
+                    Common.wait_for(3){@device_whatson_objects.cancel_booking}.click
+
+                  end
+
+                rescue
+
+                end
+
+                return true
 
               end
 
@@ -193,9 +231,21 @@ class WhatsonScreen
 
                 Common.wait_for(5){@device_whatson_objects.active_member_event}.click
 
-                return true
+                sleep 2
 
-                break
+                begin
+
+                  if Common.wait_for(3){@device_whatson_objects.cancel_booking.displayed?}
+
+                    Common.wait_for(3){@device_whatson_objects.cancel_booking}.click
+
+                  end
+
+                rescue
+
+                end
+
+                return true
 
               end
 
@@ -207,9 +257,21 @@ class WhatsonScreen
 
                 Common.wait_for(5){@device_whatson_objects.active_gym_event.click}
 
-                return true
+                sleep 2
 
-                break
+                begin
+
+                  if Common.wait_for(3){@device_whatson_objects.cancel_booking.displayed?}
+
+                    Common.wait_for(3){@device_whatson_objects.cancel_booking}.click
+
+                  end
+
+                rescue
+
+                end
+
+                return true
 
               end
 
@@ -233,7 +295,7 @@ class WhatsonScreen
 
     i = 0
 
-    while i <  10
+    while i <  12
 
       begin
 
@@ -245,9 +307,21 @@ class WhatsonScreen
 
           Common.wait_for(5){@device_whatson_objects.free_member_event.click}
 
-          return true
+          sleep 2
 
-          break
+          begin
+
+            if Common.wait_for(3){@device_whatson_objects.cancel_booking.displayed?}
+
+              Common.wait_for(3){@device_whatson_objects.cancel_booking}.click
+
+            end
+
+          rescue
+
+          end
+
+          return true
 
         elsif section == "Screenings"
 
@@ -257,9 +331,21 @@ class WhatsonScreen
 
           Common.wait_for(5){@device_whatson_objects.free_screening_event.click}
 
-          return true
+          begin
 
-          break
+            sleep 2
+
+            if Common.wait_for(3){@device_whatson_objects.cancel_booking.displayed?}
+
+              Common.wait_for(3){@device_whatson_objects.cancel_booking}.click
+
+            end
+
+          rescue
+
+          end
+
+          return true
 
         elsif section == "Gym classes"
 
@@ -269,9 +355,69 @@ class WhatsonScreen
 
           Common.wait_for(5){@device_whatson_objects.free_gym_event.click}
 
+          begin
+
+            sleep 2
+
+            if Common.wait_for(3){@device_whatson_objects.cancel_booking.displayed?}
+
+              Common.wait_for(3){@device_whatson_objects.cancel_booking}.click
+
+            end
+
+          rescue
+
+          end
+
           return true
 
-          break
+        elsif section == "My planner member"
+
+          Common.wait_for(12){@device_whatson_objects.planner_member_event.displayed?}
+
+          sleep 2
+
+          Common.wait_for(5){@device_whatson_objects.planner_member_event.click}
+
+          begin
+
+            sleep 2
+
+            if Common.wait_for(3){@device_whatson_objects.cancel_booking.displayed?}
+
+              Common.wait_for(3){@device_whatson_objects.cancel_booking}.click
+
+            end
+
+          rescue
+
+          end
+
+          return true
+
+        elsif section == "My planner gym"
+
+          Common.wait_for(12){@device_whatson_objects.planner_gym_event.displayed?}
+
+          sleep 2
+
+          Common.wait_for(5){@device_whatson_objects.planner_gym_event.click}
+
+          sleep 2
+
+          begin
+
+            if Common.wait_for(3){@device_whatson_objects.cancel_booking.displayed?}
+
+              Common.wait_for(3){@device_whatson_objects.cancel_booking}.click
+
+            end
+
+          rescue
+
+          end
+
+          return true
 
         end
 
@@ -321,12 +467,22 @@ class WhatsonScreen
   def book_member_event
 
       # Common.wait_for(10){@device_whatson_objects.icon_plus.click}
+      #
+      sleep 1
 
       $driver.action.move_to(@device_whatson_objects.icon_plus).click.perform
 
       $driver.action.move_to(@device_whatson_objects.buy_tickets).click.perform
 
       # Common.wait_for(10){@device_whatson_objects.buy_tickets.click}
+
+  end
+
+  def book_no_guests_member_event
+    #
+    sleep 1
+
+    $driver.action.move_to(@device_whatson_objects.buy_tickets).click.perform
 
   end
 
@@ -345,6 +501,12 @@ class WhatsonScreen
   def book_free_member_event
 
     $driver.action.move_to(@device_whatson_objects.icon_plus).click.perform
+
+    $driver.action.move_to(@device_whatson_objects.book).click.perform
+
+  end
+
+  def book_no_guests_free_member_event
 
     $driver.action.move_to(@device_whatson_objects.book).click.perform
 
@@ -391,7 +553,16 @@ class WhatsonScreen
 
     end
 
-    return Common.wait_for(10){@device_whatson_objects.you_are_on_the_guest_list.displayed?}
+    begin
+
+      return Common.wait_for(10){@device_whatson_objects.you_are_on_the_guest_list.displayed?}
+
+    rescue
+
+      return false
+
+    end
+
 
   end
 
@@ -426,7 +597,6 @@ class WhatsonScreen
   def navigate_to_events_list
 
     sleep 3
-
     Common.wait_for(10){@device_whatson_objects.icon_left.click}
 
   end
@@ -521,8 +691,6 @@ class WhatsonScreen
 
     i = 0
 
-    # puts "count is"
-    # puts Common.wait_for(2){@device_whatson_objects.your_houses.size}
     while i < Common.wait_for(2){@device_whatson_objects.your_houses.size}
 
       # puts Common.wait_for(2){@device_whatson_objects.your_houses[i]}.text
@@ -544,6 +712,93 @@ class WhatsonScreen
   def results_check
 
     return Common.wait_for(10){@device_whatson_objects.berlin_result.displayed?}
+
+  end
+
+  def verify_book_event(event)
+
+    if event.include? "My planner member"
+
+      scroll_to_top("Events")
+
+      events_click("Events")
+
+      find_free_event("My planner member")
+
+      if verify_guest_list_status_on_event_screen
+
+        navigate_to_events_list
+
+        return true
+
+      end
+
+      book_no_guests_free_member_event
+
+      verify_you_on_guest_list
+
+      ok_btn_click
+
+    elsif event.include? "My planner gym"
+
+      scroll_to_top("Gym classes")
+
+      events_click("Gym classes")
+
+      find_free_event("My planner gym")
+
+      if verify_guest_list_status_on_event_screen
+
+        navigate_to_events_list
+
+        return true
+
+      end
+
+      book_no_guests_free_member_event
+
+      verify_you_on_guest_list
+
+      ok_btn_click
+
+    end
+
+    if verify_guest_list_status_on_event_screen
+
+      navigate_to_events_list
+
+      return true
+
+    end
+
+  end
+
+  def select_shoreditch_house
+
+
+
+    $homescreen.verify_account_click
+
+    $accountscreen.tap_favourite_houses
+
+    $accountscreen.tap_reset
+
+    $accountscreen.select_shoreditch_house
+
+    $accountscreen.tap_save_changes
+
+
+    # filter_click
+
+
+    # Common.wait_for(10){@device_whatson_objects.tap_uk}.click
+    #
+    # Common.swipe_down
+    #
+    # Common.wait_for(10){@device_whatson_objects.tap_shoreditch}.click
+    #
+    #
+    # Common.wait_for(10){@device_whatson_objects.confirm}.click
 
   end
 

@@ -2,70 +2,62 @@
 Feature: My Planner screen
 
 
-#  Background:
-#
-#  @smoke @login-ex
-#  Scenario: Login with valid user credentials
-#    Given app is launched
-#    And user is on sign in screen
-#    When user enters valid email address and password
-#    Then user clicks on go button
-#
-#  @smoke
-#  Scenario: Validate Myplanner screen title
-#    Given username is visible
-#    When user clicks on my planner button
-#    Then user sees my planner screen title
-#
-#  @smoke
-#  Scenario: Validate events section is present
-#    Then Events section is present
-#
-#  @smoke
-#  Scenario: Validate event bookings if present under Events section
-#    When Events list is present
-#    Then user taps on the first event to navigate to event details screen
-#
-#  @smoke
-#  Scenario: Validate explore events button when no events bookings are present
-#    Given user sees my planner screen title
-#    When no Event bookings are present
-#    Then user taps on the explore events button to navigate to What's on screen
-#
-#  @smoke
-#  Scenario: Validate screening section is present
-#    Then Screenings section is present
-#
-#  @smoke
-#  Scenario: Validate screening bookings if present under Screening section
-#    When Screenings section is present
-#    Then user taps on the first screening event to navigate to event details screen
-#
-#  @smoke
-#  Scenario: Validate explore screenings button when no screening events bookings are present
-#    Given user sees my planner screen title
-#    When no screening event bookings are present
-#    Then user taps on the explore screenings button to navigate to What's on screen
-#
-#  @smoke
-#  Scenario: Validate classes section is present
-#    Then Classes section is present
-#
-#  @smoke
-#  Scenario: Validate Gym classes bookings if present under Classes section
-#    Given Classes section is present
-#    Then user taps on the first Gym class event to navigate to event details screen
-#
-#  @smoke
-#  Scenario: Validate Explore gym classes button when no gym events bookings are present
-#    When no gym event bookings are present
-#    Then user taps on the Explore gym classes button to navigate to What's on screen
-#
-##  @smoke
-##  Scenario: Validate stay section and view bedroom bookings link navigation
-##    Given stay section is present
-##    Then member clicks on view bedroom bookings link and navigate back to my planner
-#
-#  @smoke @hook
-#  Scenario: Go back to the home page from my planner screen
-#    Then member is not on home screen from my planner screen
+  Background:
+
+  @smoke @login-ex
+  Scenario: Login with valid user credentials
+    Given app is launched
+    And user is on sign in screen
+    When user enters valid email address and password
+    Then user clicks on go button
+
+  @smoke
+  Scenario: Validate Myplanner screen title
+    Given username is visible
+    When user clicks on my planner button
+    Then user sees my planner screen title
+
+  @smoke
+  Scenario: Validate my planner sections
+    Given user sees my planner screen title
+    Then user sees the Upcoming tab
+    Then user sees the Booking history tab
+
+  @smoke
+  Scenario: Select the favourite house as Shoreditch house
+    When user clicks on Account button on home screen
+    When user taps on favourite houses
+    And user selects Shoreditch house
+    And tap on Save changes
+
+  @smoke
+  Scenario: Book a member event and verify in the my planner section
+    Given user clicks on what's on button
+    And user books to the My planner member event
+    Then user sees the My planner member event booking in the my planner
+
+  @smoke
+  Scenario: Book a gym event and verify in the my planner section
+    Given user clicks on what's on button
+    And user books to the My planner gym event
+    Then user sees the My planner gym event booking in the my planner
+
+  @smoke
+  Scenario: Upcoming tab validation
+    Given user sees the Booking history tab
+    When user taps the Booking history tab
+    Then user sees the See the events and rooms you've booked in the past description
+
+  @smoke
+  Scenario: Verify the member event booked in the upcoming bookings section of house board screen
+    When user taps on blackslate to view the blackslate screen
+    Then user sees My planner member under upcoming bookings heading
+
+  @smoke
+  Scenario: Verify the gym event booked in the upcoming bookings section of house board screen
+    Then user sees My planner gym under upcoming bookings heading
+
+  @smoke
+  Scenario: Close the houseboard screen and navigate to home screen
+    Then member is not on home screen from blackslate screen
+    Then user navigates back to the home screen from my planner

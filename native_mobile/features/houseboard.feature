@@ -15,7 +15,7 @@ Feature: Blackslate screen
   Scenario: Validate Blackslate navigation
     Given username is visible
     When user taps on blackslate to view the blackslate screen
-    Then blackslate screen is opened
+    Then houseboard screen is shown
 
   @smoke
   Scenario: Validate House name link and its navigation to browse houses screen

@@ -67,18 +67,29 @@ class Ios_Blackslate_Objects
     @driver.find_element(:xpath => "//XCUIElementTypeCell[3]//XCUIElementTypeStaticText[8]")
   end
 
+  def event_date_first_event
+    @driver.find_element(:xpath => "//XCUIElementTypeCell[3]//XCUIElementTypeStaticText[1]")
+  end
+
   def event_title_second_event
     @driver.find_element(:xpath => "//XCUIElementTypeCell[3]//XCUIElementTypeStaticText[3]")
   end
 
-  def event_status_one_event
-    @driver.find_element(:xpath => "//XCUIElementTypeCell[3]//XCUIElementTypeStaticText[3]")
+  def event_date_second_event
+    @driver.find_element(:xpath => "//XCUIElementTypeCell[3]//XCUIElementTypeStaticText[4]")
   end
 
-  def event_status_multi_event
+  def event_status_one_event
     @driver.find_element(:xpath => "//XCUIElementTypeCell[3]//XCUIElementTypeStaticText[6]")
   end
 
+  def event_status_multi_event
+    @driver.find_element(:xpath => "//XCUIElementTypeCell[3]//XCUIElementTypeStaticText[7]")
+  end
+
+  def section_displayed(section)
+    @driver.find_element(:name => ""+section+"")
+  end
 
 
 end
