@@ -245,15 +245,13 @@ class BlackslateScreen
 
   def tap_first_event
 
-    @event_name = Common.wait_for(20) {@device_blackslate_objects.event_title_first_event}.text
-
     Common.wait_for(20) {@device_blackslate_objects.event_title_first_event}.click
 
   end
 
   def verify_event_details_screen_navigation
 
-    return Common.wait_for(20) {@device_blackslate_objects.section_displayed(@event_name)}.displayed?
+    return Common.wait_for(20) {@device_blackslate_objects.section_displayed("Tickets")}.displayed?
 
   end
 

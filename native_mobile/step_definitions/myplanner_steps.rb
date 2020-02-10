@@ -46,3 +46,9 @@ Then(/^user sees the (.*) event booking in the my planner/) do |event|
   assert_true($myplannerscreen.verify_events_on_my_planner(event),"Unable to see the event")
 
 end
+
+Then("user navigates back to the home screen from my planner") do
+
+  assert_true($myplannerscreen.home_screen_navigate,"Unable to navigate to home screen")
+
+end

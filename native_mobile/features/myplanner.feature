@@ -24,9 +24,15 @@ Feature: My Planner screen
     Then user sees the Booking history tab
 
   @smoke
+  Scenario: Select the favourite house as Shoreditch house
+    When user clicks on Account button on home screen
+    When user taps on favourite houses
+    And user selects Shoreditch house
+    And tap on Save changes
+
+  @smoke
   Scenario: Book a member event and verify in the my planner section
     Given user clicks on what's on button
-    When user filters Shoreditch house events
     And user books to the My planner member event
     Then user sees the My planner member event booking in the my planner
 
@@ -45,12 +51,13 @@ Feature: My Planner screen
   @smoke
   Scenario: Verify the member event booked in the upcoming bookings section of house board screen
     When user taps on blackslate to view the blackslate screen
-    Then user sees My planner member under upcoming bookings
+    Then user sees My planner member under upcoming bookings heading
 
   @smoke
   Scenario: Verify the gym event booked in the upcoming bookings section of house board screen
-    Then user sees My planner gym under upcoming bookings
+    Then user sees My planner gym under upcoming bookings heading
 
   @smoke
-  Scenario: Close the houseboard screen
+  Scenario: Close the houseboard screen and navigate to home screen
     Then member is not on home screen from blackslate screen
+    Then user navigates back to the home screen from my planner

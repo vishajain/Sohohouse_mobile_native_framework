@@ -27,7 +27,7 @@ class Ios_Home_Objects
   end
 
   def see_all_stories
-    @driver.find_elements(:xpath => "//XCUIElementTypeCell/XCUIElementTypeButton[@name = 'See all stories']")
+    @driver.find_element(:name => "See all stories")
   end
 
   def house_notes_screen
@@ -225,7 +225,7 @@ class Android_Home_Objects
   end
 
   def see_all_stories
-    @driver.find_elements(:xpath => "//android.widget.Button[@text='See all stories']")
+    @driver.find_element(:xpath => "//android.widget.Button[@text='See all stories']")
   end
 
   def house_notes_screen

@@ -36,9 +36,8 @@ Feature: Upcoming bookings
 
   @smoke
   Scenario: User navigation from event details screen to house board
-    Given user sees Upcoming bookings
-    And user is navigated to the event details screen
-    When user is navigated back
+    When user is navigated to the event details screen
+    And user is navigated back
     Then user sees houseboard screen
 
   @smoke

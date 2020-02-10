@@ -17,20 +17,15 @@ Feature: What's on screen
     Then greetings should be visible
 
   @smoke
-  Scenario: Select the favourite house as Shoreditch house
+  Scenario: Select the favourite house as Greek house
     When user clicks on Account button on home screen
     When user taps on favourite houses
     And user selects 40 Greek Street
     And tap on Save changes
 
   @smoke @wip
-  Scenario: Validate Whatson screen title
-    When user clicks on what's on button
-    Then user sees what's on screen title
-
-  @smoke @wip
-  Scenario: Validate whatson filter icon
-    Then user sees what's on filter icon
+  Scenario: Navigate to whatson screen
+    Then user clicks on what's on button
 
   @smoke
   Scenario: Validate Whatson options
@@ -117,7 +112,6 @@ Feature: What's on screen
     When the paid Screenings event is found
     Then the Tickets section is present
     Then the Date and time section is present
-    Then the About this film section is present
     Then the Location section is present
     Then the Cancellation policy section is present
     Then the Deposit policy section is present
@@ -145,7 +139,6 @@ Feature: What's on screen
     When the free Screenings event is found
     Then the Tickets section is present
     Then the Date and time section is present
-    Then the About this film section is present
     Then the Location section is present
     Then the Cancellation policy section is present
 

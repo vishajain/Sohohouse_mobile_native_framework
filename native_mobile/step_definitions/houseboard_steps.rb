@@ -198,7 +198,7 @@ Then("user is navigated to the event details screen") do
 
     sleep 1
 
-    assert_true($blackslatescreen.verify_event_details_screen_navigation,"Upcoming bookings section is holding more than seven events")
+    assert_true($blackslatescreen.verify_event_details_screen_navigation,"Unable to navigate to the event details screen")
 
   else
 
@@ -308,7 +308,7 @@ Then("user sees houseboard screen") do
 
 end
 
-Then(/^user sees (.*) under upcoming bookings/) do |event|
+Then(/^user sees (.*) under upcoming bookings heading/) do |event|
 
   assert_true($blackslatescreen.verify_planner_booking_event(event),"My planner booking is not present on the houseboard screen")
 

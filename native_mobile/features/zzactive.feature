@@ -22,7 +22,7 @@ Feature: Active functionality
   Scenario: Pre-requisite - Login to Non active - Close app
 #    Given user navigates to the account screen
 #    And user sign-out of the app from the previous user
-#    Given app is closed
+    Given app is closed
 
   @regression @non-active-local
   Scenario: Pre-requisite - Login to Non active - local member to soho warehouse
@@ -51,13 +51,6 @@ Feature: Active functionality
     And user clicks on OK
     And user clicks on next on all set screen
     Then greetings should be visible
-
-  @smoke
-  Scenario: Select the favourite house as Greek house
-    When user clicks on Account button on home screen
-    When user taps on favourite houses
-    And user selects 40 Greek Street
-    And tap on Save changes
 
   @regression @non-active-local
   Scenario: Non active - local member to SHW - User navigates to Member events section
@@ -298,13 +291,6 @@ Feature: Active functionality
     And user clicks on OK
     And user clicks on next on all set screen
     Then greetings should be visible
-
-  @smoke
-  Scenario: Select the favourite house as Greek house
-    When user clicks on Account button on home screen
-    When user taps on favourite houses
-    And user selects 40 Greek Street
-    And tap on Save changes
 
   @regression @active-local
   Scenario: Non active - local member to SHW - User navigates to Member events section
@@ -554,13 +540,6 @@ Feature: Active functionality
     And user clicks on OK
     And user clicks on next on all set screen
     Then greetings should be visible
-
-  @smoke
-  Scenario: Select the favourite house as Greek house
-    When user clicks on Account button on home screen
-    When user taps on favourite houses
-    And user selects 40 Greek Street
-    And tap on Save changes
 
   @regression @active-plus-local
   Scenario: Non active - local member to SHW - User navigates to Member events section

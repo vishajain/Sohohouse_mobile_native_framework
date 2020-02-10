@@ -25,19 +25,22 @@ Feature: Account screen
   Scenario: Validate perks link
     Then user see and taps on perks link
 
-  @smoke
-  Scenario: Validate perk content on house perks list
-    When user sees and taps on perks
-    Then user sees perk title
-
-  @smoke
-  Scenario: Validate perk content
-    When user taps on the first perk on perks list
-    Then user sees perk location on perk screen
-    Then user sees perk title on perk screen
-    Then user sees perk description on perk screen
-    Then user goes back to the account screen
-    Then user goes back to the account screen
+#  @smoke
+#  Scenario: Validate perk content on house perks list
+#    When user sees and taps on perks
+#    Then user sees perk title
+#
+#  @smoke
+#  Scenario: Validate perk content
+#    When user taps on the first perk on perks list
+#    Then user sees perk location on perk screen
+#    Then user sees perk title on perk screen
+#    Then user sees perk description on perk screen
+#
+#  @smoke
+#  Scenario: Navigate back to Account screen
+#    Then user goes back to the account screen
+#    Then user goes back to the account screen
 
   @smoke
   Scenario: Validate payment link

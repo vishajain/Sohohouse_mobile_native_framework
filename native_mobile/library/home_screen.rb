@@ -63,18 +63,23 @@ class HomeScreen
     i = 1
 
     loop do
-      if Common.wait_for(3){@device_home_objects.house_notes}.size > 0
 
-      return true
+      begin
 
-      else
-        i = i+1
+        return Common.wait_for(3){@device_home_objects.house_notes_screen.displayed?}
+
+      rescue
+
         Common.swipe_down
-      end
 
-      if i > 4
-        return false
-        break
+        i = i + 1
+
+        if i > 5
+
+          return false
+
+        end
+
       end
 
     end
@@ -87,30 +92,41 @@ class HomeScreen
       i = 1
 
       loop do
-         if Common.wait_for(3){@device_home_objects.see_all_stories}.size > 0
 
-           @device_home_objects.see_all_stories[0].click
-           if Common.wait_for(10){@device_home_objects.house_notes_screen.displayed?}
+        begin
 
-              sleep 3
-               Common.wait_for(10){@device_home_objects.navigate_back}.click
-               return true
-               break
-           else
-             return false
-           end
+          if Common.wait_for(3){@device_home_objects.see_all_stories.displayed?}
 
-         else
-           i = i+1
-           Common.swipe_down
-         end
+            Common.wait_for(3){@device_home_objects.see_all_stories}.click
 
-         if i > 7
-           return false
-           break
-         end
+            sleep 3
+
+            if Common.wait_for(10){@device_home_objects.house_notes_screen.displayed?}
+
+              Common.wait_for(10){@device_home_objects.navigate_back}.click
+
+              return true
+
+            end
+
+          end
+
+        rescue
+
+          Common.swipe_down
+
+          i = i + 1
+
+          if i > 5
+
+            return false
+
+          end
+
+        end
 
       end
+
   end
 
   def verify_noticeboard()
@@ -118,7 +134,6 @@ class HomeScreen
     Common.swipe_down
 
     return Common.wait_for(5){@device_home_objects.noticeboard.displayed?}
-
 
   end
 
@@ -135,7 +150,6 @@ class HomeScreen
           sleep 3
           Common.wait_for(10){@device_home_objects.navigate_back}.click
           return true
-          break
         else
           return false
         end
