@@ -4,11 +4,11 @@ Steps to Install Appium:
 
 1.	Appium works better with Java 1.8 or Java 1.9. Ensure to install one of these versions before proceeding to the next steps. 
 2.	Include JAVA_HOME as the environment variable in the bash profile and below steps can be followed:
-a.	Vi .bash_profile
-b.	Press i
-c.	Update the bash profile as “export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_211.jdk/Contents/Home
-d.	Press esc
-e.	Enter :wq!
+        a.	Vi .bash_profile
+        b.	Press i
+        c.	Update the bash profile as “export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_211.jdk/Contents/Home
+        d.	Press esc
+        e.	Enter :wq!
 3.	To see if the .bash_profile is updated, enter echo $JAVA_HOME in terminal. You should be able to see the JAVA_HOME path
 4.	Install Homebrew. Command as below
 /usr/bin/ruby -e “$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install
