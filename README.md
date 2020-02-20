@@ -37,7 +37,7 @@ https://www.youtube.com/watch?v=-_6C_-CMqSk
 
 Use full information:
 
-To know the UDID of the devices:
+To know the UDID of the devices -
 
 iOS:
 For iOS real devices info => ios-deploy-c
@@ -49,7 +49,7 @@ To run the iOS simulator from command prompt –
 
 Go to -  /usr/local/lib/node_modules/appium/node_modules/appium-WebDriverAgent and  run the command => xcodebuild -project WebDriverAgent.xcodeproj -scheme WebDriverAgentRunner -destination 'id=A9F18306-6B22-442B-99F4-F217A5EE8D38' test => this will open the iphone 8. I have mentioned the iphone 8 simulator’s udid
 
-To install app on android simulator. Follow the below steps:
+To install app on android simulator. Follow the below steps -
 
 Paste the .apk file to platform-tools in the android-sdk Linux folder.
   •	Open Terminal and navigate to platform-tools folder in android-sdk.
@@ -62,7 +62,7 @@ emulator.
 
 Please be noted that the bundle ids can be obtained from the developers. 
 
-Automation framework details:
+Framework details:
 
 1.	After cloning the repo onto the local, do bundle install. This will install all the required software mentioned in gem file
 2.	The run profiles are mentioned in the cucumber.yml file. 
