@@ -98,3 +98,6 @@ Framework details:
        Click on the app file -> Show package contents -> open info.plist -> Search for bundle identifier. 
       For android apps, find app activity as below – follow the below tutorial – 	
        http://www.automationtestinghub.com/apppackage-and-appactivity-name/
+       
+7. To upload the app file onto the browser stack - 
+  curl -u "patrickgleeson1:r3bbzzgobTf5rppywrmx" -X POST "https://api-cloud.browserstack.com/app-automate/upload" -F "file=@/Users/manikanth.erukulla/apps/ios/stag/DigitalHouse.ipa"
