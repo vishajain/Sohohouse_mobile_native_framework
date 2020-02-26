@@ -144,6 +144,18 @@ class Android_Onboarding_Objects
     @driver.find_element(:xpath => "//android.widget.TextView[@text = 'Noticeboard']")
   end
 
+  def house_introduction
+    @driver.find_element(:xpath => "//android.widget.TextView[@text = 'House introduction']")
+  end
+
+  def contact_membership_team
+    @driver.find_element(:xpath => "//android.widget.Button[@text = 'Contact membership team']")
+  end
+
+  def get_back_shortly
+    @driver.find_element(:xpath => "//android.widget.TextView[@text = 'Thanks for your booking request, we'll get back to you shortly']")
+  end
+
   def notification_pref_text
     @driver.find_element(:xpath => "//android.widget.TextView[@text = 'Notification preferences']")
   end

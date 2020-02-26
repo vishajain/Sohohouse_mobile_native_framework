@@ -59,7 +59,7 @@ Feature: Account screen
     And user taps on Save button
     Then the new password is saved
 
-  @regression
+  @regression @will_fail
   Scenario: Return to the original password
     Given user taps on change password
     When user provides changed password in current password

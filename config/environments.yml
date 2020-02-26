@@ -14,3 +14,7 @@ env:
       name: 'Manikanth'
       house: 'Little Beach House Barcelona'
       profile: 'Every House'
+    mobile_android_automation@sohohouse.com:
+      name: 'SFFactory'
+      house: 'Little Beach House Barcelona'
+      profile: 'Every House'
