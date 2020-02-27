@@ -1,9 +1,8 @@
 env:
   prod:
-    username: 'software-devs@sohohouse.com'
-    password: 'left mysterious silk share'
-    name: 'Devs'
-    house: 'Paris'
+    Enter_Email:
+    name: 'Ravi Kumar'
+    house: '40 Greek Street'
     profile: 'Every House'
   stag:
     mobile_automation@sohohouse.com:
