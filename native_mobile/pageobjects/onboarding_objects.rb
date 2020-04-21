@@ -14,6 +14,30 @@ class Ios_Onboarding_Objects
     @driver.find_element(:name => "Terms and conditions")
   end
 
+  def chasing_payment_text
+    @driver.find_element(:name => "There has been a problem with your payment")
+  end
+
+  def update_payment
+    @driver.find_element(:name => "Update payment method")
+  end
+
+  def frozen_screen
+    @driver.find_element(:name => "Your membership is on hold")
+  end
+
+  def expired_screen
+    @driver.find_element(:name => "Your account cannot be accessed")
+  end
+
+  def suspended_screen
+    @driver.find_element(:name => "Your membership has been suspended")
+  end
+
+  def update_later
+    @driver.find_element(:name => "Update later")
+  end
+
   def accept_terms
     @driver.find_element(:name => "Accept & Continue")
   end
@@ -139,6 +163,7 @@ class Android_Onboarding_Objects
   # def continue_button_to_notify_pref
   #   @driver.find_element(:id => "com.sohohouse.seven:id/onboarding_house_accept_button")
   # end
+
 
   def noticeboard_text
     @driver.find_element(:xpath => "//android.widget.TextView[@text = 'Noticeboard']")

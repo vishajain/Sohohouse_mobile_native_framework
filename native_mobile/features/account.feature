@@ -145,4 +145,3 @@ Feature: Account screen
 
   @smoke @hook
   Scenario: Go back to the home page from account screen
-    Then member is not on home screen from account screen

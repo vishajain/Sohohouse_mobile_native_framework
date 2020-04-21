@@ -1,4 +1,3 @@
-
 require 'rubygems'
 require 'appium_lib'
 # require 'watir'
@@ -62,6 +61,7 @@ class LoginScreen
       @device_login_objects.email_textfield.send_keys(email)
       @device_login_objects.password_textfield.send_keys($password)
 
+
   #     if $device == "ios"
   #       @device_login_objects.email_textfield.send_keys(email)
   #       @device_login_objects.password_textfield.send_keys($password)
@@ -97,6 +97,24 @@ class LoginScreen
   def verify_user_signin()
 
 
+  end
+
+  def verify_app_launch_screen()
+    if  Common.wait_for(15) {@device_login_objects.main_home.displayed?}
+
+      return true
+
+    end
+  end
+
+  def user_clicks_membership()
+
+    Common.wait_for(20){@device_login_objects.main_home}.click
+  end
+
+  def user_main_screen()
+
+    Common.wait_for(2){@device_login_objects.main_home.displayed?}
   end
 
 end

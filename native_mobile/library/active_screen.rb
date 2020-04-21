@@ -39,7 +39,10 @@ class ActiveScreens
 
     email      = config[:props]["data"][email_address]
 
+    $password   = $pass
+
     @device_login_objects.email_textfield.send_keys(email)
+    @device_login_objects.password_textfield.send_keys($password)
 
   end
 

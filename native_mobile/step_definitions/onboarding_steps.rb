@@ -75,12 +75,18 @@ end
 
 Then(/^user sees welcome screen$/) do
 
+  sleep 3
+
+  $onboardingscreens.user_continue_without_sync
+
   assert_true($onboardingscreens.verify_user_welcome_screen,"User is unable to land on welcome screen")
 
 end
 
 
-When(/^user continue from welcome screen$/) do
+Given(/^user continue from welcome screen$/) do
+
+  sleep 3
 
   $onboardingscreens.user_continues_from_welcome
 
@@ -172,14 +178,14 @@ When("user clicks on next on all set screen") do
 
 end
 
-Then("user sees the home screen") do
+And("user sees the home screen") do
 
-  assert_true($homescreen.verify_greetings,"Username is not present")
+  assert_true($homescreen.verify_username,"Username is not present")
 
 end
 
 
-When("if user sees House introduction screen") do
+And("if user sees House introduction screen") do
 
   begin
 
@@ -194,7 +200,7 @@ When("if user sees House introduction screen") do
 end
 
 
-Then("user taps on contact membership team") do
+And("user taps on contact membership team") do
 
   begin
 
@@ -205,5 +211,107 @@ Then("user taps on contact membership team") do
     puts e.message
 
   end
+
+end
+
+And(/^goes through android onboarding screens$/) do
+
+  assert_true($onboardingscreens.verify_make_personal_screen,"User is unable to land on Make it personal screen")
+
+  $onboardingscreens.user_continues_from_makePersonal
+
+  assert_true($onboardingscreens.verify_Intro_Notice_screen,"User is unable to land on Introducing Noticeboard screen")
+
+  $onboardingscreens.user_clicks_continue
+
+  assert_true($onboardingscreens.verify_Noticeboard_screen,"User is unable to land on Noticeboard screen")
+
+  $onboardingscreens.user_clicks_continue_to_notify_pref
+
+  assert_true($onboardingscreens.verify_Notification_pref_screen,"User is unable to land on Notification preferences screen")
+
+  $onboardingscreens.user_clicks_OK
+
+  assert_true($onboardingscreens.verify_youareset_screen,"User is unable to land on You're set screen screen")
+
+end
+
+Then(/^the user signs out of the app$/) do
+
+  $homescreen.verify_account_click
+
+  $accountscreen = AccountScreen.new
+  $whatsonscreen = WhatsonScreen.new
+
+  assert_true($accountscreen.tap_sign_out, "Unable to sign out the user")
+
+  $loginscreen.close_app
+
+end
+
+And(/^user is shown with a chasing validation message$/) do
+
+  $onboardingscreens.chasing_payment
+
+  assert_true($onboardingscreens.verify_payment_button,"User is unable to see update payment method button")
+
+  $onboardingscreens.update_later_button
+
+  assert_true($homescreen.verify_homescreen,"Username is not present")
+
+
+end
+
+Then(/^user is shown with frozen validation message$/) do
+
+  assert_true($onboardingscreens.verify_frozen_screen,"User is unable to see expired screen")
+
+  $onboardingscreens.contact_membership_team_onboarding
+
+  assert_true($accountscreen.assert_contact_us)
+
+  $accountscreen.tap_icon_left
+
+  $accountscreen.tap_signout_onboarding
+
+  assert_true( $loginscreen.user_main_screen, "User is not on the main screen")
+
+  $loginscreen.close_app
+
+end
+
+Then(/^user is shown with an expired validation message$/) do
+
+  assert_true($onboardingscreens.verify_expired_screen,"User is unable to see expired screen")
+
+  $onboardingscreens.contact_membership_team_onboarding
+
+  assert_true($accountscreen.assert_contact_us)
+
+  $accountscreen.tap_icon_left
+
+  $accountscreen.tap_signout_onboarding
+
+  assert_true( $loginscreen.user_main_screen, "User is not on the main screen")
+
+  $loginscreen.close_app
+
+end
+
+Then(/^user is shown with a suspended validation message$/) do
+
+  assert_true($onboardingscreens.verify_suspended_screen,"User is unable to see expired screen")
+
+  $onboardingscreens.contact_membership_team_onboarding
+
+  assert_true($accountscreen.assert_contact_us)
+
+  $accountscreen.tap_icon_left
+
+  $accountscreen.tap_signout_onboarding
+
+  assert_true( $loginscreen.user_main_screen, "User is not on the main screen")
+
+  $loginscreen.close_app
 
 end

@@ -100,10 +100,34 @@ class OnboardingScreens
 
   def verify_make_personal_screen()
 
+
     return Common.wait_for(20){@device_onboarding_objects.makepersonal_text.displayed?}
 
   end
 
+  def verify_payment_button()
+
+    Common.wait_for(20){@device_onboarding_objects.update_payment.displayed?}
+
+  end
+
+  def verify_frozen_screen()
+
+    Common.wait_for(25){@device_onboarding_objects.frozen_screen.displayed?}
+
+  end
+
+  def verify_expired_screen()
+
+    Common.wait_for(25){@device_onboarding_objects.expired_screen.displayed?}
+
+  end
+
+  def verify_suspended_screen()
+
+    Common.wait_for(25){@device_onboarding_objects.suspended_screen.displayed?}
+
+  end
 
   def user_continues_from_makePersonal()
 
@@ -142,13 +166,13 @@ class OnboardingScreens
 
   def user_clicks_continue()
 
-    Common.wait_for(20){@device_onboarding_objects.continue_button}.click
+    Common.wait_for(22){@device_onboarding_objects.continue_button}.click
 
   end
 
   def user_clicks_continue_to_notify_pref()
 
-    Common.wait_for(25){@device_onboarding_objects.next_button}.click
+    Common.wait_for(30){@device_onboarding_objects.next_button}.click
 
   end
 
@@ -161,7 +185,7 @@ class OnboardingScreens
 
   def user_clicks_OK()
 
-    Common.wait_for(20){@device_onboarding_objects.ok_button}.click
+    Common.wait_for(22){@device_onboarding_objects.ok_button}.click
 
   end
 
@@ -182,6 +206,23 @@ class OnboardingScreens
     end
 
   end
+
+  def chasing_payment
+
+    Common.wait_for(20){@device_onboarding_objects.chasing_payment_text.displayed?}
+  end
+
+  def update_later_button
+
+    Common.wait_for(20){@device_onboarding_objects.update_later}.click
+  end
+
+  def contact_membership_team_onboarding
+
+    Common.wait_for(5){@device_onboarding_objects.contact_membership_team}.click
+
+    end
+
 
   def tap_contact_membership_team
 

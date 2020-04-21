@@ -18,8 +18,12 @@ class Ios_Home_Objects
     @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name='"+$name+"']")
   end
 
+  def chasing_username
+    @driver.find_element(:name => "SFFactory")
+  end
+
   def happening_now
-    @driver.find_element(:name => "Happening now")
+    @driver.find_element(:name => "What’s happening?")
   end
 
   def house_notes
@@ -30,8 +34,17 @@ class Ios_Home_Objects
     @driver.find_element(:name => "See all stories")
   end
 
+
+  def our_houses
+    @driver.find_element(:name => "Our Houses")
+  end
+
   def house_notes_screen
     @driver.find_element(:name => "House Notes")
+  end
+
+  def past_digital_events
+    @driver.find_element(:name => "Digital events on demand")
   end
 
   def noticeboard
@@ -210,6 +223,7 @@ class Android_Home_Objects
 
   def greetings
     @driver.find_element(:xpath => "//android.widget.LinearLayout//android.widget.TextView[1]")
+
   end
 
   def username
@@ -378,5 +392,6 @@ class Android_Home_Objects
     @driver.find_element()
 
   end
+
 
 end

@@ -27,9 +27,9 @@ class HomeScreen
 
   def verify_greetings()
 
-    sleep 5
+    sleep 2
 
-    str = Common.wait_for(20){@device_home_objects.greetings}.text
+    str = Common.wait_for(2){@device_home_objects.greetings}.text
 
     if str == "Good morning," || str == "Good evening," || str == "Good afternoon,"
       return true
@@ -41,7 +41,13 @@ class HomeScreen
 
   def verify_username()
 
-    return Common.wait_for(25) {@device_home_objects.username.displayed?}
+    return Common.wait_for(15) {@device_home_objects.username.displayed?}
+
+  end
+
+  def verify_homescreen()
+
+    Common.wait_for(15) {@device_home_objects.chasing_username.displayed?}
 
   end
 
@@ -53,10 +59,15 @@ class HomeScreen
 
   def verify_happening_now
 
-    return Common.wait_for(15) {@device_home_objects.happening_now.displayed?}
+    return Common.wait_for(1) {@device_home_objects.happening_now.displayed?}
 
   end
 
+  def verify_pastdigital_events
+
+    return Common.wait_for(1) {@device_home_objects.past_digital_events.displayed?}
+
+  end
 
   def verify_house_notes()
 
@@ -66,7 +77,7 @@ class HomeScreen
 
       begin
 
-        return Common.wait_for(3){@device_home_objects.house_notes_screen.displayed?}
+        return Common.wait_for(1){@device_home_objects.house_notes_screen.displayed?}
 
       rescue
 
@@ -86,6 +97,42 @@ class HomeScreen
 
   end
 
+  def verify_post_button()
+
+    i = 1
+
+    loop do
+
+      begin
+
+        return Common.wait_for(5){@device_home_objects.post_link.displayed?}
+
+      rescue
+
+        Common.swipe_down
+
+        i = i + 1
+
+        if i > 5
+
+          return false
+
+        end
+
+      end
+
+    end
+
+  end
+
+
+  def verify_our_houses()
+
+    Common.swipe_down
+
+    Common.wait_for(5){@device_home_objects.our_houses.displayed?}
+
+  end
 
   def verify_see_all_stories()
 
@@ -133,11 +180,11 @@ class HomeScreen
 
     Common.swipe_down
 
-    return Common.wait_for(5){@device_home_objects.noticeboard.displayed?}
+    Common.wait_for(5){@device_home_objects.noticeboard.displayed?}
 
   end
 
-  def verify_view_another_noticeboard()
+  def verify_view_another_noticeboard
 
     i = 1
     sleep 2
@@ -211,6 +258,10 @@ class HomeScreen
 
   end
 
+  def ios_back
+    Common.wait_for(15){@device_home_objects.left_link}.click
+  end
+
   def verify_myplanner_click
 
     Common.wait_for(15){@device_home_objects.myplanner_btn}.click
@@ -219,9 +270,7 @@ class HomeScreen
 
   def verify_account_click
 
-    sleep 5
-
-    Common.wait_for(20){@device_home_objects.account_button}.click
+    Common.wait_for(15){@device_home_objects.account_button}.click
 
   end
 
@@ -274,9 +323,10 @@ class HomeScreen
 
   def post_click
 
-    sleep 1
+    sleep 2
 
     Common.wait_for(20){@device_home_objects.post_link}.click
+
 
   end
 
@@ -288,6 +338,8 @@ class HomeScreen
 
   def input_text
 
+    sleep 3
+
     $driver.action.move_to(@device_home_objects.noticeboard_text_input).click.perform
 
     @device_home_objects.noticeboard_text_input.send_keys("How are you all")
@@ -298,6 +350,8 @@ class HomeScreen
   end
 
   def amend_text
+
+    sleep 3
 
     $driver.action.move_to(@device_home_objects.noticeboard_text_input).click.perform
 
@@ -333,6 +387,8 @@ class HomeScreen
 
   def tap_delete_post
 
+    Common.wait_for(2) {@device_home_objects.delete_post.displayed?}
+
     Common.wait_for(10){@device_home_objects.delete_post}.click
 
   end
@@ -358,6 +414,8 @@ class HomeScreen
   def tap_soho_house_berlin
 
     Common.wait_for(5){@device_home_objects.browsehouses_title}.click
+
+    Common.wait_for(5){@device_home_objects.soho_house_berlin.displayed?}
 
     Common.wait_for(5){@device_home_objects.soho_house_berlin}.click
 
@@ -623,5 +681,14 @@ class HomeScreen
     end
 
   end
+
+  def verify_perks_homescreen
+
+    Common.swipe_down
+
+    Common.wait_for(5) {@device_home_objects.house_perks.displayed?}
+
+  end
+
 
 end

@@ -12,7 +12,10 @@ include Test::Unit::Assertions
 
     Base_driver.setapp()
 
-    sleep 10
+    $loginscreen = LoginScreen.new
+
+    assert_true($loginscreen.verify_app_launch_screen, "App installed successfully")
+
 
   end
 
@@ -34,6 +37,15 @@ include Test::Unit::Assertions
 
     $loginscreen.user_enters_email_password(validity)
 
+    $loginscreen.user_clicks_go
+
+    $onboardingscreens = OnboardingScreens.new
+
+    $homescreen = HomeScreen.new
+
+    $whatsonscreen = WhatsonScreen.new
+
+
   end
 
   And(/^user clicks on go button$/) do
@@ -47,3 +59,27 @@ include Test::Unit::Assertions
     $whatsonscreen = WhatsonScreen.new
 
   end
+
+And(/^the user is on main screen$/) do
+
+  $loginscreen = LoginScreen.new
+
+  $loginscreen.user_main_screen
+
+  $loginscreen.user_clicks_membership
+
+  assert_true($loginscreen.verify_user_is_on_login_page, "User is on the sign-in screen")
+
+end
+
+When(/^the user goes through ios Onboarding screen$/) do
+
+  $onboardingscreens.user_accepts_Terms
+
+  sleep 3
+
+  assert_true($onboardingscreens.verify_user_is_on_helpus_screen,"User is unable to land on 'Help us improve' screen")
+
+  $onboardingscreens.user_allows_helpus
+
+end

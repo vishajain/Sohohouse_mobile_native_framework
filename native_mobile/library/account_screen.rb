@@ -267,6 +267,12 @@ class AccountScreen
 
   end
 
+  def assert_contact_us
+
+    Common.wait_for(2) {@device_account_objects.contact_us.displayed?}
+
+  end
+
   def verify_faq
 
 
@@ -455,7 +461,15 @@ class AccountScreen
       Common.wait_for(5){@device_account_objects.cancel_yes}.click
     end
 
-    return Common.wait_for(5){@device_login_objects.welcome_home.displayed?}
+    return Common.wait_for(5){@device_login_objects.main_home.displayed?}
+
+  end
+
+  def tap_signout_onboarding
+
+    Common.wait_for(10) {@device_account_objects.sign_out.displayed?}
+
+    Common.wait_for(5){@device_account_objects.sign_out}.click
 
   end
 
@@ -617,7 +631,7 @@ class AccountScreen
 
   def tap_icon_left
 
-    Common.wait_for(20){@device_account_objects.icon_left}.click
+    Common.wait_for(3){@device_account_objects.icon_left}.click
 
   end
 

@@ -32,6 +32,10 @@ class Ios_Login_Objects
 
   end
 
+  def main_home
+    @driver.find_element(:name => "Member sign in")
+  end
+
 end
 
 class Android_Login_Objects
@@ -57,5 +61,8 @@ class Android_Login_Objects
     @driver.find_element(:xpath => "//android.widget.EditText[contains(@text,'Password')]")
   end
 
+  def main_home
+    @driver.find_element(:xpath => "//android.widget.Button[@text = 'Sign in']")
+  end
 
 end
