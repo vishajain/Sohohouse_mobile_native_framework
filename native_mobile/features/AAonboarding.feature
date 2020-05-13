@@ -21,7 +21,7 @@ Feature: This is a feature to test On-boarding screens for iOS and Android
     And goes through android onboarding screens
     When user clicks on next on all set screen
     And user sees the home screen
-    Then the user signs out of the app
+    Then the user signs out and closes the app
 
    @smoke
    Scenario: User tries to login with chasing account
@@ -30,7 +30,7 @@ Feature: This is a feature to test On-boarding screens for iOS and Android
      And user enters chasing as email address
      And user clicks on go button
      And user is shown with a chasing validation message
-     Then the user signs out of the app
+     Then the user signs out and closes the app
 
   @smoke
   Scenario: User tries to login with frozen account

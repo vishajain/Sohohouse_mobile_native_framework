@@ -5,7 +5,7 @@ require 'appium_lib'
 require 'selenium-webdriver'
 require "test/unit"
 require 'yaml'
-require_relative '../pageobjects/login_objects'
+require_relative '../pageobjects/onboarding_objects'
 require_relative '../pageobjects/home_objects'
 require_relative '../pageobjects/account_objects'
 require_relative '../pageobjects/whatson_objects'
@@ -17,14 +17,14 @@ class ActiveScreens
 
     if $device == "ios"
 
-      @device_login_objects = Ios_Login_Objects.new($driver, $driver_appium)
+      @device_onboarding_objects = Ios_Onboarding_Objects.new($driver, $driver_appium)
       @device_home_objects = Ios_Home_Objects.new($driver, $driver_appium)
       @device_whatson_objects = Ios_Whatson_Objects.new($driver, $driver_appium)
       @device_account_objects = Ios_Account_Objects.new($driver, $driver_appium)
       # @device_active_objects = Ios_Active_Objects.new($driver, $driver_appium)
 
     else
-      @device_login_objects = Android_Login_Objects.new($driver, $driver_appium)
+      @device_onboarding_objects = Android_Onboarding_Objects.new($driver, $driver_appium)
       @device_home_objects = Android_Home_Objects.new($driver, $driver_appium)
       @device_whatson_objects = Android_Whatson_Objects.new($driver, $driver_appium)
       @device_account_objects = Android_Account_Objects.new($driver, $driver_appium)
@@ -41,14 +41,14 @@ class ActiveScreens
 
     $password   = $pass
 
-    @device_login_objects.email_textfield.send_keys(email)
-    @device_login_objects.password_textfield.send_keys($password)
+    @device_onboarding_objects.email_textfield.send_keys(email)
+    @device_onboarding_objects.password_textfield.send_keys($password)
 
   end
 
   def user_enters_password
 
-    @device_login_objects.password_textfield.send_keys("password")
+    @device_onboarding_objects.password_textfield.send_keys("password")
 
   end
 

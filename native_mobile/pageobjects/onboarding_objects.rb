@@ -9,7 +9,33 @@ class Ios_Onboarding_Objects
     @driver_appium = driver_appium
     @driver = driver
   end
-  
+
+  def welcome_home
+
+    @driver.find_element(:name => "Welcome home")
+
+  end
+
+  def email_textfield
+    @driver.find_element(:xpath => "//XCUIElementTypeTextField")
+
+  end
+
+  def password_textfield
+    @driver.find_element(:xpath => "//XCUIElementTypeSecureTextField")
+
+  end
+
+  def go_button
+
+    @driver.find_element(:name => "Go")
+
+  end
+
+  def main_home
+    @driver.find_element(:name => "Member sign in")
+  end
+
   def terms_text
     @driver.find_element(:name => "Terms and conditions")
   end
@@ -127,6 +153,27 @@ class Android_Onboarding_Objects
     @driver = driver
   end
 
+  def welcome_home
+    @driver.find_element(:xpath => "//android.widget.TextView[@text = 'Welcome home']")
+  end
+
+  def go_button
+    @driver.find_element(:xpath => "//android.widget.Button[@text = 'Sign in']")
+  end
+
+  def email_textfield
+    @driver.find_element(:xpath => "//android.widget.EditText[contains(@text,'Email address')]")
+  end
+
+  def password_textfield
+    @driver.find_element(:xpath => "//android.widget.EditText[contains(@text,'Password')]")
+  end
+
+  def main_home
+    @driver.find_element(:xpath => "//android.widget.Button[@text = 'Sign in']")
+  end
+
+
   def welcome_text
     @driver.find_element(:xpath => "//android.widget.TextView[contains(@text,'Welcome to Soho House')]")
   end
@@ -142,6 +189,10 @@ class Android_Onboarding_Objects
 
   def makepersonal_text
     @driver.find_element(:xpath => "//android.widget.TextView[@text = 'Make it personal']")
+  end
+
+  def continue_button_to_notify_pref
+    @driver.find_element(:id => "com.sohohouse.seven:id/onboarding_house_accept_button")
   end
 
   def makepersonal_continue

@@ -42,6 +42,7 @@ module Android_driver
                 {
                     'platformName' => 'Android',
                     'deviceName' => 'Android',
+                    'avd' => 'Samsung_API_28',
                     'platformVersion' => @platform_version ,
                     'udid' =>   @udid  ,
                     'app' =>  @app_path,
@@ -63,9 +64,6 @@ module Android_driver
   end
 
   def Android_driver.set_android_capabilities_cloud
-
-    username = 'patrickgleeson1'
-    access_key = 'r3bbzzgobTf5rppywrmx'
 
     username = 'patrickgleeson1'
     access_key = 'r3bbzzgobTf5rppywrmx'

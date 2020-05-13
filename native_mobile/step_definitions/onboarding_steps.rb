@@ -3,12 +3,103 @@ require 'cucumber'
 require 'selenium-webdriver'
 require 'test/unit/assertions'
 require_relative '../support/drivers/base_driver'
-require_relative '../library/login_screen'
 require_relative '../library/onboarding_screens'
-require_relative '../pageobjects/login_objects'
+require_relative '../pageobjects/onboarding_objects'
 require_relative '../../common/functions_common'
 
 include Test::Unit::Assertions
+
+Given(/^app is launched$/) do
+
+  Base_driver.setapp()
+
+  $onboardingscreens = OnboardingScreens.new
+
+  assert_true($onboardingscreens.verify_app_launch_screen, "App installed successfully")
+
+
+end
+
+Then("app is closed") do
+
+  $onboardingscreens.close_app
+
+end
+
+And(/^user is on sign in screen$/) do
+
+  $onboardingscreens = OnboardingScreens.new
+
+  assert_true($onboardingscreens.verify_user_is_on_login_page, "User is on the sign-in screen")
+
+end
+
+When(/^user enters (.*) email address and password$/) do |validity|
+
+  $onboardingscreens.user_enters_email_password(validity)
+
+  $onboardingscreens = OnboardingScreens.new
+
+  $homescreen = HomeScreen.new
+
+  $whatsonscreen = WhatsonScreen.new
+
+  $onboardingscreens.user_clicks_go
+
+end
+
+And(/^user clicks on go button$/) do
+
+  $onboardingscreens.user_clicks_go
+
+  $onboardingscreens = OnboardingScreens.new
+
+  $homescreen = HomeScreen.new
+
+  $whatsonscreen = WhatsonScreen.new
+
+end
+
+And(/^the user is on main screen$/) do
+
+  $onboardingscreens = OnboardingScreens.new
+
+  $onboardingscreens.user_main_screen
+
+  $onboardingscreens.user_clicks_membership
+
+  assert_true($onboardingscreens.verify_user_is_on_login_page, "User is on the sign-in screen")
+
+end
+
+When(/^the user goes through ios Onboarding screen$/) do
+
+  $onboardingscreens.user_accepts_Terms
+
+  sleep 3
+
+  assert_true($onboardingscreens.verify_user_is_on_helpus_screen,"User is unable to land on 'Help us improve' screen")
+
+  $onboardingscreens.user_allows_helpus
+
+end
+
+
+And(/^user enters (.*) email address and changed password$/) do |validity|
+
+  $onboardingscreens.user_enters_email_changed_password(validity)
+
+  $onboardingscreens = OnboardingScreens.new
+
+  $homescreen = HomeScreen.new
+
+  $whatsonscreen = WhatsonScreen.new
+
+  $accountscreen = AccountScreen.new
+
+  $onboardingscreens.user_clicks_go
+
+end
 
 Given(/^user sees T & C screen$/) do
 
@@ -65,13 +156,11 @@ end
 
 
 When(/^user continue without syncing$/) do
-
   sleep 3
 
   $onboardingscreens.user_continue_without_sync
 
 end
-
 
 Then(/^user sees welcome screen$/) do
 
@@ -236,7 +325,7 @@ And(/^goes through android onboarding screens$/) do
 
 end
 
-Then(/^the user signs out of the app$/) do
+Then(/^the user signs out and closes the app$/) do
 
   $homescreen.verify_account_click
 
@@ -245,7 +334,7 @@ Then(/^the user signs out of the app$/) do
 
   assert_true($accountscreen.tap_sign_out, "Unable to sign out the user")
 
-  $loginscreen.close_app
+  $onboardingscreens.close_app
 
 end
 
@@ -264,19 +353,19 @@ end
 
 Then(/^user is shown with frozen validation message$/) do
 
-  assert_true($onboardingscreens.verify_frozen_screen,"User is unable to see expired screen")
+  assert_true($onboardingscreens.verify_frozen_screen,"User is unable to see frozen screen")
 
-  $onboardingscreens.contact_membership_team_onboarding
-
-  assert_true($accountscreen.assert_contact_us)
-
-  $accountscreen.tap_icon_left
+  # $onboardingscreens.contact_membership_team_onboarding
+  #
+  # assert_true($accountscreen.assert_contact_us)
+  #
+  # $accountscreen.tap_icon_left
 
   $accountscreen.tap_signout_onboarding
 
-  assert_true( $loginscreen.user_main_screen, "User is not on the main screen")
+  assert_true( $onboardingscreens.user_main_screen, "User is not on the main screen")
 
-  $loginscreen.close_app
+  $onboardingscreens.close_app
 
 end
 
@@ -284,17 +373,11 @@ Then(/^user is shown with an expired validation message$/) do
 
   assert_true($onboardingscreens.verify_expired_screen,"User is unable to see expired screen")
 
-  $onboardingscreens.contact_membership_team_onboarding
-
-  assert_true($accountscreen.assert_contact_us)
-
-  $accountscreen.tap_icon_left
-
   $accountscreen.tap_signout_onboarding
 
-  assert_true( $loginscreen.user_main_screen, "User is not on the main screen")
+  assert_true( $onboardingscreens.user_main_screen, "User is not on the main screen")
 
-  $loginscreen.close_app
+  $onboardingscreens.close_app
 
 end
 
@@ -302,16 +385,10 @@ Then(/^user is shown with a suspended validation message$/) do
 
   assert_true($onboardingscreens.verify_suspended_screen,"User is unable to see expired screen")
 
-  $onboardingscreens.contact_membership_team_onboarding
-
-  assert_true($accountscreen.assert_contact_us)
-
-  $accountscreen.tap_icon_left
-
   $accountscreen.tap_signout_onboarding
 
-  assert_true( $loginscreen.user_main_screen, "User is not on the main screen")
+  assert_true( $onboardingscreens.user_main_screen, "User is not on the main screen")
 
-  $loginscreen.close_app
+  $onboardingscreens.close_app
 
 end

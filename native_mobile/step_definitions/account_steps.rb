@@ -13,6 +13,102 @@ require_relative '../../common/functions_common'
 include Test::Unit::Assertions
 
 
+Given("user clicks on Account button on home screen") do
+
+    $homescreen.verify_account_click
+    $accountscreen = AccountScreen.new
+    $whatsonscreen = WhatsonScreen.new
+    $homescreen = HomeScreen.new
+
+end
+
+
+Then(/^the amended fields should be shown on users profile screen$/) do
+
+  assert_true( $accountscreen.verify_profession_value,"Profession value is not saved ")
+
+  assert_true( $accountscreen.verify_city_value,"City value is not saved ")
+
+  assert_true( $accountscreen.verify_about_me_value,"About me value on is not saved ")
+
+  assert_true( $accountscreen.verify_lets_chat_value,"Lets chat value is not saved ")
+
+  assert_true( $accountscreen.verify_interests_values, "Interests values are not saved properly")
+
+  assert_true( $accountscreen.verify_website,"Website is not saved ")
+
+  assert_true( $accountscreen.verify_instagram,"Instagram is not saved ")
+
+  assert_true( $accountscreen.verify_twitter,"Twitter is not saved ")
+
+  assert_true( $accountscreen.verify_linkedin,"Linkedin is not saved ")
+
+  assert_true( $accountscreen.verify_spotify,"Spotify is not saved ")
+
+  assert_true( $accountscreen.verify_youtube,"Youtube is not saved ")
+
+  $homescreen.ios_back
+
+  assert_true($accountscreen.tap_sign_out, "Unable to sign out the user")
+
+  $onboardingscreens.close_app
+
+end
+
+When(/^the user edits their profession$/) do
+
+  $accountscreen.tap_View_Profile
+
+  $accountscreen.tap_edit_link
+
+  assert_true($accountscreen.verify_edit_profile_screen_title,"Unable to land on Edit profile screen")
+
+  $accountscreen.user_enters_profession_value
+
+end
+
+And(/^the user provides industry and city value$/) do
+
+  $accountscreen.user_enters_industry_value
+
+  $accountscreen.user_enters_city_value
+
+end
+
+And(/^the user inputs about me and interests values$/) do
+
+  $accountscreen.user_enters_about_me_value
+
+  $accountscreen.user_enters_lets_chat_value
+
+  $accountscreen.user_enters_interests_value
+
+
+end
+
+And(/^the user inputs connect social accounts values$/) do
+
+  $accountscreen.tap_social_accounts
+
+  $accountscreen.user_enters_website_value
+
+  $accountscreen.user_enters_instagram_value
+
+  $accountscreen.user_enters_twitter_value
+
+  $accountscreen.user_enters_linkedin_value
+
+  $accountscreen.user_enters_spotify_value
+
+  $accountscreen.user_enters_youtube_value
+
+  $accountscreen.user_taps_done
+
+  $accountscreen.tap_save_changes
+
+end
+
+
 Then("user see and taps on view profile link") do
 
     sleep 2
@@ -68,9 +164,11 @@ end
 
  Then("user see and taps on change password link") do
 
-    sleep 4
+   assert_true($accountscreen.verify_contact_us,"Unable to tap on Contact us link")
 
-    assert_true($accountscreen.verify_change_password,"Unable to tap on change password link")
+   $accountscreen.tap_contact_us
+
+   assert_true($accountscreen.verify_change_password,"Unable to tap on change password link")
 
 end
 
@@ -94,11 +192,9 @@ Then("user see and taps on notification preferences link") do
 end
 
 
-Then("user see and taps on sync calendar link") do
+Then("user navigates to next tab") do
 
-    sleep 2
-
-    assert_true($accountscreen.verify_sync_calendar,"Unable to tap on Sync calendar link")
+    assert_true($accountscreen.verify_sync_calendar,"Unable is not navigated to the right screen")
 
 
 end
@@ -200,15 +296,19 @@ Given("user taps on change password") do
 
 end
 
-When("user provides current password") do
+When("user updates password") do
+
+    assert_true($accountscreen.verify_current_password,"current password is not visible")
 
     $accountscreen.provide_current_password
-
+    $accountscreen.provide_new_password
+    $accountscreen.provide_confirm_password
+    $accountscreen.tap_save_btn
 end
 
 And("user provides new password") do
 
-    $accountscreen.provide_new_password
+   $accountscreen.provide_new_password
 
 end
 
@@ -282,6 +382,8 @@ And("user selects 40 Greek Street") do
 
     $accountscreen.select_40_greek_street
 
+    $accountscreen.tap_save_changes
+
 end
 
 And("user selects Shoreditch house") do
@@ -294,6 +396,8 @@ Then("user sees 40 Greek Street under favourite houses list") do
 
     assert_true($accountscreen.verify_40_greek_st_displayed, "Favourite houses reset is not working")
 
+    $accountscreen.tap_save_changes
+
 end
 
 Then("user sees Shoreditch house under favourite houses list") do
@@ -302,9 +406,11 @@ Then("user sees Shoreditch house under favourite houses list") do
 
 end
 
-Given("user taps on notification preferences") do
+Given("user taps on settings") do
 
-    $accountscreen.tap_notification_preferences
+    assert_true($accountscreen.verify_settings, "Settings link is not displayed")
+
+    $accountscreen.tap_settings
 
 end
 
@@ -364,3 +470,110 @@ Then("user submits the enquiry") do
 
 end
 
+
+Then(/^the user verifies all the links under account screen$/) do
+
+    $whatsonscreen = WhatsonScreen.new
+
+    assert_true($accountscreen.verify_account_title,"Unable to tap on View profile link")
+
+    begin
+        assert_true($accountscreen.verify_your_membership,"Unable to tap on your membership link")
+    rescue StandardError => msg
+        puts msg.message
+        raise
+    end
+
+    assert_true($accountscreen.verify_bookings,"Unable to tap on your membership link")
+
+    assert_true($accountscreen.verify_payment,"Unable to tap on Payment link")
+
+    assert_true($accountscreen.verify_favourite_houses,"Unable to tap on favourite houses link")
+
+    assert_true($accountscreen.verify_policies,"Unable to tap on Policies link")
+
+    assert_true($accountscreen.verify_contact_us,"Unable to tap on Contact us link")
+
+    assert_true($accountscreen.verify_notification_preferences,"Unable to tap on Notification preferences link")
+
+    assert_true($accountscreen.tap_sign_out, "Unable to sign out the user")
+
+    $onboardingscreens.close_app
+
+
+end
+
+When(/^the user adds a new favourite house$/) do
+
+    assert_true($accountscreen.favourite_houses_shown,"Unable to see favourite houses link")
+
+    $accountscreen.tap_favourite_houses
+
+    assert_true($accountscreen.verify_local_house_displayed, "Favourite houses reset is not working")
+
+    $accountscreen.select_40_greek_street
+
+    $accountscreen.tap_save_changes
+end
+
+Then(/^the added house is shown on favourite houses list$/) do
+
+    assert_true($accountscreen.favourite_houses_shown,"Unable to see favourite houses link")
+
+    $accountscreen.tap_favourite_houses
+
+    assert_true($accountscreen.verify_40_greek_st_displayed, "Favourite houses is not saved")
+
+    $accountscreen.select_40_greek_street
+
+    $accountscreen.tap_save_changes
+
+    assert_true($accountscreen.favourite_houses_shown,"Unable to see favourite houses link")
+
+    $accountscreen.tap_favourite_houses
+
+    assert_true($accountscreen.verify_local_house_displayed, "Favourite houses reset is not working")
+
+    $accountscreen.tap_save_changes
+
+    assert_true($accountscreen.tap_sign_out, "Unable to sign out the user")
+
+    $onboardingscreens.close_app
+end
+
+
+Then(/^the user navigates back and sign out of the app$/) do
+
+    $accountscreen.tap_icon_left
+
+    assert_true($accountscreen.tap_sign_out, "Unable to sign out the user")
+
+    $onboardingscreens.close_app
+end
+
+When(/^the user taps on sync and verifies the popup message$/) do
+
+    $accountscreen.tap_sync
+
+    assert_true($accountscreen.verify_subscribe, "Unable to see subscribe to calendar message")
+end
+
+And(/^user navigates to change password$/) do
+
+    sleep 2
+
+    assert_true($accountscreen.change_password_tab,"Unable is not navigated to the right screen")
+
+end
+
+
+When(/^user reverts password$/) do
+
+    assert_true($accountscreen.verify_current_password,"current password is not visible")
+
+    $accountscreen.provide_changed_password
+    $accountscreen.provide_orignal_new_password
+    $accountscreen.provide_orignal_confirm_password
+    $accountscreen.tap_save_btn
+
+end

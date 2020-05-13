@@ -3,145 +3,94 @@ Feature: Account screen
 
 
   Background:
-
-  @smoke @login-ex @regression @notification @test
-  Scenario: Pre-requisite for Account screen testing
     Given app is launched
-    And user is on sign in screen
-    And user enters valid email address and password
-    And user clicks on go button
+    And the user is on main screen
+    When user enters valid email address and password
 
-  @smoke @regression @notification @test
+  @smoke @regression @verify_account_Screen
   Scenario: Validate Account screen title
     Given greetings should be visible
     When user clicks on Account button on home screen
-    Then user see and taps on view profile link
+    Then the user verifies all the links under account screen
 
-  @smoke
-  Scenario: Validate your membership link
-    Then user see and taps on your membership link
+  @smoke @regression @edit_profile
+  Scenario: Validate Edit profile fields
+    Given user clicks on Account button on home screen
+    When the user edits their profession
+    And the user provides industry and city value
+    And the user inputs about me and interests values
+    And the user inputs connect social accounts values
+    Then the amended fields should be shown on users profile screen
 
-  @smoke
-  Scenario: Validate perks link
-    Then user see and taps on perks link
+  @smoke @regression @favourite_houses
+  Scenario: User adds a house to his list of favourite houses
+    Given user clicks on Account button on home screen
+    When the user adds a new favourite house
+    Then the added house is shown on favourite houses list
 
-#  @smoke
-#  Scenario: Validate perk content on house perks list
-#    When user sees and taps on perks
-#    Then user sees perk title
-#
-#  @smoke
-#  Scenario: Validate perk content
-#    When user taps on the first perk on perks list
-#    Then user sees perk location on perk screen
-#    Then user sees perk title on perk screen
-#    Then user sees perk description on perk screen
-#
-#  @smoke
-#  Scenario: Navigate back to Account screen
-#    Then user goes back to the account screen
-#    Then user goes back to the account screen
-
-  @smoke
-  Scenario: Validate payment link
-    Then user see and taps on payment link
-
-  @smoke
-  Scenario: Validate change password link
-    Then user see and taps on change password link
-
-  @regression
-  Scenario: Change the password
-    Given user taps on change password
-    When user provides current password
-    And user provides new password
-    And user provides confirm password
-    And user taps on Save button
-    Then the new password is saved
-
-  @regression @will_fail
-  Scenario: Return to the original password
-    Given user taps on change password
-    When user provides changed password in current password
-    And user provides original password in new password
-    And user provides original password in confirm password
-    And user taps on Save button
-    Then the new password is saved
-
-  @smoke
-  Scenario: Validate favourite houses link
-    Then user see and taps on favourite houses link
-
-  @smoke @regression
-  Scenario: Reset favourite houses
-    When user taps on favourite houses
-    And user taps on Reset
-    And tap on Save changes
-    And user taps on favourite houses
-    Then user see only the local house in the favourite houses list
-
-  @smoke @regression
-  Scenario: User selects 40 Greek Street as a favourite house
-    When user taps on favourite houses
-    And user selects 40 Greek Street
-    And tap on Save changes
-    And user taps on favourite houses
-    Then user sees 40 Greek Street under favourite houses list
+  @smoke @regression @notification_preferences
+  Scenario: User updates their notification preferences
+    Given user clicks on Account button on home screen
+    And user taps on settings
+    And unselect Your events push notification preference
+    And unselect Your screenings push notification preference
+    And unselect Welcome to the House push notification preference
+    And Your events push notification preference is switched off
+    And Your screenings push notification preference is switched off
+    And Welcome to the House push notification preference is switched off
     And user goes back to the account screen
-
-  @smoke
-  Scenario: Validate notification preferences link
-    Then user see and taps on notification preferences link
-
-  @smoke
-  Scenario: Unselect the push notification preferences
-    Given user taps on notification preferences
-    When unselect Your events push notification preference
-    When unselect Your screenings push notification preference
-    When unselect Welcome to the House push notification preference
-    Then Your events push notification preference is switched off
-    Then Your screenings push notification preference is switched off
-    Then Welcome to the House push notification preference is switched off
-    Then user goes back to the account screen
-
-  @smoke
-  Scenario: Select the push notification preferences
-    Given user taps on notification preferences
-    When select Your events push notification preference
-    When select Your screenings push notification preference
-    When select Welcome to the House push notification preference
+    When user taps on settings
+    And select Your events push notification preference
+    And select Your screenings push notification preference
+    And select Welcome to the House push notification preference
     Then Your events push notification preference is switched on
-    Then Your screenings push notification preference is switched on
-    Then Welcome to the House push notification preference is switched on
+    And Your screenings push notification preference is switched on
+    And Welcome to the House push notification preference is switched on
+    Then the user navigates back and sign out of the app
 
-  @smoke
-  Scenario: User navigates back to the account screen
-    Then user goes back to the account screen
+  @smoke @sync_calendar
+  Scenario: Validate sync calendar
+    Given user clicks on Account button on home screen
+    And user taps on settings
+    And user navigates to next tab
+    When the user taps on sync and verifies the popup message
+    Then the user navigates back and sign out of the app
 
-  @smoke @ios
-  Scenario: Validate sync calendar link
-    Then user see and taps on sync calendar link
+  @regression @change_password
+  Scenario: User updates their password
+    Given user clicks on Account button on home screen
+    And user taps on settings
+    And user navigates to next tab
+    And user navigates to change password
+    When user updates password
+    Then the user navigates back and sign out of the app
 
-  @smoke
-  Scenario: Validate contact us link
-    Then user see and taps on contact us link
+  @regression @revert_password
+  Scenario: User reverts their password
+    Given user enters valid email address and changed password
+    And user clicks on Account button on home screen
+    And user taps on settings
+    And user navigates to next tab
+    And user navigates to change password
+    When user reverts password
+    Then the user navigates back and sign out of the app
 
-  @smoke @test
-  Scenario: User submits the enquiry using contact us form
-    Given user taps on Contact us form
-    When user provides enquiry type as General enquiry
-    And user provides enquiry topic as Positive feedback
-    And user provides enquiry message as I like your services
-    Then user submits the enquiry
-    Then user goes back to the account screen
-
-  @smoke @android
-  Scenario: Validate faq link
-    Then user see and taps on faq link
-
-  @smoke
-  Scenario: Validate policies link
-    Then user see and taps on policies link
-
-  @smoke @hook
-  Scenario: Go back to the home page from account screen
+#  @smoke @test
+#  Scenario: User submits the enquiry using contact us form
+#    Given user taps on Contact us form
+#    When user provides enquiry type as General enquiry
+#    And user provides enquiry topic as Positive feedback
+#    And user provides enquiry message as I like your services
+#    Then user submits the enquiry
+#    Then user goes back to the account screen
+#
+#  @smoke @android
+#  Scenario: Validate faq link
+#    Then user see and taps on faq link
+#
+#  @smoke
+#  Scenario: Validate policies link
+#    Then user see and taps on policies link
+#
+#  @smoke @hook
+#  Scenario: Go back to the home page from account screen

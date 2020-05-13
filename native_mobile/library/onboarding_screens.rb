@@ -24,6 +24,99 @@ class OnboardingScreens
 
   end
 
+  def verify_user_is_on_login_page()
+
+    if  Common.wait_for(5) {@device_onboarding_objects.welcome_home.displayed?}
+
+      return true
+
+    end
+
+  end
+
+
+  def close_app
+
+    $driver = $driver_appium.quit_driver
+
+  end
+
+  def user_enters_email_password(validity)
+
+    if validity == "valid"
+
+      config     = {props: YAML.load_file(File.join(File.dirname(__FILE__), '../../config/environments.yml'))}
+
+      email      = $email
+
+      $password   = $pass
+
+      $name = config[:props]["env"][$env][$email]["name"]
+
+      $house = config[:props]["env"][$env][$email]["house"]
+
+      $profile = config[:props]["env"][$env][$email]["profile"]
+
+      @device_onboarding_objects.email_textfield.send_keys(email)
+      @device_onboarding_objects.password_textfield.send_keys($password)
+
+    end
+
+  end
+
+  def user_enters_email_changed_password(validity)
+
+    if validity == "valid"
+
+      config     = {props: YAML.load_file(File.join(File.dirname(__FILE__), '../../config/environments.yml'))}
+
+      email      = $email
+
+      $name = config[:props]["env"][$env][$email]["name"]
+
+      $house = config[:props]["env"][$env][$email]["house"]
+
+      $profile = config[:props]["env"][$env][$email]["profile"]
+
+      @device_onboarding_objects.email_textfield.clear
+      @device_onboarding_objects.email_textfield.send_keys(email)
+      @device_onboarding_objects.password_textfield.clear
+      @device_onboarding_objects.password_textfield.send_keys("password1")
+
+    end
+
+  end
+
+
+
+  def user_clicks_go()
+
+    Common.wait_for(20){@device_onboarding_objects.go_button}.click
+
+  end
+
+  def verify_user_signin()
+
+
+  end
+
+  def verify_app_launch_screen()
+    if  Common.wait_for(15) {@device_onboarding_objects.main_home.displayed?}
+
+      return true
+
+    end
+  end
+
+  def user_clicks_membership()
+
+    Common.wait_for(20){@device_onboarding_objects.main_home}.click
+  end
+
+  def user_main_screen()
+
+    Common.wait_for(2){@device_onboarding_objects.main_home.displayed?}
+  end
 
   def verify_user_is_on_onboarding_screen()
 

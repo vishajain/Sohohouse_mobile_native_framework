@@ -113,6 +113,7 @@ module Common
 
   end
 
+
   def self.swipe_right(startY, endY)
 
     if $device == "ios"

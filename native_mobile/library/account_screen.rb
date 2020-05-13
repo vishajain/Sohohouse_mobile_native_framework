@@ -5,7 +5,7 @@ require 'appium_lib'
 require 'selenium-webdriver'
 require "test/unit"
 require 'yaml'
-require_relative '../pageobjects/login_objects'
+require_relative '../pageobjects/onboarding_objects'
 require_relative '../pageobjects/home_objects'
 require_relative '../pageobjects/account_objects'
 require_relative '../../common/functions_common'
@@ -15,12 +15,12 @@ class AccountScreen
   def initialize()
 
     if $device == "ios"
-      @device_login_objects = Ios_Login_Objects.new($driver, $driver_appium)
+      @device_onboarding_objects = Ios_Onboarding_Objects.new($driver, $driver_appium)
       @device_home_objects = Ios_Home_Objects.new($driver, $driver_appium)
       @device_account_objects = Ios_Account_Objects.new($driver, $driver_appium)
 
     else
-      @device_login_objects = Android_Login_Objects.new($driver, $driver_appium)
+      @device_onboarding_objects = Android_Onboarding_Objects.new($driver, $driver_appium)
       @device_home_objects = Android_Home_Objects.new($driver, $driver_appium)
       @device_account_objects = Android_Account_Objects.new($driver, $driver_appium)
 
@@ -60,7 +60,7 @@ class AccountScreen
 
   def tap_View_Profile
 
-    sleep 5
+    sleep 3
 
     Common.swipe_top
 
@@ -83,9 +83,9 @@ class AccountScreen
   def verify_your_membership
 
 
-    if Common.wait_for(20) {@device_account_objects.your_membership.displayed?}
+    if Common.wait_for(20) {@device_account_objects.membership.displayed?}
 
-      @device_account_objects.your_membership.click
+      @device_account_objects.membership.click
 
       if Common.wait_for(20) {@device_account_objects.your_membership.displayed?}
 
@@ -93,6 +93,23 @@ class AccountScreen
 
         return true
 
+      end
+
+    end
+
+  end
+
+  def verify_bookings
+
+    if Common.wait_for(10) {@device_account_objects.your_bookings.displayed?}
+
+      @device_account_objects.your_bookings.click
+
+      if Common.wait_for(10) {@device_account_objects.booking_history.displayed?}
+
+        Common.wait_for(10){@device_account_objects.icon_left}.click
+
+        return true
       end
 
     end
@@ -211,13 +228,41 @@ class AccountScreen
 
   end
 
+  def favourite_houses_shown
+
+    i = 1
+
+    loop do
+
+      begin
+
+        return Common.wait_for(5) {@device_account_objects.favourite_houses.displayed?}
+
+      rescue
+
+        Common.swipe_down
+
+        i = i + 1
+
+        if i > 2
+
+          return false
+
+        end
+
+      end
+
+    end
+
+  end
+
   def verify_notification_preferences
 
     Common.swipe_down
 
-    if Common.wait_for(20) {@device_account_objects.notification_preferences.displayed?}
+    if Common.wait_for(20) {@device_account_objects.settings.displayed?}
 
-      @device_account_objects.notification_preferences.click
+      @device_account_objects.settings.click
 
       if Common.wait_for(20) {@device_account_objects.notification_preferences.displayed?}
 
@@ -233,17 +278,58 @@ class AccountScreen
 
   def verify_sync_calendar
 
-    if Common.wait_for(20) {@device_account_objects.sync_calendar.displayed?}
+    locat = Common.wait_for(3) {@device_account_objects.notification}.location
 
-      Common.wait_for(20) {@device_account_objects.sync_calendar}.click
+    y =  locat["y"]
 
-      if Common.wait_for(20) {@device_account_objects.myplanner_title.displayed?}
+    startY = y+55
+    endY = y+55
 
-        Common.wait_for(20){@device_account_objects.icon_left}.click
+    before_swipe_string = Common.wait_for(5) {@device_account_objects.notification}.text
 
-        return true
+    Common.swipe_left(startY,endY)
 
-      end
+    after_swipe_string = Common.wait_for(5) {@device_account_objects.sync_calendar}.text
+
+    if  before_swipe_string == after_swipe_string
+      return false
+    else
+      return true
+    end
+
+  end
+
+  def change_password_tab
+
+    locat = Common.wait_for(3) {@device_account_objects.sync_calendar}.location
+
+    y =  locat["y"]
+
+    startY = y+55
+    endY = y+55
+
+    before_swipe_string = Common.wait_for(5) {@device_account_objects.sync_calendar}.text
+
+    Common.swipe_left(startY,endY)
+
+    after_swipe_string = Common.wait_for(5) {@device_account_objects.change_password}.text
+
+    if  before_swipe_string == after_swipe_string
+      return false
+    else
+      return true
+    end
+
+  end
+
+
+  def tap_sync
+
+    if Common.wait_for(10) {@device_account_objects.sync.displayed?}
+
+      Common.wait_for(5) {@device_account_objects.sync}.click
+
+      return true
 
     end
 
@@ -252,20 +338,11 @@ class AccountScreen
   def verify_contact_us
 
     if Common.wait_for(20) {@device_account_objects.contact_us.displayed?}
-
-      @device_account_objects.contact_us.click
-
-      if Common.wait_for(20) {@device_account_objects.contact_us.displayed?}
-
-        Common.wait_for(20){@device_account_objects.icon_left}.click
-
         return true
-
-      end
-
     end
 
   end
+
 
   def assert_contact_us
 
@@ -298,16 +375,16 @@ class AccountScreen
 
     if Common.wait_for(20) {@device_account_objects.policies.displayed?}
 
-      @device_account_objects.policies.click
+      # @device_account_objects.policies.click
 
-      if Common.wait_for(20) {@device_account_objects.policies.displayed?}
-
-        Common.wait_for(20){@device_account_objects.icon_left}.click
-
-        return true
-
-      end
-
+      # if Common.wait_for(20) {@device_account_objects.policies.displayed?}
+      #
+      #   Common.wait_for(20){@device_account_objects.icon_left}.click
+      #
+      # return true
+      #
+      # end
+      return true
     end
 
   end
@@ -405,19 +482,25 @@ class AccountScreen
 
   def provide_current_password
 
-    @device_account_objects.current_password.send_keys($password)
+    @device_account_objects.current_password_input.send_keys("password")
+
+  end
+
+  def verify_current_password
+
+    return Common.wait_for(20) {@device_account_objects.current_password.displayed?}
 
   end
 
   def provide_new_password
 
-    @device_account_objects.new_password.send_keys("password1")
+    @device_account_objects.new_password_input.send_keys("password1")
 
   end
 
   def provide_confirm_password
 
-    @device_account_objects.confirm_password.send_keys("password1")
+    @device_account_objects.confirm_password_input.send_keys("password1")
 
   end
 
@@ -431,19 +514,19 @@ class AccountScreen
 
   def provide_changed_password
 
-    @device_account_objects.current_password.send_keys("password1")
+    @device_account_objects.current_password_input.send_keys("password1")
 
   end
 
   def provide_orignal_new_password
 
-    @device_account_objects.new_password.send_keys($password)
+    @device_account_objects.new_password_input.send_keys("password")
 
   end
 
   def provide_orignal_confirm_password
 
-    @device_account_objects.confirm_password.send_keys($password)
+    @device_account_objects.confirm_password_input.send_keys("password")
 
   end
 
@@ -461,7 +544,19 @@ class AccountScreen
       Common.wait_for(5){@device_account_objects.cancel_yes}.click
     end
 
-    return Common.wait_for(5){@device_login_objects.main_home.displayed?}
+    return Common.wait_for(5){@device_onboarding_objects.main_home.displayed?}
+
+  end
+
+  def verify_subscribe
+
+    Common.wait_for(10) {@device_account_objects.subscribe.displayed?}
+
+    if $device == "android"
+      Common.wait_for(5){@device_account_objects.cancel_yes}.click
+    end
+
+    return Common.wait_for(10){@device_account_objects.sync.displayed?}
 
   end
 
@@ -481,41 +576,37 @@ class AccountScreen
 
   def tap_reset
 
-    Common.wait_for(5){@device_account_objects.reset}.click
+    Common.wait_for(3){@device_account_objects.reset}.click
 
   end
 
   def verify_local_house_displayed
 
-    return Common.wait_for(20) {@device_account_objects.local_house.displayed?}
+    return Common.wait_for(5) {@device_account_objects.local_house.displayed?}
 
   end
 
   def tap_favourite_houses
 
-    sleep 10
-
-    Common.wait_for(10){@device_account_objects.favourite_houses}.click
+    Common.wait_for(3){@device_account_objects.favourite_houses}.click
 
   end
 
   def tap_save_changes
 
-    Common.wait_for(5){@device_account_objects.save_changes}.click
+    Common.wait_for(10){@device_account_objects.save_changes}.click
 
   end
 
   def select_40_greek_street
 
-      tap_reset
+      Common.wait_for(2){@device_account_objects.tap_uk}.click
 
-      sleep 5
+      Common.wait_for(2){@device_account_objects.greek_St}.click
 
-      Common.wait_for(10){@device_account_objects.tap_uk}.click
+      Common.wait_for(2){@device_account_objects.kettners}.click
 
-      Common.swipe_down
-
-      Common.wait_for(10){@device_account_objects.greek_St}.click
+      Common.wait_for(2){@device_account_objects.tap_uk}.click
 
 
   end
@@ -541,6 +632,7 @@ class AccountScreen
 
     return Common.wait_for(5){@device_account_objects.greek_St.displayed?}
 
+
   end
 
   def verify_shoreditch_displayed
@@ -551,25 +643,31 @@ class AccountScreen
 
   end
 
-  def tap_notification_preferences
+  def tap_settings
 
-    Common.wait_for(10){@device_account_objects.notification_preferences}.click
+    Common.wait_for(5){@device_account_objects.settings}.click
+
+  end
+
+  def verify_settings
+
+    Common.swipe_down
+
+    Common.wait_for(10){@device_account_objects.settings.displayed?}
 
   end
 
   def tap_notification_pref_switch_off(link)
 
-    Common.wait_for(10){@device_account_objects.notification_pref_switch(link)}.click
+    Common.wait_for(3){@device_account_objects.notification_pref_switch(link)}.click
 
-    sleep 2
-
-    Common.wait_for(10){@device_account_objects.notification_pref_switch(link)}.click
+    Common.wait_for(3){@device_account_objects.notification_pref_switch(link)}.click
 
   end
 
   def verify_notification_pref_switch_value(link, value)
 
-    str = Common.wait_for(10){@device_account_objects.notification_pref_switch_value(link)}
+    str = Common.wait_for(3){@device_account_objects.notification_pref_switch_value(link)}
 
     return str.include? value
 
@@ -577,7 +675,7 @@ class AccountScreen
 
   def tap_notification_pref_switch_on(link)
 
-    Common.wait_for(10){@device_account_objects.notification_pref_switch(link)}.click
+    Common.wait_for(3){@device_account_objects.notification_pref_switch(link)}.click
 
     sleep 1
 
@@ -632,6 +730,354 @@ class AccountScreen
   def tap_icon_left
 
     Common.wait_for(3){@device_account_objects.icon_left}.click
+
+  end
+
+
+  def verify_edit_profile_screen_title
+
+    if Common.wait_for(3) {@device_account_objects.edit_profile}.displayed?
+
+      return true
+
+    end
+
+  end
+
+  def user_enters_profession_value
+
+    if Common.wait_for(5){@device_account_objects.profession_input}.text.include? "software"
+      profile = "profile2"
+    else
+      profile = 'profile1'
+    end
+
+    config = {props: YAML.load_file(File.join(File.dirname(__FILE__), '../../config/testdata.yml'))}
+
+    $profession_value = config[:props]["data"]["profile"][profile]["profession"]
+    $industry_value = config[:props]["data"]["profile"][profile]["industry"]
+    $city_value = config[:props]["data"]["profile"][profile]["city"]
+    $about_me_value =  config[:props]["data"]["profile"][profile]["about-me"]
+    $chat_value =  config[:props]["data"]["profile"][profile]["chat"]
+    $interest1_value = config[:props]["data"]["profile"][profile]["interest1"]
+    $interest2_value = config[:props]["data"]["profile"][profile]["interest2"]
+    $website_value = config[:props]["data"]["profile"][profile]["website"]
+    $instagram_value = config[:props]["data"]["profile"][profile]["instagram"]
+    $twitter_value = config[:props]["data"]["profile"][profile]["twitter"]
+    $linkedin_value = config[:props]["data"]["profile"][profile]["linkedin"]
+    $spotify_value = config[:props]["data"]["profile"][profile]["spotify"]
+    $youtube_value = config[:props]["data"]["profile"][profile]["youtube"]
+
+    Common.wait_for(5){@device_account_objects.profession}.click
+
+    Common.wait_for(5){@device_account_objects.text_input}.clear
+
+    if $device == "ios"
+      @device_account_objects.profession.send_keys($profession_value)
+    else
+      @device_account_objects.text_input.send_keys($profession_value)
+    end
+
+    $driver.action.move_to(@device_account_objects.done).click.perform
+
+  end
+
+  def user_enters_industry_value
+
+    Common.wait_for(3){@device_account_objects.industry}.click
+
+    if $device == "ios"
+      @device_account_objects.industry_input.send_keys($industry_value)
+      Common.wait_for(3){@device_account_objects.industry}.click
+    else
+      @device_account_objects.industry_input.replace_value($industry_value)
+      @device_account_objects.industry_input.click
+      @device_account_objects.industry.click
+    end
+
+
+
+  end
+
+  def user_enters_city_value
+
+    Common.wait_for(5){@device_account_objects.city}.click
+
+    Common.wait_for(5){@device_account_objects.text_input}.clear
+
+    @device_account_objects.city.send_keys($city_value)
+
+    $driver.action.move_to(@device_account_objects.done).click.perform
+
+  end
+
+  def user_enters_about_me_value
+
+    sleep 2
+
+    # Common.little_swipe_down
+
+    Common.wait_for(3){@device_account_objects.aboutme}.click
+
+    Common.wait_for(3){@device_account_objects.large_text_input}.clear
+
+    if $device == "ios"
+      @device_account_objects.aboutme.send_keys($about_me_value)
+    else
+      @device_account_objects.large_text_input.send_keys($about_me_value)
+    end
+
+    $driver.action.move_to(@device_account_objects.done).click.perform
+
+  end
+
+  def user_enters_lets_chat_value
+
+    Common.little_swipe_down
+
+    Common.wait_for(5){@device_account_objects.chat}.click
+
+    Common.wait_for(5){@device_account_objects.large_text_input}.clear
+
+    if $device == "ios"
+      @device_account_objects.chat.send_keys($chat_value)
+    else
+      @device_account_objects.large_text_input.send_keys($chat_value)
+    end
+
+    $driver.action.move_to(@device_account_objects.done).click.perform
+
+  end
+
+  def user_enters_interests_value
+
+    Common.little_swipe_down
+
+    Common.wait_for(10){@device_account_objects.interests}.click
+
+    element_count = Common.wait_for(10){@device_account_objects.interests_remove.size}
+
+    if element_count > 0
+
+      until element_count == 0
+
+        @device_account_objects.interests_remove[0].click
+
+        element_count = element_count-1
+
+      end
+
+    end
+
+    if $device == "ios"
+      @device_account_objects.interests.send_keys("i")
+    else
+      @device_account_objects.interests_input1.send_keys("i")
+    end
+
+    @device_account_objects.interests_input($interest1_value).click
+
+    @device_account_objects.interests_input($interest2_value).click
+
+    $driver.action.move_to(@device_account_objects.done).click.perform
+
+  end
+
+  def tap_social_accounts
+
+    Common.wait_for(3){@device_account_objects.social_accounts}.click
+
+  end
+
+  def user_enters_website_value
+
+    Common.wait_for(2){@device_account_objects.website_text}.click
+
+    Common.wait_for(2){@device_account_objects.website_text}.clear
+
+    if $device == "ios"
+
+      @device_account_objects.website.send_keys($website_value)
+
+    else
+
+      Common.wait_for(2){@device_account_objects.website_text.send_keys($website_value)}
+
+    end
+
+  end
+
+  def user_enters_instagram_value
+
+    Common.wait_for(2){@device_account_objects.instagram_text}.click
+
+    Common.wait_for(2){@device_account_objects.instagram_text}.clear
+
+    @device_account_objects.instagram_text.send_keys($instagram_value)
+
+
+  end
+
+  def user_enters_twitter_value
+
+    Common.wait_for(2){@device_account_objects.twitter_text}.click
+
+    Common.wait_for(2){@device_account_objects.twitter_text}.clear
+
+    @device_account_objects.twitter_text.send_keys($twitter_value)
+
+    Common.little_swipe_down
+
+  end
+
+  def user_enters_linkedin_value
+
+    Common.wait_for(2){@device_account_objects.linkedin_text}.click
+
+    Common.wait_for(2){@device_account_objects.linkedin_text}.clear
+
+    @device_account_objects.linkedin_text.send_keys($linkedin_value)
+
+  end
+
+  def user_enters_spotify_value
+
+    Common.wait_for(2){@device_account_objects.spotify_text}.click
+
+    Common.wait_for(2){@device_account_objects.spotify_text}.clear
+
+    @device_account_objects.spotify_text.send_keys($spotify_value)
+
+  end
+
+  def user_enters_youtube_value
+
+    Common.wait_for(2){@device_account_objects.youtube_text}.click
+
+    Common.wait_for(2){@device_account_objects.youtube_text}.clear
+
+    @device_account_objects.youtube_text.send_keys($youtube_value)
+
+  end
+
+  def user_taps_done
+
+    $driver.action.move_to(@device_account_objects.done).click.perform
+
+  end
+
+  def user_save_changes
+
+    Common.wait_for(6){@device_account_objects.save_changes}.click
+
+  end
+
+  def verify_profession_value
+
+    sleep 5
+
+    return Common.wait_for(3){@device_account_objects.profession_value1}.text.include? $profession_value
+
+  end
+
+  def verify_interests_values
+
+    if Common.wait_for(3){@device_account_objects.interests_value}.text.include? $interest1_value
+
+      if Common.wait_for(3){@device_account_objects.interests_value}.text.include? $interest2_value
+
+        return true
+
+      end
+
+    end
+
+  end
+
+  def verify_industry_value
+
+    return Common.wait_for(3){@device_account_objects.industry_value}.text.include? $industry_value
+
+  end
+
+  def verify_city_value
+
+    sleep 2
+
+    return Common.wait_for(3){@device_account_objects.city_value}.text.include? $city_value
+
+  end
+
+  def verify_about_me_value
+
+    return Common.wait_for(3){@device_account_objects.about_me_value}.text.include? $about_me_value
+
+  end
+
+  def verify_lets_chat_value
+
+    Common.swipe_down
+
+    return Common.wait_for(3){@device_account_objects.lets_chat_value}.text.include? $chat_value
+
+  end
+
+  def verify_website
+
+    return Common.wait_for(3) {@device_account_objects.website_value}.displayed?
+
+  end
+
+  def verify_instagram
+
+    return Common.wait_for(3) {@device_account_objects.instagram_value}.displayed?
+
+
+  end
+
+  def verify_twitter
+
+    return Common.wait_for(3) {@device_account_objects.twitter_value}.displayed?
+
+  end
+
+  def verify_linkedin
+
+    return Common.wait_for(3) {@device_account_objects.linkedin_value}.displayed?
+
+  end
+
+  def verify_spotify
+
+    return Common.wait_for(3) {@device_account_objects.spotify_value}.displayed?
+
+  end
+
+  def verify_youtube
+
+    return Common.wait_for(3) {@device_account_objects.youtube_value}.displayed?
+
+  end
+
+  def home_screen_navigate
+
+    if $device == "ios"
+
+      Common.wait_for(10){@device_account_objects.icon_left.click}
+
+      Common.wait_for(10){@device_account_objects.homeBtn.click}
+
+      return true
+
+    else
+
+      Common.wait_for(10){@device_account_objects.navigate_up.click}
+
+      Common.wait_for(10){@device_account_objects.homeBtn.click}
+
+      return true
+
+    end
 
   end
 
