@@ -39,7 +39,7 @@ module Ios_driver
 
       @app_path         = @config[:props][$device]["app_path"][$env]
 
-      #  'useNewWDA'=> true,
+      #  'useNewWDA'=> true,,
       @capabilities =
           {
               caps:

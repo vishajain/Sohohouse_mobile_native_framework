@@ -49,9 +49,11 @@ Then(/^the amended fields should be shown on users profile screen$/) do
 
   $homescreen.ios_back
 
-  assert_true($accountscreen.tap_sign_out, "Unable to sign out the user")
+  $accountscreen.home_screen_navigation
 
-  $onboardingscreens.close_app
+  # assert_true($accountscreen.tap_sign_out, "Unable to sign out the user")
+  #
+  # $onboardingscreens.close_app
 
 end
 
@@ -230,7 +232,9 @@ end
 
 Then("member is not on home screen from account screen") do
 
-    assert_true($accountscreen.home_screen_navigate,"Unable to navigate to home screen")
+    # assert_true($accountscreen.home_screen_navigate,"Unable to navigate to home screen")
+    # home_screen_navigation
+        assert_true($accountscreen.home_screen_navigation,"Unable to navigate to home screen")
 
 end
 
@@ -392,6 +396,12 @@ And("user selects Shoreditch house") do
 
 end
 
+And("user selects little house mayfair") do
+
+  $accountscreen.select_lhm_house
+
+end
+
 Then("user sees 40 Greek Street under favourite houses list") do
 
     assert_true($accountscreen.verify_40_greek_st_displayed, "Favourite houses reset is not working")
@@ -536,9 +546,11 @@ Then(/^the added house is shown on favourite houses list$/) do
 
     $accountscreen.tap_save_changes
 
-    assert_true($accountscreen.tap_sign_out, "Unable to sign out the user")
+    $accountscreen.home_screen_navigation
 
-    $onboardingscreens.close_app
+    # assert_true($accountscreen.tap_sign_out, "Unable to sign out the user")
+    #
+    # $onboardingscreens.close_app
 end
 
 
@@ -556,6 +568,7 @@ When(/^the user taps on sync and verifies the popup message$/) do
     $accountscreen.tap_sync
 
     assert_true($accountscreen.verify_subscribe, "Unable to see subscribe to calendar message")
+
 end
 
 And(/^user navigates to change password$/) do
@@ -572,8 +585,53 @@ When(/^user reverts password$/) do
     assert_true($accountscreen.verify_current_password,"current password is not visible")
 
     $accountscreen.provide_changed_password
+
     $accountscreen.provide_orignal_new_password
+
     $accountscreen.provide_orignal_confirm_password
+
     $accountscreen.tap_save_btn
+
+    $accountscreen.tap_icon_left
+
+    $accountscreen.home_screen_navigation
+
+end
+
+
+And(/^the user selects a favourite house for carousel$/) do
+
+  $homescreen.verify_account_click
+  $accountscreen = AccountScreen.new
+  $whatsonscreen = WhatsonScreen.new
+  $homescreen = HomeScreen.new
+
+  $accountscreen.tap_favourite_houses
+
+  $accountscreen.select_lhm_house
+
+  $accountscreen.tap_save_changes
+
+  assert_true($accountscreen.home_screen_navigation,"Unable to navigate to home screen")
+
+  sleep 5
+
+  begin
+    assert_true($homescreen.verify_happening_now,"Happening now section is not present")
+  rescue
+    puts "Happening now section is not present"
+    $happeningNow = "Happening now not present"
+  end
+
+  assert_true($homescreen.verify_pastdigital_events, "Digital events are not present on home screen")
+
+end
+
+And(/^user goes back to the home screen$/) do
+
+  assert_true($accountscreen.navigate_to_home,"Unable to navigate to home screen")
+
+  assert_true($homescreen.verify_greetings,"Greetings not present")
+
 
 end

@@ -11,8 +11,6 @@ class Ios_Account_Objects
     @driver = driver
   end
 
-
-
   def profession_value1
     @driver.find_element(:xpath => "//XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[2]")
   end
@@ -34,7 +32,7 @@ class Ios_Account_Objects
   end
 
   def lets_chat_value
-    @driver.find_element(:xpath => "//XCUIElementTypeCell[7]/XCUIElementTypeStaticText[2]")
+    @driver.find_element(:xpath => "//XCUIElementTypeCell[5]/XCUIElementTypeStaticText[2]")
   end
 
   def instagram_value
@@ -370,6 +368,10 @@ class Ios_Account_Objects
 
   def shoreditch_house
     @driver.find_element(:name => "Shoreditch House")
+  end
+
+  def little_house_mayfair
+    @driver.find_element(:name => "Little House Mayfair")
   end
 
   def notification_pref_switch(link)

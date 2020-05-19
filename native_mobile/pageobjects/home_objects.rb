@@ -125,7 +125,6 @@ class Ios_Home_Objects
     @driver.find_element(:name => "See all stories")
   end
 
-
   def our_houses
     @driver.find_element(:name => "Our Houses")
   end
@@ -217,6 +216,10 @@ class Ios_Home_Objects
 
   def navigate_back
     @driver.find_element(:xpath => "//XCUIElementTypeOther/XCUIElementTypeButton[1]")
+  end
+
+  def navigates_back
+    @driver.find_element(:name => "Back")
   end
 
   def navigate_back_to_my_planner

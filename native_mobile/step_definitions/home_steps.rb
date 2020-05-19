@@ -7,6 +7,7 @@ require_relative '../support/drivers/base_driver'
 require_relative '../library/home_screen'
 require_relative '../library/account_screen'
 require_relative '../pageobjects/home_objects'
+require_relative '../pageobjects/onboarding_objects'
 require_relative '../../common/functions_common'
 
 include Test::Unit::Assertions
@@ -283,6 +284,8 @@ end
 
 Then("username is visible") do
 
+    sleep 5
+
     assert_true($homescreen.verify_username,"Username is not present")
 
 end
@@ -527,6 +530,8 @@ end
 
 When(/^user taps on (.*) carousel/) do |event_name|
 
+  sleep 5
+
   if $happeningNow != "Happening now not present"
 
      $homescreen.tap_carousel(event_name)
@@ -623,5 +628,22 @@ And(/^the user enters a new post on another notice board$/) do
   $homescreen.amend_text
 
   $homescreen.post_click
+
+end
+
+
+Then(/^user resets the favourite houses$/) do
+
+  $homescreen.verify_account_click
+
+  $accountscreen.tap_favourite_houses
+
+  $accountscreen.tap_reset
+
+  $accountscreen.tap_save_changes
+
+  assert_true($accountscreen.tap_sign_out, "Unable to sign out the user")
+
+  $onboardingscreens.close_app
 
 end

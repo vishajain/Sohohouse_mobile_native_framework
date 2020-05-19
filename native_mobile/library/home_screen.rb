@@ -1,6 +1,5 @@
 require 'rubygems'
 require 'appium_lib'
-# require 'watir'
 require 'selenium-webdriver'
 require "test/unit"
 require 'yaml'
@@ -594,6 +593,7 @@ class HomeScreen
     Common.wait_for(15){@device_home_objects.left_link}.click
   end
 
+
   def verify_myplanner_click
 
     Common.wait_for(15){@device_home_objects.myplanner_btn}.click
@@ -744,6 +744,8 @@ class HomeScreen
   end
 
   def tap_soho_house_berlin
+
+    Common.little_swipe_down
 
     Common.wait_for(5){@device_home_objects.browsehouses_title}.click
 

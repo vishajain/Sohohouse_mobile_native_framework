@@ -389,9 +389,21 @@ class AccountScreen
 
   end
 
-  def home_screen_navigate
+  def home_screen_navigation
 
-    Common.wait_for(5){@device_account_objects.homeBtn.click}
+    @device_account_objects.homeBtn.click
+
+    Common.swipe_top
+
+    Common.wait_for(5) {@device_home_objects.username.displayed?}
+
+    return true
+
+  end
+
+  def navigate_to_home
+
+    @device_home_objects.navigates_back.click
 
     return true
 
@@ -594,6 +606,8 @@ class AccountScreen
 
   def tap_save_changes
 
+    sleep 2
+
     Common.wait_for(10){@device_account_objects.save_changes}.click
 
   end
@@ -621,9 +635,24 @@ class AccountScreen
 
       Common.swipe_down
 
+      sleep 5
+
       Common.wait_for(10){@device_account_objects.shoreditch_house}.click
 
+  end
 
+  def select_lhm_house
+    tap_reset
+
+    sleep 5
+
+    Common.wait_for(10){@device_account_objects.tap_uk}.click
+
+    Common.swipe_down
+
+    sleep 5
+
+    Common.wait_for(10){@device_account_objects.little_house_mayfair}.click
   end
 
   def verify_40_greek_st_displayed
@@ -729,10 +758,10 @@ class AccountScreen
 
   def tap_icon_left
 
+    sleep 2
     Common.wait_for(3){@device_account_objects.icon_left}.click
 
   end
-
 
   def verify_edit_profile_screen_title
 
