@@ -74,6 +74,9 @@ end
 
 When(/^the user goes through ios Onboarding screen$/) do
 
+
+  assert_true($onboardingscreens.verify_user_is_on_onboarding_screen,"User is unable to land on 'Terms & conditions' screen")
+
   $onboardingscreens.user_accepts_Terms
 
   sleep 3
@@ -81,6 +84,19 @@ When(/^the user goes through ios Onboarding screen$/) do
   assert_true($onboardingscreens.verify_user_is_on_helpus_screen,"User is unable to land on 'Help us improve' screen")
 
   $onboardingscreens.user_allows_helpus
+
+end
+
+When(/^user goes through housepay screens$/) do
+
+  assert_true($onboardingscreens.verify_user_is_on_housepay_screen,"User is unable to land on 'Housepay' screen")
+
+  $onboardingscreens.user_clicks_remind_later
+
+  # assert_true($onboardingscreens.verify_user_is_on_onboarding_screen,"User is unable to land on 'Terms & conditions' screen")
+  #
+  # $onboardingscreens.user_accepts_Terms
+
 
 end
 
@@ -106,6 +122,22 @@ Given(/^user sees T & C screen$/) do
   sleep 5
 
   assert_true($onboardingscreens.verify_user_is_on_onboarding_screen,"User is unable to land on 'Terms & conditions' screen")
+
+end
+
+Given(/^user sees Membership screen$/) do
+
+  sleep 2
+
+  assert_true($onboardingscreens.verify_user_is_on_membership_screen,"User is unable to land on 'Membership Screen' screen")
+
+  $onboardingscreens.user_clicks_continue
+
+  sleep 2
+
+  assert_true($onboardingscreens.verify_user_is_on_memberbenifits_screen,"User is unable to land on 'memberbenifits' screen")
+
+  $onboardingscreens.user_clicks_continue
 
 end
 
@@ -166,9 +198,15 @@ Then(/^user sees welcome screen$/) do
 
   sleep 3
 
+  assert_true($onboardingscreens.verify_sync_with_calendar,"User is unable to land on sync with calendar screen")
+
   $onboardingscreens.user_continue_without_sync
 
+  sleep 3
+
   assert_true($onboardingscreens.verify_user_welcome_screen,"User is unable to land on welcome screen")
+
+  $onboardingscreens.user_clicks_next
 
 end
 
@@ -182,19 +220,9 @@ Given(/^user continue from welcome screen$/) do
 end
 
 
-Then(/^user sees make it personal screen$/) do
+And(/^user continue from make it personal screen$/) do
 
   assert_true($onboardingscreens.verify_make_personal_screen,"User is unable to land on Make it personal screen")
-
-end
-
-
-When(/^user selects the favourite houses$/) do
-
-end
-
-
-And(/^user continue from make it personal screen$/) do
 
   $onboardingscreens.user_continues_from_makePersonal
 
@@ -236,6 +264,12 @@ end
 Then("user sees Notification preferences screen") do
 
   assert_true($onboardingscreens.verify_Notification_pref_screen,"User is unable to land on Notification preferences screen")
+
+  $onboardingscreens.user_turnsOn_notifications
+
+  assert_true($onboardingscreens.verify_youareset_screen,"User is unable to land on You're set screen screen")
+
+  $onboardingscreens.user_clicks_next
 
 end
 

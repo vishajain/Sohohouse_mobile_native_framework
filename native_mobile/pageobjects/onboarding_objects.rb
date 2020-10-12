@@ -40,6 +40,22 @@ class Ios_Onboarding_Objects
     @driver.find_element(:name => "Terms and conditions")
   end
 
+  def welcome_text
+    @driver.find_element(:name => "Welcome to Soho House")
+  end
+
+  def notifications_on
+    @driver.find_element(:name => "Turn on notifications")
+  end
+
+  def remind_later
+    @driver.find_element(:name => "Remind me later")
+  end
+
+  def sync_text
+    @driver.find_element(:name => "Sync with your calendar")
+  end
+
   def chasing_payment_text
     @driver.find_element(:name => "There has been a problem with your payment")
   end
@@ -72,6 +88,14 @@ class Ios_Onboarding_Objects
     @driver.find_element(:name => "Help us improve")
   end
 
+  def memberbenifits_text
+    @driver.find_element( :name => "Your member benefits")
+  end
+
+  def housepay_text
+    @driver.find_element( :name => "House Pay")
+  end
+
   def allow_improve
     @driver.find_element(:name => "Allow")
   end
@@ -87,10 +111,6 @@ class Ios_Onboarding_Objects
   def next_button
     @driver.find_element(:name => "Next")
   end
-  #
-  # def continue_button_to_notify_pref
-  #   @driver.find_element(:name => "Next")
-  # end
 
   def myplanner_text
     @driver.find_element(:name => "My planner")
@@ -121,7 +141,7 @@ class Ios_Onboarding_Objects
   end
 
   def notification_pref_text
-    @driver.find_element(:name => "Notification preferences")
+    @driver.find_element(:name => "Enable push notifications")
   end
 
   def ok_button

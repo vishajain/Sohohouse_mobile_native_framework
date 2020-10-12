@@ -9,11 +9,15 @@ Feature: This is a feature to test On-boarding screens for iOS and Android
 
   @ios @smoke
   Scenario:: User accepts Terms & Conditions to see Help us improve screen
-    Given user sees T & C screen
-    When the user goes through ios Onboarding screen
+    Given user sees Membership screen
+    And the user goes through ios Onboarding screen
+    When user goes through housepay screens
     And if user sees House introduction screen
-    And user taps on contact membership team
-    Then user sees welcome screen
+    And user sees welcome screen
+    And user continue from make it personal screen
+    And user sees Notification preferences screen
+    And user sees the home screen
+    Then the user signs out and closes the app
 
   @smoke @android
   Scenario: Android on-boarding screens

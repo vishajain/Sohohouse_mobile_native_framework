@@ -124,6 +124,12 @@ class OnboardingScreens
 
   end
 
+  def verify_user_is_on_membership_screen()
+
+    return Common.wait_for(20) {@device_onboarding_objects.welcome_text.displayed?}
+
+  end
+
 
   def user_accepts_Terms
 
@@ -133,12 +139,32 @@ class OnboardingScreens
 
   end
 
+  def user_clicks_remind_later
+
+    Common.wait_for(25){@device_onboarding_objects.remind_later}.click
+
+  end
+
 
   def verify_user_is_on_helpus_screen()
 
     return Common.wait_for(20){@device_onboarding_objects.helpus_text.displayed?}
 
   end
+
+  def verify_user_is_on_memberbenifits_screen()
+
+    return Common.wait_for(20){@device_onboarding_objects.memberbenifits_text.displayed?}
+
+  end
+
+
+  def verify_user_is_on_housepay_screen()
+
+    return Common.wait_for(20){@device_onboarding_objects.housepay_text.displayed?}
+
+  end
+
 
 
   def user_allows_helpus()
@@ -180,6 +206,12 @@ class OnboardingScreens
   def verify_user_welcome_screen()
 
     return Common.wait_for(10){@device_onboarding_objects.welcome_text.displayed?}
+
+  end
+
+  def verify_sync_with_calendar()
+
+    return Common.wait_for(10){@device_onboarding_objects.sync_text.displayed?}
 
   end
 
@@ -266,6 +298,12 @@ class OnboardingScreens
   def user_clicks_continue_to_notify_pref()
 
     Common.wait_for(30){@device_onboarding_objects.next_button}.click
+
+  end
+
+  def user_turnsOn_notifications()
+
+    Common.wait_for(30){@device_onboarding_objects.notifications_on}.click
 
   end
 
