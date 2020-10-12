@@ -186,7 +186,7 @@ class OnboardingScreens
 
   def user_continues_from_welcome()
 
-    Common.wait_for(20){@device_onboarding_objects.next_button}.click
+    Common.wait_for(20){@device_onboarding_objects.next_button_1}.click
 
   end
 
@@ -226,7 +226,7 @@ class OnboardingScreens
 
     sleep 10
 
-      Common.wait_for(20){@device_onboarding_objects.makepersonal_continue}.click
+    Common.wait_for(20){@device_onboarding_objects.makepersonal_continue}.click
 
   end
 
@@ -238,7 +238,7 @@ class OnboardingScreens
   end
 
 
-  def user_continues_from_IntroNotice()
+  def user_clickson_Continue()
 
     Common.wait_for(20){@device_onboarding_objects.continue_button}.click
 
@@ -314,7 +314,7 @@ class OnboardingScreens
 
     Common.wait_for(5){@device_onboarding_objects.contact_membership_team}.click
 
-    end
+  end
 
 
   def tap_contact_membership_team
@@ -325,20 +325,33 @@ class OnboardingScreens
 
     if Common.wait_for(25){@device_onboarding_objects.get_back_shortly}.text.include? "Thanks for your booking request"
 
-       Common.wait_for(10){@device_onboarding_objects.ok_button}.click
+      Common.wait_for(10){@device_onboarding_objects.ok_button}.click
 
-       sleep 2
+      sleep 2
 
-       Common.wait_for(10){@device_onboarding_objects.next_button}.click
+      Common.wait_for(10){@device_onboarding_objects.next_button}.click
 
-       return Common.wait_for(20){@device_onboarding_objects.houserules_text.displayed?}
+      return Common.wait_for(20){@device_onboarding_objects.houserules_text.displayed?}
 
     else
 
-        return false
+      return false
 
     end
 
   end
+
+  def verify_membership_card()
+
+    Common.wait_for(25){@device_onboarding_objects.membership_card.displayed?}
+
+  end
+
+  def verify_member_benefits()
+
+    Common.wait_for(25){@device_onboarding_objects.member_benefit.displayed?}
+
+  end
+
 
 end

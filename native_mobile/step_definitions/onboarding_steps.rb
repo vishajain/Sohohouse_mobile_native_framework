@@ -103,16 +103,16 @@ end
 
 Given(/^user sees T & C screen$/) do
 
-    sleep 5
+  sleep 5
 
-    assert_true($onboardingscreens.verify_user_is_on_onboarding_screen,"User is unable to land on 'Terms & conditions' screen")
+  assert_true($onboardingscreens.verify_user_is_on_onboarding_screen,"User is unable to land on 'Terms & conditions' screen")
 
 end
 
 
 When(/^user accepts T & C$/) do
 
- $onboardingscreens.user_accepts_Terms
+  $onboardingscreens.user_accepts_Terms
 
 end
 
@@ -175,7 +175,7 @@ end
 
 Given(/^user continue from welcome screen$/) do
 
-  sleep 3
+  sleep 5
 
   $onboardingscreens.user_continues_from_welcome
 
@@ -278,7 +278,7 @@ And("if user sees House introduction screen") do
 
   begin
 
-  assert_true($onboardingscreens.verify_house_introduction,"House introduction screen is not present")
+    assert_true($onboardingscreens.verify_house_introduction,"House introduction screen is not present")
 
   rescue StandardError => e
 
@@ -293,7 +293,7 @@ And("user taps on contact membership team") do
 
   begin
 
-  assert_true($onboardingscreens.tap_contact_membership_team,"Unable to navigate from contact memebership screen to house rules")
+    assert_true($onboardingscreens.tap_contact_membership_team,"Unable to navigate from contact memebership screen to house rules")
 
   rescue StandardError => e
 
@@ -390,5 +390,30 @@ Then(/^user is shown with a suspended validation message$/) do
   assert_true( $onboardingscreens.user_main_screen, "User is not on the main screen")
 
   $onboardingscreens.close_app
+
+end
+
+
+Given(/^user verifies his membership card and continues$/) do
+
+  assert_true($onboardingscreens.verify_membership_card,"User is unable to see membership card")
+
+  $onboardingscreens.user_clickson_Continue
+
+end
+
+And(/^user goes through the member benefits and continues$/) do
+
+  assert_true($onboardingscreens.verify_member_benefits,"User is unable to see membership card")
+
+  $onboardingscreens.user_clickson_Continue
+
+end
+
+When(/^the user accepts notifications$/) do
+
+  assert_true($onboardingscreens.verify_Notification_pref_screen,"User is unable to land on Notification preferences screen")
+
+  $onboardingscreens.user_clicks_OK
 
 end

@@ -15,9 +15,10 @@ Feature: This is a feature to test On-boarding screens for iOS and Android
     And user taps on contact membership team
     Then user sees welcome screen
 
-   @smoke
-   Scenario:: User continues to see the make it personal screen
-    Given user continue from welcome screen
-    And goes through android onboarding screens
-    When user clicks on next on all set screen
+  @smoke @android
+  Scenario: Android on-boarding screens
+    Given user verifies his membership card and continues
+    And user goes through the member benefits and continues
+    When the user accepts notifications
     And user sees the home screen
+    Then the user signs out and closes the app

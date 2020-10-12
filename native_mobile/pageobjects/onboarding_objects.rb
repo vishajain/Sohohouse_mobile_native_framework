@@ -4,7 +4,7 @@ require 'selenium-webdriver'
 require "test/unit"
 
 class Ios_Onboarding_Objects
-  
+
   def initialize(driver, driver_appium)
     @driver_appium = driver_appium
     @driver = driver
@@ -179,9 +179,9 @@ class Android_Onboarding_Objects
   end
 
   def next_button
-     @driver.find_element(:xpath => "//android.widget.Button[contains(@text,'Next')]")
+    @driver.find_element(:xpath => "//android.widget.Button[contains(@text,'Next')]")
     # @driver.find_element(:id => "#{$currentPackage+':id'+'/title_card_next_button'}")
-    end
+  end
 
   def next_button_1
     @driver.find_element(:id => "com.sohohouse.seven:id/continue_button")
@@ -233,7 +233,7 @@ class Android_Onboarding_Objects
   end
 
   def notification_pref_text
-    @driver.find_element(:xpath => "//android.widget.TextView[@text = 'Notification preferences']")
+    @driver.find_element(:xpath => "//android.widget.TextView[@text = 'Introducing notifications']")
   end
 
   def ok_button
@@ -242,6 +242,14 @@ class Android_Onboarding_Objects
 
   def you_are_set_text
     @driver.find_element(:xpath => "//android.widget.TextView[contains(@text,'all set')]")
+  end
+
+  def membership_card
+    @driver.find_element(:id => "com.sohohouse.seven.staging:id/membership_card")
+  end
+
+  def member_benefit
+    @driver.find_element(:xpath => "//android.widget.TextView[contains(@text,'Your member benefits')]")
   end
 
 end
