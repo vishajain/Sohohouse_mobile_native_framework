@@ -182,11 +182,11 @@ class Android_Onboarding_Objects
   end
 
   def email_textfield
-    @driver.find_element(:xpath => "//android.widget.EditText[contains(@text,'Email address')]")
+    @driver.find_element(:id => "#{$currentPackage+':id'+'/email_input'}")
   end
 
   def password_textfield
-    @driver.find_element(:xpath => "//android.widget.EditText[contains(@text,'Password')]")
+    @driver.find_element(:id => "#{$currentPackage+':id'+'/password_input'}")
   end
 
   def main_home
@@ -265,11 +265,15 @@ class Android_Onboarding_Objects
   end
 
   def membership_card
-    @driver.find_element(:id => "com.sohohouse.seven.staging:id/membership_card")
+      @driver.find_element(:id => "com.sohohouse.seven.staging:id/membership_card")
   end
 
   def member_benefit
     @driver.find_element(:xpath => "//android.widget.TextView[contains(@text,'Your member benefits')]")
+  end
+
+  def invalid_credential_dialog
+    @driver.find_element(:xpath => "//android.widget.TextView[@text = 'Invalid credentials']")
   end
 
 end

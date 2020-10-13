@@ -278,47 +278,67 @@ class AccountScreen
 
   def verify_sync_calendar
 
-    locat = Common.wait_for(3) {@device_account_objects.notification}.location
+      locat = Common.wait_for(3) {@device_account_objects.notification}.location
 
-    y =  locat["y"]
+      y =  locat["y"]
 
-    startY = y+55
-    endY = y+55
+      startY = y+55
 
-    before_swipe_string = Common.wait_for(5) {@device_account_objects.notification}.text
+      endY = y+55
 
-    Common.swipe_left(startY,endY)
+      before_swipe_string = Common.wait_for(5) {@device_account_objects.notification}.text
 
-    after_swipe_string = Common.wait_for(5) {@device_account_objects.sync_calendar}.text
+      Common.swipe_left(startY,endY)
 
-    if  before_swipe_string == after_swipe_string
-      return false
-    else
-      return true
-    end
+      after_swipe_string = Common.wait_for(5) {@device_account_objects.sync_calendar}.text
 
-  end
+      if  before_swipe_string == after_swipe_string
+
+        return false
+
+      else
+
+        return true
+
+      end
+
+   end
 
   def change_password_tab
 
-    locat = Common.wait_for(3) {@device_account_objects.sync_calendar}.location
+    if $device == "ios"
 
-    y =  locat["y"]
+      locat = Common.wait_for(3) {@device_account_objects.sync_calendar}.location
 
-    startY = y+55
-    endY = y+55
+      y =  locat["y"]
 
-    before_swipe_string = Common.wait_for(5) {@device_account_objects.sync_calendar}.text
+      startY = y+55
+      endY = y+55
 
-    Common.swipe_left(startY,endY)
+      before_swipe_string = Common.wait_for(5) {@device_account_objects.sync_calendar}.text
 
-    after_swipe_string = Common.wait_for(5) {@device_account_objects.change_password}.text
+      Common.swipe_left(startY,endY)
 
-    if  before_swipe_string == after_swipe_string
-      return false
-    else
+      after_swipe_string = Common.wait_for(5) {@device_account_objects.change_password}.text
+
+      if  before_swipe_string == after_swipe_string
+        return false
+      else
+        return true
+      end
+
+    elsif $device == "android"
+
+      Common.wait_for(3) {@device_account_objects.notification.displayed?}
+
+      Common.wait_for(3) {@device_account_objects.change_password}.click
+
+      sleep 2
+
       return true
+
     end
+
 
   end
 
@@ -338,7 +358,7 @@ class AccountScreen
   def verify_contact_us
 
     if Common.wait_for(20) {@device_account_objects.contact_us.displayed?}
-        return true
+      return true
     end
 
   end
@@ -362,7 +382,7 @@ class AccountScreen
 
       Common.wait_for(20){@device_account_objects.icon_left}.click
 
-        return true
+      return true
 
       # end
 
@@ -494,6 +514,8 @@ class AccountScreen
 
   def provide_current_password
 
+    @device_account_objects.current_password_input.click
+
     @device_account_objects.current_password_input.send_keys("password")
 
   end
@@ -508,19 +530,43 @@ class AccountScreen
 
     @device_account_objects.new_password_input.send_keys("password1")
 
+    Common.hideKeyboard
+
+    Common.swipe_down
+
   end
 
   def provide_confirm_password
 
     @device_account_objects.confirm_password_input.send_keys("password1")
 
+
   end
 
   def tap_save_btn
 
-    $action.press({:x => ($dimensions_width*0.5), :y => ($dimensions_height*0.5)}).release.perform
+    if $device == "ios"
+
+      $action.press({:x => ($dimensions_width*0.5), :y => ($dimensions_height*0.5)}).release.perform
+
+    end
 
     Common.wait_for(5){@device_account_objects.save_btn}.click
+
+  end
+
+  def dismiss_dialog
+    begin
+
+      Common.wait_for(2) {@device_account_objects.password_update_dialog.displayed?}
+
+      Common.wait_for(5){@device_account_objects.password_dialog_dismiss}.click
+
+    rescue StandardError => e
+
+      puts e.message
+
+    end
 
   end
 
@@ -550,7 +596,7 @@ class AccountScreen
 
     sleep 1
 
-    Common.wait_for(5){@device_account_objects.sign_out}.click
+    Common.wait_for(5){@device_account_objects.sign_out_account}.click
 
     if $device == "android"
       Common.wait_for(5){@device_account_objects.cancel_yes}.click
@@ -614,30 +660,30 @@ class AccountScreen
 
   def select_40_greek_street
 
-      Common.wait_for(2){@device_account_objects.tap_uk}.click
+    Common.wait_for(2){@device_account_objects.tap_uk}.click
 
-      Common.wait_for(2){@device_account_objects.greek_St}.click
+    Common.wait_for(2){@device_account_objects.greek_St}.click
 
-      Common.wait_for(2){@device_account_objects.kettners}.click
+    Common.wait_for(2){@device_account_objects.kettners}.click
 
-      Common.wait_for(2){@device_account_objects.tap_uk}.click
+    Common.wait_for(2){@device_account_objects.tap_uk}.click
 
 
   end
 
   def select_shoreditch_house
 
-      tap_reset
+    tap_reset
 
-      sleep 5
+    sleep 5
 
-      Common.wait_for(10){@device_account_objects.tap_uk}.click
+    Common.wait_for(10){@device_account_objects.tap_uk}.click
 
-      Common.swipe_down
+    Common.swipe_down
 
-      sleep 5
+    sleep 5
 
-      Common.wait_for(10){@device_account_objects.shoreditch_house}.click
+    Common.wait_for(10){@device_account_objects.shoreditch_house}.click
 
   end
 
@@ -679,8 +725,11 @@ class AccountScreen
   end
 
   def verify_settings
+    sleep 2
 
     Common.swipe_down
+
+    sleep 1
 
     Common.wait_for(10){@device_account_objects.settings.displayed?}
 
@@ -1109,6 +1158,18 @@ class AccountScreen
     end
 
   end
+
+  def change_password_tab_android
+
+    Common.wait_for(3) {@device_account_objects.notification.displayed?}
+
+    Common.wait_for(3) {@device_account_objects.change_password}.click
+
+    sleep 2
+    return true
+
+  end
+
 
 end
 

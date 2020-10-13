@@ -338,7 +338,7 @@ class Ios_Account_Objects
     @driver.find_element(:name => "Save")
   end
 
-  def sign_out
+  def sign_out_account
     @driver.find_element(:name => "Sign out")
   end
 
@@ -568,7 +568,7 @@ class Android_Account_Objects
   end
 
   def account_title
-    @driver.find_element(:id => "#{$currentPackage+':id'+'/more_view_profile_btn'}")
+    @driver.find_element(:xpath => "//android.widget.TextView[@text='View profile']")
     # @driver.find_element(:accessibility_id => "View profile")
   end
 
@@ -577,7 +577,7 @@ class Android_Account_Objects
   end
 
   def your_membership
-    @driver.find_element(:xpath => "//android.widget.TextView[@text = 'Your membership']")
+    @driver.find_element(:xpath => "//android.widget.TextView[@text = 'Membership Card']")
   end
 
   def perks
@@ -612,7 +612,7 @@ class Android_Account_Objects
 
   def settings
 
-    @driver.find_element(:xpath => "//android.widget.TextView[@text = 'Notification preferences']")
+    @driver.find_element(:xpath => "//android.widget.TextView[@text = 'Settings']")
   end
 
   def contact_us
@@ -626,7 +626,9 @@ class Android_Account_Objects
   end
 
   def save_changes
+
     @driver.find_element(:id => "#{$currentPackage+':id'+'/edit_profile_save_btn'}")
+
   end
 
 
@@ -640,6 +642,10 @@ class Android_Account_Objects
     @driver.find_element(:id => "#{$currentPackage+':id'+'/more_logout'}")
   end
 
+  def sign_out_account
+    @driver.find_element(:xpath => "//android.widget.TextView[@text = 'Sign out']")
+  end
+
   def icon_left
     @driver.find_element(:accessibility_id => "Go back")
   end
@@ -651,6 +657,46 @@ class Android_Account_Objects
   def cancel_yes
     @driver.find_element(:id => "android:id/button1")
   end
+  def notification
+    @driver.find_element(:xpath => "//android.widget.TextView[@text='Notifications']")
+  end
 
+  def current_password
+    @driver.find_element(:xpath => "//android.widget.EditText[@text='Current password']")
+  end
+
+  def current_password_input
+    @driver.find_element(:xpath => "//android.widget.EditText[@text='Current password']")
+  end
+
+  def new_password_input
+    @driver.find_element(:xpath => "//android.widget.EditText[@text='New password']")
+  end
+
+  def confirm_password_input
+    @driver.find_element(:xpath => "//android.widget.EditText[@text='Confirm password']")
+  end
+
+  def save_btn
+
+    @driver.find_element(:xpath => "//android.widget.Button[@text='Save']")
+
+  end
+
+  def password_update_dialog
+    @driver.find_element(:xpath => "//android.widget.TextView[@text = 'Password updated']")
+  end
+
+  def password_dialog_dismiss
+    @driver.find_element(:xpath => "//android.widget.Button[@text = 'DISMISS']")
+  end
+
+  def membership
+    @driver.find_element(:xpath => "//android.widget.TextView[@text = 'Your membership'")
+  end
+
+  def your_bookings
+    @driver.find_element(:name => "Bookings")
+  end
 end
 

@@ -338,12 +338,19 @@ class HomeScreen
 
   def verify_greetings()
 
-    str = Common.wait_for(2){@device_home_objects.greetings}.text
-
-    if str == "Good morning," || str == "Good evening," || str == "Good afternoon,"
-      return true
+    str = Common.wait_for(5){@device_home_objects.greetings}.text
+    if $device == "ios"
+      if str == "Good morning," || str == "Good evening," || str == "Good afternoon,"
+       return true
+      else
+        return false
+      end
     else
-      return false
+      if str == "Good morning" || str == "Good evening" || str == "Good afternoon"
+        return true
+      else
+        return false
+      end
     end
 
   end
@@ -602,7 +609,29 @@ class HomeScreen
 
   def verify_account_click
 
-    Common.wait_for(5){@device_home_objects.account_button}.click
+    if $device == "ios"
+
+      Common.wait_for(5){@device_home_objects.account_button}.click
+
+    else
+
+      begin
+
+        sleep 2
+
+        Common.wait_for(15) {@device_onboarding_objects.ok_button}.click
+
+      rescue StandardError => e
+
+        puts e.message
+
+      end
+
+      sleep 2
+
+      Common.wait_for(15){@device_home_objects.account_button}.click
+
+    end
 
   end
 

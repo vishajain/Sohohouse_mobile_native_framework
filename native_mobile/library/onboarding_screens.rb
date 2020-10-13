@@ -58,6 +58,7 @@ class OnboardingScreens
       $profile = config[:props]["env"][$env][$email]["profile"]
 
       @device_onboarding_objects.email_textfield.send_keys(email)
+
       @device_onboarding_objects.password_textfield.send_keys($password)
 
     end
@@ -87,11 +88,27 @@ class OnboardingScreens
 
   end
 
+  def dismiss_invalid_credential
 
+    begin
+
+    Common.wait_for(30){@device_onboarding_objects.invalid_credential_dialog.displayed?}
+
+    Common.wait_for(30){@device_onboarding_objects.ok_button}.click
+
+    sleep 2
+
+    rescue StandardError => e
+
+      puts e.message
+
+    end
+
+  end
 
   def user_clicks_go()
 
-    Common.wait_for(20){@device_onboarding_objects.go_button}.click
+    Common.wait_for(30){@device_onboarding_objects.go_button}.click
 
   end
 
@@ -310,7 +327,7 @@ class OnboardingScreens
 
   def verify_Notification_pref_screen()
 
-    return Common.wait_for(10){@device_onboarding_objects.notification_pref_text.displayed?}
+    return Common.wait_for(20){@device_onboarding_objects.notification_pref_text.displayed?}
 
   end
 

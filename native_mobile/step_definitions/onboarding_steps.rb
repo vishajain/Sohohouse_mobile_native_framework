@@ -103,6 +103,8 @@ end
 
 And(/^user enters (.*) email address and changed password$/) do |validity|
 
+  $onboardingscreens.dismiss_invalid_credential
+
   $onboardingscreens.user_enters_email_changed_password(validity)
 
   $onboardingscreens = OnboardingScreens.new

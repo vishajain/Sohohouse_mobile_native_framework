@@ -23,6 +23,7 @@ Given("user clicks on Account button on home screen") do
 end
 
 
+
 Then(/^the amended fields should be shown on users profile screen$/) do
 
   assert_true( $accountscreen.verify_profession_value,"Profession value is not saved ")
@@ -196,8 +197,15 @@ end
 
 Then("user navigates to next tab") do
 
+  begin
+
     assert_true($accountscreen.verify_sync_calendar,"Unable is not navigated to the right screen")
 
+  rescue StandardError => e
+
+    puts e.message
+
+  end
 
 end
 
@@ -308,6 +316,7 @@ When("user updates password") do
     $accountscreen.provide_new_password
     $accountscreen.provide_confirm_password
     $accountscreen.tap_save_btn
+    $accountscreen.dismiss_dialog
 end
 
 And("user provides new password") do
@@ -494,7 +503,7 @@ Then(/^the user verifies all the links under account screen$/) do
         raise
     end
 
-    assert_true($accountscreen.verify_bookings,"Unable to tap on your membership link")
+    assert_true($accountscreen.verify_bookings,"Unable to tap on your bookings link")
 
     assert_true($accountscreen.verify_payment,"Unable to tap on Payment link")
 
@@ -592,6 +601,8 @@ When(/^user reverts password$/) do
 
     $accountscreen.tap_save_btn
 
+    $accountscreen.dismiss_dialog
+
     $accountscreen.tap_icon_left
 
     $accountscreen.home_screen_navigation
@@ -633,5 +644,21 @@ And(/^user goes back to the home screen$/) do
 
   assert_true($homescreen.verify_greetings,"Greetings not present")
 
+
+end
+
+Given(/^When the user accepts notifications$/) do
+
+  assert_true($onboardingscreens.verify_Notification_pref_screen,"User is unable to land on Notification preferences screen")
+
+  $onboardingscreens.user_clicks_OK
+
+end
+
+And(/^user navigates to change password screen$/) do
+
+  sleep 2
+
+  assert_true($accountscreen.change_password_tab_android,"Unable is not navigated to the right screen")
 
 end

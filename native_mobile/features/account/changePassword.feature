@@ -1,10 +1,12 @@
 @Change-Password-screen
 Feature: This features enables us to test the change password functionality
 
+
   Background:
     Given app is launched
     And the user is on main screen
     When user enters valid email address and password
+
 
   @regression @change_password
   Scenario: User updates their password
@@ -23,3 +25,4 @@ Feature: This features enables us to test the change password functionality
     And user navigates to next tab
     And user navigates to change password
     When user reverts password
+

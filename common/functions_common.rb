@@ -123,5 +123,10 @@ module Common
     end
 
   end
+  def Common.hideKeyboard
+
+    $driver.hide_keyboard
+
+  end
 
 end
