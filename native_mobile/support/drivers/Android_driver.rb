@@ -42,7 +42,7 @@ module Android_driver
                 {
                     'platformName' => 'Android',
                     'deviceName' => 'Android',
-                    'avd' => 'Samsung_API_28',
+                    'avd' => 'nexus5x',
                     'platformVersion' => @platform_version ,
                     'udid' =>   @udid  ,
                     'app' =>  @app_path,

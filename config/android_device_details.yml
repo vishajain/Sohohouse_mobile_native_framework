@@ -33,5 +33,5 @@ android:
     stag: com.sohohouse.seven
     prod: com.sohohouse.seven
   app_path:
-    stag: /Users/manikanth.erukulla/apps/android/stag/app-qa.apk
-    prod: /Users/manikanth.erukulla/apps/android/prod/app-prod.apk
+    stag: /Users/XXXXXXXXXX/XXXXXXXX/app-qa.apk
+    prod: /Users/XXXXXXXXXX/XXXXXXXX/app-qa.apk

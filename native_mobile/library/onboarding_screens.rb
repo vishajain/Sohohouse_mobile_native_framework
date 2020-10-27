@@ -267,15 +267,15 @@ class OnboardingScreens
 
   def verify_suspended_screen()
 
-    Common.wait_for(25){@device_onboarding_objects.suspended_screen.displayed?}
+    Common.wait_for(15){@device_onboarding_objects.suspended_screen.displayed?}
 
   end
 
   def user_continues_from_makePersonal()
 
-    sleep 10
+    sleep 3
 
-    Common.wait_for(20){@device_onboarding_objects.makepersonal_continue}.click
+    Common.wait_for(10){@device_onboarding_objects.makepersonal_continue}.click
 
   end
 
@@ -289,7 +289,17 @@ class OnboardingScreens
 
   def user_clickson_Continue()
 
-    Common.wait_for(20){@device_onboarding_objects.continue_button}.click
+    if $device == "ios"
+
+      Common.wait_for(20){@device_onboarding_objects.continue_button}.click
+
+    else
+
+      Common.wait_for(20) {@device_onboarding_objects.let_me_in_button}.click
+
+    end
+
+
 
   end
 
@@ -398,7 +408,7 @@ class OnboardingScreens
 
   def verify_membership_card()
 
-    Common.wait_for(25){@device_onboarding_objects.membership_card.displayed?}
+    Common.wait_for(40){@device_onboarding_objects.membership_card.displayed?}
 
   end
 
@@ -407,6 +417,5 @@ class OnboardingScreens
     Common.wait_for(25){@device_onboarding_objects.member_benefit.displayed?}
 
   end
-
 
 end

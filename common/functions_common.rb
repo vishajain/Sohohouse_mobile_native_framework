@@ -74,21 +74,31 @@ module Common
 
 
   def self.swipe_down
-
-    if $device == "ios"
-      $action.press({:x => ($dimensions_width*0.5), :y => ($dimensions_height*0.6)}).wait(300).move_to({:x => ($dimensions_width*0.5), :y => ($dimensions_height*0.3)}).release.perform
-    else
-       Appium::TouchAction.new.swipe(start_y: 1340, end_y: 350).perform
+    begin
+      sleep 1
+      if $device == "ios"
+        $action.press({:x => ($dimensions_width*0.5), :y => ($dimensions_height*0.6)}).wait(300).move_to({:x => ($dimensions_width*0.5), :y => ($dimensions_height*0.3)}).release.perform
+      else
+        Appium::TouchAction.new.swipe(start_y: 1340, end_y: 350).perform
+      end
+      sleep 1
+    rescue StandardError => msg
+      puts msg.message
     end
 
   end
 
   def self.little_swipe_down
-
-    if $device == "ios"
-      $action.press({:x => ($dimensions_width*0.5), :y => ($dimensions_height*0.5)}).wait(200).move_to({:x => ($dimensions_width*0.5), :y => ($dimensions_height*0.3)}).release.perform
-    else
-      Appium::TouchAction.new.swipe(start_y: 850, end_y: 0).perform
+    begin
+      sleep 1
+      if $device == "ios"
+        $action.press({:x => ($dimensions_width*0.5), :y => ($dimensions_height*0.5)}).wait(200).move_to({:x => ($dimensions_width*0.5), :y => ($dimensions_height*0.3)}).release.perform
+      else
+        Appium::TouchAction.new.swipe(start_y: 850, end_y: 550).perform
+      end
+      sleep 1
+    rescue StandardError => msg
+      puts msg.message
     end
 
   end

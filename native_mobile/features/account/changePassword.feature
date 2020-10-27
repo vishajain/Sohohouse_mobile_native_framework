@@ -25,4 +25,5 @@ Feature: This features enables us to test the change password functionality
     And user navigates to next tab
     And user navigates to change password
     When user reverts password
+    Then the user navigates back and sign out of the app
 

@@ -337,8 +337,8 @@ class HomeScreen
   end
 
   def verify_greetings()
-
-    str = Common.wait_for(5){@device_home_objects.greetings}.text
+    #str = Common.wait_for(30){@device_home_objects.loader}.size==0
+    str = Common.wait_for(30){@device_home_objects.greetings}.text
     if $device == "ios"
       if str == "Good morning," || str == "Good evening," || str == "Good afternoon,"
        return true
@@ -357,7 +357,7 @@ class HomeScreen
 
   def verify_username()
 
-    return Common.wait_for(5) {@device_home_objects.username.displayed?}
+    return Common.wait_for(40) {@device_home_objects.username.displayed?}
 
   end
 
@@ -596,8 +596,40 @@ class HomeScreen
 
   end
 
-  def ios_back
-    Common.wait_for(15){@device_home_objects.left_link}.click
+  def account_back
+
+    if $device == "ios"
+
+      i = 1
+
+      loop do
+
+        begin
+
+          return Common.wait_for(3){@device_account_objects.account_title.displayed?}
+
+        rescue
+
+          Common.swipe_top
+
+          i = i + 1
+
+          if i > 3
+
+            return false
+
+          end
+
+        end
+
+      end
+
+
+    else
+
+      $driver.back
+
+    end
   end
 
 
@@ -609,29 +641,7 @@ class HomeScreen
 
   def verify_account_click
 
-    if $device == "ios"
-
-      Common.wait_for(5){@device_home_objects.account_button}.click
-
-    else
-
-      begin
-
-        sleep 2
-
-        Common.wait_for(15) {@device_onboarding_objects.ok_button}.click
-
-      rescue StandardError => e
-
-        puts e.message
-
-      end
-
-      sleep 2
-
-      Common.wait_for(15){@device_home_objects.account_button}.click
-
-    end
+    Common.wait_for(40){@device_home_objects.account_button}.click
 
   end
 

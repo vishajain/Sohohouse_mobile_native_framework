@@ -5,8 +5,8 @@ ios:
         udid: 00008020-000E3D9A0A86002E
         platform_version: 12.2
       simulator:
-        udid: E30DC005-BF83-4116-A825-BAE853E45284
-        platform_version: 13.2
+        udid: 0FFA9478-B85D-42BF-AFD5-37C60984F4A7
+        platform_version: 13.3
     prod:
       real:
         udid: XXXXX-XXXXXX-XXXXXXX-XXXXXXXXX
@@ -33,5 +33,5 @@ ios:
     stag: com.sohohouse.enterprise.staging
     prod: com.sohohouse.houseseven
   app_path:
-    stag: /Users/manikanth.erukulla/apps/ios/stag/DigitalHouse.app
-    prod: /Users/manikanth.erukulla/apps/ios/prod/DigitalHouse.app
+    stag: /Users/XXXXXXXXXXX/XXXXXXXXXX/DigitalHouse.app
+    prod: /Users/XXXXXXXXXXX/XXXXXXXXXX/DigitalHouse.app

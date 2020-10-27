@@ -24,15 +24,19 @@ class Ios_Account_Objects
   end
 
   def about_me_value
-    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name='About me']/following-sibling::XCUIElementTypeStaticText[1]")
+    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name='I am the king of this jungle']")
   end
 
   def interests_value
-    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name='Interests']/following-sibling::XCUIElementTypeStaticText[1]")
+    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name='Ice hockey']")
   end
 
   def lets_chat_value
-    @driver.find_element(:xpath => "//XCUIElementTypeCell[5]/XCUIElementTypeStaticText[2]")
+    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name='Anything']")
+  end
+
+  def your_guest_invitation
+    @driver.find_element(:name => "Guest invitations")
   end
 
   def instagram_value
@@ -68,11 +72,12 @@ class Ios_Account_Objects
   end
 
   def profession
-    @driver.find_element(:name => "Profession")
+    @driver.find_element(:name => "What do you do")
   end
 
   def profession_input
     @driver.find_element(:xpath => "//XCUIElementTypeTable/XCUIElementTypeCell[3]/XCUIElementTypeStaticText[1]")
+
   end
 
   def text_input
@@ -84,7 +89,7 @@ class Ios_Account_Objects
   end
 
   def industry
-    @driver.find_element(:name => "Industry")
+    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name='Type of work']")
   end
 
   def industry_input
@@ -100,7 +105,7 @@ class Ios_Account_Objects
   end
 
   def aboutme
-    @driver.find_element(:name => "About me")
+    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name='About me']")
   end
 
   def aboutme_input
@@ -108,7 +113,7 @@ class Ios_Account_Objects
   end
 
   def chat
-    @driver.find_element(:name => "Let's chat")
+    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[contains(@name, 'chat')]")
   end
 
   def chat_input
@@ -116,19 +121,19 @@ class Ios_Account_Objects
   end
 
   def interests
-    @driver.find_element(:name => "Interests")
+    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name='Interests']")
   end
 
-  def interests_remove
+  def profession_interests_remove
     @driver.find_elements(:xpath => "//XCUIElementTypeCollectionView//XCUIElementTypeStaticText")
   end
 
-  def interests_input(interest)
-    @driver.find_element(:xpath => "//XCUIElementTypeCollectionView//XCUIElementTypeStaticText[@name='"+interest+"']")
+  def profession_interests_input(interest)
+    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name='"+interest+"']")
   end
 
   def social_accounts
-    @driver.find_element(:name => "Connect social accounts")
+    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name='Connect social accounts']")
   end
 
   def website
@@ -165,6 +170,10 @@ class Ios_Account_Objects
 
   def spotify
     @driver.find_element(:name => "Spotify")
+  end
+
+  def create_guest_invitation
+    @driver.find_element(:name => "Guest invitations")
   end
 
   def spotify_text
@@ -244,6 +253,10 @@ class Ios_Account_Objects
   end
 
   def notification
+    @driver.find_element(:name => "Settings")
+  end
+
+  def notifications
     @driver.find_element(:name => "Notifications")
   end
 
@@ -282,6 +295,11 @@ class Ios_Account_Objects
 
 
   def icon_left
+    # @driver.find_element(:name => "iconLeft")
+    @driver.find_element(:xpath => "//XCUIElementTypeButton[@name='iconLeft']")
+  end
+
+  def browser_close
     @driver.find_element(:name => "iconLeft")
   end
 
@@ -484,15 +502,15 @@ class Android_Account_Objects
   end
 
   def profession
-    @driver.find_element(:xpath => "//android.widget.TextView[@text='Profession']")
+    @driver.find_element(:xpath => "//android.widget.TextView[@text='What you do']")
   end
 
   def profession_input
-    @driver.find_element(:xpath => "//android.widget.TextView[@text='Profession']/following-sibling::android.widget.TextView[1]")
+    @driver.find_element(:xpath => "//android.widget.TextView[@text='What you do']/following-sibling::android.widget.TextView[1]")
   end
 
   def text_input
-    @driver.find_element(:id => "#{$currentPackage+':id'+'/bottomsheet_edit_textfield_suggestions_input'}")
+    @driver.find_element(:xpath => "//android.widget.EditText")
   end
 
   def large_text_input
@@ -500,11 +518,11 @@ class Android_Account_Objects
   end
 
   def industry
-    @driver.find_element(:xpath => "//android.widget.TextView[@text='Industry']")
+    @driver.find_element(:xpath => "//android.widget.TextView[@text='Type of work']")
   end
 
   def industry_input
-    @driver.find_element(:xpath => "//android.widget.NumberPicker/android.widget.EditText")
+    @driver.find_element(:xpath => "//*[@resource-id='android:id/numberpicker_input']")
   end
 
   def city
@@ -523,11 +541,11 @@ class Android_Account_Objects
     @driver.find_element(:xpath => "//android.widget.TextView[@text='Interests']")
   end
 
-  def interests_remove
+  def profession_interests_remove
     @driver.find_elements(:id => "#{$currentPackage+':id'+'/pill_tv'}")
   end
 
-  def interests_input(interest)
+  def profession_interests_input(interest)
     @driver.find_element(:xpath => "//android.widget.TextView[@text='"+interest+"']")
   end
 
@@ -625,6 +643,12 @@ class Android_Account_Objects
 
   end
 
+  def faq_header
+
+    @driver.find_element(:xpath => "//*[@text='FAQ']")
+
+  end
+
   def save_changes
 
     @driver.find_element(:id => "#{$currentPackage+':id'+'/edit_profile_save_btn'}")
@@ -634,7 +658,7 @@ class Android_Account_Objects
 
   def policies
 
-    @driver.find_element(:xpath => "//android.widget.TextView[@text = 'Policies']")
+    @driver.find_element(:xpath => "//android.widget.TextView[contains(@text , 'Policies')]")
 
   end
 
@@ -657,6 +681,11 @@ class Android_Account_Objects
   def cancel_yes
     @driver.find_element(:id => "android:id/button1")
   end
+
+  def notifications
+    @driver.find_element(:xpath => "//android.widget.TextView[@text='Notifications']")
+  end
+
   def notification
     @driver.find_element(:xpath => "//android.widget.TextView[@text='Notifications']")
   end
@@ -692,11 +721,107 @@ class Android_Account_Objects
   end
 
   def membership
-    @driver.find_element(:xpath => "//android.widget.TextView[@text = 'Your membership'")
+    @driver.find_element(:xpath => "//android.widget.TextView[@text = 'Your membership']")
   end
 
   def your_bookings
-    @driver.find_element(:name => "Bookings")
+    @driver.find_element(:xpath => "//android.widget.TextView[@text = 'Bookings']")
+  end
+
+  def your_guest_invitation
+    @driver.find_element(:xpath => "//android.widget.TextView[@text = 'Guest Invitations']")
+  end
+
+  def create_guest_invitation
+    @driver.find_element(:id => "#{$currentPackage+':id'+'/btnNewInvite'}")
+  end
+
+  def booking_history
+    @driver.find_element(:xpath => "//android.widget.TextView[@text = 'Booking history']")
+  end
+
+  def Legal
+    @driver.find_element(:xpath => "//*[@text='Legal']")
+  end
+
+  def close
+    @driver.find_element(:xpath => "//android.widget.TextView[@text = 'Close']")
+  end
+
+  def payment_add
+    @driver.find_element(:xpath => "//android.widget.TextView[@text = 'Add payment method']")
+  end
+
+  def enquiry_type
+    @driver.find_element(:xpath => "//*[@resource-id='inquiryType']")
+  end
+
+  def enquiry_type_options(input)
+    @driver.find_element(:xpath => "//*[@text='"+input+"']")
+  end
+
+  def local_house
+    @driver.find_element(:xpath => "//android.widget.TextView[@text ='#{$house}']")
+  end
+
+  def tap_uk
+    @driver.find_element(:xpath => "//android.widget.TextView[contains(@text ,'UK')]")
+  end
+
+  def greek_St
+    @driver.find_element(:xpath => "//android.widget.TextView[@text = '40 Greek Street']")
+  end
+
+  def kettners
+    @driver.find_element(:xpath => "//android.widget.TextView[contains(@text , 'Kettner')]")
+  end
+
+  def contact_name
+    @driver.find_element(:xpath => "//*[@resource-id='name']")
+  end
+
+  def contact_name_text
+    @driver.find_element(:xpath => "//*[@resource-id='name']")
+  end
+
+  def email_id
+    @driver.find_element(:xpath => "//*[@resource-id='email']")
+
+  end
+
+  def enquiry_topic1
+
+   @driver.find_element(:xpath => "//*[@resource-id='venueName']")
+
+  end
+
+  def enquiry_topic_option(input)
+
+    @driver.find_element(:xpath => "//*[@text='"+input+"']")
+
+
+  end
+
+  def enquiry_message
+
+    @driver.find_element(:xpath => "//*[@resource-id='body']")
+
+  end
+
+  def confirm
+    @driver.find_element(:xpath => "//*[@resource-id='default-layout']/android.view.View[1]/android.view.View[1]/android.view.View[3]/android.widget.CheckBox[2]")
+  end
+
+  def submit
+
+    @driver.find_element(:xpath => "//android.widget.Button[@text = 'Submit']")
+
+  end
+
+  def confirm_message
+
+    @driver.find_element(:xpath => "//*[@text='We will get back to you as soon as possible. If you have any urgent enquiries please contact the appropriate venue.']")
+
   end
 end
 

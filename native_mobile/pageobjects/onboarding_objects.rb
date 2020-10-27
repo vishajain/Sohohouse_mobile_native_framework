@@ -235,6 +235,9 @@ class Android_Onboarding_Objects
   #   @driver.find_element(:id => "com.sohohouse.seven:id/onboarding_house_accept_button")
   # end
 
+  def let_me_in_button
+    @driver.find_element(:xpath => "//android.widget.Button[contains(@text,'Let me in')]")
+  end
 
   def noticeboard_text
     @driver.find_element(:xpath => "//android.widget.TextView[@text = 'Noticeboard']")

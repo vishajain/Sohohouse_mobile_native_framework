@@ -363,7 +363,12 @@ class Android_Home_Objects
   end
 
   def greetings
-    @driver.find_element(:xpath => "//android.widget.LinearLayout//android.widget.TextView[1]")
+    @driver.find_element(:id => "#{$currentPackage+':id'+'/title_view'}")
+
+  end
+
+  def loader
+    @driver.find_elements(:id => "#{$currentPackage+':id'+'/lottie_view'}")
 
   end
 

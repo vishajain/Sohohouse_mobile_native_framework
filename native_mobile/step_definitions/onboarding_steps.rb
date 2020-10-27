@@ -93,9 +93,11 @@ When(/^user goes through housepay screens$/) do
 
   $onboardingscreens.user_clicks_remind_later
 
-  # assert_true($onboardingscreens.verify_user_is_on_onboarding_screen,"User is unable to land on 'Terms & conditions' screen")
-  #
-  # $onboardingscreens.user_accepts_Terms
+  sleep 1
+
+  assert_true($onboardingscreens.verify_sync_with_calendar,"User is unable to land on sync with calendar screen")
+
+  $onboardingscreens.user_continue_without_sync
 
 
 end
@@ -197,12 +199,6 @@ When(/^user continue without syncing$/) do
 end
 
 Then(/^user sees welcome screen$/) do
-
-  sleep 3
-
-  assert_true($onboardingscreens.verify_sync_with_calendar,"User is unable to land on sync with calendar screen")
-
-  $onboardingscreens.user_continue_without_sync
 
   sleep 3
 
@@ -368,7 +364,9 @@ Then(/^the user signs out and closes the app$/) do
   $accountscreen = AccountScreen.new
   $whatsonscreen = WhatsonScreen.new
 
-  assert_true($accountscreen.tap_sign_out, "Unable to sign out the user")
+  assert_true($accountscreen.verify_sign_out, "Unable to see sign out button")
+
+  $accountscreen.tap_sign_out
 
   $onboardingscreens.close_app
 
@@ -435,6 +433,7 @@ Given(/^user verifies his membership card and continues$/) do
   assert_true($onboardingscreens.verify_membership_card,"User is unable to see membership card")
 
   $onboardingscreens.user_clickson_Continue
+
 
 end
 

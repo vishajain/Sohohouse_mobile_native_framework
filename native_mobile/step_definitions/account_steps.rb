@@ -16,8 +16,11 @@ include Test::Unit::Assertions
 Given("user clicks on Account button on home screen") do
 
     $homescreen.verify_account_click
+
     $accountscreen = AccountScreen.new
+
     $whatsonscreen = WhatsonScreen.new
+
     $homescreen = HomeScreen.new
 
 end
@@ -48,7 +51,7 @@ Then(/^the amended fields should be shown on users profile screen$/) do
 
   assert_true( $accountscreen.verify_youtube,"Youtube is not saved ")
 
-  $homescreen.ios_back
+  $homescreen.account_back
 
   $accountscreen.home_screen_navigation
 
@@ -128,10 +131,15 @@ Then("user see and taps on your membership link") do
     sleep 2
 
     begin
+
     assert_true($accountscreen.verify_your_membership,"Unable to tap on your membership link")
+
     rescue StandardError => msg
+
         puts msg.message
+
         raise
+
     end
 
 
@@ -199,7 +207,7 @@ Then("user navigates to next tab") do
 
   begin
 
-    assert_true($accountscreen.verify_sync_calendar,"Unable is not navigated to the right screen")
+    assert_true($accountscreen.verify_sync_calendar,"Unable to navigate to the right screen")
 
   rescue StandardError => e
 
@@ -215,7 +223,6 @@ Then("user see and taps on contact us link") do
     sleep 2
 
     assert_true($accountscreen.verify_contact_us,"Unable to tap on Contact us link")
-
 
 end
 
@@ -234,7 +241,6 @@ Then("user see and taps on policies link") do
     sleep 2
 
     assert_true($accountscreen.verify_policies,"Unable to tap on Policies link")
-
 
 end
 
@@ -313,9 +319,13 @@ When("user updates password") do
     assert_true($accountscreen.verify_current_password,"current password is not visible")
 
     $accountscreen.provide_current_password
+
     $accountscreen.provide_new_password
+
     $accountscreen.provide_confirm_password
+
     $accountscreen.tap_save_btn
+
     $accountscreen.dismiss_dialog
 end
 
@@ -503,21 +513,21 @@ Then(/^the user verifies all the links under account screen$/) do
         raise
     end
 
-    assert_true($accountscreen.verify_bookings,"Unable to tap on your bookings link")
+    assert_true($accountscreen.verify_guest_invitation,"Unable to tap on your bookings link")
 
     assert_true($accountscreen.verify_payment,"Unable to tap on Payment link")
 
+    assert_true($accountscreen.verify_bookings,"Unable to tap on your bookings link")
+
     assert_true($accountscreen.verify_favourite_houses,"Unable to tap on favourite houses link")
 
-    assert_true($accountscreen.verify_policies,"Unable to tap on Policies link")
+    assert_true($accountscreen.verify_faq,"Unable to tap on FAQ link")
 
     assert_true($accountscreen.verify_contact_us,"Unable to tap on Contact us link")
 
+    assert_true($accountscreen.verify_policies,"Unable to tap on Policies link")
+
     assert_true($accountscreen.verify_notification_preferences,"Unable to tap on Notification preferences link")
-
-    assert_true($accountscreen.tap_sign_out, "Unable to sign out the user")
-
-    $onboardingscreens.close_app
 
 
 end
@@ -603,9 +613,9 @@ When(/^user reverts password$/) do
 
     $accountscreen.dismiss_dialog
 
-    $accountscreen.tap_icon_left
+      #$accountscreen.tap_icon_left
 
-    $accountscreen.home_screen_navigation
+      #$accountscreen.home_screen_navigation
 
 end
 
@@ -613,8 +623,11 @@ end
 And(/^the user selects a favourite house for carousel$/) do
 
   $homescreen.verify_account_click
+
   $accountscreen = AccountScreen.new
+
   $whatsonscreen = WhatsonScreen.new
+
   $homescreen = HomeScreen.new
 
   $accountscreen.tap_favourite_houses
@@ -628,10 +641,15 @@ And(/^the user selects a favourite house for carousel$/) do
   sleep 5
 
   begin
+
     assert_true($homescreen.verify_happening_now,"Happening now section is not present")
+
   rescue
+
     puts "Happening now section is not present"
+
     $happeningNow = "Happening now not present"
+
   end
 
   assert_true($homescreen.verify_pastdigital_events, "Digital events are not present on home screen")
@@ -660,5 +678,54 @@ And(/^user navigates to change password screen$/) do
   sleep 2
 
   assert_true($accountscreen.change_password_tab_android,"Unable is not navigated to the right screen")
+
+end
+
+When(/^user provides the Name$/) do
+
+  assert_true($accountscreen.enter_Name,"Unable to enter Name")
+
+end
+
+And(/^user provides the email$/) do
+
+  assert_true($accountscreen.enter_mail_id,"Unable to enter Mail id")
+
+end
+
+And(/^user clicks on confirm$/) do
+
+  assert_true($accountscreen.checks_confirm,"Unable to check on confirm")
+
+end
+
+Then(/^user navigates to confirmation screen$/) do
+
+  assert_true($accountscreen.verify_confirmation_message,"Unable to view confirmation message")
+
+end
+
+Then(/^the user verifies all the links under account screen for iOS$/) do
+
+    $whatsonscreen = WhatsonScreen.new
+
+    assert_true($accountscreen.verify_account_title,"Unable to tap on View profile link")
+
+    begin
+      assert_true($accountscreen.verify_your_membership,"Unable to tap on your membership link")
+    rescue StandardError => msg
+      puts msg.message
+      raise
+    end
+
+    assert_true($accountscreen.verify_guest_invitation,"Unable to tap on your bookings link")
+
+    assert_true($accountscreen.verify_bookings,"Unable to tap on your bookings link")
+
+    assert_true($accountscreen.verify_payment,"Unable to tap on Payment link")
+
+    assert_true($accountscreen.verify_favourite_houses,"Unable to tap on favourite houses link")
+
+    assert_true($accountscreen.verify_notification_preferences,"Unable to tap on Notification preferences link")
 
 end
