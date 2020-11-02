@@ -643,6 +643,7 @@ class HomeScreen
 
     Common.wait_for(40){@device_home_objects.account_button}.click
 
+
   end
 
   def verify_home_btn()

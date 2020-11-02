@@ -94,9 +94,9 @@ class AccountScreen
 
       @device_account_objects.membership.click
 
-      if Common.wait_for(20) {@device_account_objects.your_membership.displayed?}
+      if Common.wait_for(20) { @device_account_objects.your_membership.displayed? }
 
-        Common.wait_for(20){@device_account_objects.icon_left}.click
+        Common.wait_for(20) { @device_account_objects.icon_left }.click
 
         return true
 
@@ -275,6 +275,8 @@ class AccountScreen
   end
 
   def favourite_houses_shown
+
+    Common.little_swipe_down
 
     i = 1
 
@@ -801,21 +803,20 @@ class AccountScreen
     Common.swipe_down
 
     Common.wait_for(2){@device_account_objects.tap_uk}.click
+    sleep 2
+
 
     if $device == "android"
 
-      sleep 1
-
-      Common.little_swipe_down
+      Common.swipe_down
 
     end
-
-    Common.wait_for(2){@device_account_objects.greek_St}.click
-    Common.little_swipe_down
     Common.wait_for(2){@device_account_objects.kettners}.click
+    Common.little_swipe_down
+    Common.wait_for(2){@device_account_objects.greek_St}.click
 
     Common.wait_for(2){@device_account_objects.tap_uk}.click
-
+    sleep 2
 
   end
 
@@ -884,16 +885,73 @@ class AccountScreen
 
     Common.wait_for(3){@device_account_objects.notification_pref_switch(link)}.click
 
-    Common.wait_for(3){@device_account_objects.notification_pref_switch(link)}.click
+    if $device == "ios"
+
+      Common.little_swipe_down
+
+      sleep 3
+
+      Common.wait_for(3){@device_account_objects.notification_pref_switch(link)}.click
+
+    else
+
+      if Common.wait_for(3){@device_account_objects.switch_off_confirmation}.displayed?
+        @device_account_objects.ok_button.click
+      end
+
+    end
 
   end
 
-  def verify_notification_pref_switch_value(link, value)
+  def select_favourite_locations (input)
 
-    str = Common.wait_for(3){@device_account_objects.notification_pref_switch_value(link)}
+    if $device == "ios"
+      @device_account_objects.select_favourite(input).click
+    else
+      @device_account_objects.select_favourite(input).click
+      sleep 15
+    end
 
-    return str.include? value
+  end
 
+  def favourite_location_displayed (input)
+
+    Common.wait_for(3){@device_account_objects.select_favourite(input)}.displayed?
+  end
+
+
+  def verify_notification_pref_switch_value(input, value)
+
+    pushtype=nil
+    link = nil
+    if input.include?"->"
+      arr=input.split("->")
+      link=arr[0].to_s
+      pushtype=arr[1].to_s
+    end
+    if input.include?"->"
+      str = Common.wait_for(3){@device_account_objects.notification_pref_notifType_value(link,pushtype)}
+    else
+      str = Common.wait_for(3){@device_account_objects.notification_pref_switch_value(input)}
+    end
+    if $device == "ios"
+
+      return str.include? value
+
+    else
+
+      if value == "0"
+
+        val =false
+
+      else
+
+        val=true
+
+      end
+
+      return str.to_s.eql?val.to_s
+    end
   end
 
   def tap_notification_pref_switch_on(link)
@@ -994,7 +1052,11 @@ class AccountScreen
 
   def user_enters_profession_value
 
-    Common.little_swipe_down
+    if $device == "ios"
+
+      Common.little_swipe_down
+
+    end
 
     if Common.wait_for(5){@device_account_objects.profession_input}.text.include? "software"
       profile = "profile2"
@@ -1474,6 +1536,78 @@ class AccountScreen
 
   end
 
+  def tap_notifications_pref_switch_off(input)
+    pushtype=nil
+    link = nil
+    if input.include?"->"
+      arr=input.split("->")
+      link=arr[0].to_s
+      pushtype=arr[1].to_s
+    end
+    i = 0
+
+    loop do
+
+      begin
+        if input.include?"->"
+          Common.wait_for(2){@device_account_objects.notification_pref_notifType(link,pushtype)}.click
+        else
+          Common.wait_for(2){@device_account_objects.notification_pref_switch(input)}.click
+        end
+        return true
+
+      rescue StandardError => msg
+
+        sleep 2
+
+        Common.little_swipe_down
+
+        i = i + 1
+
+        if i > 3
+
+          return false
+
+        end
+
+      end
+
+    end
+
+    if $device == "ios"
+
+      Common.wait_for(3){@device_account_objects.notification_pref_switch(link)}.click
+
+    end
+
+  end
+
+  def verify_elementDisplayed(elementText)
+    i = 0
+
+    loop do
+
+      begin
+
+        return Common.wait_for(2){@device_account_objects.ElementsWithText(elementText)}.displayed?
+
+      rescue StandardError => msg
+
+        Common.little_swipe_down
+
+        i = i + 1
+
+        if i > 4
+
+          return false
+
+        end
+
+      end
+
+    end
+
+  end
 
 end
 

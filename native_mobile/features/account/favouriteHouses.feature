@@ -13,5 +13,8 @@ Feature: This feature enables us to test the sync calendar functionality
   Scenario: User adds a house to his list of favourite houses
     Given username is visible
     And user clicks on Account button on home screen
-    When the user adds a new favourite house
-    Then the added house is shown on favourite houses list
+    When the user adds below favourite houses and clicks save button
+      | Location | Houses               |
+      | Europe   | Soho House Amsterdam |
+    And I verify "Soho House Amsterdam" is displayed
+    Then the user signs out and closes the app

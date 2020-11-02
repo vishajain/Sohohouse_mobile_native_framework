@@ -583,6 +583,7 @@ And(/^user sees all the sections on home screen$/) do
     assert_true($homescreen.verify_happening_now,"Happening now section is not present")
   rescue
     puts "Happening now section is not present"
+
     $happeningNow = "Happening now not present"
   end
 

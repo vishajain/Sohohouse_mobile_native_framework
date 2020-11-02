@@ -7,7 +7,7 @@ env:
   stag:
     mobile_automation@sohohouse.com:
       name: 'SFFactory'
-      house: 'Little Beach House Barcelona'
+      house: 'Babington House'
       profile: 'Every House'
     manikanth.erukulla@sohohouse.com:
       name: 'Manikanth'
@@ -15,5 +15,5 @@ env:
       profile: 'Every House'
     mobile_android_automation@sohohouse.com:
       name: 'SFFactory'
-      house: 'Little Beach House Barcelona'
+      house: 'Babington House'
       profile: 'Every House'

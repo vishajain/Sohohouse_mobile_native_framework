@@ -88,6 +88,10 @@ class Ios_Account_Objects
     @driver.find_element(:xpath => "//XCUIElementTypeTextView[1]")
   end
 
+  def select_favourite (input)
+    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name='"+input+"']")
+  end
+
   def industry
     @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name='Type of work']")
   end
@@ -293,7 +297,6 @@ class Ios_Account_Objects
     @driver.find_element(:name => "Sign out")
   end
 
-
   def icon_left
     # @driver.find_element(:name => "iconLeft")
     @driver.find_element(:xpath => "//XCUIElementTypeButton[@name='iconLeft']")
@@ -393,11 +396,11 @@ class Ios_Account_Objects
   end
 
   def notification_pref_switch(link)
-    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name = '#{link}']/following-sibling::XCUIElementTypeSwitch")
+    @driver.find_element(:xpath => "//*[@name= '#{link}']/following-sibling::XCUIElementTypeSwitch")
   end
 
   def notification_pref_switch_value(link)
-    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name = '#{link}']/following-sibling::XCUIElementTypeSwitch").attribute("value")
+    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name= '#{link}']/following-sibling::XCUIElementTypeSwitch").attribute("value")
   end
 
   def enquiry_type
@@ -426,6 +429,10 @@ class Ios_Account_Objects
 
   def done
     @driver.find_element(:name => "Done")
+  end
+
+  def ElementsWithText(elementText)
+    @driver.find_element(:xpath => "//android.widget.TextView[@text = '#{elementText}']")
   end
 
 end
@@ -651,7 +658,8 @@ class Android_Account_Objects
 
   def save_changes
 
-    @driver.find_element(:id => "#{$currentPackage+':id'+'/edit_profile_save_btn'}")
+    #@driver.find_element(:id => "#{$currentPackage+':id'+'/edit_profile_save_btn'}")
+    @driver.find_element(:xpath => "//android.widget.Button[@text = 'Save changes']")
 
   end
 
@@ -764,12 +772,17 @@ class Android_Account_Objects
     @driver.find_element(:xpath => "//android.widget.TextView[@text ='#{$house}']")
   end
 
+  def select_favourite (input)
+    @driver.find_element(:xpath => "//android.widget.TextView[@text ='"+input+"']")
+  end
+
   def tap_uk
     @driver.find_element(:xpath => "//android.widget.TextView[contains(@text ,'UK')]")
   end
 
   def greek_St
     @driver.find_element(:xpath => "//android.widget.TextView[@text = '40 Greek Street']")
+
   end
 
   def kettners
@@ -799,7 +812,6 @@ class Android_Account_Objects
 
     @driver.find_element(:xpath => "//*[@text='"+input+"']")
 
-
   end
 
   def enquiry_message
@@ -820,8 +832,37 @@ class Android_Account_Objects
 
   def confirm_message
 
-    @driver.find_element(:xpath => "//*[@text='We will get back to you as soon as possible. If you have any urgent enquiries please contact the appropriate venue.']")
+    @driver.find_element(:xpath => "//*[@text='Back to home']")
 
   end
+
+  def notification_pref_switch(link)
+    @driver.find_element(:xpath => "//android.widget.TextView[@text = '#{link}']/following-sibling::android.widget.Switch")
+  end
+
+  def notification_pref_switch_value(link)
+    @driver.find_element(:xpath => "//android.widget.TextView[@text = '#{link}']/following-sibling::android.widget.Switch").attribute("checked")
+  end
+
+  def switch_off_confirmation
+    @driver.find_element(:xpath => "//android.widget.TextView[@text = 'Push notifications off']")
+  end
+
+  def ok_button
+    @driver.find_element(:xpath => "//android.widget.Button[@text = 'OK']")
+  end
+
+  def notification_pref_notifType(link,notificationtype)
+    @driver.find_element(:xpath => "//android.widget.TextView[@text = '#{link}']/following-sibling::android.widget.Switch[contains(@resource-id,'#{notificationtype}')]")
+  end
+
+  def notification_pref_notifType_value(link,notificationtype)
+    @driver.find_element(:xpath => "//android.widget.TextView[@text = '#{link}']/following-sibling::android.widget.Switch[contains(@resource-id,'#{notificationtype}')]").attribute("checked")
+  end
+
+  def ElementsWithText(elementText)
+    @driver.find_element(:xpath => "//android.widget.TextView[@text = '#{elementText}']")
+  end
+
 end
 
