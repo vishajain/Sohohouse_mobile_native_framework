@@ -12,3 +12,4 @@ Feature: This feature enables us to test the house board functionality
     When user taps on blackslate to view the blackslate screen
     And houseboard screen is shown
     And the user verifies all the links under houseboard screen
+    Then the user signs out and closes the app

@@ -12,22 +12,18 @@ class Ios_Home_Objects
 
   def house_name
 
-    @driver.find_element(:name => ""+$house+"")
+    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name= '"+$house+"']")
   end
 
   def house_name_webview
     # webview = @driver.available_contexts[1]
     # @driver.set_context(webview)
-    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name='Little Beach House Barcelona']")
+    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name='Babington House']")
   end
 
   def close_blackslate
     @driver.find_element(:name => "iconX")
   end
-
-  # def browse_houses
-  #   @driver.find_element(:name => "Europe")
-  # end
 
   def browse_houses_back_button
     @driver.find_element(:name => "iconLeft")
@@ -140,8 +136,6 @@ class Ios_Home_Objects
   def noticeboard
     noticeboard_text = ""+$house+""+" Noticeboard"
     @driver.find_element(:name => ""+noticeboard_text+"")
-
-    # @driver.find_element(:name => "Little Beach House Barcelona Noticeboard")
   end
 
   def view_another_noticeboard
@@ -187,12 +181,10 @@ class Ios_Home_Objects
   end
 
   def whats_on
-    # @driver.find_element(:xpath => "//XCUIElementTypeButton[@name = 'WHAT'S ON']")
      @driver.find_elements(:xpath => "//XCUIElementTypeTabBar[1]/XCUIElementTypeButton")
   end
 
   def whats_on_1
-    # @driver.find_element(:xpath => "//XCUIElementTypeButton[@name = 'WHAT'S ON']")
     @driver.find_element(:xpath => "//XCUIElementTypeTabBar//XCUIElementTypeButton[2]")
   end
 
@@ -201,12 +193,10 @@ class Ios_Home_Objects
   end
 
   def myplanner_btn
-    # @driver.find_elements(:xpath => "//XCUIElementTypeTabBar[1]/XCUIElementTypeButton")
     @driver.find_element(:xpath => "//XCUIElementTypeTabBar//XCUIElementTypeButton[3]")
   end
 
   def myplanner_btn_1
-    # @driver.find_elements(:xpath => "//XCUIElementTypeTabBar[1]/XCUIElementTypeButton")
     @driver.find_elements(:name => "MY PLANNER")
   end
 
@@ -308,6 +298,23 @@ class Ios_Home_Objects
     @driver.find_element(:name => ""+event+"")
   end
 
+  def member_card_details
+    @driver.find_element(:id => "#{$currentPackage+':id'+'/card_front'}")
+  end
+
+  def stay_with_us
+    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name='Stay with us']")
+  end
+
+  def house_guest
+    @driver.find_element(:xpath => "//XCUIElementTypeTable[1]/XCUIElementTypeCell[4]/XCUIElementTypeButton[1]")
+  end
+
+  def new_invitation
+    @driver.find_element(:name => "New guest Invitation")
+  end
+
+
 end
 
 class Android_Home_Objects
@@ -318,8 +325,7 @@ class Android_Home_Objects
   end
 
   def house_name
-
-    @driver.find_element(:xpath => "")
+    @driver.find_element(:xpath => "//android.widget.Button[@text= '"+$house+"']")
   end
 
   def close_blackslate
@@ -359,7 +365,7 @@ class Android_Home_Objects
   end
 
   def icon_left
-    @driver.find_element(:accessibility_id => "Go back")
+    @driver.find_element(:accessibility_id => "Navigate up")
   end
 
   def greetings
@@ -538,6 +544,29 @@ class Android_Home_Objects
     @driver.find_element()
 
   end
+  def house_name_webview
 
+    @driver.find_element(:xpath =>"//android.view.View[@text = '"+$house+"']/following-sibling::android.view.View//android.view.View[@text = 'House']")
+  end
+
+  def member_card_details
+    @driver.find_element(:id => "#{$currentPackage+':id'+'/card_front'}")
+  end
+
+  def stay_with_us
+    @driver.find_element(:xpath => "//android.view.View[@text = 'Stay with us']")
+  end
+
+  def house_rules_webview
+    @driver.find_element(:xpath =>  "//android.view.View[@text = 'Soho House & Co']/following-sibling::android.view.View//android.view.View[@text = 'House Rules']")
+  end
+
+  def house_guest
+    @driver.find_element(:xpath =>  "//android.widget.TextView[@text = 'House Guest']")
+  end
+
+  def new_invitation
+    @driver.find_element(:xpath =>  "//android.widget.TextView[@text = 'New invitation']")
+  end
 
 end

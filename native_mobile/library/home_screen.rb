@@ -37,57 +37,93 @@ class HomeScreen
 
   def verify_house_name_click
 
-    Common.wait_for(5) {@device_home_objects.house_name}.click
+    if Common.wait_for(5) {@device_home_objects.house_name}.displayed?
 
-    if Common.wait_for(20) {@device_home_objects.house_name_webview}.displayed?
+      @device_home_objects.house_name.click
 
-      Common.wait_for(15) {@device_home_objects.browse_houses_back_button}.click
+      sleep 5
 
-      return true
+      if Common.wait_for(30) {@device_home_objects.house_name_webview}.displayed?
 
-    else
+        if $device == "ios"
 
-      return false
+          Common.wait_for(15) {@device_home_objects.modal_close}.click
+
+        else
+
+          Common.wait_for(15) {@device_account_objects.navigate_up}.click
+
+        end
+
+        return true
+
+      end
 
     end
+
+    return false
 
   end
 
   def verify_membership_card
 
-    sleep 3
-
-    if Common.wait_for(5) {@device_home_objects.membership_card}.displayed?
+    if Common.wait_for(10) {@device_home_objects.membership_card}.displayed?
 
       @device_home_objects.membership_card.click
+      if $device == "ios"
 
-      if Common.wait_for(20) {@device_account_objects.your_membership.displayed?}
+        if Common.wait_for(20) {@device_account_objects.your_membership.displayed?}
 
-        Common.wait_for(20){@device_account_objects.icon_left}.click
+            Common.wait_for(20){@device_home_objects.membership_card_back_button}.click
 
-        return true
+          return true
 
-       end
+        end
 
-     end
+      else
+
+        if Common.wait_for(20) {@device_home_objects.member_card_details}.displayed?
+
+          Common.wait_for(20){@device_home_objects.membership_card_back_button}.click
+
+          return true
+
+        end
+
+      end
+
+    end
+
+    return false
 
   end
 
   def verify_book_a_bedroom
 
-    sleep 5
-
     if Common.wait_for(5) {@device_home_objects.book_a_bedroom}.displayed?
 
-     @device_home_objects.book_a_bedroom.click
+      @device_home_objects.book_a_bedroom.click
 
       sleep 5
 
-      Common.wait_for(5) {@device_home_objects.icon_left}.click
+      if Common.wait_for(30){@device_home_objects.stay_with_us}.displayed?
 
-      return true
+        if $device == "ios"
+
+          Common.wait_for(15) {@device_home_objects.modal_close}.click
+
+        else
+
+        Common.wait_for(5) {@device_home_objects.icon_left}.click
+        end
+
+        return true
+
+      end
 
     end
+
+    return false
 
   end
 
@@ -109,19 +145,26 @@ class HomeScreen
 
   def verify_house_rules
 
-    sleep 5
+    if Common.wait_for(10) {@device_home_objects.house_rules}.displayed?
 
-    if Common.wait_for(5) {@device_home_objects.house_rules}.displayed?
+        @device_home_objects.house_rules.click
 
-      @device_home_objects.house_rules.click
+        sleep 5
 
-      if Common.wait_for(10) {@device_home_objects.house_rules_webview}.displayed?
+        if Common.wait_for(10) {@device_home_objects.house_rules_webview}.displayed?
 
-      @device_home_objects.icon_left.click
+          if $device == "ios"
 
-        return true
+            Common.wait_for(15) {@device_home_objects.modal_close}.click
 
-      end
+          else
+
+            Common.wait_for(5) {@device_home_objects.icon_left}.click
+          end
+
+          return true
+
+        end
 
     end
 
@@ -1064,5 +1107,35 @@ class HomeScreen
 
   end
 
+  def verify_house_guest
+
+    sleep 3
+
+    if Common.wait_for(5) {@device_home_objects.house_guest}.displayed?
+
+        Common.wait_for(5) {@device_home_objects.house_guest}.click
+
+        if Common.wait_for(20) {@device_home_objects.new_invitation}.displayed?
+
+          if $device == "ios"
+
+            Common.wait_for(15) {@device_home_objects.modal_close}.click
+
+          else
+
+            Common.wait_for(15) {@device_account_objects.navigate_up}.click
+
+          end
+
+          return true
+
+        end
+
+    end
+
+    return false
+
+  end
 
 end
+

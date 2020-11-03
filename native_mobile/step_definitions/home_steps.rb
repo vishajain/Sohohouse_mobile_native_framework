@@ -263,6 +263,8 @@ end
 
 And(/^the user verifies all the links under houseboard screen$/) do
 
+  assert_true($homescreen.verify_house_guest,"Unable to navigate to Browse houses screen")
+
   assert_true($homescreen.verify_house_name_click,"Unable to navigate to Browse houses screen")
 
   assert_true($homescreen.verify_membership_card,"Unable to navigate to membership card screen")
