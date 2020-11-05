@@ -101,5 +101,6 @@ Feature: This feature enables us to test the notifications functionality
       | Event                           |
       | News, events and stories->email |
       | News, events and stories->push  |
-    Then user goes back to the account screen
+    And user goes back to the account screen
+    Then the user signs out and closes the app
 

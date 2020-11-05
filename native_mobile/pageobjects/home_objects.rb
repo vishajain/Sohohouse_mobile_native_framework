@@ -303,15 +303,16 @@ class Ios_Home_Objects
   end
 
   def stay_with_us
-    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name='Stay with us']")
+    @driver.find_element(:id => "//android.view.View[@text = 'Stay with us']")
   end
 
   def house_guest
-    @driver.find_element(:xpath => "//XCUIElementTypeTable[1]/XCUIElementTypeCell[4]/XCUIElementTypeButton[1]")
+    @driver.find_element(:xpath =>  "//android.widget.TextView[@text = 'House Guest']")
   end
 
   def new_invitation
-    @driver.find_element(:name => "New guest Invitation")
+    @driver.find_element(:xpath =>  "//android.widget.TextView[@text = 'New invitation']")
+   
   end
 
 
@@ -427,7 +428,7 @@ class Android_Home_Objects
   end
 
   def homeBtn
-    @driver.find_elements(:xpath => "//android.widget.FrameLayout[contains(@resource-id,'bottom_nav_bar')]//android.widget.FrameLayout")
+    @driver.find_elements(:xpath => "//android.view.ViewGroup//android.widget.FrameLayout[1]/android.widget.ImageView")
   end
 
   def whats_on
@@ -556,6 +557,7 @@ class Android_Home_Objects
   def stay_with_us
     @driver.find_element(:xpath => "//android.view.View[@text = 'Stay with us']")
   end
+
 
   def house_rules_webview
     @driver.find_element(:xpath =>  "//android.view.View[@text = 'Soho House & Co']/following-sibling::android.view.View//android.view.View[@text = 'House Rules']")

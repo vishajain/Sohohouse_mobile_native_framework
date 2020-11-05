@@ -94,7 +94,7 @@ module Common
       if $device == "ios"
         $action.press({:x => ($dimensions_width*0.5), :y => ($dimensions_height*0.5)}).wait(200).move_to({:x => ($dimensions_width*0.5), :y => ($dimensions_height*0.3)}).release.perform
       else
-        Appium::TouchAction.new.swipe(start_y: 850, end_y: 550).perform
+        Appium::TouchAction.new.swipe(start_y: 1340, end_y: 950).perform
       end
       sleep 1
     rescue StandardError => msg
@@ -133,10 +133,26 @@ module Common
     end
 
   end
+
   def Common.hideKeyboard
 
     $driver.hide_keyboard
 
   end
 
+
+  def self.goBack
+    $driver.back
+  end
+
+  def self.home_panel_swipe
+    if
+      if $device == "ios"
+        $action.press({:x => ($dimensions_width-50), :y => ($dimensions_width/2.5)}).wait(100).move_to({:x => 50, :y => ($dimensions_width/2.5)}).release.perform
+      else
+        Appium::TouchAction.new.swipe(start_x:($android_dimensions_width-50),start_y: ($android_dimensions_height/2.5), end_x:50, end_y: ($android_dimensions_height/2.5)).perform
+      end
+    end
+  end
 end
+

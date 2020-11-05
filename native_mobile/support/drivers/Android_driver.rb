@@ -21,6 +21,10 @@ module Android_driver
 
     $currentPackage =  $driver.current_package
 
+    $android_dimensions_width = $driver.manage.window.size.width
+
+    $android_dimensions_height = $driver.manage.window.size.height
+
   end
 
 
@@ -43,7 +47,7 @@ module Android_driver
                     'platformName' => 'Android',
                     'deviceName' => 'Android',
                     'avd' => 'nexus5x',
-                    'platformVersion' => @platform_version ,
+                    'platformVersion' => (@platform_version.to_s),
                     'udid' =>   @udid  ,
                     'app' =>  @app_path,
                     # 'bundleId' =>   @bundleid,

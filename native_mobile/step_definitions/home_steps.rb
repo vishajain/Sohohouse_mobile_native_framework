@@ -575,31 +575,6 @@ When("user navigates back to the home screen") do
 end
 
 
-And(/^user sees all the sections on home screen$/) do
-
-  assert_true($homescreen.verify_greetings,"Greetings not present")
-
-  assert_true($homescreen.verify_username,"Username is not present")
-
-  begin
-    assert_true($homescreen.verify_happening_now,"Happening now section is not present")
-  rescue
-    puts "Happening now section is not present"
-
-    $happeningNow = "Happening now not present"
-  end
-
-  assert_true($homescreen.verify_pastdigital_events, "Digital events are not present on home screen")
-
-
-  assert_true($homescreen.verify_house_notes,"House Notes section is not present")
-
-  assert_true($homescreen.verify_perks_homescreen,"Perks section is not present on home screen")
-
-  assert_true($homescreen.verify_our_houses,"Our Houses is not present")
-
-end
-
 And(/^the user sees post button on the home screen$/) do
 
   assert_true($homescreen.verify_post_button,"Post button is not visible")
@@ -649,4 +624,31 @@ Then(/^user resets the favourite houses$/) do
 
   $onboardingscreens.close_app
 
+end
+
+And(/^user sees all the sections on home screen$/) do |table|
+  sleep 10
+  data = table.hashes
+  data.each do |row|
+    row.each do |value|
+      assert_true($homescreen.verify_elementDisplayed(value[1].to_s), "Element not displayed")
+    end
+  end
+end
+
+And(/^user verifies all sections of 'What can we help you with'$/) do |table|
+  sleep 10
+  data = table.hashes
+  data.each do |row|
+    icon=nil
+    link=nil
+    row.each do |key,value|
+      if key.eql?"Section"
+        icon = value
+      elsif key.eql?"Links"
+        link = value
+      end
+    end
+    assert_true($homescreen.verifyIcons(icon,link),"Fuctionality not correct")
+  end
 end

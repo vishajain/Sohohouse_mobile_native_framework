@@ -94,9 +94,9 @@ class AccountScreen
 
       @device_account_objects.membership.click
 
-      if Common.wait_for(20) { @device_account_objects.your_membership.displayed? }
+      if Common.wait_for(20) {@device_account_objects.your_membership.displayed?}
 
-        Common.wait_for(20) { @device_account_objects.icon_left }.click
+        Common.wait_for(20){@device_account_objects.icon_left}.click
 
         return true
 
@@ -728,13 +728,13 @@ class AccountScreen
 
         return Common.wait_for(3){@device_account_objects.sign_out_account.displayed?}
 
-      rescue
+      rescue StandardError => signout_is_not_visible
 
         Common.swipe_down
 
         i = i + 1
 
-        if i > 2
+        if i > 3
 
           return false
 
@@ -803,20 +803,21 @@ class AccountScreen
     Common.swipe_down
 
     Common.wait_for(2){@device_account_objects.tap_uk}.click
-    sleep 2
-
 
     if $device == "android"
 
-      Common.swipe_down
+      sleep 1
+
+      Common.little_swipe_down
 
     end
-    Common.wait_for(2){@device_account_objects.kettners}.click
-    Common.little_swipe_down
+
     Common.wait_for(2){@device_account_objects.greek_St}.click
+    Common.little_swipe_down
+    Common.wait_for(2){@device_account_objects.kettners}.click
 
     Common.wait_for(2){@device_account_objects.tap_uk}.click
-    sleep 2
+
 
   end
 
@@ -936,7 +937,7 @@ class AccountScreen
     end
     if $device == "ios"
 
-      return str.include? value
+    return str.include? value
 
     else
 
@@ -1051,12 +1052,6 @@ class AccountScreen
   end
 
   def user_enters_profession_value
-
-    if $device == "ios"
-
-      Common.little_swipe_down
-
-    end
 
     if Common.wait_for(5){@device_account_objects.profession_input}.text.include? "software"
       profile = "profile2"
@@ -1199,8 +1194,6 @@ class AccountScreen
 
   def user_enters_interests_value
 
-    Common.little_swipe_down
-
     Common.wait_for(10){@device_account_objects.interests}.click
 
     element_count = Common.wait_for(10){@device_account_objects.profession_interests_remove.size}
@@ -1225,6 +1218,11 @@ class AccountScreen
     sleep 1
     Common.wait_for(3){@device_account_objects.profession_interests_input($interest1_value)}.click
     sleep 1
+    element_count = Common.wait_for(10){@device_account_objects.profession_interests_remove.size}
+    if element_count == 0
+      Common.wait_for(3){@device_account_objects.profession_interests_input($interest1_value)}.click
+      sleep 1
+    end
     $driver.action.move_to(@device_account_objects.done).click.perform
 
   end

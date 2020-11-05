@@ -297,6 +297,7 @@ class Ios_Account_Objects
     @driver.find_element(:name => "Sign out")
   end
 
+
   def icon_left
     # @driver.find_element(:name => "iconLeft")
     @driver.find_element(:xpath => "//XCUIElementTypeButton[@name='iconLeft']")
@@ -312,6 +313,7 @@ class Ios_Account_Objects
 
   def homeBtn
     @driver.find_element(:xpath => "//XCUIElementTypeTabBar//XCUIElementTypeButton[1]")
+
   end
 
   def perkTitle
@@ -432,7 +434,7 @@ class Ios_Account_Objects
   end
 
   def ElementsWithText(elementText)
-    @driver.find_element(:xpath => "//android.widget.TextView[@text = '#{elementText}']")
+    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name = '#{elementText}']")
   end
 
 end
@@ -660,7 +662,6 @@ class Android_Account_Objects
 
     #@driver.find_element(:id => "#{$currentPackage+':id'+'/edit_profile_save_btn'}")
     @driver.find_element(:xpath => "//android.widget.Button[@text = 'Save changes']")
-
   end
 
 
@@ -782,7 +783,6 @@ class Android_Account_Objects
 
   def greek_St
     @driver.find_element(:xpath => "//android.widget.TextView[@text = '40 Greek Street']")
-
   end
 
   def kettners
@@ -811,6 +811,7 @@ class Android_Account_Objects
   def enquiry_topic_option(input)
 
     @driver.find_element(:xpath => "//*[@text='"+input+"']")
+
 
   end
 
@@ -848,6 +849,7 @@ class Android_Account_Objects
     @driver.find_element(:xpath => "//android.widget.TextView[@text = 'Push notifications off']")
   end
 
+
   def ok_button
     @driver.find_element(:xpath => "//android.widget.Button[@text = 'OK']")
   end
@@ -858,11 +860,12 @@ class Android_Account_Objects
 
   def notification_pref_notifType_value(link,notificationtype)
     @driver.find_element(:xpath => "//android.widget.TextView[@text = '#{link}']/following-sibling::android.widget.Switch[contains(@resource-id,'#{notificationtype}')]").attribute("checked")
-  end
+    end
 
   def ElementsWithText(elementText)
-    @driver.find_element(:xpath => "//android.widget.TextView[@text = '#{elementText}']")
+      @driver.find_element(:xpath => "//android.widget.TextView[@text = '#{elementText}']")
   end
+
 
 end
 

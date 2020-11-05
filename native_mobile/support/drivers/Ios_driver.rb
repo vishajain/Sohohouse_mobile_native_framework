@@ -46,7 +46,7 @@ module Ios_driver
               {
                   'platformName' => 'iOS',
                   'deviceName' => 'iPhone XS Max',
-                  'platformVersion' => @platform_version ,
+                  'platformVersion' => (@platform_version.to_s) ,
                   'udid' =>   @udid  ,
                   'app' =>  @app_path,
                   'bundleId' =>   @bundleid,
