@@ -133,7 +133,6 @@ module Common
     end
 
   end
-
   def Common.hideKeyboard
 
     $driver.hide_keyboard
@@ -150,9 +149,20 @@ module Common
       if $device == "ios"
         $action.press({:x => ($dimensions_width-50), :y => ($dimensions_width/2.5)}).wait(100).move_to({:x => 50, :y => ($dimensions_width/2.5)}).release.perform
       else
+        sleep 1
         Appium::TouchAction.new.swipe(start_x:($android_dimensions_width-50),start_y: ($android_dimensions_height/2.5), end_x:50, end_y: ($android_dimensions_height/2.5)).perform
       end
     end
   end
+
+  def self.verifyNavBar(element)
+    @device_home_objects = Android_Home_Objects.new($driver, $driver_appium)
+    nav_y=@device_home_objects.nav_bar.location.y
+    element_y=element.location.y
+    if element_y > nav_y
+      self .little_swipe_down
+    end
+  end
+
 end
 

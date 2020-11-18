@@ -1,4 +1,5 @@
 @noticeBoard-screen
+
 Feature: his feature enables us to test the house board functionality
 
   Background:
@@ -26,7 +27,7 @@ Feature: his feature enables us to test the house board functionality
     But user taps on view another noticeboard
     And user sees the posts count incremented by one
 
-  @regression @edit_post
+  @regression @edit_post @iOS_will_fail
   Scenario: Amend and delete the local house's post on the noticeboard
     Given the user sees post button on the home screen
     When user inputs the text to amend
@@ -42,3 +43,4 @@ Feature: his feature enables us to test the house board functionality
     And the user enters a new post on another notice board
     And user sees the post amended on the noticeboard screen
     And user sees the post deleted on the noticeboard screen
+    Then the user signs out and closes the app

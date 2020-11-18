@@ -18,6 +18,5 @@ Feature: This is a feature to test On-boarding screens for iOS and Android
 
   @smoke @android
   Scenario: Android on-boarding screens
-    Given user verifies his membership card and continues
     When user sees the home screen
     Then the user signs out and closes the app

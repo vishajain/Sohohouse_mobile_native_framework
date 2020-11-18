@@ -400,11 +400,11 @@ class Android_Home_Objects
   end
 
   def noticeboard
-    @driver.find_element(:accessibility_id => "House board")
+    @driver.find_element(:xpath =>"//android.widget.TextView[contains(@text , '"+$house+"')]")
   end
 
   def view_another_noticeboard
-    @driver.find_elements(:accessibility_id => "Switch Noticeboard")
+    @driver.find_elements(:xpath =>"//android.widget.TextView[@text = 'View another Noticeboard']")
   end
 
   def  noticeboards_title
@@ -477,72 +477,78 @@ class Android_Home_Objects
   end
 
   def post_link
-    @driver.find_element()
+    @driver.find_element(:xpath => "//android.widget.TextView[@text = 'Post']")
   end
 
   def noticeboard_title
-    @driver.find_element()
+    @driver.find_element(:xpath => "//android.widget.TextView[@text = 'Noticeboard']")
   end
 
   def noticeboard_text_input
-    @driver.find_element()
+    @driver.find_element(:id => "#{$currentPackage+':id'+'/house_board_post_edit_text'}")
   end
 
   def view_post
 
-    @driver.find_element()
+    @driver.find_element(:xpath => "//android.widget.TextView[@text ='Now']/following-sibling::android.widget.TextView")
+
+  end
+
+  def post_button
+
+    @driver.find_element(:xpath => "//android.widget.Button[@text = 'Post']")
 
   end
 
   def delete_post
-    @driver.find_element()
+    @driver.find_element(:xpath => "//android.widget.TextView[@text = 'Delete post']")
   end
 
   def delete_post_check
 
-    @driver.find_elements()
+    @driver.find_elements(:xpath => "//*[@text ='How are you all doing']")
 
   end
 
   def view_another_noticeboard_1
 
-    @driver.find_element()
+    @driver.find_element(:xpath =>"//android.widget.TextView[@text = 'View another Noticeboard']")
 
   end
 
   def soho_house_berlin
 
-    @driver.find_element()
+    @driver.find_element(:xpath =>"//android.widget.TextView[@text = 'Soho House Berlin']")
 
   end
 
   def soho_berlin_noticeboard_title
 
-    @driver.find_element()
+    @driver.find_element(:xpath =>"//android.widget.TextView[@text = 'Soho House Berlin Noticeboard']")
 
   end
 
   def view_another_board_post
 
-    @driver.find_element()
+    @driver.find_element(:xpath => "//android.widget.TextView[@text ='Now']/following-sibling::android.widget.TextView")
 
   end
 
   def delete_another_board_post_check
 
-    @driver.find_elements()
+    @driver.find_elements(:xpath => "//*[@text ='How are you all doing']")
 
   end
 
   def posts_today
 
-    @driver.find_element()
+    @driver.find_element(:xpath => "//android.widget.TextView[@text = '"+$house+"']/following-sibling::android.widget.LinearLayout//android.widget.TextView")
 
   end
 
   def modal_close
 
-    @driver.find_element()
+    @driver.find_element(:accessibility_id => "Go back")
 
   end
   def house_name_webview
@@ -567,8 +573,12 @@ class Android_Home_Objects
     @driver.find_element(:xpath =>  "//android.widget.TextView[@text = 'House Guest']")
   end
 
+
   def new_invitation
     @driver.find_element(:xpath =>  "//android.widget.TextView[@text = 'New invitation']")
   end
 
+  def nav_bar
+    @driver.find_element(:xpath =>  "//*[contains(@resource-id , 'bottom_navigation_view')]")
+  end
 end

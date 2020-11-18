@@ -392,7 +392,7 @@ And("user is be navigated to the noticeboard screen") do
 
   assert_true($homescreen.verify_noticeboard,"House name is not shown")
 
-  $homescreen.ios_back
+  $homescreen.go_Back
 
 end
 
@@ -432,8 +432,6 @@ Then("user sees the post amended on the home screen") do
   assert_true($homescreen.verify_post_button,"Post button is not visible")
 
   assert_true($homescreen.verify_noticeboard,"Noticeboard section is not present")
-
-  Common.swipe_down
 
   assert_true($homescreen.verify_post_amended,"Post Amended is not shown on the home screen")
 
@@ -650,5 +648,24 @@ And(/^user verifies all sections of 'What can we help you with'$/) do |table|
       end
     end
     assert_true($homescreen.verifyIcons(icon,link),"Fuctionality not correct")
+  end
+end
+
+Then(/^the user scrolls to the top$/) do
+  assert_true($homescreen.scrollTillUsername,"Username not visible")
+end
+
+When(/^user sees the sections and subheading$/) do |table|
+  $accountscreen=AccountScreen.new
+  data = table.hashes
+  data.each do |row|
+    row.each do |key,value|
+      if key.include?"Section" or key.include?"Title"
+        assert_true($accountscreen.verify_elementDisplayed(value))
+      else
+        $homescreen.select_setUpYourApp(value)
+      end
+    end
+    $homescreen.go_Back
   end
 end
