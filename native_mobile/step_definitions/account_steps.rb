@@ -442,31 +442,6 @@ Given("user taps on settings") do
 
 end
 
-When(/^unselect (.*) push notification preference$/) do |link|
-
-    $accountscreen.tap_notification_pref_switch_off(link)
-
-end
-
-Then(/^(.*) push notification preference is switched off$/) do |link|
-
-    assert_true($accountscreen.verify_notification_pref_switch_value(link,"0"), "Notification pref value is not unset")
-
-end
-
-When(/^select (.*) push notification preference$/) do |link|
-
-    $accountscreen.tap_notification_pref_switch_on(link)
-
-end
-
-Then(/^(.*) push notification preference is switched on$/) do |link|
-
-    assert_true($accountscreen.verify_notification_pref_switch_value(link,"1"), "Notification pref value is still unset")
-
-end
-
-
 Given("user taps on Contact us form") do
 
     $accountscreen.tap_contact_us
@@ -730,56 +705,6 @@ Then(/^the user verifies all the links under account screen for iOS$/) do
 
 end
 
-And(/^unselect push notifications preference$/) do |table|
-  data = table.hashes
-  data.each do |row|
-    row.each do |value|
-      $accountscreen.tap_notifications_pref_switch_off(value[1].to_s)
-    end
-
-  end
-end
-
-And(/^push notifications preference is switched off$/) do |table|
-  data = table.hashes
-  data.each do |row|
-    row.each do |value|
-      assert_true($accountscreen.verify_notification_pref_switch_value(value[1].to_s, "0"), "Notification pref value is not unset")
-    end
-  end
-end
-
-
-And(/^select push notifications preference$/) do |table|
-  data = table.hashes
-  data.each do |row|
-    row.each do |value|
-      $accountscreen.tap_notifications_pref_switch_off(value[1].to_s)
-    end
-  end
-end
-
-And(/^push notifications preference is switched on$/) do |table|
-  data = table.hashes
-  data.each do |row|
-    row.each do |value|
-      assert_true($accountscreen.verify_notification_pref_switch_value(value[1].to_s, "1"), "Notification pref value is not set")
-    end
-  end
-end
-
-
-When(/^unselect push notification preference$/) do |table|
-
-  data = table.hashes
-  data.each do |row|
-    row.each do |value|
-      $accountscreen.tap_notification_pref_switch_off(value[1].to_s)
-    end
-  end
-
-end
-
 And(/^verify push notifications preference for connect is displayed$/) do |table|
   data = table.hashes
   data.each do |row|
@@ -829,5 +754,22 @@ Then(/^I verify "([^"]*)" is displayed$/) do |value|
   assert_true($accountscreen.verify_local_house_displayed, "Favourite houses reset is not working")
 
   $accountscreen.tap_save_changes
+
+end
+
+Then(/^the user navigates back$/) do
+
+  $accountscreen.tap_icon_left
+
+end
+
+And(/^verify the toggle functionality$/) do |table|
+
+  data = table.hashes
+  data.each do |row|
+    row.each do |value|
+      $accountscreen.verifytoggle(value[1].to_s)
+    end
+  end
 
 end

@@ -579,6 +579,6 @@ class Android_Home_Objects
   end
 
   def nav_bar
-    @driver.find_element(:xpath =>  "//*[contains(@resource-id , 'bottom_navigation_view')]")
+    @driver.find_element(:xpath =>  "//*[contains(@resource-id , 'bottom_navigation_view') or @text='Save changes']")
   end
 end

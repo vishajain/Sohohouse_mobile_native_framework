@@ -11,27 +11,13 @@ Feature: This feature enables us to test the notifications functionality
   Scenario: User updates their notification preferences for events
     Given user clicks on Account button on home screen
     And user taps on settings
-   And unselect push notification preference
+   And verify the toggle functionality
       | Event                |
       | Your events          |
       | Your screenings      |
       | Welcome to the House |
-    And push notifications preference is switched off
-      | Event                |
-      | Your events          |
-      | Your screenings      |
-      | Welcome to the House |
-    And select push notifications preference
-      | Event                |
-      | Your events          |
-      | Your screenings      |
-      | Welcome to the House |
-    Then push notifications preference is switched on
-     | Event                |
-     | Your events          |
-     | Your screenings      |
-     | Welcome to the House |
-    Then user goes back to the account screen
+    And user goes back to the account screen
+    Then member is not on home screen from account screen
 
   @smoke @regression @notification_preferences
   Scenario: User verifies the different notification preferences
@@ -54,50 +40,21 @@ Feature: This feature enables us to test the notifications functionality
   Scenario: User updates their notification preferences for Connect
     Given user clicks on Account button on home screen
     And user taps on settings
-    And unselect push notifications preference
-      | Event                 |
-      | Noticeboard reactions |
-      | Noticeboard           |
-      | Contact details       |
-      | Reminder              |
-    And push notifications preference is switched off
-      | Event                 |
-      | Noticeboard reactions |
-      | Noticeboard           |
-      | Contact details       |
-      | Reminder              |
-    And select push notifications preference
-      | Event                 |
-      | Noticeboard reactions |
-      | Noticeboard           |
-      | Contact details       |
-      | Reminder              |
-    And push notifications preference is switched on
+    And verify the toggle functionality
       | Event                 |
       | Noticeboard reactions |
       | Noticeboard           |
       | Contact details       |
       | Reminder              |
     Then user goes back to the account screen
+    Then member is not on home screen from account screen
 
 
   @smoke @regression @notification_preferences @communication
   Scenario: User updates their notification preferences for communication
     Given user clicks on Account button on home screen
     And user taps on settings
-    And select push notifications preference
-      | Event                           |
-      | News, events and stories->email |
-      | News, events and stories->push  |
-    And push notifications preference is switched on
-      | Event                           |
-      | News, events and stories->email |
-      | News, events and stories->push  |
-    And unselect push notifications preference
-      | Event                           |
-      | News, events and stories->email |
-      | News, events and stories->push  |
-    And push notifications preference is switched off
+    And verify the toggle functionality
       | Event                           |
       | News, events and stories->email |
       | News, events and stories->push  |

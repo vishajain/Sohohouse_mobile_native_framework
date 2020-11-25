@@ -531,7 +531,12 @@ class Android_Account_Objects
   end
 
   def industry_input
-    @driver.find_element(:xpath => "//*[@resource-id='android:id/numberpicker_input']")
+    @driver.find_element(:xpath => "//android.widget.EditText[@resource-id='android:id/numberpicker_input']")
+
+  end
+  def industry_input1
+    @driver.find_element(:xpath => "//android.widget.EditText[@resource-id='android:id/numberpicker_input']/preceding-sibling::android.widget.Button")
+
   end
 
   def city
@@ -555,7 +560,7 @@ class Android_Account_Objects
   end
 
   def profession_interests_input(interest)
-    @driver.find_element(:xpath => "//android.widget.TextView[@text='"+interest+"']")
+    @driver.find_element(:xpath => "//android.view.ViewGroup[contains(@resource-id,'pill')]/android.widget.TextView[@text='"+interest+"']")
   end
 
   def interests_input1

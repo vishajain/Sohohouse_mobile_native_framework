@@ -882,29 +882,7 @@ class AccountScreen
 
   end
 
-  def tap_notification_pref_switch_off(link)
-
-    Common.wait_for(3){@device_account_objects.notification_pref_switch(link)}.click
-
-    if $device == "ios"
-
-      Common.little_swipe_down
-
-      sleep 3
-
-      Common.wait_for(3){@device_account_objects.notification_pref_switch(link)}.click
-
-    else
-
-      if Common.wait_for(3){@device_account_objects.switch_off_confirmation}.displayed?
-        @device_account_objects.ok_button.click
-      end
-
-    end
-
-  end
-
-  def select_favourite_locations (input)
+ def select_favourite_locations (input)
 
     if $device == "ios"
       @device_account_objects.select_favourite(input).click
@@ -922,36 +900,42 @@ class AccountScreen
 
 
   def verify_notification_pref_switch_value(input, value)
+    i=0
+    loop do
+      begin
+        pushtype=nil
+        link = nil
+        if input.include?"->"
+          arr=input.split("->")
+          link=arr[0].to_s
+          pushtype=arr[1].to_s
+        end
+        if input.include?"->"
+          str = Common.wait_for(3){@device_account_objects.notification_pref_notifType_value(link,pushtype)}
+        else
+          str = Common.wait_for(3){@device_account_objects.notification_pref_switch_value(input)}
+        end
+        if $device == "ios"
 
-    pushtype=nil
-    link = nil
-    if input.include?"->"
-      arr=input.split("->")
-      link=arr[0].to_s
-      pushtype=arr[1].to_s
-    end
-    if input.include?"->"
-      str = Common.wait_for(3){@device_account_objects.notification_pref_notifType_value(link,pushtype)}
-    else
-      str = Common.wait_for(3){@device_account_objects.notification_pref_switch_value(input)}
-    end
-    if $device == "ios"
+        return str.include? value
 
-    return str.include? value
+        else
 
-    else
+          if value == "0"
 
-      if value == "0"
+            val =false
 
-        val =false
+          else
 
-      else
+            val=true
 
-        val=true
+          end
 
+          return str.to_s.eql?val.to_s
+        end
+      rescue
+        Common.little_swipe_down
       end
-
-      return str.to_s.eql?val.to_s
     end
   end
 
@@ -1092,20 +1076,32 @@ class AccountScreen
       end
 
     if $device == "ios"
+
       Common.wait_for(5){@device_account_objects.text_input}.clear
 
       @device_account_objects.profession.send_keys($profession_value)
-      else
-        @device_account_objects.text_input.send_keys($profession_value)
-    end
 
-    if $device =="ios"
-      @device_account_objects.profession_interests_input("Software Analyst").click
     else
-      @device_account_objects.profession_interests_input("Software analyst").click
+
+      @device_account_objects.text_input.send_keys($profession_value)
+
     end
 
-      $driver.action.move_to(@device_account_objects.done).click.perform
+    sleep 1
+
+    if $device == "ios"
+
+      @device_account_objects.profession_interests_input("Software Analyst").click
+
+    else
+
+      Common.wait_for(3){@device_account_objects.profession_interests_input("Software analyst")}.click
+
+    end
+
+    sleep 1
+
+    $driver.action.move_to(@device_account_objects.done).click.perform
 
   end
 
@@ -1122,10 +1118,18 @@ class AccountScreen
       Common.wait_for(15){@device_account_objects.industry}.click
 
     else
-      @device_account_objects.industry_input.replace_value($industry_value)
+      str1=str=@device_account_objects.industry_input.text
+      loop do
+        if str==$industry_value
+          break
+        end
+        Appium::TouchAction.new.swipe(start_x:50,start_y: @device_account_objects.industry_input1.location.y+10, end_x:50, end_y: @device_account_objects.industry_input.location.y+10).perform
 
-      @device_account_objects.industry_input.click
-
+        str=@device_account_objects.industry_input.text
+        if str == str1
+          break
+        end
+      end
       sleep 1
 
       @device_account_objects.industry.click
@@ -1211,25 +1215,33 @@ class AccountScreen
     end
 
     if $device == "ios"
+
       @device_account_objects.interests.send_keys("i")
+
     else
+
       @device_account_objects.interests_input1.send_keys("i")
+
     end
+
     sleep 1
+
     Common.wait_for(3){@device_account_objects.profession_interests_input($interest1_value)}.click
+
     sleep 1
-    element_count = Common.wait_for(10){@device_account_objects.profession_interests_remove.size}
-    if element_count == 0
-      Common.wait_for(3){@device_account_objects.profession_interests_input($interest1_value)}.click
-      sleep 1
-    end
+
     $driver.action.move_to(@device_account_objects.done).click.perform
 
   end
 
   def tap_social_accounts
-
-    Common.little_swipe_down
+    begin
+    if Common.wait_for(3){@device_account_objects.social_accounts}.displayed?
+      Common.verifyNavBar(@device_account_objects.social_accounts)
+    end
+    rescue
+      Common.little_swipe_down
+    end
 
     Common.wait_for(3){@device_account_objects.social_accounts}.click
 
@@ -1551,6 +1563,25 @@ class AccountScreen
           Common.wait_for(2){@device_account_objects.notification_pref_notifType(link,pushtype)}.click
         else
           Common.wait_for(2){@device_account_objects.notification_pref_switch(input)}.click
+
+          if $device == "ios"
+
+            Common.little_swipe_down
+
+            sleep 3
+
+            Common.wait_for(3){@device_account_objects.notification_pref_switch(input)}.click
+
+          else
+            begin
+              sleep 1
+              @device_account_objects.ok_button.click
+            rescue
+
+            end
+
+          end
+
         end
         return true
 
@@ -1603,6 +1634,27 @@ class AccountScreen
 
       end
 
+    end
+
+  end
+
+  def verifytoggle(link)
+
+    i=0
+    loop do
+
+    if verify_notification_pref_switch_value(link, "1")
+      $accountscreen.tap_notifications_pref_switch_off(link)
+      assert_true(verify_notification_pref_switch_value(link, "0"), "Notification pref value is not unset")
+    else
+      $accountscreen.tap_notifications_pref_switch_off(link)
+      assert_true(verify_notification_pref_switch_value(link, "1"), "Notification pref value is not set")
+    end
+    i=i+1
+
+    if i>=2
+      break
+    end
     end
 
   end
