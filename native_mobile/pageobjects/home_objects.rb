@@ -326,7 +326,7 @@ class Android_Home_Objects
   end
 
   def house_name
-    @driver.find_element(:xpath => "//android.widget.Button[@text= '"+$house+"']")
+    @driver.find_element(:xpath => "//android.widget.TextView[@text= '"+$house+"']")
   end
 
   def close_blackslate
@@ -362,7 +362,7 @@ class Android_Home_Objects
   end
 
   def house_rules
-    @driver.find_element(:xpath => "//android.widget.Button[@text='House rules']")
+    @driver.find_element(:xpath => "//android.widget.TextView[@text='House rules']")
   end
 
   def icon_left

@@ -51,7 +51,7 @@ class HomeScreen
 
         else
 
-          Common.wait_for(15) {@device_account_objects.navigate_up}.click
+          Common.closeWebView
 
         end
 
@@ -114,7 +114,7 @@ class HomeScreen
 
         else
 
-        Common.wait_for(5) {@device_home_objects.icon_left}.click
+          Common.closeWebView
         end
 
         return true
@@ -159,7 +159,7 @@ class HomeScreen
 
         else
 
-          Common.wait_for(5) {@device_home_objects.icon_left}.click
+          Common.closeWebView
         end
 
         return true
@@ -792,6 +792,20 @@ class HomeScreen
   def verify_post_created
 
     sleep 5
+
+    begin
+
+      if Common.wait_for(3){@device_home_objects.view_post}.displayed?
+
+        Common.verifyNavBar(@device_home_objects.view_post)
+
+      end
+
+    rescue
+
+      Common.little_swipe_down
+
+    end
 
     str = @device_home_objects.view_post.text
 

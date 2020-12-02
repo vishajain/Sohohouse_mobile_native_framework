@@ -1,7 +1,6 @@
 
 require 'rubygems'
 require 'appium_lib'
-# require 'watir'
 require 'selenium-webdriver'
 require "test/unit"
 require 'yaml'
@@ -41,17 +40,12 @@ class AccountScreen
         if $device == "ios"
 
           Common.swipe_top
-          # Common.wait_for(20){@device_account_objects.icon_left}.click
-
-          return true
-
-        else
-
-          Common.wait_for(20){@device_account_objects.navigate_up}.click
-
-          return true
 
         end
+
+        Common.navigateBack
+
+        return true
 
       end
 
@@ -75,8 +69,6 @@ class AccountScreen
 
     end
 
-    # Common.wait_for(15){@device_account_objects.account_title}.click
-
   end
 
 
@@ -96,7 +88,7 @@ class AccountScreen
 
       if Common.wait_for(20) {@device_account_objects.your_membership.displayed?}
 
-        Common.wait_for(20){@device_account_objects.icon_left}.click
+        Common.navigateBack
 
         return true
 
@@ -120,7 +112,7 @@ class AccountScreen
 
             sleep 3
 
-            Common.wait_for(15){@device_account_objects.icon_left}.click
+            Common.navigateBack
 
             return true
 
@@ -147,7 +139,7 @@ class AccountScreen
 
       if Common.wait_for(20) {@device_account_objects.houseperks_title.displayed?}
 
-        Common.wait_for(20){@device_account_objects.icon_left}.click
+        Common.navigateBack
 
         return true
 
@@ -172,7 +164,7 @@ class AccountScreen
 
           if Common.wait_for(10) {@device_account_objects.payment.displayed?}
 
-            Common.wait_for(10){@device_account_objects.icon_left}.click
+            Common.navigateBack
 
             return true
 
@@ -184,7 +176,7 @@ class AccountScreen
 
             sleep 3
 
-            Common.wait_for(20){@device_account_objects.icon_left}.click
+            Common.navigateBack
 
             return true
 
@@ -209,7 +201,7 @@ class AccountScreen
 
         sleep 2
 
-        Common.wait_for(20){@device_account_objects.icon_left}.click
+        Common.navigateBack
 
         return true
 
@@ -232,7 +224,7 @@ class AccountScreen
 
       if Common.wait_for(20) {@device_account_objects.change_password.displayed?}
 
-        Common.wait_for(20){@device_account_objects.icon_left}.click
+        Common.navigateBack
 
         return true
 
@@ -254,19 +246,9 @@ class AccountScreen
 
       if Common.wait_for(20) {@device_account_objects.favourite_houses.displayed?}
 
-        if $device == "ios"
+        Common.navigateBack
 
-          Common.wait_for(20){@device_account_objects.icon_left}.click
-
-          return true
-
-        else
-
-          Common.wait_for(20){@device_account_objects.navigate_up}.click
-
-          return true
-
-        end
+        return true
 
       end
 
@@ -318,7 +300,7 @@ class AccountScreen
 
         sleep 3
 
-          Common.wait_for(10){@device_account_objects.icon_left}.click
+          Common.navigateBack
 
           return true
 
@@ -460,13 +442,15 @@ class AccountScreen
 
           if $device == "ios"
 
-            Common.wait_for(20){@device_account_objects.icon_left}.click
+            Common.navigateBack
 
           else
             if Common.wait_for(60){@device_account_objects.faq_header}.displayed?
 
-                Common.wait_for(20){@device_account_objects.navigate_up}.click
+              Common.closeWebView
+
             end
+            
           end
 
           return true
@@ -508,11 +492,11 @@ class AccountScreen
 
         if $device == "ios"
 
-          Common.wait_for(20){@device_account_objects.icon_left}.click
+          Common.navigateBack
 
         else
 
-          Common.wait_for(20){@device_account_objects.navigate_up}.click
+          Common.closeWebView
 
         end
 
@@ -570,8 +554,6 @@ class AccountScreen
 
     $driver.action.move_to(@device_account_objects.perkTitle).click.perform
 
-    # Common.wait_for(5) {@device_account_objects.perkTitle.click}
-
     return true
 
   end
@@ -603,21 +585,11 @@ class AccountScreen
 
   def iconLeft
 
-    if $device == "ios"
+    sleep 1
 
-      sleep 1
+    Common.navigateBack
 
-      Common.wait_for(20){@device_account_objects.icon_left}.click
-
-      return true
-
-    else
-
-      Common.wait_for(20){@device_account_objects.navigate_up}.click
-
-      return true
-
-    end
+    return true
 
   end
 
@@ -968,7 +940,7 @@ class AccountScreen
       @device_account_objects.enquiry_type.send_keys(input)
 
     else
-
+      sleep 5
       Common.wait_for(10){@device_account_objects.enquiry_type_options(input)}.click
 
     end
@@ -1015,11 +987,11 @@ class AccountScreen
 
     begin
 
-      Common.wait_for(3){@device_account_objects.icon_left}.click
+      Common.navigateBack
 
     rescue
 
-      Common.wait_for(3){@device_account_objects.navigate_up}.click
+      Common.closeWebView
 
     end
 
@@ -1154,6 +1126,7 @@ class AccountScreen
       $driver.action.move_to(@device_account_objects.done).click.perform
 
     else
+      sleep 2
       $driver.action.move_to(@device_account_objects.done).click.perform
 
     end
@@ -1197,6 +1170,8 @@ class AccountScreen
   end
 
   def user_enters_interests_value
+
+    Common.verifyNavBar(@device_account_objects.interests)
 
     Common.wait_for(10){@device_account_objects.interests}.click
 
@@ -1439,23 +1414,11 @@ class AccountScreen
 
   def home_screen_navigate
 
-    if $device == "ios"
+    Common.navigateBack
 
-      Common.wait_for(10){@device_account_objects.icon_left.click}
+    Common.wait_for(10){@device_account_objects.homeBtn.click}
 
-      Common.wait_for(10){@device_account_objects.homeBtn.click}
-
-      return true
-
-    else
-
-      Common.wait_for(10){@device_account_objects.navigate_up.click}
-
-      Common.wait_for(10){@device_account_objects.homeBtn.click}
-
-      return true
-
-    end
+    return true
 
   end
 
@@ -1478,19 +1441,9 @@ class AccountScreen
 
       if Common.wait_for(20) {@device_account_objects.create_guest_invitation.displayed?}
 
-        if $device == "ios"
+        Common.navigateBack
 
-          Common.wait_for(20){@device_account_objects.icon_left}.click
-
-          return true
-
-        else
-
-          Common.wait_for(20){@device_account_objects.navigate_up}.click
-
-          return true
-
-        end
+        return true
 
       end
 
@@ -1503,8 +1456,6 @@ class AccountScreen
     Common.wait_for(80) {@device_account_objects.contact_name.displayed?}
 
     sleep 10
-
-    #Common.wait_for(3) {@device_account_objects.contact_name}.clear
 
     @device_account_objects.contact_name.send_keys($name)
 

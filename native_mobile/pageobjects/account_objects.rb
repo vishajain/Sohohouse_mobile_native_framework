@@ -609,7 +609,7 @@ class Android_Account_Objects
   end
 
   def your_membership
-    @driver.find_element(:xpath => "//android.widget.TextView[@text = 'Membership Card']")
+    @driver.find_element(:xpath => "//android.widget.TextView[@text = 'Membership']")
   end
 
   def perks
@@ -685,7 +685,7 @@ class Android_Account_Objects
   end
 
   def icon_left
-    @driver.find_element(:accessibility_id => "Go back")
+    @driver.find_element(:xpath => "//*[@content-desc = 'Navigate up' or @content-desc = 'Go back']")
   end
 
   def icon_back_header
@@ -771,7 +771,7 @@ class Android_Account_Objects
   end
 
   def enquiry_type_options(input)
-    @driver.find_element(:xpath => "//*[@text='"+input+"']")
+    @driver.find_element(:xpath => "//android.widget.CheckedTextView[contains(@text,'"+input+"')]")
   end
 
   def local_house
@@ -809,7 +809,7 @@ class Android_Account_Objects
 
   def enquiry_topic1
 
-   @driver.find_element(:xpath => "//*[@resource-id='venueName']")
+   @driver.find_element(:xpath => "//*[@resource-id='reason']")
 
   end
 
@@ -871,6 +871,12 @@ class Android_Account_Objects
       @driver.find_element(:xpath => "//android.widget.TextView[@text = '#{elementText}']")
   end
 
+  def ButtonWithText(elementText)
+    @driver.find_element(:xpath => "//android.widget.Button[@text = '#{elementText}']")
+  end
+  def close_webview
+    @driver.find_element(:id => "#{$currentPackage+':id'+'/close'}")
+  end
 
 end
 

@@ -35,12 +35,9 @@ Feature: Account screen
   @smoke @test @android
   Scenario: User submits the enquiry using contact us form
     Given user taps on Contact us form
-    When user provides the Name
-    And user provides the email
     When user provides enquiry type as General enquiry
-    And user provides enquiry topic as 180 House
+    And user provides enquiry topic as Feedback
     And user provides enquiry message as I like your services
-    And user clicks on confirm
     Then user submits the enquiry
     Then user navigates to confirmation screen
     Then the user navigates back and sign out of the app
