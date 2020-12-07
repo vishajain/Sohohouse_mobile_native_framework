@@ -135,7 +135,7 @@ class HomeScreen
 
       sleep 20
 
-      Common.wait_for(20) {@device_home_objects.icon_left}.click
+      Common.navigateBack
 
       return true
 
@@ -314,7 +314,7 @@ class HomeScreen
 
   def tap_navigate_back
 
-    Common.wait_for(20) {@device_home_objects.icon_left}.click
+    Common.navigateBack
 
   end
 
@@ -746,8 +746,10 @@ class HomeScreen
          Common.wait_for(3){@device_home_objects.post_link}.click
     rescue
       Common.wait_for(3){@device_home_objects.post_button}.click
-      Common.wait_for(3){@device_account_objects.ok_button}.click
-
+      begin
+        Common.wait_for(3){@device_account_objects.ok_button}.click
+      rescue
+      end
     end
 
   end
@@ -1117,7 +1119,7 @@ class HomeScreen
 
     begin
 
-      Common.wait_for(10){@device_whatson_objects.icon_left.click}
+      Common.navigateBack
 
     rescue
 
@@ -1125,7 +1127,7 @@ class HomeScreen
 
     begin
 
-      Common.wait_for(10){@device_whatson_objects.icon_left.click}
+      Common.navigateBack
 
     rescue
 
@@ -1275,6 +1277,31 @@ class HomeScreen
 
     end
 
+  end
+  def clickElement(element)
+    i=0
+
+    loop do
+
+      begin
+
+        Common.wait_for(2){@device_account_objects.ElementsWithText(element)}.click
+
+        return true
+
+      rescue
+
+        Common.swipe_top
+
+        i=i+1
+
+        if i>6
+          return false
+        end
+
+      end
+
+    end
   end
 
   def select_setUpYourApp(value)

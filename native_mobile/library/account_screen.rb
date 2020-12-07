@@ -1,6 +1,7 @@
 
 require 'rubygems'
 require 'appium_lib'
+# require 'watir'
 require 'selenium-webdriver'
 require "test/unit"
 require 'yaml'
@@ -450,7 +451,7 @@ class AccountScreen
               Common.closeWebView
 
             end
-            
+
           end
 
           return true
@@ -522,8 +523,9 @@ class AccountScreen
 
   def navigate_to_home
 
-    @device_home_objects.navigates_back.click
-
+    sleep 2
+    @device_home_objects.homeBtn.click
+    
     return true
 
   end
@@ -1497,7 +1499,7 @@ class AccountScreen
 
   end
 
-  def tap_notifications_pref_switch_off(input)
+  def tap_notifications_pref_switch_off(input,confirm_popup)
     pushtype=nil
     link = nil
     if input.include?"->"
@@ -1524,10 +1526,12 @@ class AccountScreen
             Common.wait_for(3){@device_account_objects.notification_pref_switch(input)}.click
 
           else
-            begin
+
+            if confirm_popup==1
+
               sleep 1
+
               @device_account_objects.ok_button.click
-            rescue
 
             end
 
@@ -1593,12 +1597,15 @@ class AccountScreen
 
     i=0
     loop do
-
+      confirm_popup=0
     if verify_notification_pref_switch_value(link, "1")
-      $accountscreen.tap_notifications_pref_switch_off(link)
+      if $scenario.getContext("scenario").include?"preferences for events"
+        confirm_popup=1
+      end
+      $accountscreen.tap_notifications_pref_switch_off(link,confirm_popup)
       assert_true(verify_notification_pref_switch_value(link, "0"), "Notification pref value is not unset")
     else
-      $accountscreen.tap_notifications_pref_switch_off(link)
+      $accountscreen.tap_notifications_pref_switch_off(link,confirm_popup)
       assert_true(verify_notification_pref_switch_value(link, "1"), "Notification pref value is not set")
     end
     i=i+1

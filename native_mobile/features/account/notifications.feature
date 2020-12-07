@@ -9,7 +9,8 @@ Feature: This feature enables us to test the notifications functionality
 
   @smoke @regression @notification_preferences @events
   Scenario: User updates their notification preferences for events
-    Given user clicks on Account button on home screen
+    When greetings should be visible
+    And user clicks on Account button on home screen
     And user taps on settings
    And verify the toggle functionality
       | Event                |

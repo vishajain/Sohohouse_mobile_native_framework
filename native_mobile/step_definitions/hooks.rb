@@ -25,6 +25,13 @@ at_exit do
   ReportBuilder.build_report
 end
 
+Before do |scenario|
+
+  $scenario=ScenarioContext.new
+  $scenario.setContext("scenario",scenario.name)
+
+end
+
 After do |scenario|
   if scenario.failed?
 

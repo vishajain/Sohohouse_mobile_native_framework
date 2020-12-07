@@ -871,9 +871,6 @@ class Android_Account_Objects
       @driver.find_element(:xpath => "//android.widget.TextView[@text = '#{elementText}']")
   end
 
-  def ButtonWithText(elementText)
-    @driver.find_element(:xpath => "//android.widget.Button[@text = '#{elementText}']")
-  end
   def close_webview
     @driver.find_element(:id => "#{$currentPackage+':id'+'/close'}")
   end

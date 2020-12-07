@@ -52,7 +52,7 @@ Then(/^the amended fields should be shown on users profile screen$/) do
 
   $homescreen.account_back
 
-  #$accountscreen.home_screen_navigation
+  $accountscreen.verify_sign_out
 
   assert_true($accountscreen.tap_sign_out, "Unable to sign out the user")
   #
@@ -773,3 +773,6 @@ And(/^verify the toggle functionality$/) do |table|
   end
 
 end
+
+
+

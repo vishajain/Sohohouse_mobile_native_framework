@@ -9,6 +9,7 @@ require_relative '../library/account_screen'
 require_relative '../pageobjects/home_objects'
 require_relative '../pageobjects/onboarding_objects'
 require_relative '../../common/functions_common'
+require_relative '../../common/scenarios_contexts'
 
 include Test::Unit::Assertions
 
@@ -668,4 +669,5 @@ When(/^user sees the sections and subheading$/) do |table|
     end
     $homescreen.go_Back
   end
+
 end

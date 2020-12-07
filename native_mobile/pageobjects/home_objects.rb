@@ -312,7 +312,7 @@ class Ios_Home_Objects
 
   def new_invitation
     @driver.find_element(:xpath =>  "//android.widget.TextView[@text = 'New invitation']")
-   
+
   end
 
 
@@ -428,7 +428,7 @@ class Android_Home_Objects
   end
 
   def homeBtn
-    @driver.find_elements(:xpath => "//android.view.ViewGroup//android.widget.FrameLayout[1]/android.widget.ImageView")
+    @driver.find_element(:xpath => "//android.view.ViewGroup//android.widget.FrameLayout[1]/android.widget.ImageView")
   end
 
   def whats_on
@@ -581,4 +581,13 @@ class Android_Home_Objects
   def nav_bar
     @driver.find_element(:xpath =>  "//*[contains(@resource-id , 'bottom_navigation_view') or @text='Save changes']")
   end
+
+  def navigates_back
+    @driver.find_element(:name => "Back")
+  end
+
+  def next
+    @driver.find_element(:xpath => "//android.widget.ImageButton[contains(@resource-id,'next')]")
+  end
+
 end
