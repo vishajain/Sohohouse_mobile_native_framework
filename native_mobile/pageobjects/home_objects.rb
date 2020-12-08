@@ -449,12 +449,11 @@ class Android_Home_Objects
   end
 
   def myplanner_btn_1
-    # @driver.find_elements(:xpath => "//XCUIElementTypeTabBar[1]/XCUIElementTypeButton")
-    @driver.find_elements(:accessibility_id => "MY PLANNER")
+     @driver.find_elements(:xpath => "//android.view.ViewGroup//android.widget.FrameLayout[3]/android.widget.ImageView")
   end
 
   def account_btn
-    @driver.find_elements(:accessibility_id =>  "ACCOUNT")
+    @driver.find_elements(:xpath => "//android.view.ViewGroup//android.widget.FrameLayout[4]/android.widget.ImageView")
   end
 
   def navigate_back
@@ -584,6 +583,10 @@ class Android_Home_Objects
 
   def navigates_back
     @driver.find_element(:name => "Back")
+  end
+
+  def navigation_menu(index)
+    @driver.find_element(:xpath => "//android.view.ViewGroup//android.widget.FrameLayout["+index.to_s+"]/android.widget.ImageView")
   end
 
   def next

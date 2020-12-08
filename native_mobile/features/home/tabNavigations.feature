@@ -20,7 +20,11 @@ Feature: his feature enables us to test the all the bottom navigations
 
   @smoke @android
   Scenario: Validate android home screen footer
-    Then HOME button should be seen in menu bar
-    And WHAT'S ON button should be seen in menu bar
-    And MY PLANNER bbutton should be seen in menu bar
-    And ACCOUNT button should be seen in menu bar
+    Given greetings should be visible
+    And user should see the button in menu bar
+    | menu       |  assertion                   |
+    | Account    |  View profile                |
+    | My Planner |  Discover                    |
+    | What's On  |  Book                        |
+    | Home       |  What can we help you with?  |
+    Then the user signs out and closes the app

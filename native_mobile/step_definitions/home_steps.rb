@@ -669,5 +669,19 @@ When(/^user sees the sections and subheading$/) do |table|
     end
     $homescreen.go_Back
   end
+end
 
+And(/^user should see the button in menu bar$/) do |table|
+  i=4
+  textValue=nil
+  data = table.hashes
+  data.each do |row|
+    row.each do |key,value|
+      if key.include?"assertion"
+        textValue=value
+      end
+    end
+    assert_true($homescreen.verifyTabNavigations(i,textValue), "Element not displayed")
+    i=i-1
+  end
 end

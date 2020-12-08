@@ -1314,5 +1314,17 @@ class HomeScreen
     Common.goBack
   end
 
+  def verifyTabNavigations(index,text)
+
+    if Common.wait_for(3){@device_home_objects.navigation_menu(index)}.displayed?
+      @device_home_objects.navigation_menu(index).click
+      if Common.wait_for(10){@device_account_objects.ElementsWithText(text)}.displayed?
+        return true
+      end
+    end
+    return false
+
+  end
+
 
   end
