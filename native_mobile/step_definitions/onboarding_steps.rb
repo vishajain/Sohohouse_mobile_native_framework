@@ -452,3 +452,41 @@ When(/^the user accepts notifications$/) do
   $onboardingscreens.user_clicks_OK
 
 end
+
+And(/^user is shown with a validation message (.*) for the (.*) account$/) do |message, login|
+  $accountscreen=AccountScreen.new
+
+  assert_true($accountscreen.verify_elementDisplayed(message),message+"not displayed")
+
+  if login.include?"chasing"
+
+    $onboardingscreens.update_later_button
+
+    assert_true($homescreen.verify_homescreen,"Username is not present")
+
+  end
+
+end
+
+
+Then(/^the clicks on signs out and closes the app for (.*)$/) do |login|
+
+  $accountscreen = AccountScreen.new
+
+  $whatsonscreen = WhatsonScreen.new
+
+  if login.include?"chasing"
+
+    $homescreen.verify_account_click
+    assert_true($accountscreen.verify_sign_out, "Unable to see sign out button")
+    $accountscreen.tap_sign_out
+  else
+    assert_true($accountscreen.verify_sign_out, "Unable to see sign out button")
+    $homescreen.clickElement("Sign out")
+    sleep 2
+  end
+
+  $onboardingscreens.close_app
+
+end
+

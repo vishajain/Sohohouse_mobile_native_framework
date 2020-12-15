@@ -190,7 +190,7 @@ class Android_Onboarding_Objects
   end
 
   def main_home
-    @driver.find_element(:xpath => "//android.widget.Button[@text = 'Sign in']")
+    @driver.find_element(:xpath => "//android.widget.Button[@text = 'Member sign in']")
   end
 
 
@@ -277,6 +277,10 @@ class Android_Onboarding_Objects
 
   def invalid_credential_dialog
     @driver.find_element(:xpath => "//android.widget.TextView[@text = 'Invalid credentials']")
+  end
+
+  def update_later
+    @driver.find_element(:xpath => "//android.widget.TextView[@text = 'Update later']")
   end
 
 end

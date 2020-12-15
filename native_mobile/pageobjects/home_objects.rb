@@ -593,4 +593,8 @@ class Android_Home_Objects
     @driver.find_element(:xpath => "//android.widget.ImageButton[contains(@resource-id,'next')]")
   end
 
+  def chasing_username
+    @driver.find_element(:xpath =>  "//android.widget.TextView[@text = 'SFFactory']")
+  end
+
 end
