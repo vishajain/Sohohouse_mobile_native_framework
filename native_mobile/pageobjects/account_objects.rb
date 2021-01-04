@@ -436,7 +436,9 @@ class Ios_Account_Objects
   def ElementsWithText(elementText)
     @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name = '#{elementText}']")
   end
-
+  def element_contains_text(elementText)
+    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[contains(@name , '#{elementText}')]")
+  end
 end
 
 class Android_Account_Objects
@@ -874,6 +876,20 @@ class Android_Account_Objects
   def close_webview
     @driver.find_element(:id => "#{$currentPackage+':id'+'/close'}")
   end
+  def reset
+    @driver.find_element(:xpath => "//*[@text = 'Reset']")
+  end
 
+  def reset_popup
+    @driver.find_element(:xpath => "//*[@text = 'RESET']")
+  end
+
+  def little_house_mayfair
+    @driver.find_element(:xpath => "//*[@text = 'Little House Mayfair']")
+  end
+
+  def element_contains_text(elementText)
+    @driver.find_element(:xpath => "//android.widget.TextView[contains(@text , '#{elementText}')]")
+  end
 end
 

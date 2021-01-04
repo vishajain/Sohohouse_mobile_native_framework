@@ -529,38 +529,6 @@ And("user closes the modal screen") do
 
 end
 
-When(/^user taps on (.*) carousel/) do |event_name|
-
-  sleep 5
-
-  if $happeningNow != "Happening now not present"
-
-     $homescreen.tap_carousel(event_name)
-
-  else
-
-    skip_this_scenario
-
-  end
-
-
-end
-
-Then(/^user navigates to (.*) details screen/) do |event_name|
-
-  if $happeningNow != "Happening now not present"
-
-     assert_true($homescreen.verify_user_navigation(event_name),"Posts count is not incremented")
-
-  else
-
-    skip_this_scenario
-
-  end
-
-end
-
-
 Then("user books the event") do
 
   assert_true($homescreen.verify_book_event,"Unable to book to the event")
@@ -664,11 +632,12 @@ When(/^user sees the sections and subheading$/) do |table|
       if key.include?"Section" or key.include?"Title"
         assert_true($accountscreen.verify_elementDisplayed(value))
       else
-        $homescreen.select_setUpYourApp(value)
+        assert_true($homescreen.select_setUpYourApp(value),"Element not available")
       end
     end
     $homescreen.go_Back
   end
+  $homescreen.scrollTillUsername
 end
 
 And(/^user should see the button in menu bar$/) do |table|
@@ -683,5 +652,84 @@ And(/^user should see the button in menu bar$/) do |table|
     end
     assert_true($homescreen.verifyTabNavigations(i,textValue), "Element not displayed")
     i=i-1
+  end
+end
+
+Then(/^user cancels the event booking of (.*)$/) do |event_name|
+
+  assert_true($homescreen.cancel_booking,"Event not cancelled")
+end
+
+
+
+When(/^user selects a favourite house$/) do
+  $homescreen.verify_account_click
+
+  $accountscreen = AccountScreen.new
+
+  $whatsonscreen = WhatsonScreen.new
+
+  $homescreen = HomeScreen.new
+
+  $accountscreen.tap_favourite_houses
+
+  $accountscreen.select_40_greek_street
+
+  $accountscreen.tap_save_changes
+
+  assert_true($accountscreen.home_screen_navigation,"Unable to navigate to home screen")
+
+  sleep 5
+
+  begin
+
+    assert_true($homescreen.verify_happening_now,"Happening now section is not present")
+
+  rescue
+
+    puts "Happening now section is not present"
+
+    $happeningNow = "Happening now not present"
+
+  end
+
+  assert_true($homescreen.verify_pastdigital_events, "Digital events are not present on home screen")
+
+
+end
+
+And(/^user books the ticket for (.*) and verifies the booking status$/) do |event_type|
+
+  assert_true($homescreen.bookForEvent,"Booking not done")
+  if event_type != "ticket-less event"
+
+    $homescreen.go_back_to_home_screen
+
+    assert_true($homescreen.verify_greetings,"Greetings not present")
+
+    assert_true($accountscreen.verify_elementWithPartialTextDisplayed($scenario.getContext("eventbooking")),"Incorrect booking status")
+
+    sleep 2
+
+    $homescreen.tap_carousel($scenario.getContext("event"))
+
+    assert_true($homescreen.verify_user_navigation($scenario.getContext("event")),"No navigated to event screen")
+
+  end
+
+end
+
+When(/^the user verifies (.*) on home screen$/) do |event_name|
+  if $happeningNow != "Happening now not present"
+
+    $scenario.setContext("event",event_name)
+    $homescreen.tap_carousel(event_name)
+
+    assert_true($homescreen.verify_user_navigation(event_name),"Posts count is not incremented")
+
+  else
+
+    skip_this_scenario
+
   end
 end

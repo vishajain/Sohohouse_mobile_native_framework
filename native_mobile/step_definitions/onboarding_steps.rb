@@ -68,8 +68,6 @@ And(/^the user is on main screen$/) do
 
   $onboardingscreens.user_clicks_membership
 
-  assert_true($onboardingscreens.verify_user_is_on_login_page, "User is on the sign-in screen")
-
 end
 
 When(/^the user goes through ios Onboarding screen$/) do

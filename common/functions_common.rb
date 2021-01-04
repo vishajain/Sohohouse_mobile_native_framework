@@ -104,12 +104,15 @@ module Common
   end
 
   def self.swipe_top()
-
+    begin
     if $device == "ios"
       $action.press({:x => ($dimensions_width*0.5), :y => ($dimensions_height*0.4)}).wait(100).move_to({:x => ($dimensions_width*0.5), :y => ($dimensions_height*0.8)}).release.perform
       sleep 1
     else
       Appium::TouchAction.new.swipe(start_y: 600, end_y: 1550).perform
+    end
+    rescue StandardError => msg
+      puts msg.message
     end
   end
 
@@ -144,13 +147,20 @@ module Common
     $driver.back
   end
 
-  def self.home_panel_swipe
-    if
+  def self.home_panel_swipe(section,direction)
+    if direction == "left"
       if $device == "ios"
         $action.press({:x => ($dimensions_width-50), :y => ($dimensions_width/2.5)}).wait(100).move_to({:x => 50, :y => ($dimensions_width/2.5)}).release.perform
       else
-        sleep 1
-        Appium::TouchAction.new.swipe(start_x:($android_dimensions_width-50),start_y: ($android_dimensions_height/2.5), end_x:50, end_y: ($android_dimensions_height/2.5)).perform
+        sleep 2
+        Appium::TouchAction.new.swipe(start_x:($android_dimensions_width-50),start_y: (section.location.y+20), end_x:50, end_y: (section.location.y+20)).perform
+      end
+    else
+      if $device == "ios"
+        $action.press({:x => ($dimensions_width-50), :y => ($dimensions_width/2.5)}).wait(100).move_to({:x => 50, :y => ($dimensions_width/2.5)}).release.perform
+      else
+        sleep 2
+        Appium::TouchAction.new.swipe(start_x:50,start_y: (section.location.y+20), end_x:($android_dimensions_width-50), end_y: (section.location.y+20)).perform
       end
     end
   end
@@ -174,5 +184,15 @@ module Common
     Common.wait_for(20) {@device_account_objects.icon_left}.click
   end
 
+  def self.swipeByLocation(x1,y1,x2,y2)
+    if
+    if $device == "ios"
+      $action.press({:x => ($dimensions_width-50), :y => ($dimensions_width/2.5)}).wait(100).move_to({:x => 50, :y => ($dimensions_width/2.5)}).release.perform
+    else
+      sleep 1
+      Appium::TouchAction.new.swipe(start_x:x1,start_y: y1, end_x:x2, end_y: y2).perform
+    end
+    end
+  end
 end
 

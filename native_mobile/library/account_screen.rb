@@ -33,7 +33,7 @@ class AccountScreen
 
 
     if Common.wait_for(20) {@device_account_objects.account_title}.displayed?
-
+      sleep 2
       @device_account_objects.account_title.click
 
       if Common.wait_for(20) {@device_account_objects.edit_profile_screen}.displayed?
@@ -510,8 +510,11 @@ class AccountScreen
   end
 
   def home_screen_navigation
+    sleep 3
 
     @device_account_objects.homeBtn.click
+
+    sleep 2
 
     Common.swipe_top
 
@@ -749,6 +752,10 @@ class AccountScreen
   def tap_reset
 
     Common.wait_for(3){@device_account_objects.reset}.click
+    begin
+      Common.wait_for(3){@device_account_objects.reset_popup}.click
+    rescue
+    end
 
   end
 
@@ -759,6 +766,7 @@ class AccountScreen
   end
 
   def tap_favourite_houses
+    Common.little_swipe_down
 
     Common.wait_for(3){@device_account_objects.favourite_houses}.click
 
@@ -774,25 +782,35 @@ class AccountScreen
 
   def select_40_greek_street
 
-    Common.swipe_down
+    tap_reset
 
-    Common.wait_for(2){@device_account_objects.tap_uk}.click
+    sleep 5
 
-    if $device == "android"
+    Common.wait_for(10){@device_account_objects.tap_uk}.click
 
-      sleep 1
+    Common.swipeByLocation(50,250,50,20)
+    i=0
+    loop do
+      begin
 
-      Common.little_swipe_down
+        Common.wait_for(2){@device_account_objects.greek_St}.click
 
+        Common.wait_for(2){@device_account_objects.kettners}.click
+
+        break
+
+      rescue
+
+        Common.swipeByLocation(50,250,50,20)
+        i=i+1
+        if i>2
+          break
+        end
+
+      end
     end
 
-    Common.wait_for(2){@device_account_objects.greek_St}.click
-    Common.little_swipe_down
-    Common.wait_for(2){@device_account_objects.kettners}.click
-
     Common.wait_for(2){@device_account_objects.tap_uk}.click
-
-
   end
 
   def select_shoreditch_house
@@ -818,11 +836,23 @@ class AccountScreen
 
     Common.wait_for(10){@device_account_objects.tap_uk}.click
 
-    Common.swipe_down
+    Common.swipeByLocation(50,250,50,20)
+    i=0
+    loop do
+      begin
 
-    sleep 5
+        Common.wait_for(10){@device_account_objects.greek_St}.click
+        break
+      rescue
 
-    Common.wait_for(10){@device_account_objects.little_house_mayfair}.click
+        Common.swipeByLocation(50,250,50,20)
+        i=i+1
+        if i>2
+          break
+        end
+
+      end
+    end
   end
 
   def verify_40_greek_st_displayed
@@ -1616,6 +1646,34 @@ class AccountScreen
     end
 
   end
+
+  def verify_elementWithPartialTextDisplayed(elementText)
+    i = 0
+
+    loop do
+
+      begin
+
+        return Common.wait_for(2){@device_account_objects.element_contains_text(elementText)}.displayed?
+
+      rescue StandardError => msg
+
+        Common.little_swipe_down
+
+        i = i + 1
+
+        if i > 4
+
+          return false
+
+        end
+
+      end
+
+    end
+
+  end
+
 
 end
 

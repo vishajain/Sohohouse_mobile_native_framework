@@ -137,4 +137,8 @@ class Android_GuestInvitation_Objects
     @driver.find_element(:xpath => "//android.widget.Button[@text = '#{elementText}']")
   end
 
+  def next
+    @driver.find_element(:xpath => "//android.widget.ImageButton[contains(@resource-id,'next')]")
+  end
+
 end

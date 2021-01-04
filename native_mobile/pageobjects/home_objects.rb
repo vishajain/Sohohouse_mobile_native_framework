@@ -315,6 +315,22 @@ class Ios_Home_Objects
 
   end
 
+  def event_name_field
+    @driver.find_elements(:id => "#{$currentPackage+':id'+'/event_title_label'}")
+  end
+
+  def book_plus
+    @driver.find_element(:id => "#{$currentPackage+':id'+'/stepper_plus_button'}")
+  end
+
+  def booking_status
+    @driver.find_element(:id => "#{$currentPackage+':id'+'/guest_wait_list_text'}")
+  end
+
+  def status
+    @driver.find_element(:xpath => "//*[contains(@text , 'RE ON THE GUEST LIST') and contains(@text , 'YOU')]")
+  end
+
 
 end
 
@@ -440,7 +456,7 @@ class Android_Home_Objects
   end
 
   def left_link
-    @driver.find_element(:accessibility_id => "Go back")
+    @driver.find_element(:xpath => "//*[@content-desc = 'Navigate up' or @content-desc = 'Go back']")
   end
 
   def myplanner_btn
@@ -589,12 +605,47 @@ class Android_Home_Objects
     @driver.find_element(:xpath => "//android.view.ViewGroup//android.widget.FrameLayout["+index.to_s+"]/android.widget.ImageView")
   end
 
-  def next
-    @driver.find_element(:xpath => "//android.widget.ImageButton[contains(@resource-id,'next')]")
-  end
-
   def chasing_username
     @driver.find_element(:xpath =>  "//android.widget.TextView[@text = 'SFFactory']")
   end
 
+  def past_digital_events
+    @driver.find_element(:xpath =>  "//android.widget.TextView[@text = 'Discover and book events at your favourite houses']")
+  end
+
+  def event_name(event)
+    @driver.find_element(:xpath =>  "//android.widget.ImageView[contains(@resource-id , 'event_image')]/following-sibling::android.widget.TextView[contains(@text , '"+event+"')]")
+  end
+
+  def event_name_field
+    @driver.find_elements(:id => "#{$currentPackage+':id'+'/event_title_label'}")
+  end
+
+  def book_plus
+    @driver.find_element(:id => "#{$currentPackage+':id'+'/stepper_plus_button'}")
+  end
+
+  def booking_status
+    @driver.find_element(:id => "#{$currentPackage+':id'+'/guest_wait_list_text'}")
+  end
+
+  def status
+    @driver.find_element(:xpath => "//*[contains(@text , 'RE ON THE GUEST LIST') and contains(@text , 'YOU')]")
+  end
+
+  def lottery_status
+    @driver.find_element(:xpath => "//*[contains(@text , 'Thanks for registering,') and contains(@text , 'in the lottery')]")
+  end
+
+  def cancel_event_booking
+    @driver.find_element(:id => "#{$currentPackage+':id'+'/leave_guest_wait_list_button'}")
+  end
+
+  def circle_icon
+    @driver.find_elements(:id => "#{$currentPackage+':id'+'/circleImage'}")
+  end
+
+  def event_image
+    @driver.find_elements(:id => "#{$currentPackage+':id'+'/event_image'}")
+  end
 end

@@ -16,6 +16,7 @@ class HomeScreen
       @device_home_objects = Ios_Home_Objects.new($driver, $driver_appium)
       @device_whatson_objects = Ios_Whatson_Objects.new($driver, $driver_appium)
       @device_account_objects = Ios_Account_Objects.new($driver, $driver_appium)
+      @device_guestinvitation_objects = Ios_GuestInvitation_Objects.new($driver, $driver_appium)
 
     else
 
@@ -23,7 +24,7 @@ class HomeScreen
       @device_home_objects = Android_Home_Objects.new($driver, $driver_appium)
       @device_whatson_objects = Android_Whatson_Objects.new($driver, $driver_appium)
       @device_account_objects = Android_Account_Objects.new($driver, $driver_appium)
-
+      @device_guestinvitation_objects = Android_GuestInvitation_Objects.new($driver, $driver_appium)
 
     end
 
@@ -144,6 +145,7 @@ class HomeScreen
   end
 
   def verify_house_rules
+    Common.little_swipe_down
 
     if Common.wait_for(10) {@device_home_objects.house_rules}.displayed?
 
@@ -171,8 +173,20 @@ class HomeScreen
   end
 
   def home_screen_navigate
+    i=0
+    loop do
+      begin
+        $driver.action.move_to(@device_home_objects.close_blackslate).click.perform
+        return true
+      rescue
+        Common.swipe_top
+        i=i+1
+        if i>2
+          break
+        end
+      end
+    end
 
-    $driver.action.move_to(@device_home_objects.close_blackslate).click.perform
 
     return true
 
@@ -430,11 +444,13 @@ class HomeScreen
 
       begin
 
-        return Common.wait_for(2) {@device_home_objects.past_digital_events.displayed?}
-
+        if Common.wait_for(2) {@device_home_objects.past_digital_events.displayed?}
+          Common.little_swipe_down
+          return true
+        end
       rescue
-
-        Common.swipe_down
+        sleep 1
+        Common.little_swipe_down
 
         i = i + 1
 
@@ -914,7 +930,7 @@ class HomeScreen
   end
 
   def go_back_to_home_screen
-
+    sleep 2
     Common.wait_for(5){@device_home_objects.left_link}.click
 
   end
@@ -949,44 +965,90 @@ class HomeScreen
 
   def tap_carousel(event_name)
 
-    locat = Common.wait_for(20) {@device_home_objects.happening_now}.location
+    if $device == "ios"
 
-    y =  locat["y"]
+      locat = Common.wait_for(20) {@device_home_objects.happening_now}.location
 
-    startY = y+55
-    endY = y+55
+      y =  locat["y"]
 
-    Common.swipe_right(startY,endY)
+      startY = y+55
+      endY = y+55
 
-    i = 1
+      Common.swipe_right(startY,endY)
 
-    while i < 8
+      i = 1
 
-      begin
+      while i < 8
 
-        if Common.wait_for(20) {@device_home_objects.event_name(event_name).displayed?}
+        begin
 
-          @device_home_objects.event_name(event_name).click
+          if Common.wait_for(20) {@device_home_objects.event_name(event_name).displayed?}
 
-          return true
+            @device_home_objects.event_name(event_name).click
+
+            return true
+
+          end
+
+        rescue
+
+          Common.swipe_left(startY,endY)
+
+          i = i+ 1
 
         end
 
-      rescue
-
-        Common.swipe_left(startY,endY)
-
-        i = i+ 1
-
       end
+    else
+
+        begin
+
+        Common.wait_for(3){@device_home_objects.event_name_field[0]}.displayed?
+        Common.verifyNavBar(@device_home_objects.event_name_field[0])
+
+        rescue
+          Common.little_swipe_down
+        end
+
+        i = 0
+
+        loop do
+
+          begin
+
+            if Common.wait_for(10) {@device_home_objects.event_name(event_name)}.displayed?
+
+              Common.verifyNavBar(@device_account_objects.element_contains_text(event_name))
+
+              @device_account_objects.element_contains_text(event_name).click
+
+            end
+
+            return true
+
+          rescue
+
+            Common.home_panel_swipe(@device_home_objects.event_image[0],"left")
+
+            i = i + 1
+
+            if i > 2
+
+              return false
+
+            end
+
+          end
+
+        end
 
     end
 
   end
 
   def verify_user_navigation(event_name)
-
-      return Common.wait_for(20) {@device_home_objects.event_name(event_name).displayed?}
+    sleep 2
+      return Common.wait_for(20) {@device_account_objects.element_contains_text(event_name).displayed?}
 
   end
 
@@ -1235,7 +1297,7 @@ class HomeScreen
          return true
 
       rescue
-        Common.home_panel_swipe
+        Common.home_panel_swipe(@device_home_objects.circle_icon[0],"left")
 
         i = i + 1
 
@@ -1269,7 +1331,7 @@ class HomeScreen
 
         i=i+1
 
-        if i>6
+        if i>7
           return false
         end
 
@@ -1305,8 +1367,21 @@ class HomeScreen
   end
 
   def select_setUpYourApp(value)
+    i=0
+    loop do
+      begin
+        Common.wait_for(3){@device_account_objects.ElementsWithText(value)}.click
+        return true
+      rescue
+        Common.little_swipe_down
+        i=i+1
+        if i>3
+          return false
+        end
+      end
+    end
 
-    Common.wait_for(3){@device_account_objects.ElementsWithText(value)}.click
+
 
   end
 
@@ -1325,6 +1400,45 @@ class HomeScreen
     return false
 
   end
+  def bookForEvent
+    event=nil
+    begin
+    if Common.wait_for(5){@device_guestinvitation_objects.ButtonWithText("Join lottery")}.displayed?
+      @device_home_objects.book_plus.click
+      if @device_account_objects.ElementsWithText("1").displayed?
+        @device_guestinvitation_objects.ButtonWithText("Join lottery").click
+        assert_true(Common.wait_for(5){@device_home_objects.lottery_status}.displayed?)
+        @device_account_objects.ok_button.click
+        assert_true(@device_home_objects.booking_status.text.include?"You have joined the lottery")
+        $scenario.setContext("eventbooking","RE IN THE LOTTERY")
+      end
+      return true
+    end
+    rescue
+      if Common.wait_for(5){@device_guestinvitation_objects.ButtonWithText("Add to bookings")}.displayed?
+        @device_guestinvitation_objects.ButtonWithText("Add to bookings").click
+        assert_true(Common.wait_for(5){@device_home_objects.status}.displayed?)
+        @device_account_objects.ok_button.click
+        return true
+      end
+    end
+    return false
+  end
 
+  def cancel_booking
+    Common.wait_for(10){@device_home_objects.cancel_event_booking}.click
+    Common.wait_for(10){@device_guestinvitation_objects.ButtonWithText("YES")}.click
+    begin
+      sleep 2
+      if @device_home_objects.cancel_event_booking.displayed?
+        return  false
+      end
+    rescue
+      return true
+    end
+  end
 
+  def event_swipe(direction)
+    Common.home_panel_swipe(@device_home_objects.event_name_field[0],direction)
+  end
   end

@@ -615,28 +615,15 @@ And(/^the user selects a favourite house for carousel$/) do
 
   sleep 5
 
-  begin
-
-    assert_true($homescreen.verify_happening_now,"Happening now section is not present")
-
-  rescue
-
-    puts "Happening now section is not present"
-
-    $happeningNow = "Happening now not present"
-
-  end
-
-  assert_true($homescreen.verify_pastdigital_events, "Digital events are not present on home screen")
-
 end
 
 And(/^user goes back to the home screen$/) do
 
-  assert_true($accountscreen.navigate_to_home,"Unable to navigate to home screen")
+  $homescreen.go_back_to_home_screen
 
   assert_true($homescreen.verify_greetings,"Greetings not present")
 
+  $homescreen.event_swipe("right")
 
 end
 
