@@ -448,7 +448,7 @@ class Android_Home_Objects
   end
 
   def whats_on
-     @driver.find_elements(:xpath => "//android.widget.FrameLayout[contains(@resource-id,'bottom_nav_bar')]//android.widget.FrameLayout")
+     @driver.find_element(:xpath => "//android.view.ViewGroup//android.widget.FrameLayout[2]/android.widget.ImageView")
   end
 
   def whats_on_1

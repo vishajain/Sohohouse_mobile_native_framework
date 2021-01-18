@@ -33,7 +33,7 @@ class AccountScreen
 
 
     if Common.wait_for(20) {@device_account_objects.account_title}.displayed?
-      sleep 2
+
       @device_account_objects.account_title.click
 
       if Common.wait_for(20) {@device_account_objects.edit_profile_screen}.displayed?
@@ -836,12 +836,26 @@ class AccountScreen
 
     Common.wait_for(10){@device_account_objects.tap_uk}.click
 
-    Common.swipeByLocation(50,250,50,20)
+    Common.swipe_down
+
+    sleep 5
+
+    Common.wait_for(10){@device_account_objects.little_house_mayfair}.click
+  end
+
+  def select_76_dean_house
+
+    sleep 5
+
+    Common.wait_for(10){@device_account_objects.tap_uk}.click
+
+    Common.swipeByLocation(50,350,50,20)
     i=0
     loop do
       begin
 
-        Common.wait_for(10){@device_account_objects.greek_St}.click
+        sleep 5
+        Common.wait_for(10){@device_account_objects.dean_street}.click
         break
       rescue
 
@@ -1448,7 +1462,7 @@ class AccountScreen
 
     Common.navigateBack
 
-    Common.wait_for(10){@device_account_objects.homeBtn.click}
+    Common.wait_for(10){@device_home_objects.homeBtn}.click
 
     return true
 

@@ -888,6 +888,10 @@ class Android_Account_Objects
     @driver.find_element(:xpath => "//*[@text = 'Little House Mayfair']")
   end
 
+  def dean_street
+    @driver.find_element(:xpath => "//android.widget.TextView[@text = '76 Dean Street']")
+  end
+
   def element_contains_text(elementText)
     @driver.find_element(:xpath => "//android.widget.TextView[contains(@text , '#{elementText}')]")
   end

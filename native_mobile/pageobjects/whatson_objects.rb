@@ -243,7 +243,7 @@ class Android_Whatson_Objects
   end
 
   def whatson_filter
-    @driver.find_element(:id => "#{$currentPackage+':id'+'/filter_btn'}")
+    @driver.find_element(:id => "#{$currentPackage+':id'+'/filter'}")
   end
 
   def whatson_options(button)
@@ -435,6 +435,46 @@ class Android_Whatson_Objects
 
   def house_icon
     @driver.find_element(:id => "#{$currentPackage+':id'+'/house_icon'}")
+  end
+
+  def booking_status
+    @driver.find_element(:id => "#{$currentPackage+':id'+'/booking_success_text'}")
+  end
+
+  def booking_status1
+    @driver.find_element(:id => "#{$currentPackage+':id'+'/guest_wait_list_text'}")
+  end
+
+  def button_r
+    @driver.find_element(:id => "#{$currentPackage+':id'+'/stepper_submit_button_small'}")
+  end
+
+  def card_number
+    @driver.find_element(:xpath => "//android.view.View[@text='Card Number']/parent::android.view.View/preceding-sibling::android.widget.EditText")
+  end
+
+  def card_expiry
+    @driver.find_element(:xpath => "//android.view.View[@text='EXPIRY YEAR']/parent::android.view.View/preceding-sibling::android.widget.Spinner")
+  end
+
+  def element_text(text)
+    @driver.find_element(:xpath => "//*[@text='"+text+"']")
+  end
+
+  def card_cvv
+    @driver.find_element(:xpath => "//android.view.View[@text='CVV']/parent::android.view.View/preceding-sibling::android.widget.EditText")
+  end
+
+  def cancel_event
+    @driver.find_element(:id => "#{$currentPackage+':id'+'/leave_guest_wait_list_button'}")
+  end
+
+  def tabs
+    @driver.find_element(:id => "#{$currentPackage+':id'+'/tab_layout'}")
+  end
+
+  def delete_guest
+    @driver.find_element(:id => "#{$currentPackage+':id'+'/guest_delete_button'}")
   end
 
 end

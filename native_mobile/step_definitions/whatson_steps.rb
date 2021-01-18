@@ -151,9 +151,19 @@ Given(/^user sees the (.*) tab/) do |section|
 
 end
 
-And(/^tap on (.*) tab/) do |section|
+And(/^tap on (.*) tab and set filter/) do |section|
+
+  $accountscreen = AccountScreen.new
 
   $whatsonscreen.events_click(section)
+
+  if !(($filterEvent.to_s).include?section) or section.include?"Gym"
+
+    $whatsonscreen.setFilterLocation
+
+    $filterEvent=section
+
+  end
 
 end
 
@@ -239,5 +249,105 @@ end
 When("user filters Shoreditch house events") do
 
   $whatsonscreen.select_shoreditch_house
+
+end
+
+And(/^I navigate to what's on screen$/) do
+
+  sleep 2
+
+  $homescreen.verify_whatson_click
+
+end
+
+And(/^I click on the below "([^"]*)" of "([^"]*)" and book "([^"]*)" tickets with "([^"]*)"$/) do |event_name,event_type,ticket_no, button_name|
+
+  assert_true($whatsonscreen.click_and_book_ticket(event_name,event_type, button_name, ticket_no),"Ticket not Booked")
+
+  $scenario.setContext("ticket_no",ticket_no)
+
+end
+
+Then(/^I should be able to successfully book event for member with status "([^"]*)"$/) do |status|
+
+  assert_true($whatsonscreen.verify_booking_status(status),"Incorrect Booking Status")
+
+  $homescreen.go_Back
+
+end
+
+Then(/^I navigate to home screen$/) do
+
+  $accountscreen = AccountScreen.new
+
+  $accountscreen.home_screen_navigate
+
+end
+
+And(/^I verify that "([^"]*)" is displayed under Events in "([^"]*)" page$/) do |event_name, tab|
+
+  $homescreen.clickElement(tab)
+
+  $accountscreen.verify_elementDisplayed(tab)
+
+  assert_true($accountscreen.verify_elementDisplayed(event_name),"Event not booked")
+
+  $homescreen.clickElement(event_name)
+
+end
+
+When(/^I cancel the above booked event$/) do
+
+  $whatsonscreen.cancel_event
+
+  sleep 2
+
+  $homescreen.go_Back
+
+  sleep 2
+
+  $homescreen.go_Back
+
+end
+
+When(/^I book (.*) ticket for guests  and verify status for the "([^"]*)" of "([^"]*)"$/) do |guest_ticket_no, event_name,event_type|
+
+  if guest_ticket_no!="NA" and guest_ticket_no.to_i>0
+
+    for i in 1..(guest_ticket_no.to_i) do
+
+      $whatsonscreen.inviteGuest(event_type,1)
+
+      $whatsonscreen.verify_booking_status("You and "+i.to_s)
+
+    end
+
+  elsif guest_ticket_no!="NA" and guest_ticket_no.to_i<0
+
+    for i in 1..(guest_ticket_no.to_i*(-1)) do
+
+      $whatsonscreen.decreaseGuest
+
+    end
+
+    ticket_no=$scenario.getContext("ticket_no")
+
+    if ticket_no.to_i-guest_ticket_no.to_i>1
+
+      $whatsonscreen.verify_booking_status("YOU AND "+(ticket_no.to_i-guest_ticket_no.to_i-1).to_s+" GUEST(S) ARE GOING")
+
+    elsif ticket_no.to_i-guest_ticket_no.to_i==1
+
+      $whatsonscreen.verify_booking_status("YOU'RE ON THE GUEST LIST")
+
+    end
+
+  end
+
+end
+
+And(/^I "([^"]*)" for "([^"]*)" of "([^"]*)"$/) do |button_name, event_name, event_type|
+
+  assert_true($whatsonscreen.click_and_book_ticket(event_name,event_type,button_name,"NA"),"Ticket not Booked")
 
 end

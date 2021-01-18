@@ -21,6 +21,7 @@ class WhatsonScreen
       @device_home_objects = Android_Home_Objects.new($driver, $driver_appium)
       @device_whatson_objects = Android_Whatson_Objects.new($driver, $driver_appium)
       @device_account_objects = Android_Account_Objects.new($driver, $driver_appium)
+      @device_guestinvitation_objects = Android_GuestInvitation_Objects.new($driver, $driver_appium)
 
     end
 
@@ -60,8 +61,21 @@ class WhatsonScreen
   def events_click(button)
 
     sleep 2
+    i=0
+    loop do
+      begin
 
-    Common.wait_for(5){@device_whatson_objects.whatson_options(button).click}
+        @device_whatson_objects.whatson_options(button).click
+        break
+
+      rescue
+        Common.home_panel_swipe(@device_whatson_objects.tabs,"left")
+        i=i+1
+        if i>3
+          break
+        end
+      end
+    end
 
   end
 
@@ -799,6 +813,255 @@ class WhatsonScreen
     #
     #
     # Common.wait_for(10){@device_whatson_objects.confirm}.click
+
+  end
+
+  def setFilterLocation
+    @device_whatson_objects.whatson_filter.click
+
+    @device_account_objects.ElementsWithText("Reset to defaults").click
+    Common.wait_for(5){@device_guestinvitation_objects.ButtonWithText("RESET FILTERS")}.click
+
+    element_count = Common.wait_for(10){@device_account_objects.profession_interests_remove.size}
+
+    element=@device_account_objects.profession_interests_remove
+    i=0
+
+    if element_count > 0
+
+      loop do
+
+        element[i].click
+
+        i = i+1
+
+        if i>=element_count
+
+          break
+
+        end
+
+      end
+
+    end
+
+    $accountscreen.select_76_dean_house
+
+    @device_whatson_objects.confirm.click
+
+  end
+
+  def click_and_book_ticket(event_name,event_type,button_name,ticket_no)
+
+    if button_name.include?","
+
+      button=button_name.split(",")
+
+      button_name=button[0]
+
+      button_name1=button[1]
+
+    end
+
+    i=0
+
+    Common.little_swipe_down
+
+    loop do
+
+      begin
+
+        if Common.wait_for(20){@device_account_objects.ElementsWithText(event_name)}.displayed?
+
+          Common.verifyNavBar(@device_account_objects.ElementsWithText(event_name))
+
+          @device_account_objects.ElementsWithText(event_name).click
+
+          break
+
+        end
+
+      rescue
+
+        Common.little_swipe_down
+
+        i=i+1
+
+        if i>4
+
+          return false
+
+        end
+
+      end
+
+    end
+
+    if ticket_no=="NA" or ticket_no.to_i>0
+
+      if ticket_no!="NA"
+
+        for i in 1..(ticket_no.to_i) do
+
+          Common.wait_for(5){@device_home_objects.book_plus}.click
+
+        end
+
+      end
+
+    @device_guestinvitation_objects.ButtonWithText(button_name).click
+
+    if event_type.split(",")[0].include?"Paid"
+
+      begin
+
+        $whatsonscreen.add_payment
+
+        Common.wait_for(5){@device_account_objects.ElementsWithText("Choose payment method")}.click
+
+        @device_account_objects.element_contains_text("5111111111111100".split(//).last(4).join.to_s).click
+
+      rescue
+
+        @device_account_objects.element_contains_text("5111111111111100".split(//).last(4).join.to_s).displayed?
+        begin
+          @device_guestinvitation_objects.ButtonWithText(button_name1).displayed?
+        rescue
+          @device_account_objects.icon_left.click
+        end
+      end
+
+      @device_guestinvitation_objects.ButtonWithText(button_name1).click
+
+    end
+
+    Common.wait_for(15){@device_account_objects.ok_button}.click
+
+    end
+
+    return true
+
+  end
+
+  def verify_booking_status(status)
+
+    Common.wait_for(5){@device_whatson_objects.booking_status1}.text.include?status
+
+  end
+
+  def add_payment
+
+    Common.wait_for(5){@device_account_objects.ElementsWithText("Choose payment method")}.click
+
+    @device_guestinvitation_objects.ButtonWithText("Continue").click
+
+    Common.wait_for(20){@device_whatson_objects.card_number}.click
+
+    @device_whatson_objects.card_number.send_keys("5111111111111100")
+
+    year=@device_whatson_objects.card_expiry.text.to_i+2
+
+    @device_whatson_objects.card_expiry.click
+
+    Common.wait_for(5){@device_whatson_objects.element_text(year.to_s)}.click
+
+    Common.wait_for(5){@device_whatson_objects.card_cvv}.click
+
+    @device_whatson_objects.card_cvv.send_keys("123")
+
+    Common.hideKeyboard
+
+    @device_guestinvitation_objects.ButtonWithText("Save card details").click
+
+    sleep 20
+
+    $homescreen.go_Back
+
+    $homescreen.go_Back
+
+  end
+
+  def whatson_to_home
+
+    @device_home_objects.homeBtn.click
+
+  end
+
+  def inviteGuest(event_type,ticket_no)
+
+    if ticket_no=="NA" or ticket_no.to_i>0
+
+      for i in 1..(ticket_no.to_i) do
+
+        Common.wait_for(5){@device_home_objects.book_plus}.click
+
+      end
+
+      @device_guestinvitation_objects.ButtonWithText("Invite guests").click
+
+      if event_type.split(",")[0].include?"Paid"
+
+        $whatsonscreen.add_payment
+
+        Common.wait_for(5){@device_account_objects.ElementsWithText("Choose payment method")}.click
+
+        @device_account_objects.element_contains_text("5111111111111100".split(//).last(4).join.to_s).click
+
+        @device_guestinvitation_objects.ButtonWithText(button_name1).click
+
+      end
+
+      Common.wait_for(5){@device_account_objects.ok_button}.click
+
+    end
+
+  end
+
+  def cancel_event
+
+    @device_whatson_objects.cancel_event.click
+
+    Common.wait_for(5){@device_guestinvitation_objects.ButtonWithText("YES")}.click
+
+    sleep 2
+
+  end
+
+  def decreaseGuest
+
+    i=0
+
+    loop do
+
+      begin
+
+        Common.wait_for(5){@device_whatson_objects.delete_guest}.click
+
+        @device_guestinvitation_objects.ButtonWithText("CONFIRM").click
+
+        sleep 15
+
+        Common.swipe_top
+
+        sleep 2
+
+        break
+
+      rescue
+
+        Common.little_swipe_down
+
+        i=i+1
+
+        if i>3
+
+          break
+
+        end
+
+      end
+
+    end
 
   end
 

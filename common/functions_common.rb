@@ -153,13 +153,14 @@ module Common
         $action.press({:x => ($dimensions_width-50), :y => ($dimensions_width/2.5)}).wait(100).move_to({:x => 50, :y => ($dimensions_width/2.5)}).release.perform
       else
         sleep 2
-        Appium::TouchAction.new.swipe(start_x:($android_dimensions_width-50),start_y: (section.location.y+20), end_x:50, end_y: (section.location.y+20)).perform
+        Appium::TouchAction.new.swipe(start_x:($android_dimensions_width-50),start_y: (section.location.y+15), end_x:50, end_y: (section.location.y+15)).perform
       end
     else
       if $device == "ios"
         $action.press({:x => ($dimensions_width-50), :y => ($dimensions_width/2.5)}).wait(100).move_to({:x => 50, :y => ($dimensions_width/2.5)}).release.perform
       else
         sleep 2
+
         Appium::TouchAction.new.swipe(start_x:50,start_y: (section.location.y+20), end_x:($android_dimensions_width-50), end_y: (section.location.y+20)).perform
       end
     end
