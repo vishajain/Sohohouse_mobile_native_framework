@@ -17,7 +17,7 @@ Feature: Book Screening event
     And tap on Screenings tab and set filter
     And I click on the below "<Event Name>" of "<Event Type>" and book "<Tickets>" tickets with "<Book>"
     And I should be able to successfully book event for member with status "<Status>"
-    Then user clicks on Account button on home screen
+    Then I click on Account button on home screen
     And I verify that "<Event Name>" is displayed under Events in "Bookings" page
     When I book <No. of Guest> ticket for guests  and verify status for the "<Event Name>" of "<Event Type>"
     Then I cancel the above booked event

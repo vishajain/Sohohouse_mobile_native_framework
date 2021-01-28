@@ -1,14 +1,13 @@
 
 require 'rubygems'
 require 'appium_lib'
-# require 'watir'
 require 'selenium-webdriver'
 require "test/unit"
 require 'yaml'
 require_relative '../pageobjects/onboarding_objects'
 require_relative '../pageobjects/home_objects'
 require_relative '../pageobjects/account_objects'
-require_relative '../../common/functions_common'
+
 
 class AccountScreen
 
@@ -23,32 +22,6 @@ class AccountScreen
       @device_onboarding_objects = Android_Onboarding_Objects.new($driver, $driver_appium)
       @device_home_objects = Android_Home_Objects.new($driver, $driver_appium)
       @device_account_objects = Android_Account_Objects.new($driver, $driver_appium)
-
-    end
-
-  end
-
-
-  def verify_account_title
-
-
-    if Common.wait_for(20) {@device_account_objects.account_title}.displayed?
-
-      @device_account_objects.account_title.click
-
-      if Common.wait_for(20) {@device_account_objects.edit_profile_screen}.displayed?
-
-        if $device == "ios"
-
-          Common.swipe_top
-
-        end
-
-        Common.navigateBack
-
-        return true
-
-      end
 
     end
 
@@ -79,58 +52,6 @@ class AccountScreen
 
   end
 
-
-  def verify_your_membership
-
-
-    if Common.wait_for(20) {@device_account_objects.membership.displayed?}
-
-      @device_account_objects.membership.click
-
-      if Common.wait_for(20) {@device_account_objects.your_membership.displayed?}
-
-        Common.navigateBack
-
-        return true
-
-      end
-
-    end
-
-  end
-
-  def verify_bookings
-
-    Common.little_swipe_down
-
-    if Common.wait_for(20) {@device_account_objects.your_bookings.displayed?}
-
-      @device_account_objects.your_bookings.click
-
-      if Common.wait_for(20) {@device_account_objects.booking_history.displayed?}
-
-         begin
-
-            sleep 3
-
-            Common.navigateBack
-
-            return true
-
-         rescue StandardError => msg
-
-            $driver.back
-
-            return true
-
-         end
-
-      end
-
-    end
-
-  end
-
   def verify_perks
 
 
@@ -149,48 +70,6 @@ class AccountScreen
     end
 
   end
-
-
-  def verify_payment
-
-    Common.swipe_down
-
-    if Common.wait_for(10) {@device_account_objects.payment.displayed?}
-
-      @device_account_objects.payment.click
-
-      sleep 2
-
-        if $device == "ios"
-
-          if Common.wait_for(10) {@device_account_objects.payment.displayed?}
-
-            Common.navigateBack
-
-            return true
-
-          end
-
-        else
-
-          if Common.wait_for(20) {@device_account_objects.payment_add.displayed?}
-
-            sleep 3
-
-            Common.navigateBack
-
-            return true
-
-          end
-
-        end
-
-
-      end
-
-
-  end
-
 
   def verify_past_bookings
 
@@ -235,28 +114,6 @@ class AccountScreen
 
   end
 
-  def verify_favourite_houses
-
-    sleep 2
-
-    if Common.wait_for(20) {@device_account_objects.favourite_houses.displayed?}
-
-      @device_account_objects.favourite_houses.click
-
-      sleep 3
-
-      if Common.wait_for(20) {@device_account_objects.favourite_houses.displayed?}
-
-        Common.navigateBack
-
-        return true
-
-      end
-
-    end
-
-  end
-
   def favourite_houses_shown
 
     Common.little_swipe_down
@@ -280,30 +137,6 @@ class AccountScreen
           return false
 
         end
-
-      end
-
-    end
-
-  end
-
-  def verify_notification_preferences
-
-    Common.swipe_down
-
-    if Common.wait_for(20) {@device_account_objects.settings.displayed?}
-
-      @device_account_objects.settings.click
-
-      sleep 2
-
-      if Common.wait_for(10) {@device_account_objects.notification.displayed?}
-
-        sleep 3
-
-          Common.navigateBack
-
-          return true
 
       end
 
@@ -390,122 +223,11 @@ class AccountScreen
 
   end
 
-  def verify_contact_us
-
-    i = 1
-
-    loop do
-
-      begin
-
-        return Common.wait_for(20) {@device_account_objects.contact_us.displayed?}
-
-      rescue
-
-        Common.little_swipe_down
-
-        i = i + 1
-
-        if i > 2
-
-          return false
-
-        end
-
-      end
-
-    end
-
-  end
 
 
   def assert_contact_us
 
     Common.wait_for(2) {@device_account_objects.contact_us.displayed?}
-
-  end
-
-  def verify_faq
-
-    Common.little_swipe_down
-
-    i = 1
-
-    loop do
-
-      begin
-
-        if Common.wait_for(20) {@device_account_objects.faq.displayed?}
-
-          @device_account_objects.faq.click
-
-          sleep 2
-
-          if $device == "ios"
-
-            Common.navigateBack
-
-          else
-            if Common.wait_for(60){@device_account_objects.faq_header}.displayed?
-
-              Common.closeWebView
-
-            end
-
-          end
-
-          return true
-
-        end
-
-      rescue
-
-        Common.little_swipe_down
-
-        i = i + 1
-
-        if i > 2
-
-          return false
-
-      end
-
-    end
-
-
-
-
-
-
-    end
-
-  end
-
-  def verify_policies
-
-   Common.little_swipe_down
-
-    if Common.wait_for(20) {@device_account_objects.policies.displayed?}
-
-      @device_account_objects.policies.click
-
-      if Common.wait_for(20) {@device_account_objects.Legal.displayed?}
-
-        if $device == "ios"
-
-          Common.navigateBack
-
-        else
-
-          Common.closeWebView
-
-        end
-
-        return true
-
-      end
-
-    end
 
   end
 
@@ -975,43 +697,32 @@ class AccountScreen
 
   end
 
-  def select_enquiry_type(input)
+  def select_type_topic(name,input)
 
-    Common.wait_for(10){@device_account_objects.enquiry_type}.click
+    if Common.wait_for(20){@device_account_objects.enquiry_type(name)}.displayed?
 
-    sleep 1
+      @device_account_objects.enquiry_type(name).click
 
-    if $device =="ios"
+      sleep 2
 
-      @device_account_objects.enquiry_type.send_keys(input)
+      if $device == "ios"
 
-    else
-      sleep 5
-      Common.wait_for(10){@device_account_objects.enquiry_type_options(input)}.click
+        @device_account_objects.enquiry_type(name).click
+
+        @device_account_objects.enquiry_picker.send_keys(input)
+
+        $common_screen.click_element_with_text("Done")
+
+      else
+
+        Common.wait_for(10){@device_account_objects.enquiry_topic_option(input)}.click
+
+      end
 
     end
 
   end
 
-  def select_enquiry_topic(input)
-
-    if Common.wait_for(20){@device_account_objects.enquiry_topic1}.displayed?
-
-      @device_account_objects.enquiry_topic1.click
-
-    sleep 2
-
-    if $device == "ios"
-
-      @device_account_objects.enquiry_topic1.send_keys(input)
-
-    else
-
-      Common.wait_for(10){@device_account_objects.enquiry_topic_option(input)}.click
-
-    end
-   end
-  end
 
   def input_message(input)
 
@@ -1033,11 +744,11 @@ class AccountScreen
 
     begin
 
-      Common.navigateBack
+      Common.wait_for(20) {@device_account_objects.icon_left}.click
 
     rescue
 
-      Common.closeWebView
+      Common.wait_for(20){@device_account_objects.close_webview}.click
 
     end
 
@@ -1479,24 +1190,6 @@ class AccountScreen
 
   end
 
-  def verify_guest_invitation
-
-    if Common.wait_for(20) {@device_account_objects.your_guest_invitation.displayed?}
-
-      @device_account_objects.your_guest_invitation.click
-
-      if Common.wait_for(20) {@device_account_objects.create_guest_invitation.displayed?}
-
-        Common.navigateBack
-
-        return true
-
-      end
-
-    end
-
-  end
-
   def enter_Name
 
     Common.wait_for(80) {@device_account_objects.contact_name.displayed?}
@@ -1537,7 +1230,7 @@ class AccountScreen
 
   def verify_confirmation_message
 
-    Common.wait_for(10) {@device_account_objects.confirm_message.displayed?}
+    Common.wait_for(10) {@device_account_objects.confirm_message}.displayed?
 
     return true
 
@@ -1686,6 +1379,20 @@ class AccountScreen
 
     end
 
+  end
+
+  def navigate_back_to_account
+
+    begin
+
+      sleep 1
+      $common_screen.click_element(@device_account_objects.navigate_back_to_account)
+
+    rescue
+
+      Common.swipe_top
+
+    end
   end
 
 

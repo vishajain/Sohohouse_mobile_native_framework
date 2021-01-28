@@ -13,7 +13,7 @@ require_relative '../../common/functions_common'
 include Test::Unit::Assertions
 
 
-Given("user clicks on Account button on home screen") do
+Given("I click on Account button on home screen") do
 
   $accountscreen = AccountScreen.new
 
@@ -55,7 +55,7 @@ Then(/^the amended fields should be shown on users profile screen$/) do
   $accountscreen.verify_sign_out
 
   assert_true($accountscreen.tap_sign_out, "Unable to sign out the user")
-  #
+
   $onboardingscreens.close_app
 
 end
@@ -113,38 +113,6 @@ And(/^the user inputs connect social accounts values$/) do
 
 end
 
-
-Then("user see and taps on view profile link") do
-
-    sleep 2
-
-    $whatsonscreen = WhatsonScreen.new
-
-    assert_true($accountscreen.verify_account_title,"Unable to tap on View profile link")
-
-end
-
-
-Then("user see and taps on your membership link") do
-
-    sleep 2
-
-    begin
-
-    assert_true($accountscreen.verify_your_membership,"Unable to tap on your membership link")
-
-    rescue StandardError => msg
-
-        puts msg.message
-
-        raise
-
-    end
-
-
-end
-
-
 Then("user see and taps on perks link") do
 
     sleep 2
@@ -153,16 +121,6 @@ Then("user see and taps on perks link") do
 
 end
 
-
-Then("user see and taps on payment link") do
-
-    sleep 2
-
-    assert_true($accountscreen.verify_payment,"Unable to tap on Payment link")
-
-end
-
-
 Then("user see and taps on past bookings link") do
 
     sleep 2
@@ -170,37 +128,6 @@ Then("user see and taps on past bookings link") do
     assert_true($accountscreen.verify_past_bookings,"Unable to tap on Past bookings link")
 
 end
-
-
- Then("user see and taps on change password link") do
-
-   assert_true($accountscreen.verify_contact_us,"Unable to tap on Contact us link")
-
-   $accountscreen.tap_contact_us
-
-   assert_true($accountscreen.verify_change_password,"Unable to tap on change password link")
-
-end
-
-
-Then("user see and taps on favourite houses link") do
-
-    sleep 2
-
-    assert_true($accountscreen.verify_favourite_houses,"Unable to tap on favourite houses link")
-
-end
-
-
-Then("user see and taps on notification preferences link") do
-
-    sleep 2
-
-    assert_true($accountscreen.verify_notification_preferences,"Unable to tap on Notification preferences link")
-
-
-end
-
 
 Then("user navigates to next tab") do
 
@@ -213,33 +140,6 @@ Then("user navigates to next tab") do
     puts e.message
 
   end
-
-end
-
-
-Then("user see and taps on contact us link") do
-
-    sleep 2
-
-    assert_true($accountscreen.verify_contact_us,"Unable to tap on Contact us link")
-
-end
-
-
-Then("user see and taps on faq link") do
-
-    sleep 2
-
-    assert_true($accountscreen.verify_faq,"Unable to tap on FAQ link")
-
-end
-
-
-Then("user see and taps on policies link") do
-
-    sleep 2
-
-    assert_true($accountscreen.verify_policies,"Unable to tap on Policies link")
 
 end
 
@@ -442,69 +342,30 @@ Given("user taps on settings") do
 
 end
 
-Given("user taps on Contact us form") do
+Given("I tap on Contact us form") do
 
     $accountscreen.tap_contact_us
 
 end
 
-When(/^user provides enquiry type as (.*)$/) do |input|
+When(/^I provides (.*) as (.*)$/) do |type,input|
 
-    $accountscreen.select_enquiry_type(input)
-
-end
-
-When(/^user provides enquiry topic as (.*)$/) do |input|
-
-    $accountscreen.select_enquiry_topic(input)
+  $accountscreen.select_type_topic(type,input)
 
 end
 
-
-When(/^user provides enquiry message as (.*)$/) do |input|
+When(/^I enter enquiry message as (.*)$/) do |input|
 
     $accountscreen.input_message(input)
 
 end
 
-Then("user submits the enquiry") do
+Then("I submits the enquiry") do
 
     $accountscreen.tap_submit
 
 end
 
-
-Then(/^the user verifies all the links under account screen$/) do
-
-    $whatsonscreen = WhatsonScreen.new
-
-    assert_true($accountscreen.verify_account_title,"Unable to tap on View profile link")
-
-    begin
-        assert_true($accountscreen.verify_your_membership,"Unable to tap on your membership link")
-    rescue StandardError => msg
-        puts msg.message
-        raise
-    end
-
-    assert_true($accountscreen.verify_guest_invitation,"Unable to tap on your bookings link")
-
-    assert_true($accountscreen.verify_payment,"Unable to tap on Payment link")
-
-    assert_true($accountscreen.verify_bookings,"Unable to tap on your bookings link")
-
-    assert_true($accountscreen.verify_favourite_houses,"Unable to tap on favourite houses link")
-
-    assert_true($accountscreen.verify_faq,"Unable to tap on FAQ link")
-
-    assert_true($accountscreen.verify_contact_us,"Unable to tap on Contact us link")
-
-    assert_true($accountscreen.verify_policies,"Unable to tap on Policies link")
-
-    assert_true($accountscreen.verify_notification_preferences,"Unable to tap on Notification preferences link")
-
-
-end
 
 When(/^the user adds a new favourite house$/) do
 
@@ -547,7 +408,7 @@ Then(/^the added house is shown on favourite houses list$/) do
 end
 
 
-Then(/^the user navigates back and sign out of the app$/) do
+Then(/^I navigate back and sign out of the app$/) do
 
   $accountscreen.tap_icon_left
 
@@ -661,34 +522,9 @@ And(/^user clicks on confirm$/) do
 
 end
 
-Then(/^user navigates to confirmation screen$/) do
+Then(/^I navigate to confirmation screen$/) do
 
   assert_true($accountscreen.verify_confirmation_message,"Unable to view confirmation message")
-
-end
-
-Then(/^the user verifies all the links under account screen for iOS$/) do
-
-    $whatsonscreen = WhatsonScreen.new
-
-    assert_true($accountscreen.verify_account_title,"Unable to tap on View profile link")
-
-    begin
-      assert_true($accountscreen.verify_your_membership,"Unable to tap on your membership link")
-    rescue StandardError => msg
-      puts msg.message
-      raise
-    end
-
-    assert_true($accountscreen.verify_guest_invitation,"Unable to tap on your bookings link")
-
-    assert_true($accountscreen.verify_bookings,"Unable to tap on your bookings link")
-
-    assert_true($accountscreen.verify_payment,"Unable to tap on Payment link")
-
-    assert_true($accountscreen.verify_favourite_houses,"Unable to tap on favourite houses link")
-
-    assert_true($accountscreen.verify_notification_preferences,"Unable to tap on Notification preferences link")
 
 end
 
@@ -761,5 +597,38 @@ And(/^verify the toggle functionality$/) do |table|
 
 end
 
+And(/^I verify all the links under account$/) do |table|
 
+  $common_screen=CommonScreen.new
 
+  if $device == "ios"
+    $common_screen.little_swipe_down
+  end
+
+  sleep 3
+
+  data = table.hashes
+
+    data.each do |row|
+
+    row.each do |key,value|
+
+      sleep 2
+
+      if key.eql?"Link"
+
+        assert_true($common_screen.find_element{$common_screen.click_element_with_text(value)},value+" is not clicked")
+
+      elsif key.eql?"Title"
+
+        assert_true($common_screen.verify_element_displayed_with_text(value),value+" is not displayed")
+
+      end
+
+    end
+
+    $accountscreen.navigate_back_to_account
+
+  end
+
+  end

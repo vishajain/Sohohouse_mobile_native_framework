@@ -139,7 +139,7 @@ Feature: Active functionality
 #    When user tap on back button
 #    When user closes the Active membership slate slate
 #    When user tap on back button
-#    When user clicks on Account button on home screen
+#    When I click on Account button on home screen
 #    Then user sign-off from the account
     Then app is closed
 
@@ -180,7 +180,7 @@ Feature: Active functionality
 
   @smoke
   Scenario: Select the favourite house as Greek house
-    When user clicks on Account button on home screen
+    When I click on Account button on home screen
     When user taps on favourite houses
     And user selects 40 Greek Street
     And tap on Save changes
@@ -260,7 +260,7 @@ Feature: Active functionality
 
   @regression @testing @non-active-every
   Scenario: Non active - every house member - sign out
-    When user clicks on Account button on home screen
+    When I click on Account button on home screen
     Then user sign-off from the account
     Then app is closed
 
@@ -370,7 +370,7 @@ Feature: Active functionality
 
   @regression @testing @active-local
   Scenario: Active - local to SHW - sign out
-    When user clicks on Account button on home screen
+    When I click on Account button on home screen
     Then user sign-off from the account
     Then app is closed
 
@@ -405,7 +405,7 @@ Feature: Active functionality
 
   @smoke
   Scenario: Select the favourite house as Greek house
-    When user clicks on Account button on home screen
+    When I click on Account button on home screen
     When user taps on favourite houses
     And user selects 40 Greek Street
     And tap on Save changes
@@ -508,7 +508,7 @@ Feature: Active functionality
 
   @regression @active-every
   Scenario: Active - every house member - sign out
-    When user clicks on Account button on home screen
+    When I click on Account button on home screen
     Then user sign-off from the account
     Then app is closed
 
@@ -589,7 +589,7 @@ Feature: Active functionality
 
   @regression @active-plus-local
   Scenario: Active plus - local to SHW - sign out
-    When user clicks on Account button on home screen
+    When I click on Account button on home screen
     Then user sign-off from the account
     Then app is closed
 
@@ -625,7 +625,7 @@ Feature: Active functionality
 
   @smoke
   Scenario: Select the favourite house as Greek house
-    When user clicks on Account button on home screen
+    When I click on Account button on home screen
     When user taps on favourite houses
     And user selects 40 Greek Street
     And tap on Save changes
@@ -720,6 +720,6 @@ Feature: Active functionality
 
   @regression @active-plus-every
   Scenario: Active plus - Everyhouse member to SHW - sign out
-    When user clicks on Account button on home screen
+    When I click on Account button on home screen
     Then user sign-off from the account
     Then app is closed

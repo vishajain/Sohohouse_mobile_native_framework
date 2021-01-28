@@ -11,7 +11,7 @@ Feature: This feature enables us to test the edit profile functionality
 
   @smoke @regression @edit_profile
   Scenario: Validate Edit profile fields
-    Given user clicks on Account button on home screen
+    Given I click on Account button on home screen
     When the user edits their profession
     And the user provides industry and city value
     And the user inputs about me and interests values

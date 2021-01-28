@@ -25,7 +25,7 @@ Feature: My Planner screen
 
   @smoke
   Scenario: Select the favourite house as Shoreditch house
-    When user clicks on Account button on home screen
+    When I click on Account button on home screen
     When user taps on favourite houses
     And user selects Shoreditch house
     And tap on Save changes

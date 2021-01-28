@@ -176,6 +176,9 @@ module Common
   end
 
   def self.closeWebView
+    if $device = "ios"
+      else
+    end
     @device_account_objects = Android_Account_Objects.new($driver, $driver_appium)
     Common.wait_for(20){@device_account_objects.close_webview}.click
   end

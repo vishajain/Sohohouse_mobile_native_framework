@@ -1,4 +1,4 @@
-@notification-screen @iOS_will_fail
+@notification-screen
 Feature: This feature enables us to test the notifications functionality
 
   @login-ex
@@ -10,7 +10,7 @@ Feature: This feature enables us to test the notifications functionality
   @smoke @regression @notification_preferences @events
   Scenario: User updates their notification preferences for events
     When greetings should be visible
-    And user clicks on Account button on home screen
+    And I click on Account button on home screen
     And user taps on settings
    And verify the toggle functionality
       | Event                |
@@ -22,7 +22,7 @@ Feature: This feature enables us to test the notifications functionality
 
   @smoke @regression @notification_preferences
   Scenario: User verifies the different notification preferences
-    Given user clicks on Account button on home screen
+    Given I click on Account button on home screen
     And user taps on settings
     And verify push notifications preference for connect is displayed
       | Event                     |
@@ -39,7 +39,7 @@ Feature: This feature enables us to test the notifications functionality
 
   @smoke @regression @notification_preferences @connects
   Scenario: User updates their notification preferences for Connect
-    Given user clicks on Account button on home screen
+    Given I click on Account button on home screen
     And user taps on settings
     And verify the toggle functionality
       | Event                 |
@@ -53,7 +53,7 @@ Feature: This feature enables us to test the notifications functionality
 
   @smoke @regression @notification_preferences @communication
   Scenario: User updates their notification preferences for communication
-    Given user clicks on Account button on home screen
+    Given I click on Account button on home screen
     And user taps on settings
     And verify the toggle functionality
       | Event                           |

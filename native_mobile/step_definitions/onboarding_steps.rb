@@ -4,6 +4,7 @@ require 'selenium-webdriver'
 require 'test/unit/assertions'
 require_relative '../support/drivers/base_driver'
 require_relative '../library/onboarding_screens'
+require_relative '../../common/common_screen'
 require_relative '../pageobjects/onboarding_objects'
 require_relative '../../common/functions_common'
 
@@ -85,22 +86,6 @@ When(/^the user goes through ios Onboarding screen$/) do
 
 end
 
-When(/^user goes through housepay screens$/) do
-
-  assert_true($onboardingscreens.verify_user_is_on_housepay_screen,"User is unable to land on 'Housepay' screen")
-
-  $onboardingscreens.user_clicks_remind_later
-
-  sleep 1
-
-  assert_true($onboardingscreens.verify_sync_with_calendar,"User is unable to land on sync with calendar screen")
-
-  $onboardingscreens.user_continue_without_sync
-
-
-end
-
-
 And(/^user enters (.*) email address and changed password$/) do |validity|
 
   $onboardingscreens.dismiss_invalid_credential
@@ -126,23 +111,6 @@ Given(/^user sees T & C screen$/) do
   assert_true($onboardingscreens.verify_user_is_on_onboarding_screen,"User is unable to land on 'Terms & conditions' screen")
 
 end
-
-Given(/^user sees Membership screen$/) do
-
-  sleep 2
-
-  assert_true($onboardingscreens.verify_user_is_on_membership_screen,"User is unable to land on 'Membership Screen' screen")
-
-  $onboardingscreens.user_clicks_continue
-
-  sleep 2
-
-  assert_true($onboardingscreens.verify_user_is_on_memberbenifits_screen,"User is unable to land on 'memberbenifits' screen")
-
-  $onboardingscreens.user_clicks_continue
-
-end
-
 
 When(/^user accepts T & C$/) do
 
@@ -196,17 +164,6 @@ When(/^user continue without syncing$/) do
 
 end
 
-Then(/^user sees welcome screen$/) do
-
-  sleep 3
-
-  assert_true($onboardingscreens.verify_user_welcome_screen,"User is unable to land on welcome screen")
-
-  $onboardingscreens.user_clicks_next
-
-end
-
-
 Given(/^user continue from welcome screen$/) do
 
   sleep 5
@@ -223,14 +180,6 @@ And(/^user continue from make it personal screen$/) do
   $onboardingscreens.user_continues_from_makePersonal
 
 end
-
-
-Then("user sees Introducing Noticeboard screen") do
-
-  assert_true($onboardingscreens.verify_Intro_Notice_screen,"User is unable to land on Introducing Noticeboard screen")
-
-end
-
 
 When("user clicks on continue") do
 
@@ -253,19 +202,6 @@ When("user clicks on next") do
   sleep 5
 
   $onboardingscreens.user_clicks_continue_to_notify_pref
-
-end
-
-
-Then("user sees Notification preferences screen") do
-
-  assert_true($onboardingscreens.verify_Notification_pref_screen,"User is unable to land on Notification preferences screen")
-
-  $onboardingscreens.user_turnsOn_notifications
-
-  assert_true($onboardingscreens.verify_youareset_screen,"User is unable to land on You're set screen screen")
-
-  $onboardingscreens.user_clicks_next
 
 end
 
@@ -488,3 +424,29 @@ Then(/^the clicks on signs out and closes the app for (.*)$/) do |login|
 
 end
 
+When(/^I verify the onboarding screens$/) do |table|
+  $common_screen=CommonScreen.new
+  sleep 10
+  data = table.hashes
+  data.each do |row|
+    screen=nil
+    button=nil
+    row.each do |key,value|
+      if key.eql?"Screen"
+        assert_true($common_screen.find_element{$common_screen.verify_element_displayed_with_text(value)},value+" is not displayed")
+      elsif key.eql?"Button"
+        assert_true($common_screen.find_element{$common_screen.click_element_with_text(value)},value+" is not clicked")
+      end
+    end
+
+  end
+
+end
+
+Given(/^I verify (.*) is displayed after login$/) do |string|
+
+  $common_screen=CommonScreen.new
+
+  assert_true($common_screen.verify_element_displayed_with_text(string),string+" is not displayed")
+
+end

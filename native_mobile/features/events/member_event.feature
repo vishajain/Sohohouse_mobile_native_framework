@@ -17,7 +17,7 @@ Feature: Book member event
     And tap on Events tab and set filter
     And I click on the below "<Event Name>" of "<Event Type>" and book "<Tickets>" tickets with "<Book>"
     And I should be able to successfully book event for member with status "<Status>"
-    And user clicks on Account button on home screen
+    And I click on Account button on home screen
     And I verify that "<Event Name>" is displayed under Events in "Bookings" page
     And I book <No. of Guest> ticket for guests  and verify status for the "<Event Name>" of "<Event Type>"
     Then I cancel the above booked event

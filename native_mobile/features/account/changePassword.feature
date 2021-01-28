@@ -10,20 +10,20 @@ Feature: This features enables us to test the change password functionality
 
   @regression @change_password
   Scenario: User updates their password
-    Given user clicks on Account button on home screen
+    Given I click on Account button on home screen
     And user taps on settings
     And user navigates to next tab
     And user navigates to change password
     When user updates password
-    Then the user navigates back and sign out of the app
+    Then I navigate back and sign out of the app
 
   @regression @revert_password
   Scenario: User reverts their password
     Given user enters valid email address and changed password
-    And user clicks on Account button on home screen
+    And I click on Account button on home screen
     And user taps on settings
     And user navigates to next tab
     And user navigates to change password
     When user reverts password
-    Then the user navigates back and sign out of the app
+    Then I navigate back and sign out of the app
 

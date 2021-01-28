@@ -29,7 +29,7 @@ Feature: This is a feature to test Guest Invitations functionality for iOS and A
   @smoke
   Scenario: Guest Invitations assertion & deletions under guest invitations
     Given greetings should be visible
-    When user clicks on Account button on home screen
+    When I click on Account button on home screen
     And user click on the "Guest Invitations"
     And user delete the existing invitations
     And user confirms existing invitations deleted

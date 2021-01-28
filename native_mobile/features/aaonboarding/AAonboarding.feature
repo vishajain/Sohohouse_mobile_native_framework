@@ -7,13 +7,20 @@ Feature: This is a feature to test On-boarding screens for iOS and Android
     And user enters valid email address and password
 
   @smoke @ios
-  Scenario: User accepts Terms & Conditions to see Help us improve screen
-    Given user sees Membership screen
-    And user goes through housepay screens
-    And user sees welcome screen
-    And user continue from make it personal screen
-    And user sees Notification preferences screen
-    When user sees the home screen
+  Scenario: Verify the onboarding screens
+    Given I verify Welcome to Soho House is displayed after login
+    When I verify the onboarding screens
+      | Screen                   | Button                     |
+      | Welcome to Soho House    | Continue                   |
+      | House Pay                | Remind me later            |
+      | Sync with your calendar  | Continue without syncing   |
+      | Welcome to Soho House    | Next                       |
+      | Make it personal         | Next                       |
+      | Enable push notifications| I'd rather opt out         |
+      | You're all set           | Next                       |
+      | Introducing messaging    | Next                       |
+      | Drop a note              | Done                       |
+    And greetings should be visible
     Then the user signs out and closes the app
 
   @smoke @android

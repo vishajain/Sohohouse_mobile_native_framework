@@ -17,7 +17,7 @@ Feature: Book gym event
     And tap on Gym tab and set filter
     And I "<Book>" for "<Event Name>" of "<Event Type>"
     And I should be able to successfully book event for member with status "<Status>"
-    Then user clicks on Account button on home screen
+    Then I click on Account button on home screen
     And I verify that "<Event Name>" is displayed under Events in "Bookings" page
     Then I cancel the above booked event
     Examples:

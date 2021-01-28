@@ -57,6 +57,12 @@ class OnboardingScreens
 
       $profile = config[:props]["env"][$env][$email]["profile"]
 
+      if $device == 'ios'
+
+        @device_onboarding_objects.email_textfield.click
+
+      end
+
       @device_onboarding_objects.email_textfield.send_keys(email)
 
       @device_onboarding_objects.password_textfield.send_keys($password)
@@ -157,7 +163,7 @@ class OnboardingScreens
   end
 
   def user_clicks_remind_later
-
+    sleep 2
     Common.wait_for(25){@device_onboarding_objects.remind_later}.click
 
   end
@@ -319,6 +325,12 @@ class OnboardingScreens
   def user_clicks_continue()
 
     Common.wait_for(22){@device_onboarding_objects.continue_button}.click
+
+  end
+
+  def user_clicks_done()
+
+    Common.wait_for(22){@device_onboarding_objects.done_button}.click
 
   end
 

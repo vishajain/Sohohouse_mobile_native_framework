@@ -12,7 +12,7 @@ Feature: This feature enables us to test the sync calendar functionality
   @smoke @regression @favourite_houses
   Scenario: User adds a house to his list of favourite houses
     Given username is visible
-    And user clicks on Account button on home screen
+    And I click on Account button on home screen
     When the user adds below favourite houses and clicks save button
       | Location | Houses               |
       | Europe   | Soho House Amsterdam |

@@ -394,6 +394,7 @@ class HomeScreen
   end
 
   def verify_greetings()
+    sleep 10
     str = Common.wait_for(30){@device_home_objects.greetings}.text
     if $device == "ios"
       if str == "Good morning," || str == "Good evening," || str == "Good afternoon,"
@@ -1296,7 +1297,6 @@ class HomeScreen
          return true
 
       rescue
-
         Common.home_panel_swipe(@device_home_objects.circle_icon[0],"left")
 
         i = i + 1
@@ -1392,9 +1392,7 @@ class HomeScreen
   def verifyTabNavigations(index,text)
 
     if Common.wait_for(3){@device_home_objects.navigation_menu(index)}.displayed?
-
       @device_home_objects.navigation_menu(index).click
-
       if Common.wait_for(10){@device_account_objects.ElementsWithText(text)}.displayed?
         return true
       end
@@ -1417,7 +1415,7 @@ class HomeScreen
       return true
     end
     rescue
-      if Common.wait_for(10){@device_guestinvitation_objects.ButtonWithText("Add to bookings")}.displayed?
+      if Common.wait_for(5){@device_guestinvitation_objects.ButtonWithText("Add to bookings")}.displayed?
         @device_guestinvitation_objects.ButtonWithText("Add to bookings").click
         assert_true(Common.wait_for(5){@device_home_objects.status}.displayed?)
         @device_account_objects.ok_button.click
@@ -1443,5 +1441,4 @@ class HomeScreen
   def event_swipe(direction)
     Common.home_panel_swipe(@device_home_objects.event_name_field[0],direction)
   end
-
-end
+  end

@@ -128,6 +128,10 @@ class Ios_Onboarding_Objects
     @driver.find_element(:name => "Continue")
   end
 
+  def done_button
+    @driver.find_element(:name => "Done")
+  end
+
   def makepersonal_text
     @driver.find_element(:name => "Make it personal")
   end

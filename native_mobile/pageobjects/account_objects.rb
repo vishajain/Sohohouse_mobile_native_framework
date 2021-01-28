@@ -405,21 +405,17 @@ class Ios_Account_Objects
     @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name= '#{link}']/following-sibling::XCUIElementTypeSwitch").attribute("value")
   end
 
-  def enquiry_type
-    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name = 'What type of enquiry do you have?']/parent::XCUIElementTypeCell/following-sibling::XCUIElementTypeCell/XCUIElementTypePicker/XCUIElementTypePickerWheel")
+  def enquiry_type(name)
+    @driver.find_element(:xpath => "//*[@name='"+name+"']/parent::XCUIElementTypeOther/XCUIElementTypeOther[@value='Select option']")
   end
 
-  def enquiry_topic1
-
-    # @driver.find_elements(:xpath => "//XCUIElementTypeStaticText[contains(@name,'the topic of your enquiry?')]")
-
-    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[contains(@name, 'the topic of your enquiry?')]/parent::XCUIElementTypeCell/following-sibling::XCUIElementTypeCell/XCUIElementTypePicker/XCUIElementTypePickerWheel")
-
+  def enquiry_picker
+    @driver.find_element(:xpath => "//XCUIElementTypePickerWheel")
   end
 
   def enquiry_message
 
-    @driver.find_element(:name => "Let us know what you need help with, or share your feedback")
+    @driver.find_element(:name => "Message")
 
   end
 
@@ -438,6 +434,19 @@ class Ios_Account_Objects
   end
   def element_contains_text(elementText)
     @driver.find_element(:xpath => "//XCUIElementTypeStaticText[contains(@name , '#{elementText}')]")
+  end
+
+  def navigate_back_to_account
+    @driver.find_element(:xpath => "//*[contains(@name , 'iconLeft') or contains(@name,'iconXLarge')]")
+  end
+
+  def confirm_message
+
+    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name='Back to home']")
+
+  end
+  def close_webview
+    @driver.find_element(:name=> "iconXLarge")
   end
 end
 
@@ -768,8 +777,8 @@ class Android_Account_Objects
     @driver.find_element(:xpath => "//android.widget.TextView[@text = 'Add payment method']")
   end
 
-  def enquiry_type
-    @driver.find_element(:xpath => "//*[@resource-id='inquiryType']")
+  def enquiry_type(name)
+    @driver.find_element(:xpath => "//*[@text='"+name+"']/parent::android.view.View/android.widget.Spinner")
   end
 
   def enquiry_type_options(input)
@@ -894,6 +903,9 @@ class Android_Account_Objects
 
   def element_contains_text(elementText)
     @driver.find_element(:xpath => "//android.widget.TextView[contains(@text , '#{elementText}')]")
+  end
+  def navigate_back_to_account
+    @driver.find_element(:xpath => "//*[contains(@content-desc , 'Navigate up')or contains(@content-desc , 'Go back') or contains(@resource-id , 'close')]")
   end
 end
 
