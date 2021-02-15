@@ -11,7 +11,7 @@ require_relative '../pageobjects/onboarding_objects'
 class OnboardingScreens
 
   def initialize()
-    #
+
     if $device == "ios"
 
       @device_onboarding_objects = Ios_Onboarding_Objects.new($driver, $driver_appium)
@@ -73,24 +73,17 @@ class OnboardingScreens
 
   def user_enters_email_changed_password(validity)
 
-    if validity == "valid"
+    config     = {props: YAML.load_file(File.join(File.dirname(__FILE__), '../../config/testdata.yml'))}
 
-      config     = {props: YAML.load_file(File.join(File.dirname(__FILE__), '../../config/environments.yml'))}
+    email      = config[:props]["data"][validity]
 
-      email      = $email
+    @device_onboarding_objects.email_textfield.clear
 
-      $name = config[:props]["env"][$env][$email]["name"]
+    @device_onboarding_objects.email_textfield.send_keys(email)
 
-      $house = config[:props]["env"][$env][$email]["house"]
+    @device_onboarding_objects.password_textfield.clear
 
-      $profile = config[:props]["env"][$env][$email]["profile"]
-
-      @device_onboarding_objects.email_textfield.clear
-      @device_onboarding_objects.email_textfield.send_keys(email)
-      @device_onboarding_objects.password_textfield.clear
-      @device_onboarding_objects.password_textfield.send_keys("password1")
-
-    end
+    @device_onboarding_objects.password_textfield.send_keys("password1")
 
   end
 

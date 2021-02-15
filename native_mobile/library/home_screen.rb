@@ -9,7 +9,7 @@ require_relative '../pageobjects/home_objects'
 class HomeScreen
 
   def initialize()
-    #
+
     if $device == "ios"
 
       @device_onboarding_objects = Ios_Onboarding_Objects.new($driver, $driver_appium)
@@ -191,205 +191,6 @@ class HomeScreen
     return true
 
     sleep 10
-
-  end
-
-  def verify_upcoming_bookings
-
-    return Common.wait_for(20) {@device_home_objects.upcoming_bookings}.displayed?
-
-  end
-
-  def verify_upcoming_bookings_events
-
-    if Common.wait_for(20) {@device_home_objects.event}.size >= 4
-      return true
-    else
-      return false
-    end
-
-  end
-
-  def verify_event_status
-
-    if Common.wait_for(20) {@device_home_objects.event_status_one_event}.text.include? "YOU'RE ON THE GUEST LIST"
-      return true
-    elsif Common.wait_for(20) {@device_home_objects.event_status_multi_event}.text.include? "YOU'RE ON THE GUEST LIST"
-      return true
-    end
-
-  end
-
-  def verify_multi_events_present
-
-    if Common.wait_for(20) {@device_home_objects.event}.size > 4
-      return true
-    else
-      return false
-    end
-
-  end
-
-  def verify_scroll_left
-
-    locat = Common.wait_for(20) {@device_home_objects.upcoming_bookings}.location
-
-    x =  locat["x"]
-    y =  locat["y"]
-
-    startY = y+55
-    endY = y+55
-
-    before_swipe_string = Common.wait_for(20) {@device_home_objects.event_title_first_event}.text
-    before_swipe_date = Common.wait_for(20) {@device_home_objects.event_date_first_event}.text
-
-    Common.swipe_left(startY,endY)
-
-    sleep 4
-
-    after_swipe_string = Common.wait_for(20) {@device_home_objects.event_title_first_event}.text
-    after_swipe_date = Common.wait_for(20) {@device_home_objects.event_date_first_event}.text
-
-    if  before_swipe_string == after_swipe_string && before_swipe_date == after_swipe_date
-      return false
-    else
-      return true
-    end
-
-  end
-
-  def verify_max_seven_events
-
-    locat = Common.wait_for(20) {@device_home_objects.upcoming_bookings}.location
-
-    x =  locat["x"]
-    y =  locat["y"]
-
-    startY = y+55
-    endY = y+55
-    @events_count = 1
-
-    before_swipe_string = Common.wait_for(20) {@device_home_objects.event_title_first_event}.text
-    before_swipe_date = Common.wait_for(20) {@device_home_objects.event_date_first_event}.text
-
-    loop do
-
-      Common.swipe_left(startY,endY)
-
-      sleep 3
-
-      after_swipe_string = Common.wait_for(20) {@device_home_objects.event_title_first_event}.text
-      after_swipe_date = Common.wait_for(20) {@device_home_objects.event_date_first_event}.text
-
-      if  before_swipe_string.equal? after_swipe_string
-
-        if before_swipe_date.equal? after_swipe_date
-
-          break
-
-        end
-
-      else
-
-        @events_count = @events_count + 1
-
-        before_swipe_string = Common.wait_for(20) {@device_home_objects.event_title_first_event}.text
-        before_swipe_date = Common.wait_for(20) {@device_home_objects.event_date_first_event}.text
-
-        sleep 3
-
-      end
-
-    end
-
-    if @events_count > 7
-
-      return false
-
-    else
-
-      return true
-
-    end
-
-  end
-
-  def tap_first_event
-
-    Common.wait_for(20) {@device_home_objects.event_title_first_event}.click
-
-  end
-
-  def verify_event_details_screen_navigation
-
-    return Common.wait_for(20) {@device_home_objects.section_displayed("Tickets")}.displayed?
-
-  end
-
-  def tap_navigate_back
-
-    Common.navigateBack
-
-  end
-
-  def verify_see_all_button
-
-    return Common.wait_for(20) {@device_home_objects.section_displayed("See all")}.displayed?
-
-  end
-
-  def tap_see_all_btn
-
-    Common.wait_for(20) {@device_home_objects.section_displayed("See all")}.click
-
-  end
-
-  def verify_my_bookings
-
-    return Common.wait_for(20) {@device_home_objects.section_displayed("My bookings")}.displayed?
-
-  end
-
-  def verify_planner_booking_event(event)
-
-    locat = Common.wait_for(20) {@device_home_objects.upcoming_bookings}.location
-
-    y =  locat["y"]
-
-    startY = y+55
-    endY = y+55
-
-    Common.swipe_right(startY,endY)
-
-    if event.include? "My planner member"
-
-      planner_event_name = $planner_member_event
-
-    elsif event.include? "My planner gym"
-
-      planner_event_name = $planner_gym_event
-
-    end
-
-    i = 0
-
-    while i < 8
-
-      begin
-
-        Common.wait_for(20) {@device_home_objects.section_displayed(planner_event_name).displayed?}
-
-        return true
-
-      rescue
-
-        Common.swipe_left(startY,endY)
-
-      end
-
-      i = i+1
-
-    end
 
   end
 
@@ -576,9 +377,7 @@ class HomeScreen
 
   end
 
-  def verify_noticeboard()
-
-    # Common.swipe_down
+  def verify_noticeboard
 
     Common.wait_for(3){@device_home_objects.noticeboard.displayed?}
 
@@ -695,12 +494,6 @@ class HomeScreen
   end
 
 
-  def verify_myplanner_click
-
-    Common.wait_for(15){@device_home_objects.myplanner_btn}.click
-
-  end
-
   def verify_account_click
 
     Common.wait_for(40){@device_home_objects.account_button}.click
@@ -780,11 +573,7 @@ class HomeScreen
 
     sleep 3
 
-    #$driver.action.move_to(@device_home_objects.noticeboard_text_input).click.perform
-
     @device_home_objects.noticeboard_text_input.send_keys("How are you all")
-
-      #Common.wait_for(5){@device_home_objects.noticeboard_title}.click
 
   end
 
@@ -835,13 +624,11 @@ class HomeScreen
 
     sleep 2
 
-    #Common.swipe_down
     begin
     str = Common.wait_for(5){@device_home_objects.view_post}[1].text
     rescue
       str = Common.wait_for(5){@device_home_objects.view_post}.text
     end
-    print str
 
     return str.include? "How are you all doing"
 
@@ -1049,122 +836,6 @@ class HomeScreen
   def verify_user_navigation(event_name)
     sleep 2
       return Common.wait_for(20) {@device_account_objects.element_contains_text(event_name).displayed?}
-
-  end
-
-  def verify_book_event
-
-
-    begin
-
-      Common.wait_for(2) {@device_whatson_objects.you_are_on_the_guest_list.displayed?}
-
-      return true
-
-    rescue
-
-
-    end
-
-    begin
-
-      Common.wait_for(2) {@device_whatson_objects.buy_tickets.displayed?}
-
-      paid_event = true
-
-    rescue
-
-      paid_event = false
-
-    end
-
-    begin
-
-      Common.wait_for(2) {@device_whatson_objects.buy_tickets.enabled?}
-
-      guests_allowed = false
-
-    rescue
-
-      guests_allowed = true
-
-    end
-
-    begin
-
-      Common.wait_for(2) {@device_whatson_objects.book.displayed?}
-
-      free_event = true
-
-    rescue
-
-      free_event = false
-
-    end
-
-    begin
-
-      Common.wait_for(2) {@device_whatson_objects.book_and_pay.displayed?}
-
-      gym_paid_event = true
-
-    rescue
-
-      gym_paid_event = false
-
-    end
-
-    if paid_event == true && guests_allowed == true
-
-      $whatsonscreen.book_member_event
-
-      $whatsonscreen.verify_member_section("Confirm payment")
-
-      $whatsonscreen.buy_tickets_click
-
-      $whatsonscreen.verify_you_on_guest_list
-
-      $whatsonscreen.ok_btn_click
-
-    elsif paid_event == true && guests_allowed == false
-
-      $whatsonscreen.book_no_guests_member_event
-
-      $whatsonscreen.verify_member_section("Confirm payment")
-
-      $whatsonscreen.buy_tickets_click
-
-      $whatsonscreen.verify_you_on_guest_list
-
-      $whatsonscreen.ok_btn_click
-
-    elsif paid_event == false && free_event == true
-
-      $whatsonscreen.book_no_guests_free_member_event
-
-      $whatsonscreen.verify_you_on_guest_list
-
-      $whatsonscreen.ok_btn_click
-
-    elsif gym_paid_event == true
-
-      $whatsonscreen.book_gym_event
-
-      $whatsonscreen.verify_member_section("Confirm payment")
-
-      $whatsonscreen.buy_tickets_click
-
-      $whatsonscreen.verify_you_on_guest_list
-
-      $whatsonscreen.ok_btn_click
-
-    end
-
-    if $whatsonscreen.verify_guest_list_status_on_event_screen
-
-      return true
-
-    end
 
   end
 
@@ -1392,14 +1063,21 @@ class HomeScreen
   def verifyTabNavigations(index,text)
 
     if Common.wait_for(3){@device_home_objects.navigation_menu(index)}.displayed?
+
       @device_home_objects.navigation_menu(index).click
+
       if Common.wait_for(10){@device_account_objects.ElementsWithText(text)}.displayed?
+
         return true
+
       end
+
     end
+
     return false
 
   end
+
   def bookForEvent
     event=nil
     begin
@@ -1441,4 +1119,10 @@ class HomeScreen
   def event_swipe(direction)
     Common.home_panel_swipe(@device_home_objects.event_name_field[0],direction)
   end
+
+  def clickOnConnect
+
+    Common.wait_for(5){@device_home_objects.connect}.click
+
   end
+end

@@ -15,6 +15,8 @@ include Test::Unit::Assertions
 
 Given("I click on Account button on home screen") do
 
+  sleep 2
+
   $accountscreen = AccountScreen.new
 
   $whatsonscreen = WhatsonScreen.new
@@ -129,7 +131,7 @@ Then("user see and taps on past bookings link") do
 
 end
 
-Then("user navigates to next tab") do
+Then("I navigate to next tab") do
 
   begin
 
@@ -213,7 +215,7 @@ Given("user taps on change password") do
 
 end
 
-When("user updates password") do
+When("I update the password") do
 
     assert_true($accountscreen.verify_current_password,"current password is not visible")
 
@@ -308,12 +310,6 @@ And("user selects 40 Greek Street") do
 
 end
 
-And("user selects Shoreditch house") do
-
-    $accountscreen.select_shoreditch_house
-
-end
-
 And("user selects little house mayfair") do
 
   $accountscreen.select_lhm_house
@@ -334,7 +330,7 @@ Then("user sees Shoreditch house under favourite houses list") do
 
 end
 
-Given("user taps on settings") do
+Given("I tap on settings") do
 
     assert_true($accountscreen.verify_settings, "Settings link is not displayed")
 
@@ -426,7 +422,7 @@ When(/^the user taps on sync and verifies the popup message$/) do
 
 end
 
-And(/^user navigates to change password$/) do
+And(/^I navigate to change password$/) do
 
     sleep 2
 
@@ -435,7 +431,7 @@ And(/^user navigates to change password$/) do
 end
 
 
-When(/^user reverts password$/) do
+When(/^I revert the password$/) do
 
     assert_true($accountscreen.verify_current_password,"current password is not visible")
 

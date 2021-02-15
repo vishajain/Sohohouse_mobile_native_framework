@@ -10,7 +10,7 @@ Feature: This feature enables us to test the sync calendar functionality
   Scenario: Validate sync calendar
     Given username is visible
     And I click on Account button on home screen
-    And user taps on settings
-    And user navigates to next tab
+    And I tap on settings
+    And I navigate to next tab
     When the user taps on sync and verifies the popup message
     Then I navigate back and sign out of the app

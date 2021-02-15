@@ -67,6 +67,10 @@ class Ios_GuestInvitation_Objects
     @driver.find_elements(:xpath => "//android.widget.TextView[contains(@text , '#{elementText}')]")
   end
 
+  def ButtonWithText(elementText)
+    @driver.find_element(:xpath => "//XCUIElementTypeButton[@name = '#{elementText}']")
+  end
+
 end
 
 class Android_GuestInvitation_Objects

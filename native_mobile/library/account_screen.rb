@@ -146,19 +146,19 @@ class AccountScreen
 
   def verify_sync_calendar
 
-     locat = Common.wait_for(3) {@device_account_objects.notifications}.location
+     sleep 5
 
-      y =  locat["y"]
+      startY = $dimensions_height/2
 
-      startY = y+55
+      endY = $dimensions_height/2
 
-      endY = y+60
-
-      before_swipe_string = Common.wait_for(5) {@device_account_objects.notifications}.text
+     before_swipe_string = Common.wait_for(5) {@device_account_objects.notifications}.text
 
       Common.swipe_left(startY,endY)
 
-      after_swipe_string = Common.wait_for(5) {@device_account_objects.sync_calendar}.text
+     sleep 5
+
+     after_swipe_string = Common.wait_for(5) {@device_account_objects.sync_calendar}.text
 
       if  before_swipe_string == after_swipe_string
 
@@ -176,12 +176,9 @@ class AccountScreen
 
     if $device == "ios"
 
-      locat = Common.wait_for(3) {@device_account_objects.sync_calendar}.location
+      startY =$dimensions_height/2
 
-      y =  locat["y"]
-
-      startY = y+55
-      endY = y+55
+      endY = $dimensions_height/2
 
       before_swipe_string = Common.wait_for(5) {@device_account_objects.sync_calendar}.text
 
@@ -190,14 +187,18 @@ class AccountScreen
       after_swipe_string = Common.wait_for(5) {@device_account_objects.change_password}.text
 
       if  before_swipe_string == after_swipe_string
+
         return false
+
       else
+
         return true
+
       end
 
     elsif $device == "android"
 
-      Common.wait_for(3) {@device_account_objects.notifications.displayed?}
+      Common.wait_for(3) {@device_account_objects.notifications}.displayed?
 
       Common.wait_for(3) {@device_account_objects.change_password}.click
 
@@ -328,12 +329,6 @@ class AccountScreen
 
   def provide_current_password
 
-    if $device == "ios"
-
-    @device_account_objects.current_password_input.click
-
-    end
-
     @device_account_objects.current_password_input.send_keys("password")
 
   end
@@ -359,11 +354,7 @@ class AccountScreen
 
   def tap_save_btn
 
-    if $device == "ios"
-
-      $action.press({:x => ($dimensions_width*0.5), :y => ($dimensions_height*0.5)}).release.perform
-
-    end
+    Common.swipe_down
 
     Common.wait_for(5){@device_account_objects.save_btn}.click
 
@@ -535,22 +526,6 @@ class AccountScreen
     Common.wait_for(2){@device_account_objects.tap_uk}.click
   end
 
-  def select_shoreditch_house
-
-    tap_reset
-
-    sleep 5
-
-    Common.wait_for(10){@device_account_objects.tap_uk}.click
-
-    Common.swipe_down
-
-    sleep 5
-
-    Common.wait_for(10){@device_account_objects.shoreditch_house}.click
-
-  end
-
   def select_lhm_house
     tap_reset
 
@@ -566,7 +541,6 @@ class AccountScreen
   end
 
   def select_76_dean_house
-
     sleep 5
 
     Common.wait_for(10){@device_account_objects.tap_uk}.click
@@ -748,7 +722,12 @@ class AccountScreen
 
     rescue
 
-      Common.wait_for(20){@device_account_objects.close_webview}.click
+      begin
+
+        Common.wait_for(20){@device_account_objects.close_webview}.click
+
+      rescue
+      end
 
     end
 
@@ -1388,7 +1367,9 @@ class AccountScreen
       sleep 1
       $common_screen.click_element(@device_account_objects.navigate_back_to_account)
 
-    rescue
+    rescue StandardError => e
+
+      print e.message
 
       Common.swipe_top
 

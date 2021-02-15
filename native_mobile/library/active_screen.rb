@@ -40,6 +40,11 @@ class ActiveScreens
     email      = config[:props]["data"][email_address]
 
     $password   = $pass
+    if $device == 'ios'
+
+      @device_onboarding_objects.email_textfield.click
+
+    end
 
     @device_onboarding_objects.email_textfield.send_keys(email)
     @device_onboarding_objects.password_textfield.send_keys($password)
@@ -153,8 +158,6 @@ class ActiveScreens
   def tap_left_btn
 
     sleep 3
-
-    # Common.wait_for(20) {@device_whatson_objects.icon_left.click}
 
     $driver.action.move_to(Common.wait_for(20) {@device_whatson_objects.icon_left}).click.perform
 

@@ -86,11 +86,11 @@ When(/^the user goes through ios Onboarding screen$/) do
 
 end
 
-And(/^user enters (.*) email address and changed password$/) do |validity|
+And(/^I enter change password email address and changed password$/) do
 
   $onboardingscreens.dismiss_invalid_credential
 
-  $onboardingscreens.user_enters_email_changed_password(validity)
+  $device== "ios"?($onboardingscreens.user_enters_email_changed_password("change-password-ios")):($onboardingscreens.user_enters_email_changed_password("change-password-android"))
 
   $onboardingscreens = OnboardingScreens.new
 
@@ -426,7 +426,7 @@ end
 
 When(/^I verify the onboarding screens$/) do |table|
   $common_screen=CommonScreen.new
-  sleep 10
+  sleep 4
   data = table.hashes
   data.each do |row|
     screen=nil
@@ -449,4 +449,22 @@ Given(/^I verify (.*) is displayed after login$/) do |string|
 
   assert_true($common_screen.verify_element_displayed_with_text(string),string+" is not displayed")
 
+end
+
+And(/^I enter email address for change password screen$/) do
+
+  $homescreen  = HomeScreen.new
+
+  $whatsonscreen = WhatsonScreen.new
+
+  $accountscreen = AccountScreen.new
+
+  $activescreen = ActiveScreens.new
+
+  $device== "ios"?($activescreen.user_enters_email_address("change-password-ios")):($activescreen.user_enters_email_address("change-password-android"))
+end
+
+And(/^I click on Connect tab$/) do
+  $homescreen= HomeScreen.new
+  $homescreen.clickOnConnect
 end

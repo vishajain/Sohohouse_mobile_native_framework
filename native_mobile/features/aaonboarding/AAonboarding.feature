@@ -20,6 +20,12 @@ Feature: This is a feature to test On-boarding screens for iOS and Android
       | You're all set           | Next                       |
       | Introducing messaging    | Next                       |
       | Drop a note              | Done                       |
+    And I click on Connect tab
+    And I verify the onboarding screens
+      | Screen                  | Button   |
+      | Introducing rooms       | Next     |
+      | Who can see your room?  | Next     |
+      | How to join a room      | Finish   |
     And greetings should be visible
     Then the user signs out and closes the app
 

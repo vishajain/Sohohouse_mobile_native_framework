@@ -181,7 +181,7 @@ class Ios_Home_Objects
   end
 
   def whats_on
-     @driver.find_elements(:xpath => "//XCUIElementTypeTabBar[1]/XCUIElementTypeButton")
+     @driver.find_element(:xpath => "//XCUIElementTypeTabBar/XCUIElementTypeButton[2]")
   end
 
   def whats_on_1
@@ -320,7 +320,7 @@ class Ios_Home_Objects
   end
 
   def book_plus
-    @driver.find_element(:id => "#{$currentPackage+':id'+'/stepper_plus_button'}")
+    @driver.find_element(:name =>"Plus")
   end
 
   def booking_status
@@ -331,6 +331,13 @@ class Ios_Home_Objects
     @driver.find_element(:xpath => "//*[contains(@text , 'RE ON THE GUEST LIST') and contains(@text , 'YOU')]")
   end
 
+  def navigation_menu(index)
+    @driver.find_element(:xpath => "//XCUIElementTypeTabBar/XCUIElementTypeButton["+index.to_s+"]")
+  end
+
+  def connect
+    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name='Connect']/preceding-sibling::XCUIElementTypeButton")
+  end
 
 end
 
@@ -648,4 +655,5 @@ class Android_Home_Objects
   def event_image
     @driver.find_elements(:id => "#{$currentPackage+':id'+'/event_image'}")
   end
+
 end

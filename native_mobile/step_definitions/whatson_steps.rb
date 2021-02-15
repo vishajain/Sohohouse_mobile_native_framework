@@ -155,9 +155,13 @@ And(/^tap on (.*) tab and set filter/) do |section|
 
   $accountscreen = AccountScreen.new
 
-  $whatsonscreen.events_click(section)
+  if !(($filterEvent.to_s).include?section) or $device=="android"
 
-  if !(($filterEvent.to_s).include?section) or section.include?"Gym"
+       $whatsonscreen.events_click(section)
+
+  end
+
+  if !(($filterEvent.to_s).include?section) or (section.include?"Gym" and $device == "android")
 
     $whatsonscreen.setFilterLocation
 
@@ -240,18 +244,6 @@ Then("user should see the events of Soho House Berlin only") do
 
 end
 
-When(/^user books to the (.*) event/) do |event|
-
-  assert_true($whatsonscreen.verify_book_event(event),"Unable to book to the event")
-
-end
-
-When("user filters Shoreditch house events") do
-
-  $whatsonscreen.select_shoreditch_house
-
-end
-
 And(/^I navigate to what's on screen$/) do
 
   sleep 2
@@ -272,7 +264,7 @@ Then(/^I should be able to successfully book event for member with status "([^"]
 
   assert_true($whatsonscreen.verify_booking_status(status),"Incorrect Booking Status")
 
-  $homescreen.go_Back
+  $whatsonscreen.back_from_events
 
 end
 
@@ -297,16 +289,18 @@ And(/^I verify that "([^"]*)" is displayed under Events in "([^"]*)" page$/) do 
 end
 
 When(/^I cancel the above booked event$/) do
+  $accountscreen=AccountScreen.new
+  $common_screen=CommonScreen.new
 
   $whatsonscreen.cancel_event
 
   sleep 2
 
-  $homescreen.go_Back
+  $whatsonscreen.back_from_events
 
   sleep 2
 
-  $homescreen.go_Back
+  $accountscreen.navigate_back_to_account
 
 end
 
@@ -318,7 +312,14 @@ When(/^I book (.*) ticket for guests  and verify status for the "([^"]*)" of "([
 
       $whatsonscreen.inviteGuest(event_type,1)
 
-      $whatsonscreen.verify_booking_status("You and "+i.to_s)
+      if event_type.include?"lottery"
+
+        $device == "ios"?($whatsonscreen.verify_booking_status( "YOU HAVE JOINED THE LOTTERY")):($whatsonscreen.verify_booking_status("You have joined the lottery"))
+
+      else
+
+        $whatsonscreen.verify_booking_status("You and "+i.to_s)
+      end
 
     end
 
@@ -332,11 +333,11 @@ When(/^I book (.*) ticket for guests  and verify status for the "([^"]*)" of "([
 
     ticket_no=$scenario.getContext("ticket_no")
 
-    if ticket_no.to_i-guest_ticket_no.to_i>1
+    if ticket_no.to_i+guest_ticket_no.to_i>1
 
-      $whatsonscreen.verify_booking_status("YOU AND "+(ticket_no.to_i-guest_ticket_no.to_i-1).to_s+" GUEST(S) ARE GOING")
+      $whatsonscreen.verify_booking_status("YOU AND "+(ticket_no.to_i+guest_ticket_no.to_i-1).to_s+" GUEST(S) ARE GOING")
 
-    elsif ticket_no.to_i-guest_ticket_no.to_i==1
+    elsif ticket_no.to_i+guest_ticket_no.to_i==1
 
       $whatsonscreen.verify_booking_status("YOU'RE ON THE GUEST LIST")
 

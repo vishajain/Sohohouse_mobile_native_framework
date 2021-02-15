@@ -34,7 +34,7 @@ class Ios_Whatson_Objects
   end
 
   def whatson_options(button)
-    @driver.find_element(:name => ""+button+"")
+    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name='Book']/parent::XCUIElementTypeCell/following-sibling::XCUIElementTypeCell[1]//XCUIElementTypeStaticText[contains(@name,\"#{button}\")]")
   end
 
   def paid_member_event
@@ -219,6 +219,33 @@ class Ios_Whatson_Objects
     @driver.find_element(:name =>"Shoreditch House")
   end
 
+  def tabs
+    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name='Book']/parent::XCUIElementTypeCell/following-sibling::XCUIElementTypeCell[1]")
+  end
+
+  def filter_remove_house
+      @driver.find_elements(:xpath => "//XCUIElementTypeStaticText[@name='Your Houses']/parent::XCUIElementTypeCell/following-sibling::XCUIElementTypeCell[1]/XCUIElementTypeStaticText")
+  end
+
+  def ok_close_button
+    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name = 'Close']")
+  end
+
+  def booking_status1
+    @driver.find_element(:xpath => "//XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeButton/preceding::XCUIElementTypeStaticText[1]")
+  end
+
+  def back_from_event
+    @driver.find_element(:name => "Back")
+  end
+
+  def cancel_event
+    @driver.find_element(:xpath => "//XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[@name='76 Dean Street']/following-sibling::XCUIElementTypeButton")
+  end
+
+  def delete_guest
+    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[contains(@name,'Guest')]/following-sibling::XCUIElementTypeButton[@name='iconXSmall']")
+  end
 end
 
 
@@ -476,5 +503,15 @@ class Android_Whatson_Objects
   def delete_guest
     @driver.find_element(:id => "#{$currentPackage+':id'+'/guest_delete_button'}")
   end
+  def filter_remove_house
+    @driver.find_elements(:id => "#{$currentPackage+':id'+'/pill_tv'}")
+  end
 
+  def ok_close_button
+    @driver.find_element(:xpath => "//android.widget.Button[@text = 'OK']")
+  end
+
+  def back_from_event
+    @driver.find_element(:xpath => "//*[@content-desc = 'Go back']")
+  end
 end

@@ -119,7 +119,7 @@ module Common
   def self.swipe_left(startY, endY)
 
     if $device == "ios"
-      $action.press({:x => ($dimensions_width-20), :y => startY}).wait(2000).move_to({:x => 50, :y => endY}).release.perform
+      $action.press({:x => ($dimensions_width-20), :y => startY}).wait(500).move_to({:x => 50, :y => endY}).release.perform
     else
       Appium::TouchAction.new.swipe(start_y: 1340, end_y: 350).perform
     end
@@ -150,7 +150,7 @@ module Common
   def self.home_panel_swipe(section,direction)
     if direction == "left"
       if $device == "ios"
-        $action.press({:x => ($dimensions_width-50), :y => ($dimensions_width/2.5)}).wait(100).move_to({:x => 50, :y => ($dimensions_width/2.5)}).release.perform
+        $action.press({:x => ($dimensions_width-50), :y => (section.location.y+15)}).wait(100).move_to({:x => 50, :y => (section.location.y+15)}).release.perform
       else
         sleep 2
         Appium::TouchAction.new.swipe(start_x:($android_dimensions_width-50),start_y: (section.location.y+15), end_x:50, end_y: (section.location.y+15)).perform
@@ -176,9 +176,6 @@ module Common
   end
 
   def self.closeWebView
-    if $device = "ios"
-      else
-    end
     @device_account_objects = Android_Account_Objects.new($driver, $driver_appium)
     Common.wait_for(20){@device_account_objects.close_webview}.click
   end

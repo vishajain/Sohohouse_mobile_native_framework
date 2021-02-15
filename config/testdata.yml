@@ -54,3 +54,5 @@ data:
   active-plus-every: 'app.active-plus.every.local@example.com'
   active-members-only-status: 'ACTIVE MEMBERS ONLY'
   house-members-only-status: 'HOUSE MEMBERS ONLY'
+  change-password-ios: 'ios_changepassword@example.com '
+  change-password-android: 'change_password_android@example.com'

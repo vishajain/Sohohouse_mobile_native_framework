@@ -11,7 +11,7 @@ Feature: This feature enables us to test the notifications functionality
   Scenario: User updates their notification preferences for events
     When greetings should be visible
     And I click on Account button on home screen
-    And user taps on settings
+    And I tap on settings
    And verify the toggle functionality
       | Event                |
       | Your events          |
@@ -23,7 +23,7 @@ Feature: This feature enables us to test the notifications functionality
   @smoke @regression @notification_preferences
   Scenario: User verifies the different notification preferences
     Given I click on Account button on home screen
-    And user taps on settings
+    And I tap on settings
     And verify push notifications preference for connect is displayed
       | Event                     |
       | Events                    |
@@ -40,7 +40,7 @@ Feature: This feature enables us to test the notifications functionality
   @smoke @regression @notification_preferences @connects
   Scenario: User updates their notification preferences for Connect
     Given I click on Account button on home screen
-    And user taps on settings
+    And I tap on settings
     And verify the toggle functionality
       | Event                 |
       | Noticeboard reactions |
@@ -54,7 +54,7 @@ Feature: This feature enables us to test the notifications functionality
   @smoke @regression @notification_preferences @communication
   Scenario: User updates their notification preferences for communication
     Given I click on Account button on home screen
-    And user taps on settings
+    And I tap on settings
     And verify the toggle functionality
       | Event                           |
       | News, events and stories->email |

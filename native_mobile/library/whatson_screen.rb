@@ -6,6 +6,7 @@ require "test/unit"
 require 'yaml'
 require_relative '../pageobjects/whatson_objects'
 require_relative '../../common/functions_common'
+require_relative '../../common/common_objects'
 
 class WhatsonScreen
 
@@ -16,12 +17,16 @@ class WhatsonScreen
       @device_home_objects = Ios_Home_Objects.new($driver, $driver_appium)
       @device_whatson_objects = Ios_Whatson_Objects.new($driver, $driver_appium)
       @device_account_objects = Ios_Account_Objects.new($driver, $driver_appium)
+      @device_guestinvitation_objects = Ios_GuestInvitation_Objects.new($driver, $driver_appium)
+      @device_common_objects = Ios_Common_Objects.new($driver, $driver_appium)
+
 
     else
       @device_home_objects = Android_Home_Objects.new($driver, $driver_appium)
       @device_whatson_objects = Android_Whatson_Objects.new($driver, $driver_appium)
       @device_account_objects = Android_Account_Objects.new($driver, $driver_appium)
       @device_guestinvitation_objects = Android_GuestInvitation_Objects.new($driver, $driver_appium)
+      @device_common_objects = Android_Common_Objects.new($driver, $driver_appium)
 
     end
 
@@ -61,15 +66,30 @@ class WhatsonScreen
   def events_click(button)
 
     sleep 2
+
     i=0
+
     loop do
+
       begin
 
-        @device_whatson_objects.whatson_options(button).click
-        break
+        if @device_whatson_objects.whatson_options(button).displayed?
+
+          @device_whatson_objects.whatson_options(button).click
+
+          break
+
+        else
+
+          raise StandardError.new "This is an exception"
+
+        end
 
       rescue
+
+
         Common.home_panel_swipe(@device_whatson_objects.tabs,"left")
+        sleep 2
         i=i+1
         if i>3
           break
@@ -729,102 +749,21 @@ class WhatsonScreen
 
   end
 
-  def verify_book_event(event)
-
-    if event.include? "My planner member"
-
-      scroll_to_top("Events")
-
-      events_click("Events")
-
-      find_free_event("My planner member")
-
-      if verify_guest_list_status_on_event_screen
-
-        navigate_to_events_list
-
-        return true
-
-      end
-
-      book_no_guests_free_member_event
-
-      verify_you_on_guest_list
-
-      ok_btn_click
-
-    elsif event.include? "My planner gym"
-
-      scroll_to_top("Gym classes")
-
-      events_click("Gym classes")
-
-      find_free_event("My planner gym")
-
-      if verify_guest_list_status_on_event_screen
-
-        navigate_to_events_list
-
-        return true
-
-      end
-
-      book_no_guests_free_member_event
-
-      verify_you_on_guest_list
-
-      ok_btn_click
-
-    end
-
-    if verify_guest_list_status_on_event_screen
-
-      navigate_to_events_list
-
-      return true
-
-    end
-
-  end
-
-  def select_shoreditch_house
-
-
-
-    $homescreen.verify_account_click
-
-    $accountscreen.tap_favourite_houses
-
-    $accountscreen.tap_reset
-
-    $accountscreen.select_shoreditch_house
-
-    $accountscreen.tap_save_changes
-
-
-    # filter_click
-
-
-    # Common.wait_for(10){@device_whatson_objects.tap_uk}.click
-    #
-    # Common.swipe_down
-    #
-    # Common.wait_for(10){@device_whatson_objects.tap_shoreditch}.click
-    #
-    #
-    # Common.wait_for(10){@device_whatson_objects.confirm}.click
-
-  end
-
   def setFilterLocation
+
+    sleep 3
+
+    $device=="ios"?reset_text="Reset":reset_text="RESET FILTERS"
+
     @device_whatson_objects.whatson_filter.click
 
     @device_account_objects.ElementsWithText("Reset to defaults").click
-    Common.wait_for(5){@device_guestinvitation_objects.ButtonWithText("RESET FILTERS")}.click
 
-    element_count = Common.wait_for(10){@device_account_objects.profession_interests_remove.size}
+    $device == "ios" ?(sleep 2):(Common.wait_for(5){ @device_guestinvitation_objects.ButtonWithText(reset_text)}.click)
 
-    element=@device_account_objects.profession_interests_remove
+    element_count = Common.wait_for(10){@device_whatson_objects.filter_remove_house.size}
+
+    element=@device_whatson_objects.filter_remove_house
     i=0
 
     if element_count > 0
@@ -873,7 +812,9 @@ class WhatsonScreen
 
         if Common.wait_for(20){@device_account_objects.ElementsWithText(event_name)}.displayed?
 
-          Common.verifyNavBar(@device_account_objects.ElementsWithText(event_name))
+          if ! $device == "ios"
+            Common.verifyNavBar(@device_account_objects.ElementsWithText(event_name))
+          end
 
           @device_account_objects.ElementsWithText(event_name).click
 
@@ -909,7 +850,9 @@ class WhatsonScreen
 
       end
 
-    @device_guestinvitation_objects.ButtonWithText(button_name).click
+      sleep 2
+
+      @device_common_objects.element_with_text(button_name).click
 
     if event_type.split(",")[0].include?"Paid"
 
@@ -935,7 +878,7 @@ class WhatsonScreen
 
     end
 
-    Common.wait_for(15){@device_account_objects.ok_button}.click
+    Common.wait_for(15){@device_whatson_objects.ok_close_button}.click
 
     end
 
@@ -992,7 +935,7 @@ class WhatsonScreen
     if ticket_no=="NA" or ticket_no.to_i>0
 
       for i in 1..(ticket_no.to_i) do
-
+        sleep 1
         Common.wait_for(5){@device_home_objects.book_plus}.click
 
       end
@@ -1011,17 +954,18 @@ class WhatsonScreen
 
       end
 
-      Common.wait_for(5){@device_account_objects.ok_button}.click
+      Common.wait_for(5){@device_whatson_objects.ok_close_button}.click
 
     end
 
   end
 
   def cancel_event
+    sleep 2
 
-    @device_whatson_objects.cancel_event.click
+    Common.wait_for(5){@device_whatson_objects.cancel_event}.click
 
-    Common.wait_for(5){@device_guestinvitation_objects.ButtonWithText("YES")}.click
+    $device=="ios"?(sleep 2):(Common.wait_for(5){@device_guestinvitation_objects.ButtonWithText("YES")}.click)
 
     sleep 2
 
@@ -1037,7 +981,7 @@ class WhatsonScreen
 
         Common.wait_for(5){@device_whatson_objects.delete_guest}.click
 
-        @device_guestinvitation_objects.ButtonWithText("CONFIRM").click
+        $device == "ios"?(sleep 2):(@device_guestinvitation_objects.ButtonWithText("CONFIRM").click)
 
         sleep 15
 
@@ -1065,4 +1009,9 @@ class WhatsonScreen
 
   end
 
+  def back_from_events
+
+      Common.wait_for(3){@device_whatson_objects.back_from_event}.click
+
+  end
 end

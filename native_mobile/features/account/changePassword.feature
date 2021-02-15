@@ -5,25 +5,25 @@ Feature: This features enables us to test the change password functionality
   Background:
     Given app is launched
     And the user is on main screen
-    When user enters valid email address and password
-
+    And I enter email address for change password screen
+    And user clicks on go button
 
   @regression @change_password
   Scenario: User updates their password
     Given I click on Account button on home screen
-    And user taps on settings
-    And user navigates to next tab
-    And user navigates to change password
-    When user updates password
+    And I tap on settings
+    And I navigate to next tab
+    And I navigate to change password
+    When I update the password
     Then I navigate back and sign out of the app
 
   @regression @revert_password
   Scenario: User reverts their password
-    Given user enters valid email address and changed password
+    Given I enter change password email address and changed password
     And I click on Account button on home screen
-    And user taps on settings
-    And user navigates to next tab
-    And user navigates to change password
-    When user reverts password
+    And I tap on settings
+    And I navigate to next tab
+    And I navigate to change password
+    When I revert the password
     Then I navigate back and sign out of the app
 

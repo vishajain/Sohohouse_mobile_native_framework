@@ -346,15 +346,15 @@ class Ios_Account_Objects
   end
 
   def current_password_input
-    @driver.find_element(:xpath => "//XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeSecureTextField[1]")
+    @driver.find_element(:xpath => "//XCUIElementTypeButton[@name ='Current password']/preceding-sibling::XCUIElementTypeSecureTextField")
   end
 
   def new_password_input
-    @driver.find_element(:xpath => "//XCUIElementTypeTable[1]/XCUIElementTypeCell[2]/XCUIElementTypeSecureTextField[1]")
+    @driver.find_element(:xpath => "//XCUIElementTypeButton[@name ='New password']/preceding-sibling::XCUIElementTypeSecureTextField")
   end
 
   def confirm_password_input
-    @driver.find_element(:xpath => "//XCUIElementTypeTable[1]/XCUIElementTypeCell[3]/XCUIElementTypeSecureTextField[1]")
+    @driver.find_element(:xpath => "//XCUIElementTypeButton[@name ='Confirm password']/preceding-sibling::XCUIElementTypeSecureTextField")
   end
 
   def save_btn
@@ -415,7 +415,7 @@ class Ios_Account_Objects
 
   def enquiry_message
 
-    @driver.find_element(:name => "Message")
+    @driver.find_element(:xpath => "//XCUIElementTypeOther[@name='Message']/preceding-sibling::XCUIElementTypeTextView")
 
   end
 
@@ -447,6 +447,10 @@ class Ios_Account_Objects
   end
   def close_webview
     @driver.find_element(:name=> "iconXLarge")
+  end
+
+  def dean_street
+    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[contains(@name , '76 Dean Street')]")
   end
 end
 
@@ -620,7 +624,7 @@ class Android_Account_Objects
   end
 
   def your_membership
-    @driver.find_element(:xpath => "//android.widget.TextView[@text = 'Membership']")
+    @driver.find_element(:id => "#{$currentPackage+':id'+'/membership_card'}")
   end
 
   def perks
