@@ -89,7 +89,7 @@ class Ios_Account_Objects
   end
 
   def select_favourite (input)
-    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name='"+input+"']")
+    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[contains(@name,'"+input+"')]")
   end
 
   def industry
@@ -452,6 +452,15 @@ class Ios_Account_Objects
   def dean_street
     @driver.find_element(:xpath => "//XCUIElementTypeStaticText[contains(@name , '76 Dean Street')]")
   end
+
+  def ok_close_button
+    @driver.find_element(:xpath => "//XCUIElementTypeButton[@name = 'Close']")
+  end
+
+  def tap_europe
+    @driver.find_element(:xpath => "//android.widget.TextView[contains(@name ,'Europe')]")
+  end
+
 end
 
 class Android_Account_Objects
@@ -794,7 +803,7 @@ class Android_Account_Objects
   end
 
   def select_favourite (input)
-    @driver.find_element(:xpath => "//android.widget.TextView[@text ='"+input+"']")
+    @driver.find_element(:xpath => "//android.widget.TextView[contains(@text ,'"+input+"')]")
   end
 
   def tap_uk
@@ -870,7 +879,7 @@ class Android_Account_Objects
   end
 
 
-  def ok_button
+  def ok_close_button
     @driver.find_element(:xpath => "//android.widget.Button[@text = 'OK']")
   end
 
@@ -908,8 +917,14 @@ class Android_Account_Objects
   def element_contains_text(elementText)
     @driver.find_element(:xpath => "//android.widget.TextView[contains(@text , '#{elementText}')]")
   end
+
   def navigate_back_to_account
     @driver.find_element(:xpath => "//*[contains(@content-desc , 'Navigate up')or contains(@content-desc , 'Go back') or contains(@resource-id , 'close')]")
   end
+
+  def tap_europe
+    @driver.find_element(:xpath => "//android.widget.TextView[contains(@text ,'Europe')]")
+  end
+
 end
 

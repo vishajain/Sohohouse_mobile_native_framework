@@ -14,7 +14,7 @@ require_relative '../../common/scenarios_contexts'
 include Test::Unit::Assertions
 
 
-When("user taps on blackslate to view the blackslate screen") do
+When("I tap on blackslate to view the blackslate screen") do
 
   $homescreen.verify_blackslate_screen
 
@@ -23,29 +23,11 @@ When("user taps on blackslate to view the blackslate screen") do
 end
 
 
-Then("houseboard screen is shown") do
+Then("I verify the houseboard screen") do
 
   sleep 2
 
   assert_true($homescreen.verify_house_name,"House name not shown on the houseboard screen")
-
-end
-
-And(/^the user verifies all the links under houseboard screen$/) do
-
-  assert_true($homescreen.verify_house_guest,"Unable to navigate to Browse houses screen")
-
-  assert_true($homescreen.verify_house_name_click,"Unable to navigate to Browse houses screen")
-
-  assert_true($homescreen.verify_membership_card,"Unable to navigate to membership card screen")
-
-  assert_true($homescreen.verify_book_a_bedroom,"Unable to navigate to book a bedroom screen")
-
-  assert_true($homescreen.verify_house_rules,"Unable to navigate to house rules screen")
-
-  assert_true($homescreen.home_screen_navigate,"Unable to navigate to home screen")
-
-  sleep 5
 
 end
 
@@ -92,9 +74,9 @@ And("noticeboard section is visible") do
 end
 
 Then("user taps on View another noticeboard link to see Noticeboards screen") do
-
+  if $device == "android"
     assert_true($homescreen.verify_view_another_noticeboard,"Unable to navigate to View another noticeboard screen")
-
+  end
 end
 
 
@@ -162,7 +144,7 @@ And("user is be navigated to the noticeboard screen") do
 
   assert_true($homescreen.verify_noticeboard,"House name is not shown")
 
-  $homescreen.go_Back
+  $homescreen.go_back_to_home
 
 end
 
@@ -221,8 +203,6 @@ Then("user sees the post deleted from the home screen") do
   assert_true($homescreen.verify_post_button,"Post button is not visible")
 
   assert_true($homescreen.verify_noticeboard,"Noticeboard section is not present")
-
-  Common.swipe_down
 
   assert_true($homescreen.verify_post_deleted,"Post is not deleted")
 
@@ -322,8 +302,9 @@ And(/^the user enters a new post$/) do
 end
 
 And(/^the user enters a new post on another notice board$/) do
+  $common_screen=CommonScreen.new
 
-  $homescreen.post_click
+  $device == "ios"?($common_screen.click_element_with_text("Write a post")):($homescreen.post_click)
 
   $homescreen.input_text
 
@@ -361,7 +342,7 @@ And(/^user sees all the sections on home screen$/) do |table|
   data = table.hashes
   data.each do |row|
     row.each do |value|
-      assert_true($homescreen.verify_elementDisplayed(value[1].to_s), "Element not displayed")
+      assert_true($homescreen.verify_elementDisplayed(value[1].to_s),value[1].to_s+" not displayed")
     end
   end
 end
@@ -379,7 +360,7 @@ And(/^user verifies all sections of 'What can we help you with'$/) do |table|
         link = value
       end
     end
-    assert_true($homescreen.verifyIcons(icon,link),"Fuctionality not correct")
+    assert_true($homescreen.verifyIcons(icon,link),icon+" not displayed")
   end
 end
 
@@ -464,7 +445,7 @@ end
 And(/^user books the ticket for (.*) and verifies the booking status$/) do |event_type|
 
   assert_true($homescreen.bookForEvent,"Booking not done")
-  if event_type != "ticket-less event"
+  if event_type != "ticket-less event" and $device == "android"
 
     $homescreen.go_back_to_home_screen
 
@@ -486,6 +467,7 @@ When(/^the user verifies (.*) on home screen$/) do |event_name|
   if $happeningNow != "Happening now not present"
 
     $scenario.setContext("event",event_name)
+
     $homescreen.tap_carousel(event_name)
 
     assert_true($homescreen.verify_user_navigation(event_name),"Posts count is not incremented")
@@ -495,4 +477,52 @@ When(/^the user verifies (.*) on home screen$/) do |event_name|
     skip_this_scenario
 
   end
+end
+
+And(/^I verify the link under blackslate$/) do |table|
+  $common_screen=CommonScreen.new
+
+  $accountscreen= AccountScreen.new
+
+  sleep 3
+
+  data = table.hashes
+
+  data.each do |row|
+
+    row.each do |key,value|
+
+      sleep 2
+
+      if key.eql?"Link"
+
+        assert_true($common_screen.find_element{$common_screen.click_element_with_text(value)},value+" is not clicked")
+
+      elsif key.eql?"Title"
+
+        assert_true($common_screen.verify_element_displayed_with_text(value),value+" is not displayed")
+
+      end
+
+    end
+    sleep 2
+    $accountscreen.navigate_back_to_account
+
+  end
+end
+
+Then(/^I close the houseboard screen$/) do
+  assert_true($homescreen.home_screen_navigate,"Unable to navigate to home screen")
+end
+
+And(/^I click on the ([^"]*)$/) do |text|
+
+  $common_screen =CommonScreen.new
+
+  $common_screen.click_element_with_text(text)
+
+end
+
+Then(/^I navigate to noticebord on Home screen$/) do
+  $homescreen.go_back_to_home
 end

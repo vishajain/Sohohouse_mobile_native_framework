@@ -11,8 +11,8 @@ Feature: This is a feature to test Guest Invitations functionality for iOS and A
   Scenario: Guest Invitations functionality from house board Screen (This Week)
     Given username is visible
     When user verifies no existing guest invitations are present
-    And user taps on blackslate to view the blackslate screen
-    And houseboard screen is shown
+    And I tap on blackslate to view the blackslate screen
+    And I verify the houseboard screen
     And user click on the "House Guest"
     And user create a Guest invitation for "this week"
     And Navigate to home screen

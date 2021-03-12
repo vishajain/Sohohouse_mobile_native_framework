@@ -473,7 +473,7 @@ class AccountScreen
   end
 
   def verify_local_house_displayed
-
+    sleep 2
     return Common.wait_for(5) {@device_account_objects.local_house.displayed?}
 
   end
@@ -509,6 +509,35 @@ class AccountScreen
         Common.wait_for(2){@device_account_objects.greek_St}.click
 
         Common.wait_for(2){@device_account_objects.kettners}.click
+
+        break
+
+      rescue
+
+        Common.swipeByLocation(50,250,50,20)
+        i=i+1
+        if i>2
+          break
+        end
+
+      end
+    end
+
+    Common.wait_for(2){@device_account_objects.tap_uk}.click
+  end
+
+  def select_berlin
+
+    sleep 5
+
+    Common.wait_for(10){@device_account_objects.tap_europe}.click
+
+    Common.swipeByLocation(50,250,50,20)
+    i=0
+    loop do
+      begin
+
+        $common_screen.click_element_with_text("Soho House Berlin")
 
         break
 
@@ -699,7 +728,7 @@ class AccountScreen
 
 
   def input_message(input)
-
+    sleep 2
     @device_account_objects.enquiry_message.send_keys(input)
 
   end
@@ -1364,16 +1393,15 @@ class AccountScreen
 
     begin
 
-      sleep 1
+      sleep 2
       $common_screen.click_element(@device_account_objects.navigate_back_to_account)
 
-    rescue StandardError => e
+    rescue
 
-      print e.message
-
-      Common.swipe_top
+      $device=="ios"?(Common.swipe_top):(Common.goBack)
 
     end
+
   end
 
 

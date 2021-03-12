@@ -22,7 +22,7 @@ class Ios_Home_Objects
   end
 
   def close_blackslate
-    @driver.find_element(:name => "iconX")
+    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name='"+$name+"']/preceding-sibling::XCUIElementTypeImage ")
   end
 
   def browse_houses_back_button
@@ -130,7 +130,7 @@ class Ios_Home_Objects
   end
 
   def past_digital_events
-    @driver.find_element(:name => "Digital events on demand")
+    @driver.find_element(:name => "Events from our global membership")
   end
 
   def noticeboard
@@ -177,7 +177,7 @@ class Ios_Home_Objects
   end
 
   def homeBtn
-    @driver.find_elements(:xpath => "//XCUIElementTypeTabBar[1]//XCUIElementTypeButton")
+    @driver.find_element(:xpath => "//XCUIElementTypeTabBar//XCUIElementTypeButton[1]")
   end
 
   def whats_on
@@ -225,7 +225,7 @@ class Ios_Home_Objects
   end
 
   def post_link
-    @driver.find_element(:name => "Post")
+    @driver.find_element(:name => "View posts")
   end
 
   def noticeboard_title
@@ -233,13 +233,11 @@ class Ios_Home_Objects
   end
 
   def noticeboard_text_input
-    @driver.find_element(:xpath => "//XCUIElementTypeTextView")
+    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name = 'Your post']/following-sibling::XCUIElementTypeTextView")
   end
 
   def view_post
-
-    @driver.find_element(:xpath => "//XCUIElementTypeButton[@name='View another Noticeboard']//parent::XCUIElementTypeCell/following-sibling::XCUIElementTypeCell[2]//XCUIElementTypeStaticText[3]")
-
+    @driver.find_element(:xpath => "//XCUIElementTypeCell[2]/XCUIElementTypeStaticText[contains(@name,'"+$name+"') and (contains(@name,'1s') or contains(@name,'2s') or contains(@name,'3s'))]/following-sibling::XCUIElementTypeTextView")
   end
 
   def delete_post
@@ -266,7 +264,7 @@ class Ios_Home_Objects
 
   def soho_berlin_noticeboard_title
 
-    @driver.find_element(:name => "Soho House Berlin Noticeboard")
+    @driver.find_element(:name => "Soho House Berlin")
 
   end
 
@@ -295,7 +293,7 @@ class Ios_Home_Objects
   end
 
   def event_name(event)
-    @driver.find_element(:name => ""+event+"")
+    @driver.find_element(:xpath => "//*[contains(@name,'What can we')]/ancestor::XCUIElementTypeTable/XCUIElementTypeCell[5]/*[contains(@name,'"+event+"')]")
   end
 
   def member_card_details
@@ -316,7 +314,7 @@ class Ios_Home_Objects
   end
 
   def event_name_field
-    @driver.find_elements(:id => "#{$currentPackage+':id'+'/event_title_label'}")
+    @driver.find_elements(:xpath => "//*[@name='What’s happening?']/parent::XCUIElementTypeCell/following-sibling::XCUIElementTypeCell/XCUIElementTypeStaticText")
   end
 
   def book_plus
@@ -324,11 +322,40 @@ class Ios_Home_Objects
   end
 
   def booking_status
-    @driver.find_element(:id => "#{$currentPackage+':id'+'/guest_wait_list_text'}")
+    @driver.find_element(:xpath => "//XCUIElementTypeButton[@name='Leave lottery']/preceding-sibling::XCUIElementTypeStaticText[1]")
   end
 
   def status
-    @driver.find_element(:xpath => "//*[contains(@text , 'RE ON THE GUEST LIST') and contains(@text , 'YOU')]")
+    @driver.find_element(:xpath => "//*[contains(@name , 'added this event to your upcoming bookings') and contains(@name , 'We')]")
+  end
+  def circle_icon
+    @driver.find_elements(:xpath => "//XCUIElementTypeStaticText[@name='Create a Room' or @name ='Stay with us']/parent::XCUIElementTypeCell")
+  end
+
+  def icons(text)
+    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@text='What can we help you with?']/parent::XCUIElementTypeCell/following-sibling::XCUIElementTypeCell[1]/*[@name='"+text+"']")
+  end
+
+  def nav_bar
+    @driver.find_element(:xpath =>  "//XCUIElementTypeStaticText*[@name = 'Tab Bar')")
+  end
+
+  def event_image
+    @driver.find_elements(:xpath => "//*[@name='What’s happening?']/parent::XCUIElementTypeCell/following-sibling::XCUIElementTypeCell/XCUIElementTypeStaticText")
+  end
+
+  def lottery_status
+    @driver.find_element(:xpath => "//*[contains(@name , 'Thanks for registering,') and contains(@name , 'in the lottery')]")
+  end
+
+  def cancel_event_booking
+    @driver.find_element(:xpath => "//XCUIElementTypeButton[@name='Leave lottery' or @name='Remove from my bookings']")
+  end
+
+  def post_button
+
+    @driver.find_element(:xpath => "//XCUIElementTypeButton[@name = 'Post']")
+
   end
 
   def navigation_menu(index)
@@ -655,5 +682,10 @@ class Android_Home_Objects
   def event_image
     @driver.find_elements(:id => "#{$currentPackage+':id'+'/event_image'}")
   end
+
+  def icons(text)
+    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@text='What can we help you with?']/parent::XCUIElementTypeCell/following-sibling::XCUIElementTypeCell[1]/*[@text='"+text+"']")
+  end
+
 
 end

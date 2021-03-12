@@ -36,98 +36,6 @@ class HomeScreen
 
   end
 
-  def verify_house_name_click
-
-    if Common.wait_for(5) {@device_home_objects.house_name}.displayed?
-
-      @device_home_objects.house_name.click
-
-      sleep 5
-
-      if Common.wait_for(30) {@device_home_objects.house_name_webview}.displayed?
-
-        if $device == "ios"
-
-          Common.wait_for(15) {@device_home_objects.modal_close}.click
-
-        else
-
-          Common.closeWebView
-
-        end
-
-        return true
-
-      end
-
-    end
-
-    return false
-
-  end
-
-  def verify_membership_card
-
-    if Common.wait_for(10) {@device_home_objects.membership_card}.displayed?
-
-      @device_home_objects.membership_card.click
-      if $device == "ios"
-
-        if Common.wait_for(20) {@device_account_objects.your_membership.displayed?}
-
-            Common.wait_for(20){@device_home_objects.membership_card_back_button}.click
-
-          return true
-
-        end
-
-      else
-
-        if Common.wait_for(20) {@device_home_objects.member_card_details}.displayed?
-
-          Common.wait_for(20){@device_home_objects.membership_card_back_button}.click
-
-          return true
-
-        end
-
-      end
-
-    end
-
-    return false
-
-  end
-
-  def verify_book_a_bedroom
-
-    if Common.wait_for(5) {@device_home_objects.book_a_bedroom}.displayed?
-
-      @device_home_objects.book_a_bedroom.click
-
-      sleep 5
-
-      if Common.wait_for(30){@device_home_objects.stay_with_us}.displayed?
-
-        if $device == "ios"
-
-          Common.wait_for(15) {@device_home_objects.modal_close}.click
-
-        else
-
-          Common.closeWebView
-        end
-
-        return true
-
-      end
-
-    end
-
-    return false
-
-  end
-
   def verify_contact_a_house
 
     if Common.wait_for(20) {@device_home_objects.contact_a_house}.displayed?
@@ -139,34 +47,6 @@ class HomeScreen
       Common.navigateBack
 
       return true
-
-    end
-
-  end
-
-  def verify_house_rules
-    Common.little_swipe_down
-
-    if Common.wait_for(10) {@device_home_objects.house_rules}.displayed?
-
-      @device_home_objects.house_rules.click
-
-      sleep 5
-
-      if Common.wait_for(10) {@device_home_objects.house_rules_webview}.displayed?
-
-        if $device == "ios"
-
-          Common.wait_for(15) {@device_home_objects.modal_close}.click
-
-        else
-
-          Common.closeWebView
-        end
-
-        return true
-
-      end
 
     end
 
@@ -305,7 +185,7 @@ class HomeScreen
 
         Common.wait_for(2){@device_home_objects.post_link.displayed?}
 
-        Common.verifyNavBar(@device_home_objects.post_link)
+        $device == "ios"? (sleep 2): (Common.verifyNavBar(@device_home_objects.post_link))
 
         return true
 
@@ -556,7 +436,7 @@ class HomeScreen
     rescue
       Common.wait_for(3){@device_home_objects.post_button}.click
       begin
-        Common.wait_for(3){@device_account_objects.ok_button}.click
+        Common.wait_for(3){@device_account_objects.ok_close_button}.click
       rescue
       end
     end
@@ -574,6 +454,7 @@ class HomeScreen
     sleep 3
 
     @device_home_objects.noticeboard_text_input.send_keys("How are you all")
+    $device == "ios"?(Common.swipe_top):( sleep 2)
 
   end
 
@@ -604,7 +485,7 @@ class HomeScreen
 
       if Common.wait_for(3){@device_home_objects.view_post}.displayed?
 
-        Common.verifyNavBar(@device_home_objects.view_post)
+        $device == "android"?(Common.verifyNavBar(@device_home_objects.view_post)):(sleep 1)
 
       end
 
@@ -641,7 +522,7 @@ class HomeScreen
     Common.wait_for(10){@device_home_objects.delete_post}.click
     if $device == "android"
 
-      Common.wait_for(2){@device_account_objects.ok_button}.click
+      Common.wait_for(2){@device_account_objects.ok_close_button}.click
 
     end
 
@@ -667,13 +548,25 @@ class HomeScreen
 
   def tap_soho_house_berlin
 
-    Common.little_swipe_down
+    if $device == "ios"
+
+      $common_screen.click_element_with_text("Refine")
+
+      $accountscreen.select_berlin
+
+      $common_screen.click_element_with_text("Apply filters")
+
+    else
+
+      Common.little_swipe_down
 
     Common.wait_for(5){@device_home_objects.browsehouses_title}.click
 
     Common.wait_for(5){@device_home_objects.soho_house_berlin.displayed?}
 
     Common.wait_for(5){@device_home_objects.soho_house_berlin}.click
+
+    end
 
   end
 
@@ -717,8 +610,13 @@ class HomeScreen
   end
 
   def go_back_to_home_screen
-    sleep 2
-    Common.wait_for(5){@device_home_objects.left_link}.click
+
+    begin
+      sleep 2
+      Common.wait_for(5){@device_home_objects.left_link}.click
+    rescue
+      Common.wait_for(5){@device_home_objects.navigate_back}.click
+    end
 
   end
 
@@ -752,48 +650,15 @@ class HomeScreen
 
   def tap_carousel(event_name)
 
-    if $device == "ios"
-
-      locat = Common.wait_for(20) {@device_home_objects.happening_now}.location
-
-      y =  locat["y"]
-
-      startY = y+55
-      endY = y+55
-
-      Common.swipe_right(startY,endY)
-
-      i = 1
-
-      while i < 8
-
-        begin
-
-          if Common.wait_for(20) {@device_home_objects.event_name(event_name).displayed?}
-
-            @device_home_objects.event_name(event_name).click
-
-            return true
-
-          end
-
-        rescue
-
-          Common.swipe_left(startY,endY)
-
-          i = i+ 1
-
-        end
-
-      end
-    else
-
-        begin
+    begin
 
         Common.wait_for(3){@device_home_objects.event_name_field[0]}.displayed?
-        Common.verifyNavBar(@device_home_objects.event_name_field[0])
+        if $device=="android"
+          Common.verifyNavBar(@device_home_objects.event_name_field[0])
+        end
 
-        rescue
+
+    rescue
           Common.little_swipe_down
         end
 
@@ -805,9 +670,15 @@ class HomeScreen
 
             if Common.wait_for(10) {@device_home_objects.event_name(event_name)}.displayed?
 
-              Common.verifyNavBar(@device_account_objects.element_contains_text(event_name))
+              if !($device == "ios")
+                Common.verifyNavBar(@device_account_objects.element_contains_text(event_name))
+              end
 
-              @device_account_objects.element_contains_text(event_name).click
+              @device_home_objects.event_name(event_name).click
+
+            else
+
+              raise "Not displayed"
 
             end
 
@@ -817,9 +688,11 @@ class HomeScreen
 
             Common.home_panel_swipe(@device_home_objects.event_image[0],"left")
 
+            Common.swipe_top
+
             i = i + 1
 
-            if i > 2
+            if i > 5
 
               return false
 
@@ -829,13 +702,11 @@ class HomeScreen
 
         end
 
-    end
-
   end
 
   def verify_user_navigation(event_name)
     sleep 2
-      return Common.wait_for(20) {@device_account_objects.element_contains_text(event_name).displayed?}
+      return Common.wait_for(20) {@device_account_objects.element_contains_text(event_name)}.displayed?
 
   end
 
@@ -876,45 +747,18 @@ class HomeScreen
 
   end
 
-  def verify_house_guest
-
-    sleep 3
-
-    if Common.wait_for(5) {@device_home_objects.house_guest}.displayed?
-
-        Common.wait_for(5) {@device_home_objects.house_guest}.click
-
-        if Common.wait_for(20) {@device_home_objects.new_invitation}.displayed?
-
-          if $device == "ios"
-
-            Common.wait_for(15) {@device_home_objects.modal_close}.click
-
-          else
-
-            Common.wait_for(15) {@device_account_objects.navigate_up}.click
-
-          end
-
-          return true
-
-        end
-
-    end
-
-    return false
-
-  end
-
-
-    def verify_elementDisplayed(elementText)
+  def verify_elementDisplayed(elementText)
       i = 0
 
       loop do
 
         begin
 
-          return Common.wait_for(2) { @device_account_objects.ElementsWithText(elementText) }.displayed?
+          if Common.wait_for(2) { @device_account_objects.ElementsWithText(elementText) }.displayed?
+            return true
+          else
+            raise StandardError.new "Element not visible"
+          end
 
         rescue StandardError => msg
 
@@ -929,10 +773,9 @@ class HomeScreen
           end
 
         end
-
       end
 
-    end
+  end
 
     def verifyIcons(section, heading)
       i = 0
@@ -949,15 +792,17 @@ class HomeScreen
 
               begin
 
-                if $device == 'ios' && i == 1
-                  $homescreen.tap_modal_close
-                else
-                  $accountscreen.home_screen_navigation
+                if !@device_home_objects.homeBtn.displayed?
+
+                  Common.swipe_top
+
                 end
+
+                Common.wait_for(3){@device_home_objects.homeBtn}.click
 
               rescue StandardError => e
 
-                Common.goBack
+                $device=="ios"?Common.swipe_top: @device_home_objects.icon_left.click
 
               end
 
@@ -969,6 +814,12 @@ class HomeScreen
 
       rescue
         Common.home_panel_swipe(@device_home_objects.circle_icon[0],"left")
+
+        if $device== "ios"
+
+          Common.swipe_top
+
+        end
 
         i = i + 1
 
@@ -1085,18 +936,20 @@ class HomeScreen
       @device_home_objects.book_plus.click
       if @device_account_objects.ElementsWithText("1").displayed?
         @device_guestinvitation_objects.ButtonWithText("Join lottery").click
-        assert_true(Common.wait_for(5){@device_home_objects.lottery_status}.displayed?)
-        @device_account_objects.ok_button.click
-        assert_true(@device_home_objects.booking_status.text.include?"You have joined the lottery")
+        sleep 2
+        @device_account_objects.ok_close_button.click
+        $device == "ios"?text="YOU HAVE JOINED THE LOTTERY":text="You have joined the lottery"
+        assert_true(@device_home_objects.booking_status.text.include?text)
         $scenario.setContext("eventbooking","RE IN THE LOTTERY")
       end
       return true
     end
     rescue
-      if Common.wait_for(5){@device_guestinvitation_objects.ButtonWithText("Add to bookings")}.displayed?
-        @device_guestinvitation_objects.ButtonWithText("Add to bookings").click
+      $device=="ios"?text="Book":text="Add to bookings"
+      if Common.wait_for(5){@device_guestinvitation_objects.ButtonWithText(text)}.displayed?
+        @device_guestinvitation_objects.ButtonWithText(text).click
         assert_true(Common.wait_for(5){@device_home_objects.status}.displayed?)
-        @device_account_objects.ok_button.click
+        @device_account_objects.ok_close_button.click
         return true
       end
     end
@@ -1105,7 +958,7 @@ class HomeScreen
 
   def cancel_booking
     Common.wait_for(10){@device_home_objects.cancel_event_booking}.click
-    Common.wait_for(10){@device_guestinvitation_objects.ButtonWithText("YES")}.click
+    $device=="ios"?(sleep 4):(Common.wait_for(10){@device_guestinvitation_objects.ButtonWithText("YES")}.click)
     begin
       sleep 2
       if @device_home_objects.cancel_event_booking.displayed?
@@ -1125,4 +978,13 @@ class HomeScreen
     Common.wait_for(5){@device_home_objects.connect}.click
 
   end
+
+  def go_back_to_home
+    if $device == "ios"
+      @device_home_objects.homeBtn.click
+    else
+      $homescreen.go_back_to_home_screen
+    end
+  end
+
 end

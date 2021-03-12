@@ -323,12 +323,6 @@ Then(/^user is shown with frozen validation message$/) do
 
   assert_true($onboardingscreens.verify_frozen_screen,"User is unable to see frozen screen")
 
-  # $onboardingscreens.contact_membership_team_onboarding
-  #
-  # assert_true($accountscreen.assert_contact_us)
-  #
-  # $accountscreen.tap_icon_left
-
   $accountscreen.tap_signout_onboarding
 
   assert_true( $onboardingscreens.user_main_screen, "User is not on the main screen")
@@ -467,4 +461,14 @@ end
 And(/^I click on Connect tab$/) do
   $homescreen= HomeScreen.new
   $homescreen.clickOnConnect
+end
+
+And(/^user enters email address for change password screen$/) do
+
+  $homescreen  = HomeScreen.new
+  $whatsonscreen = WhatsonScreen.new
+  $accountscreen = AccountScreen.new
+  $activescreen = ActiveScreens.new
+
+  $device== "ios"?($activescreen.user_enters_email_address("change-password-ios")):($activescreen.user_enters_email_address("change-password-android"))
 end

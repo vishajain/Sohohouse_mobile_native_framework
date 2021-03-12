@@ -147,9 +147,7 @@ end
 
 Then("member is not on home screen from account screen") do
 
-    # assert_true($accountscreen.home_screen_navigate,"Unable to navigate to home screen")
-    # home_screen_navigation
-        assert_true($accountscreen.home_screen_navigation,"Unable to navigate to home screen")
+  assert_true($accountscreen.home_screen_navigation,"Unable to navigate to home screen")
 
 end
 
@@ -204,8 +202,6 @@ end
 Then("user goes back to the account screen") do
 
     $accountscreen.tap_icon_left
-
-    # $accountscreen.iconLeft
 
 end
 
@@ -397,10 +393,6 @@ Then(/^the added house is shown on favourite houses list$/) do
     $accountscreen.tap_save_changes
 
     $accountscreen.home_screen_navigation
-
-    # assert_true($accountscreen.tap_sign_out, "Unable to sign out the user")
-    #
-    # $onboardingscreens.close_app
 end
 
 
@@ -444,10 +436,6 @@ When(/^I revert the password$/) do
     $accountscreen.tap_save_btn
 
     $accountscreen.dismiss_dialog
-
-      #$accountscreen.tap_icon_left
-
-      #$accountscreen.home_screen_navigation
 
 end
 

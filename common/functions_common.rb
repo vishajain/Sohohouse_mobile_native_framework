@@ -92,7 +92,7 @@ module Common
     begin
       sleep 1
       if $device == "ios"
-        $action.press({:x => ($dimensions_width*0.5), :y => ($dimensions_height*0.5)}).wait(200).move_to({:x => ($dimensions_width*0.5), :y => ($dimensions_height*0.3)}).release.perform
+        $action.press({:x => ($dimensions_width*0.5), :y => ($dimensions_height*0.6)}).wait(200).move_to({:x => ($dimensions_width*0.5), :y => ($dimensions_height*0.45)}).release.perform
       else
         Appium::TouchAction.new.swipe(start_y: 1340, end_y: 950).perform
       end
@@ -150,24 +150,24 @@ module Common
   def self.home_panel_swipe(section,direction)
     if direction == "left"
       if $device == "ios"
-        $action.press({:x => ($dimensions_width-50), :y => (section.location.y+15)}).wait(100).move_to({:x => 50, :y => (section.location.y+15)}).release.perform
+        $action.press({:x => ($dimensions_width-160), :y => (section.location.y+15)}).wait(100).move_to({:x => 160, :y => (section.location.y+15)}).release.perform
+
       else
         sleep 2
         Appium::TouchAction.new.swipe(start_x:($android_dimensions_width-50),start_y: (section.location.y+15), end_x:50, end_y: (section.location.y+15)).perform
       end
     else
       if $device == "ios"
-        $action.press({:x => ($dimensions_width-50), :y => ($dimensions_width/2.5)}).wait(100).move_to({:x => 50, :y => ($dimensions_width/2.5)}).release.perform
+        $action.press({:x => 160, :y => (section.location.y+15)}).wait(100).move_to({:x => ($dimensions_width-160), :y =>(section.location.y+15)}).release.perform
       else
         sleep 2
-
         Appium::TouchAction.new.swipe(start_x:50,start_y: (section.location.y+20), end_x:($android_dimensions_width-50), end_y: (section.location.y+20)).perform
       end
     end
   end
 
   def self.verifyNavBar(element)
-    @device_home_objects = Android_Home_Objects.new($driver, $driver_appium)
+    $device=="ios"?(@device_home_objects = Ios_Home_Objects.new($driver, $driver_appium)):(@device_home_objects = Android_Home_Objects.new($driver, $driver_appium))
     nav_y=@device_home_objects.nav_bar.location.y
     element_y=element.location.y
     if element_y > nav_y
