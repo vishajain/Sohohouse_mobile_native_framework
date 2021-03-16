@@ -85,6 +85,14 @@ class CommonScreen
 
   end
 
+  def click_element_with_partial_text(element_text)
+
+    @device_common_objects.element_with_partial_text(element_text).click
+
+    return  true
+
+  end
+
   def verify_element_displayed_with_text(element_text)
 
     begin

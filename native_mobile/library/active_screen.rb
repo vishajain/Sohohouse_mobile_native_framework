@@ -40,6 +40,13 @@ class ActiveScreens
     email      = config[:props]["data"][email_address]
 
     $password   = $pass
+
+    if $device == 'ios'
+
+      @device_onboarding_objects.email_textfield.click
+
+    end
+
     if $device == 'ios'
 
       @device_onboarding_objects.email_textfield.click
@@ -47,6 +54,7 @@ class ActiveScreens
     end
 
     @device_onboarding_objects.email_textfield.send_keys(email)
+
     @device_onboarding_objects.password_textfield.send_keys($password)
 
   end

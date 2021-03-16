@@ -875,7 +875,7 @@ class HomeScreen
 
       rescue
 
-        Common.swipe_top
+        Common.little_swipe_down
 
         i=i+1
 

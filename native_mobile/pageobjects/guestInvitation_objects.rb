@@ -11,7 +11,7 @@ class Ios_GuestInvitation_Objects
   end
 
   def new_invitation
-    @driver.find_element(:xpath =>  "//android.widget.TextView[@text = 'New invitation']")
+    @driver.find_element(:name =>  "New guest Invitation")
   end
 
   def nav_bar
@@ -20,23 +20,23 @@ class Ios_GuestInvitation_Objects
 
 
   def select_location
-    @driver.find_element(:xpath =>  "//android.widget.TextView[@text = 'Select a location']")
+    @driver.find_element(:name =>  "Select location")
   end
 
   def select_date_field
-    @driver.find_element(:id => "#{$currentPackage+':id'+'/date_value'}")
+    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name='Select date']/following-sibling::XCUIElementTypeStaticText")
   end
 
   def select_house
-    @driver.find_element(:xpath =>  "//android.widget.TextView[@text = '"+$house+"']")
+    @driver.find_element(:name =>  "Little Beach House Barcelona")
   end
 
   def confirm_selection
-    @driver.find_element(:xpath =>  "//android.widget.Button[@text = 'Confirm selection' or @text = 'CONFIRM']")
+    @driver.find_element(:name =>  "Confirm selection")
   end
 
   def today_date
-    @driver.find_element(:xpath =>  "//android.widget.TextView[contains(@resource-id , 'date_picker_header_date')]")
+    @driver.find_element(:xpath =>  "//XCUIElementTypePickerWheel")
   end
 
   def select_date(date)
@@ -44,27 +44,27 @@ class Ios_GuestInvitation_Objects
   end
 
   def save_continue
-    @driver.find_element(:xpath =>  "//android.widget.Button[@text = 'Save and continue']")
+    @driver.find_element(:name =>  "Save and continue")
   end
 
   def add_a_guest
-    @driver.find_element(:xpath =>  "//android.widget.Button[@text = 'Add a guest']")
+    @driver.find_element(:name =>  "Add a guest")
   end
 
   def add_guest
-    @driver.find_element(:xpath =>  "//android.widget.TextView[@text = 'Add guest']")
+    @driver.find_element(:name =>  "Add a guest")
   end
 
   def enter_guest_name
-    @driver.find_element(:id => "#{$currentPackage+':id'+'/input_dialog_edittext'}")
+    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name='Add a guest']/following-sibling::XCUIElementTypeOther//XCUIElementTypeTextField")
   end
 
   def done
-    @driver.find_element(:xpath =>  "//android.widget.Button[@text = 'DONE' or @text ='Done']")
+    @driver.find_element(:name =>  "Done")
   end
 
   def ElementListWithText(elementText)
-    @driver.find_elements(:xpath => "//android.widget.TextView[contains(@text , '#{elementText}')]")
+    @driver.find_elements(:xpath => "//XCUIElementTypeStaticText[contains(@name , '#{elementText}')]")
   end
 
   def ButtonWithText(elementText)
@@ -98,7 +98,7 @@ class Android_GuestInvitation_Objects
   end
 
   def select_house
-    @driver.find_element(:xpath =>  "//android.widget.TextView[@text = '"+$house+"']")
+    @driver.find_element(:xpath =>  "//android.widget.TextView[@text = 'Little Beach House Barcelona']")
   end
 
   def confirm_selection

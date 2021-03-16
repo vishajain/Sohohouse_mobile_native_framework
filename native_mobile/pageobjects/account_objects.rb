@@ -265,7 +265,7 @@ class Ios_Account_Objects
   end
 
   def subscribe
-    @driver.find_element(:name => "Subscribe to the calendar “Soho House Bookings”?")
+    @driver.find_element(:name => "Add Calendar Subscription")
   end
 
   def sync
@@ -917,7 +917,6 @@ class Android_Account_Objects
   def element_contains_text(elementText)
     @driver.find_element(:xpath => "//android.widget.TextView[contains(@text , '#{elementText}')]")
   end
-
   def navigate_back_to_account
     @driver.find_element(:xpath => "//*[contains(@content-desc , 'Navigate up')or contains(@content-desc , 'Go back') or contains(@resource-id , 'close')]")
   end
