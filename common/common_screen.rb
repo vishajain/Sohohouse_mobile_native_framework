@@ -46,6 +46,11 @@ class CommonScreen
     return 7
   end
 
+
+  def wait_for(seconds)
+    Selenium::WebDriver::Wait.new(:timeout => seconds).until {yield}
+  end
+
   def find_element
     i=0
 
@@ -79,7 +84,7 @@ class CommonScreen
 
   def click_element_with_text(element_text)
 
-    @device_common_objects.element_with_text(element_text).click
+    wait_for(fiveSecondsTimeout){@device_common_objects.element_with_text(element_text)}.click
 
     return  true
 
@@ -87,7 +92,7 @@ class CommonScreen
 
   def click_element_with_partial_text(element_text)
 
-    @device_common_objects.element_with_partial_text(element_text).click
+    wait_for(twentySecondsTimeout){@device_common_objects.element_with_partial_text(element_text)}.click
 
     return  true
 
@@ -150,6 +155,42 @@ class CommonScreen
     end
 
   end
+
+  def swipe_top()
+    begin
+      if $device == "ios"
+        $action.press({:x => ($dimensions_width*0.5), :y => ($dimensions_height*0.4)}).wait(100).move_to({:x => ($dimensions_width*0.5), :y => ($dimensions_height*0.8)}).release.perform
+        sleep 1
+      else
+        Appium::TouchAction.new.swipe(start_y: 600, end_y: 1550).perform
+      end
+    rescue StandardError => msg
+      puts msg.message
+    end
+  end
+
+  def navigate_to_tabs(tab)
+
+    case tab
+
+    when "Home"
+      ($device=="ios")?(wait_for(twentySecondsTimeout){@device_common_objects.tab_icons(1)}.click):wait_for(twentySecondsTimeout){@device_common_objects.tab_icons(1)}.click
+    when "Book"
+      ($device=="ios")?(wait_for(twentySecondsTimeout){@device_common_objects.tab_icons(2)}.click):wait_for(twentySecondsTimeout){@device_common_objects.tab_icons(2)}.click
+    when "Connect"
+      ($device=="ios")?(wait_for(twentySecondsTimeout){@device_common_objects.tab_icons(3)}.click):wait_for(twentySecondsTimeout){@device_common_objects.tab_icons(3)}.click
+    when "Discover"
+      ($device=="ios")?(wait_for(twentySecondsTimeout){@device_common_objects.tab_icons(4)}.click):wait_for(twentySecondsTimeout){@device_common_objects.tab_icons(4)}.click
+    when "Account"
+      ($device=="ios")?(wait_for(twentySecondsTimeout){@device_common_objects.tab_icons(5)}.click):wait_for(twentySecondsTimeout){@device_common_objects.tab_icons(5)}.click
+    end
+  end
+
+  def verify_tab_icon
+    sleep 2
+    return @device_common_objects.tab_icon.displayed?
+  end
+
 
 end
 

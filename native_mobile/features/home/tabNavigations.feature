@@ -15,9 +15,9 @@ Feature: his feature enables us to test the all the bottom navigations
     And user should see the button in menu bar
       | menu       |  assertion                   |
       | Account    |  View profile                |
-      | My Planner |  Discover                    |
-      | Connect    |  Connect                     |
-      | What's On  |  Book                        |
+      | Discover   |  More from us                |
+      | Connect    |  Connect with members        |
+      | Book       |  Book                        |
       | Home       |  What can we help you with?  |
     Then the user signs out and closes the app
 

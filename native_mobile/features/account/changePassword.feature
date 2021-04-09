@@ -12,8 +12,7 @@ Feature: This features enables us to test the change password functionality
   Scenario: User updates their password
     Given I click on Account button on home screen
     And I tap on settings
-    And I navigate to next tab
-    And I navigate to change password
+    And I navigate to Change Password tab
     When I update the password
     Then I navigate back and sign out of the app
 
@@ -22,8 +21,7 @@ Feature: This features enables us to test the change password functionality
     Given I enter change password email address and changed password
     And I click on Account button on home screen
     And I tap on settings
-    And I navigate to next tab
-    And I navigate to change password
+    And I navigate to Change Password tab
     When I revert the password
     Then I navigate back and sign out of the app
 

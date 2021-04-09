@@ -70,7 +70,6 @@ Feature: Home Screen all sections validation
       | What can we help you with?  |
       | Set up your app             |
       | Member Stories              |
-      | Babington House Noticeboard |
       | Our Houses                  |
       | Member Benefits             |
     And the user scrolls to the top

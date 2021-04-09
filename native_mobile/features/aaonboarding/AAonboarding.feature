@@ -26,6 +26,10 @@ Feature: This is a feature to test On-boarding screens for iOS and Android
       | Introducing rooms       | Next     |
       | Who can see your room?  | Next     |
       | How to join a room      | Finish   |
+      | Introducing Connections | Next   |
+      | Recommendations         | Next   |
+      | Recommendations         | Next   |
+      | Share your interests    | Update my profile    |
     And greetings should be visible
     Then the user signs out and closes the app
 

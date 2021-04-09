@@ -13,7 +13,6 @@ Feature: This feature enables us to test the house board functionality
     And I verify the houseboard screen
     And I verify the link under blackslate
       | Link             | Title                          |
-      | House Pay        | Add to Apple Wallet            |
       | Babington House  | House                          |
       | Membership card  | Your membership                |
       | Book a bedroom   | Stay with us                   |

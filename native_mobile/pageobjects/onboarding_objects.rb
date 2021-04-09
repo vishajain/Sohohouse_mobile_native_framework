@@ -280,7 +280,7 @@ class Android_Onboarding_Objects
   end
 
   def invalid_credential_dialog
-    @driver.find_element(:xpath => "//android.widget.TextView[@text = 'Invalid credentials']")
+    @driver.find_element(:xpath => "//android.widget.TextView[@text = 'Sorry']")
   end
 
   def update_later

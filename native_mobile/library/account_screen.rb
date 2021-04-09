@@ -144,73 +144,42 @@ class AccountScreen
 
   end
 
-  def verify_sync_calendar
+  def verify_setting_tab(tab)
 
-     sleep 5
+    ($device=="ios")?(startY = endY = $dimensions_height/2):(startY = endY = $android_dimensions_height/2)
 
-      startY = $dimensions_height/2
+     case tab
 
-      endY = $dimensions_height/2
+     when "Privacy"
 
-     before_swipe_string = Common.wait_for(5) {@device_account_objects.notifications}.text
+       index=1
 
-      Common.swipe_left(startY,endY)
+     when "Sync calendar"
 
-     sleep 5
+       index=2
 
-     after_swipe_string = Common.wait_for(5) {@device_account_objects.sync_calendar}.text
+     when "Change Password"
 
-      if  before_swipe_string == after_swipe_string
+       ($device=="ios")?index=3:index=1
 
-        return false
+     else
 
-      else
+       index=0
 
-        return true
+     end
 
-      end
-
-   end
-
-  def change_password_tab
-
-    if $device == "ios"
-
-      startY =$dimensions_height/2
-
-      endY = $dimensions_height/2
-
-      before_swipe_string = Common.wait_for(5) {@device_account_objects.sync_calendar}.text
+    for i in 0..index do
 
       Common.swipe_left(startY,endY)
 
-      after_swipe_string = Common.wait_for(5) {@device_account_objects.change_password}.text
-
-      if  before_swipe_string == after_swipe_string
-
-        return false
-
-      else
-
-        return true
-
-      end
-
-    elsif $device == "android"
-
-      Common.wait_for(3) {@device_account_objects.notifications}.displayed?
-
-      Common.wait_for(3) {@device_account_objects.change_password}.click
-
-      sleep 2
-
-      return true
+     sleep 5
 
     end
 
+    return true
 
-  end
 
+   end
 
   def tap_sync
 
@@ -224,8 +193,6 @@ class AccountScreen
 
   end
 
-
-
   def assert_contact_us
 
     Common.wait_for(2) {@device_account_objects.contact_us.displayed?}
@@ -235,7 +202,8 @@ class AccountScreen
   def home_screen_navigation
     sleep 3
 
-    @device_account_objects.homeBtn.click
+    $common_screen=CommonScreen.new
+    $common_screen.navigate_to_tabs("Home")
 
     sleep 2
 
@@ -250,7 +218,8 @@ class AccountScreen
   def navigate_to_home
 
     sleep 2
-    @device_home_objects.homeBtn.click
+    $common_screen=CommonScreen.new
+    $common_screen.navigate_to_tabs("Home")
     
     return true
 
@@ -1276,7 +1245,7 @@ class AccountScreen
 
               sleep 1
 
-              @device_account_objects.ok_button.click
+              @device_account_objects.ok_close_button.click
 
             end
 
@@ -1404,7 +1373,21 @@ class AccountScreen
 
   end
 
+  def close_edit_profile
 
+    begin
+
+    @device_account_objects.close_profile.click
+
+    rescue
+    end
+  end
+
+  def expand_editprofile
+
+    return @device_account_objects.open_edit_profile.location
+
+  end
 end
 
 

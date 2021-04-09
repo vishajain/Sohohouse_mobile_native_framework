@@ -22,7 +22,7 @@ class Ios_Home_Objects
   end
 
   def close_blackslate
-    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name='"+$name+"']/preceding-sibling::XCUIElementTypeImage ")
+    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name='"+$name+"']/parent::XCUIElementTypeOther/following-sibling::XCUIElementTypeImage[1]")
   end
 
   def browse_houses_back_button
@@ -316,7 +316,7 @@ class Ios_Home_Objects
   end
 
   def event_name_field
-    @driver.find_elements(:id => "#{$currentPackage+':id'+'/event_title_label'}")
+    @driver.find_elements(:xpath => "//*[@name='What’s happening?']/parent::XCUIElementTypeCell/following-sibling::XCUIElementTypeCell/XCUIElementTypeStaticText")
   end
 
   def book_plus
@@ -324,11 +324,40 @@ class Ios_Home_Objects
   end
 
   def booking_status
-    @driver.find_element(:id => "#{$currentPackage+':id'+'/guest_wait_list_text'}")
+    @driver.find_element(:xpath => "//XCUIElementTypeButton[@name='Leave lottery']/preceding-sibling::XCUIElementTypeStaticText[1]")
   end
 
   def status
-    @driver.find_element(:xpath => "//*[contains(@text , 'RE ON THE GUEST LIST') and contains(@text , 'YOU')]")
+    @driver.find_element(:xpath => "//*[contains(@name , 'added this event to your upcoming bookings') and contains(@name , 'We')]")
+  end
+  def circle_icon
+    @driver.find_elements(:xpath => "//XCUIElementTypeStaticText[@name='Create a Room' or @name ='Stay with us']/parent::XCUIElementTypeCell")
+  end
+
+  def icons(text)
+    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@text='What can we help you with?']/parent::XCUIElementTypeCell/following-sibling::XCUIElementTypeCell[1]/*[@name='"+text+"']")
+  end
+
+  def nav_bar
+    @driver.find_element(:xpath =>  "//XCUIElementTypeStaticText*[@name = 'Tab Bar')")
+  end
+
+  def event_image
+    @driver.find_elements(:xpath => "//*[@name='What’s happening?']/parent::XCUIElementTypeCell/following-sibling::XCUIElementTypeCell/XCUIElementTypeStaticText")
+  end
+
+  def lottery_status
+    @driver.find_element(:xpath => "//*[contains(@name , 'Thanks for registering,') and contains(@name , 'in the lottery')]")
+  end
+
+  def cancel_event_booking
+    @driver.find_element(:xpath => "//XCUIElementTypeButton[@name='Leave lottery' or @name='Remove from my bookings']")
+  end
+
+  def post_button
+
+    @driver.find_element(:xpath => "//XCUIElementTypeButton[@name = 'Post']")
+
   end
 
   def navigation_menu(index)

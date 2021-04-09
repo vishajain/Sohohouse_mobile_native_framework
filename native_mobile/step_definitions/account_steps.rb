@@ -131,11 +131,11 @@ Then("user see and taps on past bookings link") do
 
 end
 
-Then("I navigate to next tab") do
+Then(/^I navigate to ([^"]*) tab$/) do |text|
 
   begin
 
-    assert_true($accountscreen.verify_sync_calendar,"Unable to navigate to the right screen")
+    assert_true($accountscreen.verify_setting_tab(text),"Unable to navigate to the right screen")
 
   rescue StandardError => e
 
@@ -414,15 +414,6 @@ When(/^the user taps on sync and verifies the popup message$/) do
 
 end
 
-And(/^I navigate to change password$/) do
-
-    sleep 2
-
-    assert_true($accountscreen.change_password_tab,"Unable is not navigated to the right screen")
-
-end
-
-
 When(/^I revert the password$/) do
 
     assert_true($accountscreen.verify_current_password,"current password is not visible")
@@ -604,7 +595,11 @@ And(/^I verify all the links under account$/) do |table|
         assert_true($common_screen.find_element{$common_screen.click_element_with_text(value)},value+" is not clicked")
 
       elsif key.eql?"Title"
-
+        if value=="Edit profile" and $device == "ios"
+          loc=$accountscreen.expand_editprofile
+          Common.swipeByLocation(loc.x,loc.y,loc.x,$dimensions_height*0.10)
+        end
+        sleep 2
         assert_true($common_screen.verify_element_displayed_with_text(value),value+" is not displayed")
 
       end

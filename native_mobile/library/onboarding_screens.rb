@@ -76,7 +76,7 @@ class OnboardingScreens
     config     = {props: YAML.load_file(File.join(File.dirname(__FILE__), '../../config/testdata.yml'))}
 
     email      = config[:props]["data"][validity]
-
+    $device == "ios"?(@device_onboarding_objects.email_textfield.click):(sleep 1)
     @device_onboarding_objects.email_textfield.clear
 
     @device_onboarding_objects.email_textfield.send_keys(email)
@@ -117,7 +117,7 @@ class OnboardingScreens
   end
 
   def verify_app_launch_screen()
-    if  Common.wait_for(15) {@device_onboarding_objects.main_home.displayed?}
+    if  Common.wait_for(30) {@device_onboarding_objects.main_home.displayed?}
 
       return true
 
@@ -125,7 +125,7 @@ class OnboardingScreens
   end
 
   def user_clicks_membership()
-
+    sleep 3
     Common.wait_for(20){@device_onboarding_objects.main_home}.click
   end
 

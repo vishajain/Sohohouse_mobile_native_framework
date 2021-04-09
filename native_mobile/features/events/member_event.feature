@@ -20,7 +20,8 @@ Feature: Book member event
     And I click on Account button on home screen
     And I verify that "<Event Name>" is displayed under Events in "Bookings" page
     And I book <No. of Guest> ticket for guests  and verify status for the "<Event Name>" of "<Event Type>"
-    Then I cancel the above booked event
+    And I cancel the above booked event
+    Then I click to Home tab
     Examples:
       | Event Type             | Event Name              | Book                      | Tickets | Status                   | No. of Guest |
       | Priceless,Member_Event | Cashless Member Event   | Book                      | 1       | YOU’RE ON THE GUEST LIST | 2            |

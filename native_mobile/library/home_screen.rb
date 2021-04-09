@@ -76,7 +76,7 @@ class HomeScreen
 
   def verify_greetings()
     sleep 10
-    str = Common.wait_for(30){@device_home_objects.greetings}.text
+    str = Common.wait_for(40){@device_home_objects.greetings}.text
     if $device == "ios"
       if str == "Good morning," || str == "Good evening," || str == "Good afternoon,"
        return true
@@ -333,7 +333,9 @@ class HomeScreen
 
   def verify_whatson_click
 
-    Common.wait_for(15){@device_home_objects.whats_on}.click
+    $common_screen=CommonScreen.new
+
+    $common_screen.navigate_to_tabs("Book")
 
   end
 
@@ -376,7 +378,8 @@ class HomeScreen
 
   def verify_account_click
 
-    Common.wait_for(40){@device_home_objects.account_button}.click
+    $common_screen=CommonScreen.new
+    $common_screen.navigate_to_tabs("Account")
 
 
   end
@@ -778,6 +781,8 @@ class HomeScreen
   end
 
     def verifyIcons(section, heading)
+
+      $common_screen= CommonScreen.new
       i = 0
 
       loop do
@@ -792,17 +797,22 @@ class HomeScreen
 
               begin
 
-                if !@device_home_objects.homeBtn.displayed?
+                if $device =="ios"
+                  if !$common_screen.verify_tab_icon
 
-                  Common.swipe_top
+                    Common.swipe_top
+
+                  end
 
                 end
 
-                Common.wait_for(3){@device_home_objects.homeBtn}.click
+                 $common_screen.navigate_to_tabs("Home")
 
               rescue StandardError => e
 
                 $device=="ios"?Common.swipe_top: @device_home_objects.icon_left.click
+
+                $common_screen.navigate_to_tabs("Home")
 
               end
 
@@ -913,17 +923,15 @@ class HomeScreen
 
   def verifyTabNavigations(index,text)
 
-    if Common.wait_for(3){@device_home_objects.navigation_menu(index)}.displayed?
+    $common_screen=CommonScreen.new
 
-      @device_home_objects.navigation_menu(index).click
+    $common_screen.navigate_to_tabs(index)
 
       if Common.wait_for(10){@device_account_objects.ElementsWithText(text)}.displayed?
 
         return true
 
       end
-
-    end
 
     return false
 

@@ -387,14 +387,17 @@ end
 And(/^user should see the button in menu bar$/) do |table|
   $device == "ios" ?i=5 :i=4
   textValue=nil
+  linkValue=nil
   data = table.hashes
   data.each do |row|
     row.each do |key,value|
       if key.include?"assertion"
         textValue=value
+      else
+        linkValue=value
       end
     end
-    assert_true($homescreen.verifyTabNavigations(i,textValue), "Element not displayed")
+    assert_true($homescreen.verifyTabNavigations(linkValue,textValue), "Element not displayed")
     i=i-1
   end
 end
@@ -417,7 +420,7 @@ When(/^user selects a favourite house$/) do
 
   $accountscreen.tap_favourite_houses
 
-  $accountscreen.select_40_greek_street
+  $accountscreen.select_76_dean_house
 
   $accountscreen.tap_save_changes
 

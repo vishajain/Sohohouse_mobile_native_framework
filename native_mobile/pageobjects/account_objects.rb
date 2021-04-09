@@ -461,6 +461,14 @@ class Ios_Account_Objects
     @driver.find_element(:xpath => "//android.widget.TextView[contains(@name ,'Europe')]")
   end
 
+  def close_profile
+    @driver.find_element(:name => "iconDarkSmallClose")
+  end
+
+  def open_edit_profile
+    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name='SFFactory TestUser']/ancestor::XCUIElementTypeTable/preceding-sibling::XCUIElementTypeOther")
+  end
+
 end
 
 class Android_Account_Objects
@@ -924,6 +932,7 @@ class Android_Account_Objects
   def tap_europe
     @driver.find_element(:xpath => "//android.widget.TextView[contains(@text ,'Europe')]")
   end
+
 
 end
 

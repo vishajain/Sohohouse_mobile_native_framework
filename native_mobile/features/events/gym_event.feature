@@ -14,13 +14,14 @@ Feature: Book gym event
   @smoke @ios
   Scenario Outline: Book different gym event
     When greetings should be visible
-    And I navigate to what's on screen
-    And tap on Gym tab and set filter
+    Given I navigate to what's on screen
+    When tap on Gym tab and set filter
     And I "<Book>" for "<Event Name>" of "<Event Type>"
     And I should be able to successfully book event for member with status "<Status>"
-    Then I click on Account button on home screen
+    And I click on Account button on home screen
     And I verify that "<Event Name>" is displayed under Events in "Bookings" page
-    Then I cancel the above booked event
+    And I cancel the above booked event
+    Then I click to Home tab
     Examples:
       | Event Type          | Event Name             | Book                      | Status                   |
       | Priceless,Gym_Event | Cashless Gym Event     | Book                      | YOU’RE ON THE GUEST LIST |

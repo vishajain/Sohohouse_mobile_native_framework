@@ -80,7 +80,7 @@ class GuestInvitationScreen
 
         @device_guestinvitation_objects.select_date(date.to_s).click
 
-        @device_account_objects.ok_button.click
+        @device_account_objects.ok_close_button.click
       end
 
       $device == "ios"?str=" ":(str=@device_guestinvitation_objects.select_date_field.text)
@@ -108,6 +108,8 @@ class GuestInvitationScreen
     Common.wait_for(5){@device_guestinvitation_objects.add_a_guest}.click
 
     if Common.wait_for(2){@device_guestinvitation_objects.add_guest}.displayed?
+
+      $device == "ios"? (@device_guestinvitation_objects.enter_guest_name.click):(sleep 1)
 
       @device_guestinvitation_objects.enter_guest_name.send_keys("Test")
 

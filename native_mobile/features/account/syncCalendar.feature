@@ -11,6 +11,6 @@ Feature: This feature enables us to test the sync calendar functionality
     Given username is visible
     And I click on Account button on home screen
     And I tap on settings
-    And I navigate to next tab
+    And I navigate to Sync calendar tab
     When the user taps on sync and verifies the popup message
     Then I navigate back and sign out of the app

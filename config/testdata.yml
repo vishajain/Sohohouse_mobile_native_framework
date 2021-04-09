@@ -47,7 +47,7 @@ data:
   active-local: 'app.active.shw.local@example.com'
   active-every: 'app.active.every.local@example.com'
   active-plus-local: 'app.active-plus.shw.local@example.com'
-  chasing: 'chasing.sample@example.com'
+  chasing: 'chasing.sample@sffactory.com'
   suspended: 'suspended.sample@sffactory.com'
   frozen: 'frozen.sample@sffactory.com'
   expired: 'expired.sample@sffactory.com'

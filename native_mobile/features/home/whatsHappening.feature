@@ -11,9 +11,9 @@ Feature: Happening Now Carousel on Home Screen
   Scenario: Validate home screen header
     Given greetings should be visible
     When user selects a favourite house
-    And the user verifies Automation Screening on home screen
+    And the user verifies Monty Python and the Holy Grail on home screen
     And user books the ticket for lottery event and verifies the booking status
-    And user cancels the event booking of Automation Screening
+    And user cancels the event booking of Monty Python and the Holy Grail
     Then user goes back to the home screen
 
   @smoke

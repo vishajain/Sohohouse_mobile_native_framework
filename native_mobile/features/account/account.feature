@@ -13,7 +13,7 @@ Feature: Account screen
     When I click on Account button on home screen
     Then I verify all the links under account
       | Link                  | Title                   |
-      | View profile          | Edit                    |
+      | View profile          | Edit profile            |
       | Membership            | Your membership         |
       | Guest invitations     | Guest invitations       |
       | Bookings              | Bookings                |

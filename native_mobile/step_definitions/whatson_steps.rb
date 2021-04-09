@@ -246,7 +246,7 @@ end
 
 And(/^I navigate to what's on screen$/) do
 
-  sleep 2
+  sleep 5
 
   $homescreen.verify_whatson_click
 
@@ -301,16 +301,22 @@ When(/^I cancel the above booked event$/) do
   sleep 2
 
   $accountscreen.navigate_back_to_account
+  sleep 1
 
 end
 
 When(/^I book (.*) ticket for guests  and verify status for the "([^"]*)" of "([^"]*)"$/) do |guest_ticket_no, event_name,event_type|
+  $common_screen=CommonScreen.new
 
   if guest_ticket_no!="NA" and guest_ticket_no.to_i>0
 
     for i in 1..(guest_ticket_no.to_i) do
 
       $whatsonscreen.inviteGuest(event_type,1)
+
+      sleep 2
+
+      $device=="android"?($common_screen.click_element_with_text(event_name)):(sleep 1)
 
       if event_type.include?"lottery"
 

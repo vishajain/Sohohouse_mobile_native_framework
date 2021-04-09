@@ -423,8 +423,7 @@ When(/^I verify the onboarding screens$/) do |table|
   sleep 4
   data = table.hashes
   data.each do |row|
-    screen=nil
-    button=nil
+
     row.each do |key,value|
       if key.eql?"Screen"
         assert_true($common_screen.find_element{$common_screen.verify_element_displayed_with_text(value)},value+" is not displayed")
@@ -434,7 +433,9 @@ When(/^I verify the onboarding screens$/) do |table|
     end
 
   end
-
+  sleep 2
+  $accountscreen=AccountScreen.new
+  $common_screen.navigate_to_tabs(arg)
 end
 
 Given(/^I verify (.*) is displayed after login$/) do |string|
@@ -471,4 +472,10 @@ And(/^user enters email address for change password screen$/) do
   $activescreen = ActiveScreens.new
 
   $device== "ios"?($activescreen.user_enters_email_address("change-password-ios")):($activescreen.user_enters_email_address("change-password-android"))
+end
+
+Then(/^I click to ([^"]*) tab$/) do |arg|
+  $common_screen=CommonScreen.new
+  $common_screen.navigate_to_tabs(arg)
+  $common_screen.swipe_top
 end

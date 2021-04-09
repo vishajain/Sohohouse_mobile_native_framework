@@ -30,11 +30,11 @@ class Ios_Whatson_Objects
   end
 
   def whatson_filter
-    @driver.find_element(:name => "iconFilter")
+    @driver.find_element(:xpath => "//XCUIElementTypeOther[@name='Refine']/XCUIElementTypeStaticText")
   end
 
   def whatson_options(button)
-    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name='Book']/parent::XCUIElementTypeCell/following-sibling::XCUIElementTypeCell[1]//XCUIElementTypeStaticText[contains(@name,\"#{button}\")]")
+    @driver.find_element(:xpath => "//XCUIElementTypeOther[@name='Refine']/preceding-sibling::XCUIElementTypeCell[1]//XCUIElementTypeStaticText[contains(@name,\"#{button}\")]")
   end
 
   def paid_member_event
@@ -220,7 +220,7 @@ class Ios_Whatson_Objects
   end
 
   def tabs
-    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name='Book']/parent::XCUIElementTypeCell/following-sibling::XCUIElementTypeCell[1]")
+    @driver.find_element(:xpath => "//XCUIElementTypeOther[@name='Refine']/preceding-sibling::XCUIElementTypeCell[1]")
   end
 
   def filter_remove_house

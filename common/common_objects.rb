@@ -18,6 +18,14 @@ class Ios_Common_Objects
     @driver.find_element(:xpath => "//*[contains(@name , \""+elementText+"\")]")
   end
 
+  def tab_icon
+    @driver.find_element(:name => "fab")
+  end
+
+  def tab_icons(index)
+    @driver.find_element(:xpath => "//XCUIElementTypeTabBar/XCUIElementTypeButton["+index.to_s+"]")
+  end
+
 end
 
 class Android_Common_Objects
@@ -33,6 +41,10 @@ class Android_Common_Objects
 
   def element_with_partial_text(elementText)
     @driver.find_element(:xpath => "//*[contains(@text , \""+elementText+"\")]")
+  end
+
+  def tab_icons(index)
+    @driver.find_element(:xpath => "//android.view.ViewGroup//android.widget.FrameLayout["+index.to_s+"]/android.widget.ImageView")
   end
 
 end
