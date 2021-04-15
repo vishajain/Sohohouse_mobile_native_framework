@@ -52,46 +52,6 @@ class AccountScreen
 
   end
 
-  def verify_perks
-
-
-    if Common.wait_for(20) {@device_account_objects.perks.displayed?}
-
-      @device_account_objects.perks.click
-
-      if Common.wait_for(20) {@device_account_objects.houseperks_title.displayed?}
-
-        Common.navigateBack
-
-        return true
-
-      end
-
-    end
-
-  end
-
-  def verify_past_bookings
-
-    if Common.wait_for(20) {@device_account_objects.past_bookings.displayed?}
-
-      @device_account_objects.past_bookings.click
-
-      if Common.wait_for(20) {@device_account_objects.past_bookings.displayed?}
-
-        sleep 2
-
-        Common.navigateBack
-
-        return true
-
-      end
-
-    end
-
-  end
-
-
   def verify_change_password
 
     sleep 2
@@ -193,6 +153,8 @@ class AccountScreen
 
   end
 
+
+
   def assert_contact_us
 
     Common.wait_for(2) {@device_account_objects.contact_us.displayed?}
@@ -220,71 +182,6 @@ class AccountScreen
     sleep 2
     $common_screen=CommonScreen.new
     $common_screen.navigate_to_tabs("Home")
-    
-    return true
-
-  end
-
-  def tap_perks
-
-    Common.wait_for(20) {@device_account_objects.perks.click}
-
-    return true
-
-  end
-
-  def verify_perks_title
-
-    sleep 1
-
-    return Common.wait_for(20) {@device_account_objects.perkTitle.displayed?}
-
-  end
-
-  def verify_perks_location
-
-    return Common.wait_for(30) {@device_account_objects.perkLocation.displayed?}
-
-  end
-
-  def tap_first_perk
-
-    $driver.action.move_to(@device_account_objects.perkTitle).click.perform
-
-    return true
-
-  end
-
-  def verify_perk_content_image
-
-    return Common.wait_for(20) {@device_account_objects.perkContentImage.displayed?}
-
-
-  end
-
-  def verify_perk_content_location
-
-    return Common.wait_for(20) {@device_account_objects.perkContentLocation.displayed?}
-
-  end
-
-  def verify_perk_content_title
-
-    return Common.wait_for(20) {@device_account_objects.perkContentTitle.displayed?}
-
-  end
-
-  def verify_perk_content_desc
-
-    return Common.wait_for(20) {@device_account_objects.perkContentDesc.displayed?}
-
-  end
-
-  def iconLeft
-
-    sleep 1
-
-    Common.navigateBack
 
     return true
 
@@ -524,20 +421,6 @@ class AccountScreen
     Common.wait_for(2){@device_account_objects.tap_uk}.click
   end
 
-  def select_lhm_house
-    tap_reset
-
-    sleep 5
-
-    Common.wait_for(10){@device_account_objects.tap_uk}.click
-
-    Common.swipe_down
-
-    sleep 5
-
-    Common.wait_for(10){@device_account_objects.little_house_mayfair}.click
-  end
-
   def select_76_dean_house
     sleep 5
 
@@ -563,23 +446,6 @@ class AccountScreen
     end
   end
 
-  def verify_40_greek_st_displayed
-
-    sleep 5
-
-    return Common.wait_for(5){@device_account_objects.greek_St.displayed?}
-
-
-  end
-
-  def verify_shoreditch_displayed
-
-    sleep 5
-
-    return Common.wait_for(5){@device_account_objects.shoreditch_house.displayed?}
-
-  end
-
   def tap_settings
 
     Common.wait_for(5){@device_account_objects.settings}.click
@@ -596,12 +462,10 @@ class AccountScreen
 
  def select_favourite_locations (input)
 
-    if $device == "ios"
-      @device_account_objects.select_favourite(input).click
-    else
-      @device_account_objects.select_favourite(input).click
-      sleep 15
-    end
+   @device_account_objects.select_favourite(input).click
+
+   $device=="ios"?(sleep 1):(sleep 15)
+
 
   end
 
@@ -741,208 +605,6 @@ class AccountScreen
 
   end
 
-  def user_enters_profession_value
-
-    if Common.wait_for(5){@device_account_objects.profession_input}.text.include? "software"
-      profile = "profile2"
-    else
-      profile = 'profile1'
-    end
-
-    config = {props: YAML.load_file(File.join(File.dirname(__FILE__), '../../config/testdata.yml'))}
-
-    $profession_value = config[:props]["data"]["profile"][profile]["profession"]
-    $industry_value = config[:props]["data"]["profile"][profile]["industry"]
-    $city_value = config[:props]["data"]["profile"][profile]["city"]
-    $about_me_value =  config[:props]["data"]["profile"][profile]["about-me"]
-    $chat_value =  config[:props]["data"]["profile"][profile]["chat"]
-    $interest1_value = config[:props]["data"]["profile"][profile]["interest1"]
-    $interest2_value = config[:props]["data"]["profile"][profile]["interest2"]
-    $website_value = config[:props]["data"]["profile"][profile]["website"]
-    $instagram_value = config[:props]["data"]["profile"][profile]["instagram"]
-    $twitter_value = config[:props]["data"]["profile"][profile]["twitter"]
-    $linkedin_value = config[:props]["data"]["profile"][profile]["linkedin"]
-    $spotify_value = config[:props]["data"]["profile"][profile]["spotify"]
-    $youtube_value = config[:props]["data"]["profile"][profile]["youtube"]
-
-    Common.wait_for(5){@device_account_objects.profession}.click
-
-      element_count = Common.wait_for(10){@device_account_objects.profession_interests_remove.size}
-
-      if element_count > 0
-
-        until element_count == 0
-
-          @device_account_objects.profession_interests_remove[0].click
-
-          element_count = element_count-1
-
-        end
-
-      end
-
-    if $device == "ios"
-
-      Common.wait_for(5){@device_account_objects.text_input}.clear
-
-      @device_account_objects.profession.send_keys($profession_value)
-
-    else
-
-      @device_account_objects.text_input.send_keys($profession_value)
-
-    end
-
-    sleep 1
-
-    if $device == "ios"
-
-      @device_account_objects.profession_interests_input("Software Analyst").click
-
-    else
-
-      Common.wait_for(3){@device_account_objects.profession_interests_input("Software analyst")}.click
-
-    end
-
-    sleep 1
-
-    $driver.action.move_to(@device_account_objects.done).click.perform
-
-  end
-
-  def user_enters_industry_value
-
-    Common.wait_for(15){@device_account_objects.industry}.click
-
-    sleep 3
-
-    if $device == "ios"
-
-      @device_account_objects.industry_input.send_keys($industry_value)
-
-      Common.wait_for(15){@device_account_objects.industry}.click
-
-    else
-      str1=str=@device_account_objects.industry_input.text
-      loop do
-        if str==$industry_value
-          break
-        end
-        Appium::TouchAction.new.swipe(start_x:50,start_y: @device_account_objects.industry_input1.location.y+10, end_x:50, end_y: @device_account_objects.industry_input.location.y+10).perform
-
-        str=@device_account_objects.industry_input.text
-        if str == str1
-          break
-        end
-      end
-      sleep 1
-
-      @device_account_objects.industry.click
-    end
-
-
-
-  end
-
-  def user_enters_city_value
-
-    Common.wait_for(5){@device_account_objects.city}.click
-
-    sleep 2
-
-    Common.wait_for(5){@device_account_objects.text_input}.clear
-
-    @device_account_objects.text_input.send_keys($city_value)
-
-    if $device == "ios'"
-      @device_account_objects.profession_interests_input("Manhattan Beach, CA, USA").click
-      $driver.action.move_to(@device_account_objects.done).click.perform
-
-    else
-      sleep 2
-      $driver.action.move_to(@device_account_objects.done).click.perform
-
-    end
-
-  end
-
-  def user_enters_about_me_value
-
-    sleep 3
-
-    Common.wait_for(3){@device_account_objects.aboutme}.click
-
-    Common.wait_for(5){@device_account_objects.large_text_input}.clear
-
-    if $device == "ios"
-      @device_account_objects.aboutme.send_keys($about_me_value)
-    else
-      @device_account_objects.large_text_input.send_keys($about_me_value)
-    end
-
-    $driver.action.move_to(@device_account_objects.done).click.perform
-
-  end
-
-  def user_enters_lets_chat_value
-
-    Common.little_swipe_down
-
-    Common.wait_for(5){@device_account_objects.chat}.click
-
-    Common.wait_for(5){@device_account_objects.large_text_input}.clear
-
-    if $device == "ios"
-      @device_account_objects.chat.send_keys($chat_value)
-    else
-      @device_account_objects.large_text_input.send_keys($chat_value)
-    end
-
-    $driver.action.move_to(@device_account_objects.done).click.perform
-
-  end
-
-  def user_enters_interests_value
-
-    Common.verifyNavBar(@device_account_objects.interests)
-
-    Common.wait_for(10){@device_account_objects.interests}.click
-
-    element_count = Common.wait_for(10){@device_account_objects.profession_interests_remove.size}
-
-    if element_count > 0
-
-      until element_count == 0
-
-        @device_account_objects.profession_interests_remove[0].click
-
-        element_count = element_count-1
-
-      end
-
-    end
-
-    if $device == "ios"
-
-      @device_account_objects.interests.send_keys("i")
-
-    else
-
-      @device_account_objects.interests_input1.send_keys("i")
-
-    end
-
-    sleep 1
-
-    Common.wait_for(3){@device_account_objects.profession_interests_input($interest1_value)}.click
-
-    sleep 1
-
-    $driver.action.move_to(@device_account_objects.done).click.perform
-
-  end
-
   def tap_social_accounts
     begin
     if Common.wait_for(3){@device_account_objects.social_accounts}.displayed?
@@ -956,193 +618,9 @@ class AccountScreen
 
   end
 
-  def user_enters_website_value
-
-
-    if $device == "ios"
-
-      Common.wait_for(5){@device_account_objects.website_text}.click
-
-      Common.wait_for(5){@device_account_objects.website_text}.clear
-
-      @device_account_objects.website.send_keys($website_value)
-
-    elsif $device == "android"
-
-      Common.wait_for(5){@device_account_objects.website_text}.clear
-
-      @device_account_objects.website_text.send_keys($website_value)
-
-    end
-
-  end
-
-  def user_enters_instagram_value
-
-    if $device == "ios"
-
-    Common.wait_for(2){@device_account_objects.instagram_text}.click
-
-    end
-
-    Common.wait_for(2){@device_account_objects.instagram_text}.clear
-
-    @device_account_objects.instagram_text.send_keys($instagram_value)
-
-
-  end
-
-  def user_enters_twitter_value
-
-    if $device == "ios"
-
-    Common.wait_for(2){@device_account_objects.twitter_text}.click
-
-    end
-
-    Common.wait_for(2){@device_account_objects.twitter_text}.clear
-
-    @device_account_objects.twitter_text.send_keys($twitter_value)
-
-    Common.little_swipe_down
-
-  end
-
-  def user_enters_linkedin_value
-
-    if $device == "ios"
-
-    Common.wait_for(2){@device_account_objects.linkedin_text}.click
-
-    end
-
-    Common.wait_for(2){@device_account_objects.linkedin_text}.clear
-
-    @device_account_objects.linkedin_text.send_keys($linkedin_value)
-
-  end
-
-  def user_enters_spotify_value
-
-    if $device == "ios"
-
-      Common.wait_for(2){@device_account_objects.spotify_text}.click
-
-    end
-
-    Common.wait_for(2){@device_account_objects.spotify_text}.clear
-
-    @device_account_objects.spotify_text.send_keys($spotify_value)
-
-  end
-
-  def user_enters_youtube_value
-
-    if $device == "ios"
-
-      Common.wait_for(2){@device_account_objects.youtube_text}.click
-
-    end
-
-    Common.wait_for(2){@device_account_objects.youtube_text}.clear
-
-    @device_account_objects.youtube_text.send_keys($youtube_value)
-
-  end
-
-  def user_taps_done
-
-    $driver.action.move_to(@device_account_objects.done).click.perform
-
-  end
-
   def user_save_changes
 
     Common.wait_for(6){@device_account_objects.save_changes}.click
-
-  end
-
-  def verify_profession_value
-
-    Common.swipe_top
-
-    return Common.wait_for(10){@device_account_objects.profession_value1}.text.downcase.include? $profession_value
-
-  end
-
-
-  def verify_interests_values
-
-    if Common.wait_for(3){@device_account_objects.interests_value}.text.include? $interest1_value
-
-      return true
-
-    end
-
-  end
-
-  def verify_industry_value
-
-    return Common.wait_for(3){@device_account_objects.industry_value}.text.include? $industry_value
-
-  end
-
-  def verify_city_value
-
-   return Common.wait_for(5){@device_account_objects.city_value}.text.include? $city_value
-
-  end
-
-  def verify_about_me_value
-
-    Common.swipe_down
-
-    return Common.wait_for(3){@device_account_objects.about_me_value}.text.include? $about_me_value
-
-  end
-
-  def verify_lets_chat_value
-
-    Common.swipe_down
-
-    return Common.wait_for(3){@device_account_objects.lets_chat_value}.text.include? $chat_value
-
-  end
-
-  def verify_website
-
-    return Common.wait_for(3) {@device_account_objects.website_value}.displayed?
-
-  end
-
-  def verify_instagram
-
-    return Common.wait_for(3) {@device_account_objects.instagram_value}.displayed?
-
-
-  end
-
-  def verify_twitter
-
-    return Common.wait_for(3) {@device_account_objects.twitter_value}.displayed?
-
-  end
-
-  def verify_linkedin
-
-    return Common.wait_for(3) {@device_account_objects.linkedin_value}.displayed?
-
-  end
-
-  def verify_spotify
-
-    return Common.wait_for(3) {@device_account_objects.spotify_value}.displayed?
-
-  end
-
-  def verify_youtube
-
-    return Common.wait_for(3) {@device_account_objects.youtube_value}.displayed?
 
   end
 
@@ -1151,55 +629,6 @@ class AccountScreen
     Common.navigateBack
 
     Common.wait_for(10){@device_home_objects.homeBtn}.click
-
-    return true
-
-  end
-
-  def change_password_tab_android
-
-    Common.wait_for(3) {@device_account_objects.notification.displayed?}
-
-    Common.wait_for(3) {@device_account_objects.change_password}.click
-
-    sleep 2
-    return true
-
-  end
-
-  def enter_Name
-
-    Common.wait_for(80) {@device_account_objects.contact_name.displayed?}
-
-    sleep 10
-
-    @device_account_objects.contact_name.send_keys($name)
-
-    sleep 2
-
-    return true
-
-  end
-
-  def enter_mail_id
-
-    Common.wait_for(3) {@device_account_objects.email_id.displayed?}
-
-    Common.wait_for(3) {@device_account_objects.email_id}.send_keys($email)
-
-    sleep 2
-
-    return true
-
-  end
-
-  def checks_confirm
-
-    Common.wait_for(3) {@device_account_objects.confirm.displayed?}
-
-    Common.wait_for(3) {@device_account_objects.confirm}.click
-
-    sleep 2
 
     return true
 
@@ -1377,17 +806,157 @@ class AccountScreen
 
     begin
 
-    @device_account_objects.close_profile.click
+      @device_account_objects.close_profile.click
 
     rescue
     end
+
   end
+
 
   def expand_editprofile
 
     return @device_account_objects.open_edit_profile.location
 
   end
+
+  def getEditProfileText(text, value)
+
+    case text
+
+
+    when "What do you do","City"
+
+      $common_screen.wait_for($common_screen.fiveSecondsTimeout){@device_account_objects.editProfileTextField}.clear
+
+      @device_account_objects.editProfileTextField.send_keys(value)
+
+    when "Interests"
+
+      removewidget(value)
+
+    when "About me","Let's chat"
+
+      $common_screen.wait_for($common_screen.fiveSecondsTimeout){@device_account_objects.editProfileTextView}.clear
+
+      @device_account_objects.editProfileTextView.send_keys(value)
+
+    when "Industry"
+
+      $common_screen.wait_for($common_screen.fiveSecondsTimeout){@device_account_objects.editProfilePicker}.send_keys(value)
+
+    end
+
+    begin
+
+      click_done
+
+    rescue
+      $driver.action.move_to(@device_account_objects.editProfileLink(text)).click.perform
+    end
+
+      return true
+
+  end
+
+  def clickEditProfileLink(text)
+
+    $driver.action.move_to(@device_account_objects.editProfileLink(text)).click.perform
+
+  end
+
+  def removewidget(text)
+
+    element_count = Common.wait_for(10){@device_account_objects.profession_interests_remove.size}
+
+    if (element_count > 0) or ($common_screen.verify_element_displayed_with_partial_text("Please choose"))
+
+      until element_count == 0
+
+        @device_account_objects.profession_interests_remove[0].click
+
+        element_count = element_count-1
+
+      end
+
+      @device_account_objects.editProfileTextField.clear
+
+      @device_account_objects.editProfileTextField.send_keys(text.split(" ")[0])
+
+      clickWidget(text)
+
+    end
+
+  end
+
+
+  def clickWidget(text)
+
+    begin
+
+      Common.wait_for(3){@device_account_objects.profession_interests_input(text)}.click
+
+    rescue
+
+    end
+
+  end
+
+  def clickSocial(text,value)
+
+    Common.wait_for(3){@device_account_objects.editSocialMedia(text)}.clear
+
+    Common.wait_for(3){@device_account_objects.editSocialMedia(text)}.send_keys(value)
+
+  end
+
+  def verifyLinks(value)
+
+    config = {props: YAML.load_file(File.join(File.dirname(__FILE__), '../../config/testdata.yml'))}
+
+    text = config[:props]["data"]["profile"]["profile1"][value.to_s.downcase]
+
+    case value
+
+    when "profession"
+
+      return Common.wait_for(20){@device_account_objects.profession_value1}.text.downcase.include? text.downcase
+
+    when "interest1"
+
+      return Common.wait_for(3){@device_account_objects.interests_value}.text.include? text
+
+    when "about-me"
+
+      return Common.wait_for(3){@device_account_objects.about_me_value}.text.include? text
+
+    when "city"
+
+      return Common.wait_for(5){@device_account_objects.city_value}.text.include? text
+
+    when  "chat"
+
+      return Common.wait_for(3){@device_account_objects.lets_chat_value}.text.include? text
+
+    when "industry"
+
+      return Common.wait_for(3){@device_account_objects.industry_value}.text.include? text
+
+    else
+
+      return Common.wait_for(3) {@device_account_objects.socialMediaValues(value)}.displayed?
+
+    end
+
+  end
+
+  def click_done
+
+    $driver.action.move_to(@device_account_objects.done).click.perform
+
+  end
+
 end
+
 
 

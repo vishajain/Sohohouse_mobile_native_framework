@@ -1,6 +1,5 @@
 require 'rubygems'
 require 'appium_lib'
-# require 'watir'
 require 'selenium-webdriver'
 require "test/unit"
 require 'yaml'
@@ -106,66 +105,6 @@ class WhatsonScreen
     end
 
   end
-
-
-
-  # def find_member_event
-  #
-  #   swipe_down_count = 0
-  #
-  #   if Common.wait_for(2){@device_whatson_objects.member_event.size} > 0
-  #
-  #     locat = @device_whatson_objects.member_event[0].location
-  #
-  #     x =  locat["x"]
-  #     y =  locat["y"]
-  #
-  #     if y > $dimensions_height
-  #       swipe_down_count = swipe_down_count + 1
-  #       Common.swipe_down
-  #     elsif x==0 and y==100
-  #       swipe_down_count = swipe_down_count + 1
-  #       Common.swipe_down
-  #     end
-  #   end
-  #
-  #   loop do
-  #     if Common.wait_for(5){@device_whatson_objects.member_event.size} > 0
-  #        locat = @device_whatson_objects.member_event[0].location
-  #         y =  locat["y"]
-  #     end
-  #     if Common.wait_for(5){@device_whatson_objects.member_event.size} > 0 and y > 0
-  #       @found = 1
-  #       break
-  #     else
-  #       if swipe_down_count < 6
-  #          Common.swipe_down
-  #          sleep 1
-  #          swipe_down_count = swipe_down_count+1
-  #       else
-  #          @found = 0
-  #          break
-  #       end
-  #     end
-  #   end
-  #   if @found == 1
-  #     return true
-  #   else
-  #     return false
-  #   end
-  #
-  # end
-  #
-  # def find_member_event_click
-  #
-  #   if @found == 1
-  #    Common.wait_for(2){@device_whatson_objects.member_event[0].click}
-  #   else
-  #     puts "Member Event not found"
-  #   end
-  #
-  # end
-
 
   def find_paid_event(section)
 
@@ -500,20 +439,16 @@ class WhatsonScreen
 
   def book_member_event
 
-      # Common.wait_for(10){@device_whatson_objects.icon_plus.click}
-      #
       sleep 1
 
       $driver.action.move_to(@device_whatson_objects.icon_plus).click.perform
 
       $driver.action.move_to(@device_whatson_objects.buy_tickets).click.perform
 
-      # Common.wait_for(10){@device_whatson_objects.buy_tickets.click}
-
   end
 
   def book_no_guests_member_event
-    #
+
     sleep 1
 
     $driver.action.move_to(@device_whatson_objects.buy_tickets).click.perform
@@ -522,13 +457,9 @@ class WhatsonScreen
 
   def invite_guests_click
 
-    # Common.wait_for(10){@device_whatson_objects.icon_plus.click}
-
     $driver.action.move_to(@device_whatson_objects.icon_plus).click.perform
 
     $driver.action.move_to(@device_whatson_objects.invite_guests).click.perform
-
-    # Common.wait_for(10){@device_whatson_objects.buy_tickets.click}
 
   end
 
@@ -554,8 +485,6 @@ class WhatsonScreen
 
 
   def buy_tickets_click
-
-    # Common.wait_for(5){@device_whatson_objects.buy_tickets_2.click}
 
     $driver.action.move_to(@device_whatson_objects.buy_tickets_2).click.perform
 
@@ -677,10 +606,7 @@ class WhatsonScreen
 
   def confirm_deposit_click
 
-     # @device_whatson_objects.confirm_deposit.click
-
      $driver.action.move_to(@device_whatson_objects.confirm_deposit).click.perform
-     #
 
   end
 
@@ -726,8 +652,6 @@ class WhatsonScreen
     i = 0
 
     while i < Common.wait_for(2){@device_whatson_objects.your_houses.size}
-
-      # puts Common.wait_for(2){@device_whatson_objects.your_houses[i]}.text
 
       Common.wait_for(2){@device_whatson_objects.your_houses[i].click}
 
@@ -877,7 +801,6 @@ class WhatsonScreen
       @device_guestinvitation_objects.ButtonWithText(button_name1).click
 
     end
-
     Common.wait_for(15){@device_whatson_objects.ok_close_button}.click
 
     end

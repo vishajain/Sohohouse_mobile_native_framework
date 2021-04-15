@@ -76,7 +76,7 @@ class HomeScreen
 
   def verify_greetings()
     sleep 10
-    str = Common.wait_for(40){@device_home_objects.greetings}.text
+    str = Common.wait_for(50){@device_home_objects.greetings}.text
     if $device == "ios"
       if str == "Good morning," || str == "Good evening," || str == "Good afternoon,"
        return true
@@ -337,42 +337,6 @@ class HomeScreen
 
     $common_screen.navigate_to_tabs("Book")
 
-  end
-
-  def account_back
-
-    if $device == "ios"
-
-      i = 1
-
-      loop do
-
-        begin
-
-          return Common.wait_for(3){@device_account_objects.account_title.displayed?}
-
-        rescue
-
-          Common.swipe_top
-
-          i = i + 1
-
-          if i > 3
-
-            return false
-
-          end
-
-        end
-
-      end
-
-
-    else
-
-      $driver.back
-
-    end
   end
 
 
@@ -927,7 +891,7 @@ class HomeScreen
 
     $common_screen.navigate_to_tabs(index)
 
-      if Common.wait_for(10){@device_account_objects.ElementsWithText(text)}.displayed?
+      if Common.wait_for(50){@device_account_objects.ElementsWithText(text)}.displayed?
 
         return true
 

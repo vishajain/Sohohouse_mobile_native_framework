@@ -27,107 +27,15 @@ Given("I click on Account button on home screen") do
 
 end
 
+When(/^I verify the profile screen title$/) do
 
-Then(/^the amended fields should be shown on users profile screen$/) do
-
-  assert_true( $accountscreen.verify_profession_value,"Profession value is not saved ")
-
-  assert_true( $accountscreen.verify_city_value,"City value is not saved ")
-
-  assert_true( $accountscreen.verify_about_me_value,"About me value on is not saved ")
-
-  assert_true( $accountscreen.verify_lets_chat_value,"Lets chat value is not saved ")
-
-  assert_true( $accountscreen.verify_interests_values, "Interests values are not saved properly")
-
-  assert_true( $accountscreen.verify_website,"Website is not saved ")
-
-  assert_true( $accountscreen.verify_instagram,"Instagram is not saved ")
-
-  assert_true( $accountscreen.verify_twitter,"Twitter is not saved ")
-
-  assert_true( $accountscreen.verify_linkedin,"Linkedin is not saved ")
-
-  assert_true( $accountscreen.verify_spotify,"Spotify is not saved ")
-
-  assert_true( $accountscreen.verify_youtube,"Youtube is not saved ")
-
-  $homescreen.account_back
-
-  $accountscreen.verify_sign_out
-
-  assert_true($accountscreen.tap_sign_out, "Unable to sign out the user")
-
-  $onboardingscreens.close_app
-
-end
-
-When(/^the user edits their profession$/) do
+  $common_screen=CommonScreen.new
 
   $accountscreen.tap_View_Profile
 
   $accountscreen.tap_edit_link
 
   assert_true($accountscreen.verify_edit_profile_screen_title,"Unable to land on Edit profile screen")
-
-  $accountscreen.user_enters_profession_value
-
-end
-
-And(/^the user provides industry and city value$/) do
-
-  $accountscreen.user_enters_industry_value
-
-  $accountscreen.user_enters_city_value
-
-end
-
-And(/^the user inputs about me and interests values$/) do
-
-  $accountscreen.user_enters_about_me_value
-
-  $accountscreen.user_enters_lets_chat_value
-
-  $accountscreen.user_enters_interests_value
-
-
-end
-
-And(/^the user inputs connect social accounts values$/) do
-
-  $accountscreen.tap_social_accounts
-
-  $accountscreen.user_enters_website_value
-
-  $accountscreen.user_enters_instagram_value
-
-  $accountscreen.user_enters_twitter_value
-
-  $accountscreen.user_enters_linkedin_value
-
-  $accountscreen.user_enters_spotify_value
-
-  $accountscreen.user_enters_youtube_value
-
-  $accountscreen.user_taps_done
-
-  $accountscreen.tap_save_changes
-
-end
-
-Then("user see and taps on perks link") do
-
-    sleep 2
-
-    assert_true($accountscreen.verify_perks,"Unable to tap on perks link")
-
-end
-
-Then("user see and taps on past bookings link") do
-
-    sleep 2
-
-    assert_true($accountscreen.verify_past_bookings,"Unable to tap on Past bookings link")
 
 end
 
@@ -148,54 +56,6 @@ end
 Then("member is not on home screen from account screen") do
 
   assert_true($accountscreen.home_screen_navigation,"Unable to navigate to home screen")
-
-end
-
-When("user sees and taps on perks") do
-
-    assert_true($accountscreen.tap_perks,"Unable to tap on perks link")
-
-end
-
-Then("user sees perk title") do
-
-    assert_true($accountscreen.verify_perks_title,"Perks title not present")
-
-end
-
-Then("user sees perk location") do
-
-    assert_true($accountscreen.verify_perks_location,"Perks location not present")
-
-end
-
-When("user taps on the first perk on perks list") do
-
-    assert_true($accountscreen.tap_first_perk,"Unable to tap on the first perk")
-
-end
-
-Then("user sees perk image on perk screen") do
-
-    assert_true($accountscreen.verify_perk_content_image,"Perk image not present")
-
-end
-
-Then("user sees perk location on perk screen") do
-
-    assert_true($accountscreen.verify_perk_content_location,"Perk location not present")
-
-end
-
-Then("user sees perk title on perk screen") do
-
-    assert_true($accountscreen.verify_perk_content_title,"Perk title not present")
-
-end
-
-Then("user sees perk description on perk screen") do
-
-    assert_true($accountscreen.verify_perk_content_desc,"Perk image not present")
 
 end
 
@@ -306,26 +166,6 @@ And("user selects 40 Greek Street") do
 
 end
 
-And("user selects little house mayfair") do
-
-  $accountscreen.select_lhm_house
-
-end
-
-Then("user sees 40 Greek Street under favourite houses list") do
-
-    assert_true($accountscreen.verify_40_greek_st_displayed, "Favourite houses reset is not working")
-
-    $accountscreen.tap_save_changes
-
-end
-
-Then("user sees Shoreditch house under favourite houses list") do
-
-    assert_true($accountscreen.verify_shoreditch_displayed, "Favourite houses reset is not working")
-
-end
-
 Given("I tap on settings") do
 
     assert_true($accountscreen.verify_settings, "Settings link is not displayed")
@@ -357,44 +197,6 @@ Then("I submits the enquiry") do
     $accountscreen.tap_submit
 
 end
-
-
-When(/^the user adds a new favourite house$/) do
-
-    assert_true($accountscreen.favourite_houses_shown,"Unable to see favourite houses link")
-
-    $accountscreen.tap_favourite_houses
-
-    assert_true($accountscreen.verify_local_house_displayed, "Favourite houses reset is not working")
-
-    $accountscreen.select_40_greek_street
-
-    $accountscreen.tap_save_changes
-end
-
-Then(/^the added house is shown on favourite houses list$/) do
-
-    assert_true($accountscreen.favourite_houses_shown,"Unable to see favourite houses link")
-
-    $accountscreen.tap_favourite_houses
-
-    assert_true($accountscreen.verify_40_greek_st_displayed, "Favourite houses is not saved")
-
-    $accountscreen.select_40_greek_street
-
-    $accountscreen.tap_save_changes
-
-    assert_true($accountscreen.favourite_houses_shown,"Unable to see favourite houses link")
-
-    $accountscreen.tap_favourite_houses
-
-    assert_true($accountscreen.verify_local_house_displayed, "Favourite houses reset is not working")
-
-    $accountscreen.tap_save_changes
-
-    $accountscreen.home_screen_navigation
-end
-
 
 Then(/^I navigate back and sign out of the app$/) do
 
@@ -430,29 +232,6 @@ When(/^I revert the password$/) do
 
 end
 
-
-And(/^the user selects a favourite house for carousel$/) do
-
-  $homescreen.verify_account_click
-
-  $accountscreen = AccountScreen.new
-
-  $whatsonscreen = WhatsonScreen.new
-
-  $homescreen = HomeScreen.new
-
-  $accountscreen.tap_favourite_houses
-
-  $accountscreen.select_lhm_house
-
-  $accountscreen.tap_save_changes
-
-  assert_true($accountscreen.home_screen_navigation,"Unable to navigate to home screen")
-
-  sleep 5
-
-end
-
 And(/^user goes back to the home screen$/) do
 
   $homescreen.go_back_to_home_screen
@@ -468,32 +247,6 @@ Given(/^When the user accepts notifications$/) do
   assert_true($onboardingscreens.verify_Notification_pref_screen,"User is unable to land on Notification preferences screen")
 
   $onboardingscreens.user_clicks_OK
-
-end
-
-And(/^user navigates to change password screen$/) do
-
-  sleep 2
-
-  assert_true($accountscreen.change_password_tab_android,"Unable is not navigated to the right screen")
-
-end
-
-When(/^user provides the Name$/) do
-
-  assert_true($accountscreen.enter_Name,"Unable to enter Name")
-
-end
-
-And(/^user provides the email$/) do
-
-  assert_true($accountscreen.enter_mail_id,"Unable to enter Mail id")
-
-end
-
-And(/^user clicks on confirm$/) do
-
-  assert_true($accountscreen.checks_confirm,"Unable to check on confirm")
 
 end
 
@@ -576,10 +329,6 @@ And(/^I verify all the links under account$/) do |table|
 
   $common_screen=CommonScreen.new
 
-  if $device == "ios"
-    $common_screen.little_swipe_down
-  end
-
   sleep 3
 
   data = table.hashes
@@ -592,14 +341,16 @@ And(/^I verify all the links under account$/) do |table|
 
       if key.eql?"Link"
 
+        if $device == "ios"
+          $common_screen.little_swipe_down
+        end
+
         assert_true($common_screen.find_element{$common_screen.click_element_with_text(value)},value+" is not clicked")
 
       elsif key.eql?"Title"
-        if value=="Edit profile" and $device == "ios"
-          loc=$accountscreen.expand_editprofile
-          Common.swipeByLocation(loc.x,loc.y,loc.x,$dimensions_height*0.10)
-        end
+
         sleep 2
+
         assert_true($common_screen.verify_element_displayed_with_text(value),value+" is not displayed")
 
       end
@@ -611,3 +362,89 @@ And(/^I verify all the links under account$/) do |table|
   end
 
   end
+
+And(/^I verify edit profile links$/) do |table|
+
+  $common_screen=CommonScreen.new
+
+  $device=="ios"?$common_screen.swipeByLocation(50,100,50,70):$common_screen.swipeByLocation(50,200,50,10)
+
+  config = {props: YAML.load_file(File.join(File.dirname(__FILE__), '../../config/testdata.yml'))}
+
+  link=nil
+
+  data = table.hashes
+
+  data.each do |row|
+
+    row.each do |key,value|
+
+      sleep 1
+
+      if key.eql?"Link"
+
+        link=value
+
+        $accountscreen.clickEditProfileLink(value)
+
+      elsif key.eql?"Value"
+
+        data = config[:props]["data"]["profile"]["profile1"][value]
+
+        assert_true($accountscreen.getEditProfileText(link,data),value+" is not displayed")
+
+        end
+
+    end
+
+  end
+
+end
+
+And(/^I verify the social account link$/) do |table|
+
+  $accountscreen.tap_social_accounts
+
+  sleep 1
+
+  config = {props: YAML.load_file(File.join(File.dirname(__FILE__), '../../config/testdata.yml'))}
+
+  data = table.hashes
+
+  data.each do |row|
+
+    row.each do |value|
+
+      text = config[:props]["data"]["profile"]["profile1"][value[1].to_s.downcase]
+
+      $accountscreen.clickSocial(value[1].to_s,text)
+
+    end
+
+  end
+
+  $accountscreen.click_done
+
+  $accountscreen.tap_save_changes
+end
+
+And(/^I verify the updated fields$/) do |table|
+  sleep 2
+
+  $common_screen=CommonScreen.new
+
+  data = table.hashes
+
+  data.each do |row|
+
+    row.each do |value|
+
+      assert_true($accountscreen.verifyLinks(value[1].to_s),value[1].to_s+" value Not displayed")
+    end
+
+  end
+
+  $accountscreen.navigate_back_to_account
+
+end
+

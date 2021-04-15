@@ -25,9 +25,10 @@ Feature: his feature enables us to test the all the bottom navigations
   Scenario: Validate android home screen footer
     Given greetings should be visible
     And user should see the button in menu bar
-    | menu       |  assertion                   |
-    | Account    |  View profile                |
-    | My Planner |  Discover                    |
-    | What's On  |  Book                        |
-    | Home       |  What can we help you with?  |
+      | menu       |  assertion                   |
+      | Account    |  View profile                |
+      | Discover   |  Discover                    |
+      | Connect    |  Connect                     |
+      | Book       |  Book                        |
+      | Home       |  What can we help you with?  |
     Then the user signs out and closes the app

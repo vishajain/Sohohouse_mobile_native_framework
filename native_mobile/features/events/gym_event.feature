@@ -1,4 +1,4 @@
-@gym_events @smoke_old @regression
+@gym_events @smoke @regression
 Feature: Book gym event
   As a member
   I navigate to events page

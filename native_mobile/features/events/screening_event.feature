@@ -1,4 +1,4 @@
-@screening_events @smoke_old @regression
+@screening_events @smoke @regression
 Feature: Book Screening event
   As a member
   I navigate to events page

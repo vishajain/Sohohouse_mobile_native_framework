@@ -1,6 +1,5 @@
 require 'rubygems'
 require 'appium_lib'
-# require 'watir'
 require 'selenium-webdriver'
 require "test/unit"
 require 'yaml'

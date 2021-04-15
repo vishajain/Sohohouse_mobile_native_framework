@@ -12,7 +12,7 @@ class Ios_Account_Objects
   end
 
   def profession_value1
-    @driver.find_element(:xpath => "//XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[2]")
+    @driver.find_element(:xpath => "//XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[3]")
   end
 
   def city_value
@@ -20,19 +20,19 @@ class Ios_Account_Objects
   end
 
   def industry_value
-    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name='Industry']/following-sibling::XCUIElementTypeStaticText[1]")
+    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name='Industry']/following-sibling::XCUIElementTypeTextView/XCUIElementTypeStaticText")
   end
 
   def about_me_value
-    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name='I am the king of this jungle']")
+    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name='About me']/following-sibling::XCUIElementTypeTextView/XCUIElementTypeStaticText")
   end
 
   def interests_value
-    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name='Ice hockey']")
+    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name='Interests']/following-sibling::XCUIElementTypeTextView/XCUIElementTypeStaticText")
   end
 
   def lets_chat_value
-    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name='Anything']")
+    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name=\""+"Let's chat"+"\"]/following-sibling::XCUIElementTypeTextView/XCUIElementTypeStaticText")
   end
 
   def your_guest_invitation
@@ -133,7 +133,7 @@ class Ios_Account_Objects
   end
 
   def profession_interests_input(interest)
-    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name='"+interest+"']")
+    @driver.find_element(:xpath => "//XCUIElementTypeCollectionView//XCUIElementTypeStaticText[@name='"+interest+"']")
   end
 
   def social_accounts
@@ -197,7 +197,7 @@ class Ios_Account_Objects
   end
 
   def edit_profile_screen
-    @driver.find_element(:name => "Edit")
+    @driver.find_element(:name => "Edit profile")
   end
 
   def your_membership
@@ -469,6 +469,36 @@ class Ios_Account_Objects
     @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name='SFFactory TestUser']/ancestor::XCUIElementTypeTable/preceding-sibling::XCUIElementTypeOther")
   end
 
+
+  def editProfileTextField
+    @driver.find_element(:xpath => "//XCUIElementTypeWindow/XCUIElementTypeOther[3]//XCUIElementTypeTextField")
+
+  end
+  def editProfileTextView
+    @driver.find_element(:xpath => "//XCUIElementTypeWindow/XCUIElementTypeOther[3]//XCUIElementTypeTextView")
+
+  end
+  def editProfilePicker
+    @driver.find_element(:xpath => "//XCUIElementTypeWindow/XCUIElementTypeOther[2]//XCUIElementTypePickerWheel")
+
+  end
+
+  def editProfileDone
+    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name='Done']")
+  end
+
+  def editProfileLink(text)
+
+    @driver.find_element(:xpath => "//XCUIElementTypeWindow/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText[@name=\""+text+"\"]")
+  end
+
+  def editSocialMedia(text)
+    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name='"+text+"']/following-sibling::XCUIElementTypeTextField")
+  end
+
+  def socialMediaValues(text)
+    @driver.find_element(:xpath => "//XCUIElementTypeTable/XCUIElementTypeCell[3]/XCUIElementTypeButton[@name='"+text+"']")
+  end
 end
 
 class Android_Account_Objects
@@ -495,7 +525,7 @@ class Android_Account_Objects
   end
 
   def industry_value
-    @driver.find_element(:xpath => "//android.widget.TextView[contains(@text,'Industry')]/following-sibling::android.widget.TextView[1]")
+    @driver.find_element(:xpath => "//android.widget.TextView[contains(@text,'Type of work')]/following-sibling::android.widget.TextView[1]")
   end
 
   def about_me_value
@@ -511,27 +541,27 @@ class Android_Account_Objects
   end
 
   def instagram_value
-    @driver.find_element(:accessibility_id => "Instagram")
+    @driver.find_element(:accessibility_id => "instagram")
   end
 
   def twitter_value
-    @driver.find_element(:accessibility_id => "Twitter")
+    @driver.find_element(:accessibility_id => "twitter")
   end
 
   def linkedin_value
-    @driver.find_element(:accessibility_id => "LinkedIn")
+    @driver.find_element(:accessibility_id => "linkedIn")
   end
 
   def spotify_value
-    @driver.find_element(:accessibility_id => "Spotify")
+    @driver.find_element(:accessibility_id => "spotify")
   end
 
   def youtube_value
-    @driver.find_element(:accessibility_id => "Youtube")
+    @driver.find_element(:accessibility_id => "youtube")
   end
 
   def website_value
-    @driver.find_element(:accessibility_id => "Website")
+    @driver.find_element(:accessibility_id => "website")
   end
 
   def edit_profile
@@ -929,10 +959,27 @@ class Android_Account_Objects
     @driver.find_element(:xpath => "//*[contains(@content-desc , 'Navigate up')or contains(@content-desc , 'Go back') or contains(@resource-id , 'close')]")
   end
 
+  def editProfileLink(text)
+
+    @driver.find_element(:xpath => "//android.widget.TextView[@text=\""+text+"\" and contains(@resource-id,'edit_profile_field_label')]")
+  end
+
+  def editProfileTextField
+    @driver.find_element(:xpath => "//android.view.ViewGroup/android.widget.EditText")
+
+  end
+
+  def editSocialMedia(text)
+    @driver.find_element(:xpath => "//android.widget.ScrollView//android.widget.TextView[@text='"+text+"']/following-sibling::android.widget.EditText")
+  end
+
+  def socialMediaValues(text)
+    @driver.find_element(:xpath => "//android.widget.ImageView[@content-desc='"+text+"']")
+  end
+
   def tap_europe
     @driver.find_element(:xpath => "//android.widget.TextView[contains(@text ,'Europe')]")
   end
-
 
 end
 

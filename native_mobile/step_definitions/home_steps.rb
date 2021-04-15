@@ -385,7 +385,7 @@ When(/^user sees the sections and subheading$/) do |table|
 end
 
 And(/^user should see the button in menu bar$/) do |table|
-  $device == "ios" ?i=5 :i=4
+  i=5
   textValue=nil
   linkValue=nil
   data = table.hashes
@@ -419,6 +419,8 @@ When(/^user selects a favourite house$/) do
   $homescreen = HomeScreen.new
 
   $accountscreen.tap_favourite_houses
+
+  $accountscreen.tap_reset
 
   $accountscreen.select_76_dean_house
 

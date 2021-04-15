@@ -37,6 +37,9 @@ class CommonScreen
   def twentySecondsTimeout
     return 20
   end
+  def fortySecondsTimeout
+    return 40
+  end
 
   def timeOut
     return browser.config.waitForTimeout
@@ -64,7 +67,7 @@ class CommonScreen
 
       rescue
 
-        self.swipe_down
+        self.little_swipe_down
 
         sleep 2
 
@@ -81,6 +84,7 @@ class CommonScreen
     end
 
   end
+
 
   def click_element_with_text(element_text)
 
@@ -102,7 +106,21 @@ class CommonScreen
 
     begin
 
-      return Common.wait_for(twentySecondsTimeout) { @device_common_objects.element_with_text(element_text) }.displayed?
+      return Common.wait_for(fortySecondsTimeout) { @device_common_objects.element_with_text(element_text) }.displayed?
+
+    rescue
+
+      return false
+
+    end
+
+  end
+
+  def verify_element_displayed_with_partial_text(element_text)
+
+    begin
+
+      return Common.wait_for(twentySecondsTimeout) { @device_common_objects.element_with_partial_text(element_text) }.displayed?
 
     rescue
 
@@ -192,6 +210,21 @@ class CommonScreen
   end
 
 
+
+  def swipeByLocation(x1,y1,x2,y2)
+
+    if $device == "ios"
+
+      $action.press({:x => x1, :y => (y1)}).wait(100).move_to({:x => x2, :y => y2}).release.perform
+
+    else
+
+      Appium::TouchAction.new.swipe(start_x:x1,start_y: y1, end_x:x2, end_y: y2).perform
+
+      sleep 1
+    end
+
+  end
 end
 
 

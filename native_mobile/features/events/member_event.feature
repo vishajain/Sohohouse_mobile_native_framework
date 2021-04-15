@@ -1,4 +1,4 @@
-@member_events @smoke_old @regression
+@member_events @smoke @regression
 Feature: Book member event
   As a member
   I navigate to events page
