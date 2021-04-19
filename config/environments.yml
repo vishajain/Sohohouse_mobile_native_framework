@@ -6,7 +6,7 @@ env:
     profile: 'Every House'
   stag:
     mobile_automation@sohohouse.com:
-      name: 'SFFactory'
+      name: 'SFFactory TestUser'
       house: 'Babington House'
       profile: 'Every House'
     manikanth.erukulla@sohohouse.com:
@@ -14,6 +14,6 @@ env:
       house: 'Little Beach House Barcelona'
       profile: 'Every House'
     mobile_android_automation@sohohouse.com:
-      name: 'SFFactory'
+      name: 'SFFactory TestUser'
       house: 'Babington House'
       profile: 'Every House'

@@ -22,7 +22,7 @@ class Ios_Home_Objects
   end
 
   def close_blackslate
-    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name='"+$name+"']/parent::XCUIElementTypeOther/following-sibling::XCUIElementTypeImage[1]")
+    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name='"+$name.split(" ")[0]+"']/parent::XCUIElementTypeOther/following-sibling::XCUIElementTypeImage[1]")
   end
 
   def browse_houses_back_button
@@ -102,7 +102,7 @@ class Ios_Home_Objects
   end
 
   def username
-    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name='"+$name+"']")
+    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name='"+$name.split(" ")[0]+"']")
   end
 
   def chasing_username
@@ -182,6 +182,10 @@ class Ios_Home_Objects
 
   def whats_on
      @driver.find_element(:xpath => "//XCUIElementTypeTabBar/XCUIElementTypeButton[@name='Book']")
+  end
+
+  def connect_tab
+    @driver.find_element(:xpath => "//XCUIElementTypeTabBar/XCUIElementTypeButton[@name='Connect']")
   end
 
   def whats_on_1
@@ -432,7 +436,7 @@ class Android_Home_Objects
   end
 
   def username
-    @driver.find_element(:xpath => "//android.widget.TextView[@text='"+$name+"']")
+    @driver.find_element(:xpath => "//android.widget.TextView[@text='"+$name.split(" ")[0]+"']")
   end
 
   def happening_now
@@ -487,6 +491,10 @@ class Android_Home_Objects
      @driver.find_element(:xpath => "//android.view.ViewGroup//android.widget.FrameLayout[2]/android.widget.ImageView")
   end
 
+  def connect_tab
+    @driver.find_element(:xpath => "//android.view.ViewGroup//android.widget.FrameLayout[3]/android.widget.ImageView")
+  end
+
   def whats_on_1
        @driver.find_element(:id => "#{$currentPackage+':id'+'/menu_explore'}")
   end
@@ -539,11 +547,7 @@ class Android_Home_Objects
     @driver.find_element(:id => "#{$currentPackage+':id'+'/house_board_post_edit_text'}")
   end
 
-  def view_post
 
-    @driver.find_element(:xpath => "//android.widget.TextView[@text ='Now']/following-sibling::android.widget.TextView")
-
-  end
 
   def post_button
 

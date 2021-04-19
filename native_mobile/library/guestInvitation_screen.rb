@@ -1,7 +1,6 @@
 
 require 'rubygems'
 require 'appium_lib'
-require 'date'
 # require 'watir'
 require 'selenium-webdriver'
 require "test/unit"

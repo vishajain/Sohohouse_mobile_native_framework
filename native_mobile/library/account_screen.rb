@@ -606,15 +606,17 @@ class AccountScreen
   end
 
   def tap_social_accounts
+     $common_screen.swipeByLocation(50,400,50,100)
+
+     sleep 1
     begin
-    if Common.wait_for(3){@device_account_objects.social_accounts}.displayed?
-      Common.verifyNavBar(@device_account_objects.social_accounts)
-    end
+    Common.wait_for(3){@device_account_objects.social_accounts}.displayed?
     rescue
       Common.little_swipe_down
+      ($common_screen.verify_element_displayed_with_text("Cancel") and $device == "android")?($common_screen.click_element_with_text("Cancel")):(sleep 1)
+      sleep 1
     end
-
-    Common.wait_for(3){@device_account_objects.social_accounts}.click
+     Common.wait_for(3){@device_account_objects.social_accounts}.click
 
   end
 
@@ -836,10 +838,14 @@ class AccountScreen
       removewidget(value)
 
     when "About me","Let's chat"
+      if $device=="ios"
+        $common_screen.wait_for($common_screen.fiveSecondsTimeout){@device_account_objects.editProfileTextView}.clear
+        @device_account_objects.editProfileTextView.send_keys(value)
+      else
+        $common_screen.wait_for($common_screen.fiveSecondsTimeout){@device_account_objects.editProfileTextField}.clear
+        @device_account_objects.editProfileTextField.send_keys(value)
+      end
 
-      $common_screen.wait_for($common_screen.fiveSecondsTimeout){@device_account_objects.editProfileTextView}.clear
-
-      @device_account_objects.editProfileTextView.send_keys(value)
 
     when "Industry"
 
@@ -855,17 +861,26 @@ class AccountScreen
       $driver.action.move_to(@device_account_objects.editProfileLink(text)).click.perform
     end
 
-      return true
+    return true
 
   end
 
   def clickEditProfileLink(text)
 
-    $driver.action.move_to(@device_account_objects.editProfileLink(text)).click.perform
+    if $device == "ios"
+
+      $driver.action.move_to(@device_account_objects.editProfileLink(text)).click.perform
+
+    else
+
+      @device_account_objects.editProfileLink(text).click
+
+    end
 
   end
 
   def removewidget(text)
+    if $device == "ios"
 
     element_count = Common.wait_for(10){@device_account_objects.profession_interests_remove.size}
 
@@ -879,16 +894,43 @@ class AccountScreen
 
       end
 
-      @device_account_objects.editProfileTextField.clear
+    end
 
-      @device_account_objects.editProfileTextField.send_keys(text.split(" ")[0])
+    else
 
-      clickWidget(text)
+      $common_screen.click_element_with_text("Reset")
 
     end
 
+    for i in text
+
+      if $device == "ios"
+
+        @device_account_objects.editProfileTextField.clear
+
+        @device_account_objects.editProfileTextField.send_keys(i.split(" ")[0])
+
+      end
+
+      clickWidget(i)
+
+    end
+
+    sleep 1
+
+    $device == "android"?  ($common_screen.click_element_with_text("Confirm")):(sleep 1)
+
   end
 
+  def select_pill(text)
+
+    @device_account_objects.editProfileTextField.clear
+
+    @device_account_objects.editProfileTextField.send_keys(text.split(" ")[0])
+
+    clickWidget(text)
+
+  end
 
   def clickWidget(text)
 
@@ -911,6 +953,7 @@ class AccountScreen
   end
 
   def verifyLinks(value)
+    sleep 5
 
     config = {props: YAML.load_file(File.join(File.dirname(__FILE__), '../../config/testdata.yml'))}
 
@@ -924,7 +967,7 @@ class AccountScreen
 
     when "interest1"
 
-      return Common.wait_for(3){@device_account_objects.interests_value}.text.include? text
+      return Common.wait_for(3){@device_account_objects.interests_value}.text.include? text[1]
 
     when "about-me"
 

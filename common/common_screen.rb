@@ -85,7 +85,6 @@ class CommonScreen
 
   end
 
-
   def click_element_with_text(element_text)
 
     wait_for(fiveSecondsTimeout){@device_common_objects.element_with_text(element_text)}.click

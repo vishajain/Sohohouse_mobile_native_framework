@@ -22,7 +22,7 @@ data:
       city: 'Manhattan'
       about-me: 'I am the king of this jungle'
       chat: 'Anything'
-      interest1: 'Outdoor activities'
+      interest1: ['Outdoor activities','Beauty','Water sports']
       website: 'https://www.geeksforgeeks.org/'
       instagram: '@sohohouse'
       twitter: '@sohohouse'

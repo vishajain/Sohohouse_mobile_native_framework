@@ -1,4 +1,4 @@
-@sync-Calendar-screen
+@sync-Calendar-screen @ios
 Feature: This feature enables us to test the sync calendar functionality
 
   Background:

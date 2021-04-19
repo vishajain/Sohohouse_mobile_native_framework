@@ -10,37 +10,36 @@ Feature: his feature enables us to test the house board functionality
     And the user is on main screen
     When user enters valid email address and password
 
-  @smoke @verify_noticeboard
+  @smoke @verify_noticeboard @ios
   Scenario: Validate noticeboard section
-    Given the user sees post button on the home screen
-    And user taps on View another noticeboard link to see Noticeboards screen
-    When the user taps on Post
-    And user is be navigated to the noticeboard screen
+    Given I see the post button on the home screen
+    When I tap on Post
 
   @smoke @post_on_noticeboard
   Scenario: User posts a post on the local house notice board
-    Given the user sees post button on the home screen
-    When the user taps on Post
-    And the user enters a new post
-    And the user sees post button on the home screen
-    And user sees the post on the home screen
-    But user taps on view another noticeboard
-    And user sees the posts count incremented by one
+    Given greetings should be visible
+    And I navigate to connect screen
+    And I write a post
+      | Message           | House                | Topic |
+      | How are you all   | Babington House      | Music |
+    And I see the post on the noticeboard screen
+    Then I click to Home tab
 
-  @regression @edit_post @iOS_will_fail
-  Scenario: Amend and delete the local house's post on the noticeboard
-    Given the user sees post button on the home screen
-    When user inputs the text to amend
-    And user sees the post amended on the home screen
-    And user taps on delete post
-    And user sees the post deleted from the home screen
 
-  @regression @another_noticeboard
-  Scenario: Navigate to other house noticeboard
-    Given the user sees post button on the home screen
-    And user taps on view another noticeboard
-    When the user taps on Soho house Berlin
-    And the user enters a new post on another notice board
-    And user sees the post amended on the noticeboard screen
-    And user sees the post deleted on the noticeboard screen
+  @smoke @post_on_noticeboard
+  Scenario: Like and Reply to a post
+    Given greetings should be visible
+    And I navigate to connect screen
+    And I select a post and like the post
+    And I reply to the post
+    Then I verify post is liked and replied
+    Then I click to Home tab
+
+  @smoke @post_on_noticeboard
+  Scenario: Delete a Post
+    Given greetings should be visible
+    And I navigate to connect screen
+    And I delete the post
+    And I verify post is deleted
+    And I click to Home tab
     Then the user signs out and closes the app
