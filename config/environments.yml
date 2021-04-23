@@ -9,6 +9,14 @@ env:
       name: 'SFFactory TestUser'
       house: 'Babington House'
       profile: 'Every House'
+    ios_changepassword@example.com:
+      name: 'SFFactory'
+      house: 'Babington House'
+      profile: 'Every House'
+    change_password_android@example.com:
+      name: 'SFFactory'
+      house: 'Babington House'
+      profile: 'Every House'
     manikanth.erukulla@sohohouse.com:
       name: 'Manikanth'
       house: 'Little Beach House Barcelona'

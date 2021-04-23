@@ -1,13 +1,7 @@
-@Account-screen
+@Account-screen  @regression
 Feature: Account screen
 
-  @login-ex
-  Scenario: User Logins to the app
-    Given app is launched
-    And the user is on main screen
-    When user enters valid email address and password
-
-  @smoke @regression @verify_account_Screen @ios
+  @smoke @verify_account_Screen @ios
   Scenario: Validate Account screen title
     Given greetings should be visible
     When I click on Account button on home screen
@@ -22,9 +16,10 @@ Feature: Account screen
       | Terms and policies    | Sign in to your account |
       | Settings              | Settings                |
       | FAQs                  | FAQ                     |
+    Then I navigate to Home page
 
 
-  @smoke @regression @verify_account_Screen @android
+  @smoke @verify_account_Screen @android
   Scenario: Validate Account screen title
     Given greetings should be visible
     When I click on Account button on home screen
@@ -40,16 +35,20 @@ Feature: Account screen
       | Terms & Policies      | Legal               |
       | Contact us            | Contact us          |
       | FAQ                   | FAQ                 |
+    Then I navigate to Home page
 
   @smoke @test
   Scenario: I submit the enquiry using contact us form
+    Given I navigate to Account page
     Given I tap on Contact us form
     When I provides Type of enquiry as General enquiry
     And I provides Topic of enquiry as Feedback
     And I enter enquiry message as I like your services
     Then I submits the enquiry
     Then I navigate to confirmation screen
-    Then I navigate back and sign out of the app
+    Then I navigate back to accounts
+    Then I navigate to Home page
+
 
 
 

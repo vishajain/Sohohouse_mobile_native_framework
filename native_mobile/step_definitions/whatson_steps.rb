@@ -155,9 +155,13 @@ And(/^tap on (.*) tab and set filter/) do |section|
 
   $accountscreen = AccountScreen.new
 
+
+
   if !(($filterEvent.to_s).include?section) or $device=="android"
 
-       $whatsonscreen.events_click(section)
+    $common_screen.swipe_top
+    $whatsonscreen.events_click(section)
+
 
   end
 
@@ -313,6 +317,10 @@ When(/^I book (.*) ticket for guests  and verify status for the "([^"]*)" of "([
     for i in 1..(guest_ticket_no.to_i) do
 
       $whatsonscreen.inviteGuest(event_type,1)
+      sleep 2
+
+      $device=="android"?($common_screen.click_element_with_text(event_name)):(sleep 1)
+
 
       sleep 2
 

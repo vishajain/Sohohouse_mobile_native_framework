@@ -1,11 +1,5 @@
-@whatsHappening-homeScreen
+@whatsHappening-homeScreen @regression
 Feature: Happening Now Carousel on Home Screen
-
-  @smoke @login-ex
-  Scenario: Pre-requisite for home screen testing
-    Given app is launched
-    And the user is on main screen
-    When user enters valid email address and password
 
   @smoke
   Scenario: Validate home screen header

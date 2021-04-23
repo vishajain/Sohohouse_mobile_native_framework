@@ -1,13 +1,8 @@
-@Onboarding-screens
+@Onboarding-screens @regression
 Feature: This is a feature to test On-boarding screens for iOS and Android
 
-  Background: User logins with valid credentials
-    Given app is launched
-    And the user is on main screen
-    And user enters valid email address and password
-
   @smoke @ios
-  Scenario: Verify the onboarding screens
+  Scenario: Verify the on-boarding screens
     Given I verify Welcome to Soho House is displayed after login
     When I verify the onboarding screens
       | Screen                   | Button                     |
@@ -20,20 +15,22 @@ Feature: This is a feature to test On-boarding screens for iOS and Android
       | You're all set           | Next                       |
       | Introducing messaging    | Next                       |
       | Drop a note              | Done                       |
+      | Introducing messaging    | Next                       |
+      | Drop a note              | Done                       |
     And I click on Connect tab
     And I verify the onboarding screens
       | Screen                  | Button   |
       | Introducing rooms       | Next     |
       | Who can see your room?  | Next     |
       | How to join a room      | Finish   |
-      | Introducing Connections | Next   |
-      | Recommendations         | Next   |
-      | Recommendations         | Next   |
-      | Share your interests    | Update my profile    |
-    And greetings should be visible
-    Then the user signs out and closes the app
+      | Update your profile      | Next     |
+      | Personalised recommendations | Next |
+      | Personalised recommendations | Next |
+      | Connect with more Members    | Dismiss |
+    And I navigate to Home page
+    Then greetings should be visible
+
 
   @smoke @android
   Scenario: Android on-boarding screens
-    When user sees the home screen
-    Then the user signs out and closes the app
+    Given user sees the home screen

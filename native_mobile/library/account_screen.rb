@@ -7,7 +7,7 @@ require 'yaml'
 require_relative '../pageobjects/onboarding_objects'
 require_relative '../pageobjects/home_objects'
 require_relative '../pageobjects/account_objects'
-
+require_relative '../../common/functions_common'
 
 class AccountScreen
 
@@ -270,7 +270,7 @@ class AccountScreen
     if $device == "android"
       Common.wait_for(10){@device_account_objects.cancel_yes}.click
     end
-
+    $login=false
     return Common.wait_for(5){@device_onboarding_objects.main_home.displayed?}
 
   end
@@ -305,7 +305,7 @@ class AccountScreen
   def verify_subscribe
 
     Common.wait_for(10) {@device_account_objects.subscribe.displayed?}
-
+    sleep 2
     if $device == "android"
       Common.wait_for(5){@device_account_objects.cancel_yes}.click
     end
@@ -630,7 +630,8 @@ class AccountScreen
 
     Common.navigateBack
 
-    Common.wait_for(10){@device_home_objects.homeBtn}.click
+    $common_screen=CommonScreen.new
+    $common_screen.navigate_to_tabs("Account")
 
     return true
 
@@ -863,7 +864,7 @@ class AccountScreen
 
     return true
 
-  end
+end
 
   def clickEditProfileLink(text)
 

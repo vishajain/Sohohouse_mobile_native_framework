@@ -27,15 +27,115 @@ end
 
 Before do |scenario|
 
+  i=0
+
+  uninstalled_flag=false
+
+  loop do
+
+    begin
+
+      if $driver == nil                               #checking whether app is already up if not launch
+
+        Base_driver.setapp()
+
+        initializeClass
+
+        if scenario.feature.name.include?"On-boarding screens" and uninstalled_flag==false
+
+          $device=="ios"?($onboardingscreens.verify_home_and_logout):(sleep 1)
+
+          $device=="ios"?($driver.remove_app("com.sohohouse.enterprise.staging")):($driver.remove_app("com.sohohouse.seven.staging"))
+
+          $driver=nil
+
+          uninstalled_flag=true
+
+          raise "Uninstalled..Re-Launch"
+
+        end
+
+      end
+
+      assert_true($onboardingscreens.verify_app_launch_screen, "App installed successfully") #Checking if app is launched if yes, is it alreday logged in
+
+      break
+
+    rescue StandardError => e
+
+      print e.message
+
+        i = i + 1
+
+        if i > 2
+
+          break
+
+        end
+
+    end
+
+  end
+  config     = {props: YAML.load_file(File.join(File.dirname(__FILE__), '../../config/testdata.yml'))}
+
+  if config[:props]["data"]["need_signout"].include?scenario.name
+
+    $onboardingscreens.verify_home_and_logout
+
+    $email = config[:props]["data"]["email-id"][$device][scenario.name]
+
+  else
+
+    $email=$default_email
+
+  end
+
+  if $login == false                                          #if not already logged in ,then log in
+
+    $onboardingscreens.user_clicks_membership
+
+  end
+
+  if $login != nil
+
+    $onboardingscreens.user_enters_email_password("valid")
+
+  end
+
   $scenario=ScenarioContext.new
+
   $scenario.setContext("scenario",scenario.name)
 
 end
 
 After do |scenario|
+
   if scenario.failed?
 
     encoded_img = $driver.screenshot_as(:base64)
+
     embed("data:image/png;base64,#{encoded_img}",'image/png')
+
+    $onboardingscreens = OnboardingScreens.new
+
+    $onboardingscreens.close_app
+
   end
+  config     = {props: YAML.load_file(File.join(File.dirname(__FILE__), '../../config/testdata.yml'))}
+  if config[:props]["data"]["need_signout"].include?scenario.name
+
+    $onboardingscreens.verify_home_and_logout
+    sleep 2
+
+  end
+
 end
+
+def initializeClass
+  $onboardingscreens = OnboardingScreens.new
+  $homescreen = HomeScreen.new
+  $whatsonscreen = WhatsonScreen.new
+  $accountscreen = AccountScreen.new
+  $common_screen=CommonScreen.new
+end
+

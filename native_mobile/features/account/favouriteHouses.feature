@@ -1,15 +1,7 @@
-@Favourite-Houses-screen
+@Favourite-Houses-screen  @regression
 Feature: This feature enables us to test the sync calendar functionality
 
-  Background:
-
-  @login-ex
-  Scenario: User Logins to the app
-    Given app is launched
-    And the user is on main screen
-    When user enters valid email address and password
-
-  @smoke @regression @favourite_houses
+  @smoke @favourite_houses
   Scenario: User adds a house to his list of favourite houses
     Given username is visible
     And I click on Account button on home screen
@@ -17,4 +9,4 @@ Feature: This feature enables us to test the sync calendar functionality
       | Location | Houses               |
       | Europe   | Soho House Amsterdam |
     And I verify "Soho House Amsterdam" is displayed
-    Then the user signs out and closes the app
+    Then member is not on home screen from account screen

@@ -238,7 +238,7 @@ class HomeScreen
 
           end
 
-        end
+    end
 
   end
 
@@ -381,7 +381,9 @@ class HomeScreen
 
       begin
 
-        Common.wait_for(2){@device_account_objects.ElementsWithText("What can we help you with?")}.displayed?
+        Common.wait_for(2){@device_account_objects.ElementsWithText("What can we help you with?")}.click
+
+        $common_screen.swipe_top
 
         return true
 

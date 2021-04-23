@@ -1,11 +1,5 @@
-@notification-screen
+@notification-screen @iOS_will_fail
 Feature: This feature enables us to test the notifications functionality
-
-  @login-ex
-  Scenario: User Logins to the app
-    Given app is launched
-    And the user is on main screen
-    When user enters valid email address and password
 
   @smoke @regression @notification_preferences @events
   Scenario: User updates their notification preferences for events

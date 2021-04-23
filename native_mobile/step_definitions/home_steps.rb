@@ -310,3 +310,10 @@ And(/^I navigate to connect screen$/) do
   $common_screen.navigate_to_tabs("Connect")
 
 end
+
+Then(/^I navigate to ([^"]*) page$/) do |arg|
+
+  $common_screen=CommonScreen.new
+  $common_screen.navigate_to_tabs(arg)
+  $common_screen.swipe_top
+end

@@ -39,7 +39,7 @@ When(/^I verify the profile screen title$/) do
 
 end
 
-Then(/^I navigate to ([^"]*) tab$/) do |text|
+Then(/^I navigate to ([^"]*) in Settings tab$/) do |text|
 
   begin
 
@@ -198,13 +198,9 @@ Then("I submits the enquiry") do
 
 end
 
-Then(/^I navigate back and sign out of the app$/) do
+Then(/^I navigate back to accounts$/) do
 
   $accountscreen.tap_icon_left
-
-  assert_true($accountscreen.tap_sign_out, "Unable to sign out the user")
-
-  $onboardingscreens.close_app
 
 end
 

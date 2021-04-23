@@ -37,6 +37,7 @@ class OnboardingScreens
   def close_app
 
     $driver = $driver_appium.quit_driver
+    $filterEvent=nil
 
   end
 
@@ -56,29 +57,34 @@ class OnboardingScreens
 
       $profile = config[:props]["env"][$env][$email]["profile"]
 
-      if $device == 'ios'
+      if $login == false
+        if $device == 'ios'
 
-        @device_onboarding_objects.email_textfield.click
+          @device_onboarding_objects.email_textfield.click
+
+        end
+
+        @device_onboarding_objects.email_textfield.send_keys(email)
+
+        @device_onboarding_objects.password_textfield.send_keys($password)
+
+        Common.wait_for(30){@device_onboarding_objects.go_button}.click
+        ($common_screen.verify_element_displayed_with_text("What can we help you with?"))? ($login = true):($login = false)
 
       end
-
-      @device_onboarding_objects.email_textfield.send_keys(email)
-
-      @device_onboarding_objects.password_textfield.send_keys($password)
-
     end
 
   end
 
   def user_enters_email_changed_password(validity)
 
-    config     = {props: YAML.load_file(File.join(File.dirname(__FILE__), '../../config/testdata.yml'))}
+    config     = {props: YAML.load_file(File.join(File.dirname(__FILE__), '../../config/environments.yml'))}
 
-    email      = config[:props]["data"][validity]
-    $device == "ios"?(@device_onboarding_objects.email_textfield.click):(sleep 1)
+    $name = config[:props]["env"][$env][$email]["name"]
+
     @device_onboarding_objects.email_textfield.clear
 
-    @device_onboarding_objects.email_textfield.send_keys(email)
+    @device_onboarding_objects.email_textfield.send_keys($email)
 
     @device_onboarding_objects.password_textfield.clear
 
@@ -116,10 +122,39 @@ class OnboardingScreens
   end
 
   def verify_app_launch_screen()
-    if  Common.wait_for(30) {@device_onboarding_objects.main_home.displayed?}
-
-      return true
-
+    begin
+      begin
+        case $login
+        when nil
+          Common.wait_for(15) {@device_onboarding_objects.main_home.displayed?}
+          $login = false
+        when true
+          $common_screen=CommonScreen.new
+          $common_screen.verify_element_displayed_with_text("What can we help you with?")
+        when false
+          Common.wait_for(15) {@device_onboarding_objects.main_home.displayed?}
+        end
+        return true
+      end
+    rescue
+      begin
+        case $login
+        when nil
+          $common_screen.verify_element_displayed_with_text("What can we help you with?")
+          $login = true
+        when true
+          Common.wait_for(40) {@device_onboarding_objects.main_home}.displayed?
+          $login = false
+        when false
+          $common_screen.verify_element_displayed_with_text("What can we help you with?")
+          $login = true
+        end
+        return true
+      rescue
+        Common.wait_for(5) {@device_onboarding_objects.let_me_in_button.displayed?}
+        $login=true
+        return true
+      end
     end
   end
 
@@ -129,8 +164,12 @@ class OnboardingScreens
   end
 
   def user_main_screen()
-
-    Common.wait_for(2){@device_onboarding_objects.main_home.displayed?}
+    begin
+      Common.wait_for(2){@device_onboarding_objects.main_home.displayed?}
+      return true
+    rescue
+      return false
+    end
   end
 
   def verify_user_is_on_onboarding_screen()
@@ -422,4 +461,23 @@ class OnboardingScreens
 
   end
 
+  def verify_home_and_logout
+    begin
+      if Common.wait_for(5){@device_onboarding_objects.main_home}.displayed?
+        return true
+      end
+    rescue
+      if $common_screen.verify_element_displayed_with_text("What can we help you with?")
+
+        $homescreen.verify_account_click
+
+        assert_true($accountscreen.verify_sign_out, "Unable to see sign out button")
+
+        $accountscreen.tap_sign_out
+        $login=false
+
+      end
+
+    end
+  end
 end

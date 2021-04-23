@@ -236,6 +236,7 @@ end
 And("user sees the home screen") do
 
   assert_true($homescreen.verify_username,"Username is not present")
+  sleep 3
 
 end
 
@@ -427,6 +428,7 @@ When(/^I verify the onboarding screens$/) do |table|
     row.each do |key,value|
       if key.eql?"Screen"
         assert_true($common_screen.find_element{$common_screen.verify_element_displayed_with_text(value)},value+" is not displayed")
+        value == "Personalised recommendations"?(sleep 4):()
       elsif key.eql?"Button"
         assert_true($common_screen.find_element{$common_screen.click_element_with_text(value)},value+" is not clicked")
       end
@@ -435,7 +437,6 @@ When(/^I verify the onboarding screens$/) do |table|
   end
   sleep 2
   $accountscreen=AccountScreen.new
-  $common_screen.navigate_to_tabs(arg)
 end
 
 Given(/^I verify (.*) is displayed after login$/) do |string|
@@ -474,8 +475,6 @@ And(/^user enters email address for change password screen$/) do
   $device== "ios"?($activescreen.user_enters_email_address("change-password-ios")):($activescreen.user_enters_email_address("change-password-android"))
 end
 
-Then(/^I click to ([^"]*) tab$/) do |arg|
-  $common_screen=CommonScreen.new
-  $common_screen.navigate_to_tabs(arg)
-  $common_screen.swipe_top
+Given(/^I sign out if I am Logged in$/) do
+  $onboardingscreens.verify_home_and_logout
 end

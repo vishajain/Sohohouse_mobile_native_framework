@@ -1,10 +1,5 @@
-@houseBoard-screen
+@houseBoard-screen @regression
 Feature: This feature enables us to test the house board functionality
-
-  Background:
-    Given app is launched
-    And the user is on main screen
-    When user enters valid email address and password
 
   @smoke @house_board @ios
   Scenario: Validate Houseboard navigation
@@ -18,7 +13,6 @@ Feature: This feature enables us to test the house board functionality
       | Book a bedroom   | Stay with us                   |
       | House rules      | House guidelines               |
     Then I close the houseboard screen
-    Then the user signs out and closes the app
 
   @smoke @house_board @android
   Scenario: Validate Houseboard navigation
@@ -33,5 +27,3 @@ Feature: This feature enables us to test the house board functionality
       | Book a bedroom  | Stay with us   |
       | House rules     | House Rules    |
     Then I close the houseboard screen
-
-    Then the user signs out and closes the app

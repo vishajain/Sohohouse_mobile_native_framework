@@ -1,11 +1,6 @@
-@guest-invitation-screen
+@guest-invitation-screen @regression
 Feature: This is a feature to test Guest Invitations functionality for iOS and Android
 
-  @login-ex
-  Scenario: User Logins to the app
-    Given app is launched
-    And the user is on main screen
-    When user enters valid email address and password
   @smoke @ios
   Scenario: Guest Invitations assertion & deletions under guest invitations
     Given greetings should be visible
@@ -46,4 +41,4 @@ Feature: This is a feature to test Guest Invitations functionality for iOS and A
       | invite      |
       | this week   |
       | future week |
-    Then the user signs out and closes the app
+  Then I navigate to Home page

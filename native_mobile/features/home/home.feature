@@ -1,16 +1,8 @@
-@home-screen
+@home-screen @regression
 Feature: Home Screen all sections validation
 
-  Background:
-
-  @login-ex
-  Scenario: User Logins to the app
-    Given app is launched
-    And the user is on main screen
-    When user enters valid email address and password
-
   @smoke @ios
-  Scenario: Pre-requisite for home screen testing
+  Scenario: Verify the 'What can we help you with section
     Given greetings should be visible
     And user verifies all sections of 'What can we help you with'
       | Section                  | Links                 |
@@ -45,9 +37,10 @@ Feature: Home Screen all sections validation
       | Section         |  SubHeading                   |  Title         |
       | Set up your app |  Complete Your Profile        |  Edit profile  |
       | Set up your app |  Customise your notifications |  Settings      |
+    Then the user scrolls to the top
 
   @smoke @ios
-  Scenario: Pre-requisite for home screen testing
+  Scenario:Verify all sections of Home Screen
     Given greetings should be visible
     When user sees all the sections on home screen
       | Section                     |
@@ -58,8 +51,7 @@ Feature: Home Screen all sections validation
       | Member Stories              |
       | Our Houses                  |
       | Member benefits             |
-    And the user scrolls to the top
-    Then the user signs out and closes the app
+    Then the user scrolls to the top
 
   @smoke @android
   Scenario: Pre-requisite for home screen testing
@@ -72,6 +64,5 @@ Feature: Home Screen all sections validation
       | Member Stories              |
       | Our Houses                  |
       | Member Benefits             |
-    And the user scrolls to the top
-    Then the user signs out and closes the app
+    Then the user scrolls to the top
 

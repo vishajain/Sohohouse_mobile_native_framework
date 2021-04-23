@@ -54,5 +54,13 @@ data:
   active-plus-every: 'app.active-plus.every.local@example.com'
   active-members-only-status: 'ACTIVE MEMBERS ONLY'
   house-members-only-status: 'HOUSE MEMBERS ONLY'
-  change-password-ios: 'ios_changepassword@example.com '
+  change-password-ios: 'ios_changepassword@example.com'
   change-password-android: 'change_password_android@example.com'
+  need_signout: ["User updates their password","User reverts their password","User login with different accounts and verifies message"]
+  email-id:
+    ios:
+      User updates their password: 'ios_changepassword@example.com'
+      User reverts their password: 'ios_changepassword@example.com'
+    android:
+      User updates their password: 'change_password_android@example.com'
+      User reverts their password: 'change_password_android@example.com'

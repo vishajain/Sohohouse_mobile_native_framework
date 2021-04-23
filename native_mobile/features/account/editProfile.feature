@@ -1,15 +1,8 @@
-@EditProfile-screen
+@EditProfile-screen @regression
 Feature: This feature enables us to test the edit profile functionality
 
-  Background:
 
-  @login-ex
-  Scenario: User Logins to the app
-    Given app is launched
-    And the user is on main screen
-    When user enters valid email address and password
-
-  @smoke @regression @edit_profile @ios
+  @smoke @edit_profile @ios
   Scenario: Validate Edit profile fields
     Given I click on Account button on home screen
     When I verify the profile screen title
@@ -29,7 +22,7 @@ Feature: This feature enables us to test the edit profile functionality
       | LinkedIn  |
       | Spotify   |
       | YouTube   |
-    Then I verify the updated fields
+    And I verify the updated fields
       | Value               |
       | profession          |
       | industry            |
@@ -43,9 +36,9 @@ Feature: This feature enables us to test the edit profile functionality
       | linkedIn            |
       | spotify             |
       | youtube             |
- Then the user signs out and closes the app
+    Then I navigate to Home page
 
-  @smoke @regression @edit_profile @android
+  @smoke @edit_profile @android
   Scenario: Validate Edit profile fields
     Given I click on Account button on home screen
     When I verify the profile screen title
@@ -64,7 +57,7 @@ Feature: This feature enables us to test the edit profile functionality
       | LinkedIn  |
       | Spotify   |
       | YouTube   |
-    Then I verify the updated fields
+    And I verify the updated fields
       | Value               |
       | profession          |
       | about-me            |
@@ -77,4 +70,4 @@ Feature: This feature enables us to test the edit profile functionality
       | LinkedIn            |
       | Spotify             |
       | Youtube             |
-    Then the user signs out and closes the app
+    Then I navigate to Home page

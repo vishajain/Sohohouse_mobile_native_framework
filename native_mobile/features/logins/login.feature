@@ -1,4 +1,4 @@
-@login-screen
+@login-screen  @regression
 Feature: This is the feature to test different login scenarios for iOS and Android
 
   @smoke
