@@ -168,6 +168,10 @@ class Ios_Onboarding_Objects
     @driver.find_element(:xpath => "//XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeStaticText")
   end
 
+  def home_title
+    @driver.find_element(:xpath => "//*[@name = 'Share profile']")
+  end
+
 end
 
 class Android_Onboarding_Objects
@@ -285,6 +289,10 @@ class Android_Onboarding_Objects
 
   def update_later
     @driver.find_element(:xpath => "//android.widget.TextView[@text = 'Update later']")
+  end
+
+  def home_title
+    @driver.find_element(:xpath => "//*[@text = 'What can we help you with?']")
   end
 
 end

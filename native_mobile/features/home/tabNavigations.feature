@@ -1,4 +1,4 @@
-@BottomTab-Navigations @regression
+@BottomTab-Navigations @regression @android
 Feature: his feature enables us to test the all the bottom navigations
 
   @smoke @ios

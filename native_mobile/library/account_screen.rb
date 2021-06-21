@@ -40,7 +40,7 @@ class AccountScreen
       Common.wait_for(10){@device_account_objects.account_title}
       sleep 3
       $driver.action.move_to(@device_account_objects.account_title).click.perform
-
+      sleep 2
     end
 
   end
@@ -170,19 +170,17 @@ class AccountScreen
     sleep 2
 
     Common.swipe_top
-
-    Common.wait_for(5) {@device_home_objects.username.displayed?}
-
+    
     return true
 
   end
 
   def navigate_to_home
 
-    sleep 2
+    sleep 1
     $common_screen=CommonScreen.new
     $common_screen.navigate_to_tabs("Home")
-
+    sleep 1
     return true
 
   end
@@ -271,6 +269,7 @@ class AccountScreen
       Common.wait_for(10){@device_account_objects.cancel_yes}.click
     end
     $login=false
+    sleep 2
     return Common.wait_for(5){@device_onboarding_objects.main_home.displayed?}
 
   end
@@ -426,7 +425,6 @@ class AccountScreen
 
     Common.wait_for(10){@device_account_objects.tap_uk}.click
 
-    Common.swipeByLocation(50,350,50,20)
     i=0
     loop do
       begin
@@ -444,6 +442,8 @@ class AccountScreen
 
       end
     end
+    Common.wait_for(10){@device_account_objects.tap_uk}.click
+    sleep 1
   end
 
   def tap_settings
@@ -465,7 +465,6 @@ class AccountScreen
    @device_account_objects.select_favourite(input).click
 
    $device=="ios"?(sleep 1):(sleep 15)
-
 
   end
 
@@ -606,14 +605,17 @@ class AccountScreen
   end
 
   def tap_social_accounts
-     $common_screen.swipeByLocation(50,400,50,100)
 
      sleep 1
-    begin
-    Common.wait_for(3){@device_account_objects.social_accounts}.displayed?
+     begin
+      @device_account_objects.social_accounts.displayed?
+      begin
+        $common_screen.click_element_with_text("Cancel")
+      rescue
+      end
     rescue
       Common.little_swipe_down
-      ($common_screen.verify_element_displayed_with_text("Cancel") and $device == "android")?($common_screen.click_element_with_text("Cancel")):(sleep 1)
+      ($common_screen.verify_element_displayed_with_text("Cancel"))?($common_screen.click_element_with_text("Cancel")):(sleep 1)
       sleep 1
     end
      Common.wait_for(3){@device_account_objects.social_accounts}.click
@@ -881,45 +883,26 @@ end
   end
 
   def removewidget(text)
-    if $device == "ios"
-
-    element_count = Common.wait_for(10){@device_account_objects.profession_interests_remove.size}
-
-    if (element_count > 0) or ($common_screen.verify_element_displayed_with_partial_text("Please choose"))
-
-      until element_count == 0
-
-        @device_account_objects.profession_interests_remove[0].click
-
-        element_count = element_count-1
-
-      end
-
-    end
-
-    else
-
-      $common_screen.click_element_with_text("Reset")
-
-    end
+    $common_screen.click_element_with_text("Reset")
 
     for i in text
 
       if $device == "ios"
 
-        @device_account_objects.editProfileTextField.clear
+        $common_screen.click_element_with_partial_text(i.split("->")[0])
+        sleep 1
+        $common_screen.click_element_with_text(i.split("->")[1])
+        $common_screen.click_element_with_partial_text(i.split("->")[0])
 
-        @device_account_objects.editProfileTextField.send_keys(i.split(" ")[0])
+        else
 
+          $common_screen.click_element_with_text(i.split("->")[1])
       end
-
-      clickWidget(i)
-
     end
 
     sleep 1
 
-    $device == "android"?  ($common_screen.click_element_with_text("Confirm")):(sleep 1)
+    $common_screen.click_element_with_text("Confirm")
 
   end
 
@@ -968,7 +951,7 @@ end
 
     when "interest1"
 
-      return Common.wait_for(3){@device_account_objects.interests_value}.text.include? text[1]
+      return Common.wait_for(3){@device_account_objects.interests_value}.text.include? text[1].split("->")[1]
 
     when "about-me"
 
@@ -997,6 +980,22 @@ end
   def click_done
 
     $driver.action.move_to(@device_account_objects.done).click.perform
+
+  end
+
+  def back_to_account_page
+
+    begin
+
+      sleep 2
+
+      $common_screen.click_element(@device_account_objects.navigate_back_to_account)
+
+    rescue
+
+      Common.swipe_top
+
+    end
 
   end
 

@@ -3,7 +3,8 @@ Feature: This features enables us to test the change password functionality
 
   @change_password
   Scenario: User updates their password
-    Given I click on Account button on home screen
+    Given Skip the onboarding screen
+    And I click on Account button on home screen
     And I tap on settings
     And I navigate to Change Password in Settings tab
     When I update the password

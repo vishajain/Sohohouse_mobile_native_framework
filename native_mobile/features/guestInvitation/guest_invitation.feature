@@ -14,7 +14,7 @@ Feature: This is a feature to test Guest Invitations functionality for iOS and A
 
   @smoke @android
   Scenario: Guest Invitations functionality from house board Screen (This Week)
-    Given username is visible
+    Given greetings should be visible
     When user verifies no existing guest invitations are present
     And I tap on blackslate to view the blackslate screen
     And I verify the houseboard screen
@@ -24,9 +24,16 @@ Feature: This is a feature to test Guest Invitations functionality for iOS and A
     Then user should see an invitation under guest invitations for "this week"
 
 
-  @smoke
+  @smoke @ios
   Scenario: Guest Invitations functionality from homeScreen (Future Week)
-    Given username is visible
+    Given greetings should be visible
+    When user click on the "Invite a guest"
+    And user create a Guest invitation for "future week"
+    Then user should see an invitation under guest invitations for "future week"
+
+  @smoke @android
+  Scenario: Guest Invitations functionality from homeScreen (Future Week)
+    Given greetings should be visible
     When user click on the "Invite a Guest"
     And user create a Guest invitation for "future week"
     Then user should see an invitation under guest invitations for "future week"

@@ -1,12 +1,12 @@
 require 'rubygems'
 require 'cucumber'
 require 'report_builder'
-#
+
 at_exit do
   if $device == "ios"
     ReportBuilder.configure do |config|
     config.json_path = 'results/cucumber_json/ios'
-    config.report_path = 'results/reports/iOS_Test_Exec_Report'
+    config.report_path = 'results/reports/IOS_Test_Exec_Report'
     config.report_types = [:html]
     config.report_tabs = [:overview, :features, :scenarios, :errors]
     config.report_title = 'My Test Results'
@@ -41,7 +41,7 @@ Before do |scenario|
 
         initializeClass
 
-        if scenario.feature.name.include?"On-boarding screens" and uninstalled_flag==false
+        if scenario.feature.name.include?"On-boarding screens" and uninstalled_flag==false and $run=="local"
 
           $device=="ios"?($onboardingscreens.verify_home_and_logout):(sleep 1)
 
@@ -78,11 +78,11 @@ Before do |scenario|
   end
   config     = {props: YAML.load_file(File.join(File.dirname(__FILE__), '../../config/testdata.yml'))}
 
-  if config[:props]["data"]["need_signout"].include?scenario.name
+  if config[:props]["data"]["need_signout"].include?(scenario.name.split(",")[0])
 
     $onboardingscreens.verify_home_and_logout
 
-    $email = config[:props]["data"]["email-id"][$device][scenario.name]
+    $email = config[:props]["data"]["email-id"][$device][(scenario.name.split(",")[0])]
 
   else
 
@@ -96,7 +96,7 @@ Before do |scenario|
 
   end
 
-  if $login != nil
+  if $login != nil and !config[:props]["data"]["need_separate_sign_in"].include?(scenario.name.split(",")[0])
 
     $onboardingscreens.user_enters_email_password("valid")
 
@@ -137,5 +137,6 @@ def initializeClass
   $whatsonscreen = WhatsonScreen.new
   $accountscreen = AccountScreen.new
   $common_screen=CommonScreen.new
+  $connect_screen=ConnectScreen.new
 end
 

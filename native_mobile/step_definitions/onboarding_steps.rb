@@ -391,7 +391,7 @@ And(/^user is shown with a validation message (.*) for the (.*) account$/) do |m
 
     $onboardingscreens.update_later_button
 
-    assert_true($homescreen.verify_homescreen,"Username is not present")
+    assert_true(($homescreen.verify_homescreen or $common_screen.verify_element_displayed_with_text("Welcome to Soho House")),"Username is not present")
 
   end
 
@@ -405,7 +405,7 @@ Then(/^the clicks on signs out and closes the app for (.*)$/) do |login|
   $whatsonscreen = WhatsonScreen.new
 
   if login.include?"chasing"
-
+    $common_screen.skip_Onboarding
     $homescreen.verify_account_click
     assert_true($accountscreen.verify_sign_out, "Unable to see sign out button")
     $accountscreen.tap_sign_out
@@ -428,9 +428,21 @@ When(/^I verify the onboarding screens$/) do |table|
     row.each do |key,value|
       if key.eql?"Screen"
         assert_true($common_screen.find_element{$common_screen.verify_element_displayed_with_text(value)},value+" is not displayed")
-        value == "Personalised recommendations"?(sleep 4):()
+        (value=="Make it personal")?(sleep 4):()
+        if value == "Personalised recommendations"
+          begin
+            $common_screen.click_element_with_text("Opt in")
+          rescue
+          end
+        end
       elsif key.eql?"Button"
         assert_true($common_screen.find_element{$common_screen.click_element_with_text(value)},value+" is not clicked")
+        if value==="Continue"
+          begin
+            $common_screen.click_element_with_text("OK")
+          rescue
+          end
+        end
       end
     end
 
@@ -477,4 +489,13 @@ end
 
 Given(/^I sign out if I am Logged in$/) do
   $onboardingscreens.verify_home_and_logout
+end
+
+Given(/^Skip the onboarding screen$/) do
+  $common_screen.skip_Onboarding
+end
+
+Given(/^Retrieve the Login details of (.*)$/) do |login|
+  config     = {props: YAML.load_file(File.join(File.dirname(__FILE__), '../../config/testdata.yml'))}
+  $email = config[:props]["data"]["email-id"][$device][login]
 end

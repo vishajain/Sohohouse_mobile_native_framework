@@ -4,7 +4,6 @@ Feature: Book gym event
   I navigate to events page
   So that I can book gym events
 
-
   @smoke @ios
   Scenario Outline: Book different gym event
     When greetings should be visible
@@ -18,8 +17,8 @@ Feature: Book gym event
     Then I navigate to Home page
     Examples:
       | Event Type          | Event Name             | Book                      | Status                   |
-      | Priceless,Gym_Event | Cashless Gym Event     | Book                      | YOU’RE ON THE GUEST LIST |
-      | Paid,Gym_Event      | Paid Gym Event         | Book & pay,Buy ticket(s)  | YOU’RE ON THE GUEST LIST |
+      | Priceless,Gym_Event | Cashless Gym Event     | Book                      | You’re on the guest list |
+      | Paid,Gym_Event      | Paid Gym Event         | Book & pay,Buy ticket(s)  | You’re on the guest list |
       | ticketless,Gym_Event| Ticketless Gym Event   | Book                      |                          |
 
 

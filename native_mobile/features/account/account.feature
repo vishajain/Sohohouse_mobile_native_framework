@@ -26,11 +26,12 @@ Feature: Account screen
     Then I verify all the links under account
       | Link                  | Title               |
       | View profile          | Edit                |
+      | My connections        | Connections         |
       | Your membership       | Membership          |
       | Guest Invitations     | Guest Invitations   |
       | Payment               | Add payment method  |
-      | Bookings              | Bookings            |
       | Settings              | Settings            |
+      | Bookings              | Bookings            |
       | Favourite Houses      | Favourite Houses    |
       | Terms & Policies      | Legal               |
       | Contact us            | Contact us          |

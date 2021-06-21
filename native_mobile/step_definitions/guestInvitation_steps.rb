@@ -57,7 +57,7 @@ Then(/^user confirms existing invitations deleted$/) do |table|
 
   data = table.hashes
   data.each do |row|
-    row.each do |value|
+    row.each do |key,value|
       assert_false($guestinvitationscreen.confirm_invitation(value[1].to_s), "Invitation not deleted")
     end
   end

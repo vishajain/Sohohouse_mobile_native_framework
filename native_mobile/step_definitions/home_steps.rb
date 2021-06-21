@@ -40,7 +40,7 @@ Then("username is visible") do
 
     sleep 5
 
-    assert_true($homescreen.verify_username,"Username is not present")
+    $device == "ios"?assert_true($common_screen.verify_element_displayed_with_text("Share profile"),"Home page not displayed"): assert_true($homescreen.verify_username,"Username is not present")
 
 end
 
@@ -104,10 +104,6 @@ Then(/^user resets the favourite houses$/) do
 
   $accountscreen.tap_save_changes
 
-  assert_true($accountscreen.tap_sign_out, "Unable to sign out the user")
-
-  $onboardingscreens.close_app
-
 end
 
 And(/^user sees all the sections on home screen$/) do |table|
@@ -121,7 +117,7 @@ And(/^user sees all the sections on home screen$/) do |table|
 end
 
 And(/^user verifies all sections of 'What can we help you with'$/) do |table|
-  sleep 10
+  sleep 5
   data = table.hashes
   data.each do |row|
     icon=nil
@@ -135,6 +131,7 @@ And(/^user verifies all sections of 'What can we help you with'$/) do |table|
     end
     assert_true($homescreen.verifyIcons(icon,link),icon+" not displayed")
   end
+  $homescreen.create_aroom_carosal_move_right
 end
 
 Then(/^the user scrolls to the top$/) do
@@ -195,6 +192,8 @@ When(/^user selects a favourite house$/) do
 
   $accountscreen.tap_reset
 
+  $device=="android"?$common_screen.click_element_with_partial_text("UK"):()
+
   $accountscreen.select_76_dean_house
 
   $accountscreen.tap_save_changes
@@ -203,41 +202,11 @@ When(/^user selects a favourite house$/) do
 
   sleep 5
 
-  begin
-
-    assert_true($homescreen.verify_happening_now,"Happening now section is not present")
-
-  rescue
-
-    puts "Happening now section is not present"
-
-    $happeningNow = "Happening now not present"
-
-  end
-
-  assert_true($homescreen.verify_pastdigital_events, "Digital events are not present on home screen")
-
-
 end
 
 And(/^user books the ticket for (.*) and verifies the booking status$/) do |event_type|
 
   assert_true($homescreen.bookForEvent,"Booking not done")
-  if event_type != "ticket-less event" and $device == "android"
-
-    $homescreen.go_back_to_home_screen
-
-    assert_true($homescreen.verify_greetings,"Greetings not present")
-
-    assert_true($accountscreen.verify_elementWithPartialTextDisplayed($scenario.getContext("eventbooking")),"Incorrect booking status")
-
-    sleep 2
-
-    $homescreen.tap_carousel($scenario.getContext("event"))
-
-    assert_true($homescreen.verify_user_navigation($scenario.getContext("event")),"No navigated to event screen")
-
-  end
 
 end
 
@@ -277,7 +246,7 @@ And(/^I verify the link under blackslate$/) do |table|
         assert_true($common_screen.find_element{$common_screen.click_element_with_text(value)},value+" is not clicked")
 
       elsif key.eql?"Title"
-
+        (value.eql?"House")?(sleep 10):(sleep 1)
         assert_true($common_screen.verify_element_displayed_with_text(value),value+" is not displayed")
 
       end
@@ -308,6 +277,7 @@ end
 And(/^I navigate to connect screen$/) do
   $common_screen=CommonScreen.new
   $common_screen.navigate_to_tabs("Connect")
+  $common_screen.click_element_with_text("Noticeboard")
 
 end
 

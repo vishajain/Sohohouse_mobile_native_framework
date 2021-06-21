@@ -15,11 +15,13 @@ module Android_driver
       set_android_capabilities_local
     elsif $run == "cloud"
       set_android_capabilities_cloud
+    else $run == "aws"
+    set_android_capabilities_aws
     end
 
     $driver.manage.timeouts.implicit_wait = 10
 
-    $currentPackage =  $driver.current_package
+    $currentPackage =  "com.sohohouse.seven.staging"
 
     $android_dimensions_width = $driver.manage.window.size.width
 
@@ -50,13 +52,13 @@ module Android_driver
                     'platformVersion' => (@platform_version.to_s),
                     'udid' =>   @udid  ,
                     'app' =>  @app_path,
-                    # 'bundleId' =>   @bundleid,
                     'appActivity' => 'com.sohohouse.seven.splash.SplashActivity',
                     'ConnectHardwareKeyboard' => false,
                     'useNewWDA'=> true,
                     'waitForQuiescence' => false,
                     'autoAcceptAlerts' => true,
-                    'noReset' => $noreset
+                    'noReset' => $noreset,
+                    'newCommandTimeout'=> 420
                 }
         }
 
@@ -90,4 +92,13 @@ module Android_driver
 
   end
 
+  def Android_driver.set_android_capabilities_aws
+    @capabilities =
+      {
+        caps: {}
+      }
+    $driver_appium = Appium::Driver.new(@capabilities, true)
+    $driver = $driver_appium.start_driver
+
+  end
 end

@@ -26,6 +26,10 @@ class CommonScreen
     return 5
   end
 
+  def oneSecondsTimeout
+    return 1
+  end
+
   def twoSecondsTimeout
     return 2
   end
@@ -87,7 +91,14 @@ class CommonScreen
 
   def click_element_with_text(element_text)
 
-    wait_for(fiveSecondsTimeout){@device_common_objects.element_with_text(element_text)}.click
+    $device == "ios"?($driver.action.move_to(@device_common_objects.element_with_text(element_text)).click.perform):( wait_for(fiveSecondsTimeout){@device_common_objects.element_with_text(element_text)}.click)
+    return  true
+
+  end
+
+  def click_button_with_text(element_text)
+
+    wait_for(fiveSecondsTimeout){@device_common_objects.button_with_text(element_text)}.click
 
     return  true
 
@@ -101,11 +112,11 @@ class CommonScreen
 
   end
 
-  def verify_element_displayed_with_text(element_text)
+  def verify_element_displayed_with_text(element_text,timeout=fortySecondsTimeout)
 
     begin
 
-      return Common.wait_for(fortySecondsTimeout) { @device_common_objects.element_with_text(element_text) }.displayed?
+      return Common.wait_for(timeout) { @device_common_objects.element_with_text(element_text) }.displayed?
 
     rescue
 
@@ -115,7 +126,21 @@ class CommonScreen
 
   end
 
-  def verify_element_displayed_with_partial_text(element_text)
+  def verify_element_displayed_with_text_tm(element_text,timeout)
+
+    begin
+
+      return Common.wait_for(timeout) { @device_common_objects.element_with_text(element_text) }.displayed?
+
+    rescue
+
+      return false
+
+    end
+    end
+
+
+    def verify_element_displayed_with_partial_text(element_text)
 
     begin
 
@@ -187,19 +212,26 @@ class CommonScreen
   end
 
   def navigate_to_tabs(tab)
+    sleep 1
+    if $device=="ios"
+      wait_for(10){@device_common_objects.tab_icon.displayed?}
+      sleep 1
+      @device_common_objects.tab_icon.click
+      sleep 2
+    end
 
     case tab
 
     when "Home"
-      ($device=="ios")?(wait_for(twentySecondsTimeout){@device_common_objects.tab_icons(1)}.click):wait_for(twentySecondsTimeout){@device_common_objects.tab_icons(1)}.click
+      ($device=="ios")?(wait_for(twentySecondsTimeout){@device_common_objects.home_menu}.click):wait_for(twentySecondsTimeout){@device_common_objects.tab_icons(1)}.click
     when "Book"
-      ($device=="ios")?(wait_for(twentySecondsTimeout){@device_common_objects.tab_icons(2)}.click):wait_for(twentySecondsTimeout){@device_common_objects.tab_icons(2)}.click
+      ($device=="ios")?click_element_with_text("Book"):wait_for(twentySecondsTimeout){@device_common_objects.tab_icons(2)}.click
     when "Connect"
-      ($device=="ios")?(wait_for(twentySecondsTimeout){@device_common_objects.tab_icons(3)}.click):wait_for(twentySecondsTimeout){@device_common_objects.tab_icons(3)}.click
+      ($device=="ios")?click_element_with_text("Connect with members"):wait_for(twentySecondsTimeout){@device_common_objects.tab_icons(3)}.click
     when "Discover"
-      ($device=="ios")?(wait_for(twentySecondsTimeout){@device_common_objects.tab_icons(4)}.click):wait_for(twentySecondsTimeout){@device_common_objects.tab_icons(4)}.click
+      ($device=="ios")?click_element_with_text("More from us"):wait_for(twentySecondsTimeout){@device_common_objects.tab_icons(4)}.click
     when "Account"
-      ($device=="ios")?(wait_for(twentySecondsTimeout){@device_common_objects.tab_icons(5)}.click):wait_for(twentySecondsTimeout){@device_common_objects.tab_icons(5)}.click
+      ($device=="ios")?(wait_for(twentySecondsTimeout){@device_common_objects.account_menu}.click):wait_for(twentySecondsTimeout){@device_common_objects.tab_icons(5)}.click
     end
   end
 
@@ -224,6 +256,29 @@ class CommonScreen
     end
 
   end
+
+  def clickByCoordinated(x,y)
+
+    $action.tap({:x => x, :y => (y)}).perform
+
+  end
+
+  def getTextElementWithText(text)
+    return @device_common_objects.element_with_partial_text(text).text
+  end
+
+  def isEnabled(i)
+    print @device_common_objects.element_with_text(i).enabled?
+  end
+
+  def skip_Onboarding
+    begin
+      if $device == "ios"
+      until $common_screen.verify_element_displayed_with_text_tm("Share profile",1) do
+        @device_common_objects.skip_onboard.click
+      end
+      end
+    rescue
+    end
+  end
 end
-
-

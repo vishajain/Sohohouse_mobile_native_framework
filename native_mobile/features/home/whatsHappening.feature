@@ -17,4 +17,6 @@ Feature: Happening Now Carousel on Home Screen
     And user books the ticket for ticket-less event and verifies the booking status
     And user cancels the event booking of Test Gym Event
     And user goes back to the home screen
-    Then user resets the favourite houses
+    And user resets the favourite houses
+    Then I navigate to Home page
+    

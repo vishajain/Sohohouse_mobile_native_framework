@@ -10,7 +10,6 @@ Feature: This feature enables us to test the edit profile functionality
       | Link            | Value               |
       | What do you do  | profession          |
       | Industry        | industry            |
-      | About me        | about-me            |
       | City            | city                |
       | Let's chat      | chat                |
       | Interests       | interest1           |
@@ -26,7 +25,6 @@ Feature: This feature enables us to test the edit profile functionality
       | Value               |
       | profession          |
       | industry            |
-      | about-me            |
       | city                |
       | chat                |
       | interest1           |
@@ -45,7 +43,6 @@ Feature: This feature enables us to test the edit profile functionality
     And I verify edit profile links
       | Link            | Value               |
       | What you do     | profession          |
-      | About me        | about-me            |
       | City            | city                |
       | Let's chat      | chat                |
       | Interests       | interest1           |
@@ -56,11 +53,10 @@ Feature: This feature enables us to test the edit profile functionality
       | Twitter   |
       | LinkedIn  |
       | Spotify   |
-      | YouTube   |
+      | Youtube   |
     And I verify the updated fields
       | Value               |
       | profession          |
-      | about-me            |
       | city                |
       | chat                |
       | interest1           |

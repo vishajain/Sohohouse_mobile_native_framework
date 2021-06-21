@@ -14,6 +14,10 @@ class Ios_Common_Objects
     @driver.find_element(:xpath => "//*[@name = \""+elementText+"\"]")
   end
 
+  def button_with_text(elementText)
+    @driver.find_element(:xpath => "//XCUIElementTypeButton[@name = \""+elementText+"\"]")
+  end
+
   def element_with_partial_text(elementText)
     @driver.find_element(:xpath => "//*[contains(@name , \""+elementText+"\")]")
   end
@@ -26,6 +30,19 @@ class Ios_Common_Objects
     @driver.find_element(:xpath => "//XCUIElementTypeTabBar/XCUIElementTypeButton["+index.to_s+"]")
   end
 
+  def home_menu
+    @driver.find_element(:name => "sideMenuHome")
+  end
+
+  def account_menu
+    @driver.find_element(:name => "sideMenuAccount")
+  end
+  def skip_onboard
+    @driver.find_element(:xpath => "//*[@name=\"Next\" or @name=\"Continue\" or @name=\"Continue without syncing\" or @name=\"I'd rather opt out\" or @name=\"Dismiss\" or @name=\"Remind me later\" or @name=\"Update later\"]")
+  end
+  def side_left_arrow
+    @driver.find_element(:name => "sideMenuArrowLeft")
+  end
 end
 
 class Android_Common_Objects
@@ -36,6 +53,10 @@ class Android_Common_Objects
   end
 
   def element_with_text(elementText)
+    @driver.find_element(:xpath => "//*[@text = \""+elementText+"\"]")
+  end
+
+  def button_with_text(elementText)
     @driver.find_element(:xpath => "//*[@text = \""+elementText+"\"]")
   end
 

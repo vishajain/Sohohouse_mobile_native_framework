@@ -3,8 +3,7 @@ Feature: This is the feature to test different login scenarios for iOS and Andro
 
   @smoke
   Scenario Outline: User login with different accounts and verifies message
-    Given app is launched
-    And the user is on main screen
+    Given Retrieve the Login details of <login>
     And user enters <login> as email address
     And user clicks on go button
     And user is shown with a validation message <message> for the <login> account

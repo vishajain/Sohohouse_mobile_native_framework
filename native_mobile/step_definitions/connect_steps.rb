@@ -53,8 +53,6 @@ And(/^I reply to the post$/) do
   $accountscreen=AccountScreen.new
   $connect_screen.clickOnPost
   $connect_screen.send_a_reply("How do you do")
-  # $common_screen.verify_element_displayed_with_text("Reply")
-  # $common_screen.click_element_with_text("Reply")
   $accountscreen.navigate_back_to_account
 
 end
@@ -68,7 +66,6 @@ And(/^I verify post is liked and replied$/) do
 end
 
 And(/^I delete the post$/) do
-  # $connect_screen.clickOnPost
   $connect_screen.delete_current_post
 
 end

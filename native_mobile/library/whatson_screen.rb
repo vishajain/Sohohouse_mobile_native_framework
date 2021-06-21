@@ -64,34 +64,41 @@ class WhatsonScreen
 
   def events_click(button)
 
-    sleep 2
+    sleep 1
 
-    i=0
+    if $device =="ios"
 
-    loop do
+      $common_screen.click_element_with_partial_text(button)
 
-      begin
+    else
+      sleep 1
+      i=0
 
-        if @device_whatson_objects.whatson_options(button).displayed?
+      loop do
 
-          @device_whatson_objects.whatson_options(button).click
+        begin
 
-          break
+          if @device_whatson_objects.whatson_options(button).displayed?
 
-        else
+            @device_whatson_objects.whatson_options(button).click
 
-          raise StandardError.new "This is an exception"
+            break
 
-        end
+          else
 
-      rescue
+            raise StandardError.new "This is an exception"
+
+          end
+
+        rescue
 
 
-        Common.home_panel_swipe(@device_whatson_objects.tabs,"left")
-        sleep 2
-        i=i+1
-        if i>3
-          break
+          Common.home_panel_swipe(@device_whatson_objects.tabs,"left")
+          sleep 2
+          i=i+1
+          if i>3
+            break
+          end
         end
       end
     end
@@ -685,6 +692,8 @@ class WhatsonScreen
 
     $device == "ios" ?(sleep 2):(Common.wait_for(5){ @device_guestinvitation_objects.ButtonWithText(reset_text)}.click)
 
+    $device == "ios" ?(sleep 1):($common_screen.click_element_with_partial_text("UK"))
+
     element_count = Common.wait_for(10){@device_whatson_objects.filter_remove_house.size}
 
     element=@device_whatson_objects.filter_remove_house
@@ -716,6 +725,10 @@ class WhatsonScreen
 
   def click_and_book_ticket(event_name,event_type,button_name,ticket_no)
 
+    $scenario.setContext("event_type",event_type.split(",")[0])
+
+    sleep 3
+
     if button_name.include?","
 
       button=button_name.split(",")
@@ -741,6 +754,8 @@ class WhatsonScreen
           end
 
           @device_account_objects.ElementsWithText(event_name).click
+
+          sleep 2
 
           break
 
@@ -801,7 +816,7 @@ class WhatsonScreen
       @device_guestinvitation_objects.ButtonWithText(button_name1).click
 
     end
-    Common.wait_for(15){@device_whatson_objects.ok_close_button}.click
+      $device=="ios"?$common_screen.wait_for(30){$common_screen.click_element_with_text("Done")}:(Common.wait_for(15){@device_whatson_objects.ok_close_button}.click)
 
     end
 
@@ -810,9 +825,12 @@ class WhatsonScreen
   end
 
   def verify_booking_status(status)
-
-    Common.wait_for(5){@device_whatson_objects.booking_status1}.text.include?status
-
+    begin
+      !($scenario.getContext("event_type").eql?("ticketless"))?(Common.wait_for(5){@device_whatson_objects.booking_status1}.text.include?status):(sleep 1)
+      return  true
+    rescue
+      return  false
+    end
   end
 
   def add_payment
@@ -873,11 +891,12 @@ class WhatsonScreen
 
         @device_account_objects.element_contains_text("5111111111111100".split(//).last(4).join.to_s).click
 
-        @device_guestinvitation_objects.ButtonWithText(button_name1).click
+        @device_guestinvitation_objects.ButtonWithText(button_name).click
 
       end
+      sleep 1
 
-      Common.wait_for(5){@device_whatson_objects.ok_close_button}.click
+      $device=="ios"?$common_screen.click_element_with_text("Done"):(Common.wait_for(5){@device_whatson_objects.ok_close_button}.click)
 
     end
 
@@ -885,10 +904,9 @@ class WhatsonScreen
 
   def cancel_event
     sleep 2
-
     Common.wait_for(5){@device_whatson_objects.cancel_event}.click
 
-    $device=="ios"?(sleep 2):(Common.wait_for(5){@device_guestinvitation_objects.ButtonWithText("YES")}.click)
+    $device=="ios"?():(Common.wait_for(5){@device_guestinvitation_objects.ButtonWithText("YES")}.click)
 
     sleep 2
 

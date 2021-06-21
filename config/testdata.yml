@@ -22,7 +22,7 @@ data:
       city: 'Manhattan'
       about-me: 'I am the king of this jungle'
       chat: 'Anything'
-      interest1: ['Outdoor activities','Beauty','Water sports']
+      interest1: ['Travel->Outdoor activities','Fashion->Beauty','Travel->Water sports']
       website: 'https://www.geeksforgeeks.org/'
       instagram: '@sohohouse'
       twitter: '@sohohouse'
@@ -57,10 +57,19 @@ data:
   change-password-ios: 'ios_changepassword@example.com'
   change-password-android: 'change_password_android@example.com'
   need_signout: ["User updates their password","User reverts their password","User login with different accounts and verifies message"]
+  need_separate_sign_in: ["User login with different accounts and verifies message"]
   email-id:
     ios:
       User updates their password: 'ios_changepassword@example.com'
       User reverts their password: 'ios_changepassword@example.com'
+      chasing: 'chasing.sample@sffactory.com'
+      suspended: 'suspended.sample@sffactory.com'
+      frozen: 'frozen.sample@sffactory.com'
+      expired: 'expired.sample@sffactory.com'
     android:
       User updates their password: 'change_password_android@example.com'
       User reverts their password: 'change_password_android@example.com'
+      chasing: 'chasing.sample@sffactory.com'
+      suspended: 'suspended.sample@sffactory.com'
+      frozen: 'frozen.sample@sffactory.com'
+      expired: 'expired.sample@sffactory.com'

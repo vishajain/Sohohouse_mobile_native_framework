@@ -50,15 +50,11 @@ end
 
 When(/^the paid (.*) event is found/) do |section|
 
-  # $whatsonscreen.events_click(section)
-
   assert_true($whatsonscreen.find_paid_event(section),"Event not found")
 
 end
 
 When(/^the free (.*) event is found/) do |section|
-
-  # $whatsonscreen.events_click(section)
 
   $whatsonscreen.find_free_event(section)
 
@@ -153,11 +149,10 @@ end
 
 And(/^tap on (.*) tab and set filter/) do |section|
 
+   $filterEvent.to_s===""
   $accountscreen = AccountScreen.new
 
-
-
-  if !(($filterEvent.to_s).include?section) or $device=="android"
+  if !(($filterEvent.to_s).include?section) or $device=="ios"
 
     $common_screen.swipe_top
     $whatsonscreen.events_click(section)
@@ -165,7 +160,7 @@ And(/^tap on (.*) tab and set filter/) do |section|
 
   end
 
-  if !(($filterEvent.to_s).include?section) or (section.include?"Gym" and $device == "android")
+  if !(($filterEvent.to_s).include?section) or  $filterEvent.to_s===""
 
     $whatsonscreen.setFilterLocation
 
@@ -282,6 +277,8 @@ end
 
 And(/^I verify that "([^"]*)" is displayed under Events in "([^"]*)" page$/) do |event_name, tab|
 
+  $device=="ios"?():$common_screen.little_swipe_down
+
   $homescreen.clickElement(tab)
 
   $accountscreen.verify_elementDisplayed(tab)
@@ -316,19 +313,19 @@ When(/^I book (.*) ticket for guests  and verify status for the "([^"]*)" of "([
 
     for i in 1..(guest_ticket_no.to_i) do
 
+      sleep 1
       $whatsonscreen.inviteGuest(event_type,1)
       sleep 2
 
-      $device=="android"?($common_screen.click_element_with_text(event_name)):(sleep 1)
-
+      $device=="android"?($common_screen.click_element_with_text(event_name)):()
 
       sleep 2
 
-      $device=="android"?($common_screen.click_element_with_text(event_name)):(sleep 1)
+      $device=="android"?($common_screen.click_element_with_text(event_name)):()
 
       if event_type.include?"lottery"
 
-        $device == "ios"?($whatsonscreen.verify_booking_status( "YOU HAVE JOINED THE LOTTERY")):($whatsonscreen.verify_booking_status("You have joined the lottery"))
+        $whatsonscreen.verify_booking_status("You have joined the lottery")
 
       else
 

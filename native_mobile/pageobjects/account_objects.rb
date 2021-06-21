@@ -137,7 +137,7 @@ class Ios_Account_Objects
   end
 
   def social_accounts
-    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name='Connect social accounts']")
+    @driver.find_element(:xpath => "//XCUIElementTypeCell[./XCUIElementTypeStaticText[@name='Connect social accounts']]")
   end
 
   def website
@@ -300,7 +300,7 @@ class Ios_Account_Objects
 
   def icon_left
     # @driver.find_element(:name => "iconLeft")
-    @driver.find_element(:xpath => "//XCUIElementTypeButton[@name='iconLeft']")
+    @driver.find_element(:xpath => "//XCUIElementTypeButton[@name='iconLeft' or @name='iconArrowLeft']")
   end
 
   def browser_close
@@ -437,7 +437,7 @@ class Ios_Account_Objects
   end
 
   def navigate_back_to_account
-    @driver.find_element(:xpath => "//*[contains(@name , 'iconLeft') or contains(@name,'iconXLarge')]")
+    @driver.find_element(:xpath => "//*[contains(@name , 'iconLeft') or contains(@name,'iconXLarge') or contains(@name , 'iconArrowLeft')]")
   end
 
   def confirm_message
@@ -454,7 +454,7 @@ class Ios_Account_Objects
   end
 
   def ok_close_button
-    @driver.find_element(:xpath => "//XCUIElementTypeButton[@name = 'Close']")
+    @driver.find_element(:xpath => "//XCUIElementTypeButton[@name = 'Done']")
   end
 
   def tap_europe
@@ -667,7 +667,7 @@ class Android_Account_Objects
   end
 
   def edit_profile_screen
-    @driver.find_element(:id => "#{$currentPackage+':id'+'/menu_item_edit'}")
+    @driver.find_element(:id => "#{$currentPackage+':id'+'/button'}")
   end
 
   def your_membership
@@ -970,7 +970,7 @@ class Android_Account_Objects
   end
 
   def editSocialMedia(text)
-    @driver.find_element(:xpath => "//android.widget.ScrollView//android.widget.TextView[@text='"+text+"']/following-sibling::android.widget.EditText")
+    @driver.find_element(:xpath => "//androidx.recyclerview.widget.RecyclerView[contains(@resource-id,'socials_rv')]//android.widget.TextView[@text='"+text+"']/following-sibling::android.widget.EditText")
   end
 
   def socialMediaValues(text)

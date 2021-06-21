@@ -4,6 +4,7 @@ require 'selenium-webdriver'
 require "test/unit"
 require 'yaml'
 require_relative '../../common/functions_common'
+require_relative '../../common/common_objects'
 require_relative '../pageobjects/home_objects'
 
 class HomeScreen
@@ -17,6 +18,7 @@ class HomeScreen
       @device_whatson_objects = Ios_Whatson_Objects.new($driver, $driver_appium)
       @device_account_objects = Ios_Account_Objects.new($driver, $driver_appium)
       @device_guestinvitation_objects = Ios_GuestInvitation_Objects.new($driver, $driver_appium)
+      @device_common_objects = Ios_Common_Objects.new($driver, $driver_appium)
 
     else
 
@@ -25,7 +27,7 @@ class HomeScreen
       @device_whatson_objects = Android_Whatson_Objects.new($driver, $driver_appium)
       @device_account_objects = Android_Account_Objects.new($driver, $driver_appium)
       @device_guestinvitation_objects = Android_GuestInvitation_Objects.new($driver, $driver_appium)
-
+      @device_common_objects = Android_Common_Objects.new($driver, $driver_appium)
     end
 
   end
@@ -75,22 +77,29 @@ class HomeScreen
   end
 
   def verify_greetings()
-    sleep 10
-    str = Common.wait_for(50){@device_home_objects.greetings}.text
-    if $device == "ios"
-      if str == "Good morning," || str == "Good evening," || str == "Good afternoon,"
-       return true
-      else
-        return false
+    sleep 3
+    i=0
+    loop do
+      begin
+        if $device == "ios"
+          assert_true($common_screen.verify_element_displayed_with_text("Share profile",80),"Home page not displayed")
+          return true
+        else
+          str = Common.wait_for(50){@device_home_objects.greetings}.text
+            if str == "Good morning" || str == "Good evening" || str == "Good afternoon"
+              return true
+            else
+              return false
+            end
+        end
+      rescue
+        print "Try Again"
       end
-    else
-      if str == "Good morning" || str == "Good evening" || str == "Good afternoon"
-        return true
-      else
-        return false
+      if i>2
+        i=i+1
+        break
       end
     end
-
   end
 
   def verify_username()
@@ -101,8 +110,11 @@ class HomeScreen
 
   def verify_homescreen()
 
-    Common.wait_for(15) {@device_home_objects.chasing_username.displayed?}
-
+    begin
+      return Common.wait_for(15) {@device_home_objects.chasing_username.displayed?}
+    rescue
+      return false
+    end
   end
 
   def verify_blackslate_screen
@@ -190,11 +202,7 @@ class HomeScreen
 
     begin
 
-        Common.wait_for(3){@device_home_objects.event_name_field[0]}.displayed?
-        if $device=="android"
-          Common.verifyNavBar(@device_home_objects.event_name_field[0])
-        end
-
+      $device=="ios"?$common_screen.find_element{@device_home_objects.event_name_field[0].click}:$common_screen.find_element{@device_home_objects.event_name_field[0].displayed?}
 
     rescue
           Common.little_swipe_down
@@ -211,7 +219,7 @@ class HomeScreen
               if !($device == "ios")
                 Common.verifyNavBar(@device_account_objects.element_contains_text(event_name))
               end
-
+              $common_screen.little_swipe_down
               @device_home_objects.event_name(event_name).click
 
             else
@@ -329,35 +337,54 @@ class HomeScreen
             if Common.wait_for(20) { @device_account_objects.ElementsWithText(heading) }.displayed?
 
               begin
+                if $device == "ios"
+                  if !@device_common_objects.tab_icon.displayed?
+                    Common.swipe_top
+                  end
+                  if !@device_onboarding_objects.home_title.displayed?
+                    @device_common_objects.tab_icon.click
 
-                if !@device_home_objects.homeBtn.displayed?
+                    (!(@device_common_objects.home_menu.displayed?))?($action.move_to(@device_common_objects.side_left_arrow).click.perform):(print "visible")
 
-                  Common.swipe_top
+                    @device_common_objects.home_menu.click
+                  end
+                else
+                  if !@device_home_objects.homeBtn.displayed?
+
+                    Common.swipe_top
+
+                  end
+
+                  Common.wait_for(3){@device_home_objects.homeBtn}.click
 
                 end
 
-                Common.wait_for(3){@device_home_objects.homeBtn}.click
-
               rescue StandardError => e
 
-                $device=="ios"?Common.swipe_top: @device_home_objects.icon_left.click
+                if $device=="ios"
+                  if @device_common_objects.tab_icon.displayed?
+                    @device_common_objects.tab_icon.click
+                    sleep 1
+                    @device_common_objects.home_menu.click
+                  end
+                else
+                  @device_home_objects.icon_left.click
+                end
 
               end
 
             end
-
+          else
+            raise StandardError.new "Element not visible"
           end
 
          return true
 
-      rescue
+      rescue StandardError => e
+
         Common.home_panel_swipe(@device_home_objects.circle_icon[0],"left")
 
-        if $device== "ios"
-
-          Common.swipe_top
-
-        end
+        sleep 1
 
         i = i + 1
 
@@ -373,6 +400,10 @@ class HomeScreen
 
     end
 
+  def create_aroom_carosal_move_right
+    Common.home_panel_swipe(@device_home_objects.circle_icon[0],"right")
+  end
+
   def scrollTillUsername
 
     i=0
@@ -381,7 +412,7 @@ class HomeScreen
 
       begin
 
-        Common.wait_for(2){@device_account_objects.ElementsWithText("What can we help you with?")}.click
+        $device=="ios"?(@device_onboarding_objects.home_title):(Common.wait_for(2){@device_account_objects.ElementsWithText("What can we help you with?")}.click)
 
         $common_screen.swipe_top
 
@@ -476,7 +507,7 @@ class HomeScreen
         @device_guestinvitation_objects.ButtonWithText("Join lottery").click
         sleep 2
         @device_account_objects.ok_close_button.click
-        $device == "ios"?text="YOU HAVE JOINED THE LOTTERY":text="You have joined the lottery"
+       text="You have joined the lottery"
         assert_true(@device_home_objects.booking_status.text.include?text)
         $scenario.setContext("eventbooking","RE IN THE LOTTERY")
       end
@@ -513,7 +544,7 @@ class HomeScreen
 
   def clickOnConnect
 
-    Common.wait_for(5){@device_home_objects.connect}.click
+    $common_screen.navigate_to_tabs("Connect")
 
   end
 

@@ -1,7 +1,7 @@
-@notification-screen @iOS_will_fail
+@notification-screen @iOS_will_fail @regression
 Feature: This feature enables us to test the notifications functionality
 
-  @smoke @regression @notification_preferences @events
+  @smoke @notification_preferences @events
   Scenario: User updates their notification preferences for events
     When greetings should be visible
     And I click on Account button on home screen
@@ -12,9 +12,9 @@ Feature: This feature enables us to test the notifications functionality
       | Your screenings      |
       | Welcome to the House |
     And user goes back to the account screen
-    Then member is not on home screen from account screen
+    Then I navigate to Home page
 
-  @smoke @regression @notification_preferences
+  @smoke @notification_preferences
   Scenario: User verifies the different notification preferences
     Given I click on Account button on home screen
     And I tap on settings
@@ -29,9 +29,10 @@ Feature: This feature enables us to test the notifications functionality
       | Contact details           |
       | Reminder                  |
       | Soho House Communications |
-    Then user goes back to the account screen
+    And user goes back to the account screen
+    Then I navigate to Home page
 
-  @smoke @regression @notification_preferences @connects
+  @smoke @notification_preferences @connects
   Scenario: User updates their notification preferences for Connect
     Given I click on Account button on home screen
     And I tap on settings
@@ -42,10 +43,10 @@ Feature: This feature enables us to test the notifications functionality
       | Contact details       |
       | Reminder              |
     Then user goes back to the account screen
-    Then member is not on home screen from account screen
+    Then I navigate to Home page
 
 
-  @smoke @regression @notification_preferences @communication
+  @smoke @notification_preferences @communication
   Scenario: User updates their notification preferences for communication
     Given I click on Account button on home screen
     And I tap on settings
@@ -54,5 +55,4 @@ Feature: This feature enables us to test the notifications functionality
       | News, events and stories->email |
       | News, events and stories->push  |
     And user goes back to the account screen
-    Then the user signs out and closes the app
-
+    Then I navigate to Home page

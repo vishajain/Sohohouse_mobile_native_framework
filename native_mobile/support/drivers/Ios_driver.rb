@@ -9,23 +9,27 @@ module Ios_driver
 
   def Ios_driver.start_app()
 
-     puts "Launching Soho House ios App"
+    puts "Launching Soho House ios App"
 
-      if $run == "local"
-          set_ios_capabilities_local
-      elsif $run == "cloud"
-          set_ios_capabilities_cloud
-      end
+    if $run == "local"
+      set_ios_capabilities_local
+    elsif $run == "cloud"
+      set_ios_capabilities_cloud
+    elsif $run == "aws"
+      set_ios_capabilities_aws
+    end
 
-      $driver.manage.timeouts.implicit_wait = 10
+    $driver.manage.timeouts.implicit_wait = 10
 
-      $action = Appium::TouchAction.new
+    $action = Appium::TouchAction.new
 
-      $dimensions_width = $driver.manage.window.size.width
+    $dimensions_width = $driver.manage.window.size.width
 
-      $dimensions_height = $driver.manage.window.size.height
+    $dimensions_height = $driver.manage.window.size.height
 
   end
+
+
 
   def Ios_driver.set_ios_capabilities_local
 
@@ -89,6 +93,16 @@ module Ios_driver
                                                   :server_url => "http://#{username}:#{access_key}@hub-cloud.browserstack.com/wd/hub"
                                               }}, true)
       $driver = $driver_appium.start_driver
+
+  end
+
+  def Ios_driver.set_ios_capabilities_aws
+    @capabilities =
+      {
+        caps: {}
+      }
+    $driver_appium = Appium::Driver.new(@capabilities, true)
+    $driver = $driver_appium.start_driver
 
   end
 

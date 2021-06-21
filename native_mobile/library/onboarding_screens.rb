@@ -69,7 +69,6 @@ class OnboardingScreens
         @device_onboarding_objects.password_textfield.send_keys($password)
 
         Common.wait_for(30){@device_onboarding_objects.go_button}.click
-        ($common_screen.verify_element_displayed_with_text("What can we help you with?"))? ($login = true):($login = false)
 
       end
     end
@@ -94,17 +93,13 @@ class OnboardingScreens
 
   def dismiss_invalid_credential
 
-    begin
+    if $device == "android"
 
     Common.wait_for(30){@device_onboarding_objects.invalid_credential_dialog.displayed?}
 
     Common.wait_for(30){@device_onboarding_objects.ok_button}.click
 
     sleep 2
-
-    rescue StandardError => e
-
-      puts e.message
 
     end
 
@@ -130,7 +125,7 @@ class OnboardingScreens
           $login = false
         when true
           $common_screen=CommonScreen.new
-          $common_screen.verify_element_displayed_with_text("What can we help you with?")
+          Common.wait_for(15){@device_onboarding_objects.home_title.displayed?}
         when false
           Common.wait_for(15) {@device_onboarding_objects.main_home.displayed?}
         end
@@ -140,13 +135,13 @@ class OnboardingScreens
       begin
         case $login
         when nil
-          $common_screen.verify_element_displayed_with_text("What can we help you with?")
+          Common.wait_for(15){@device_onboarding_objects.home_title.displayed?}
           $login = true
         when true
           Common.wait_for(40) {@device_onboarding_objects.main_home}.displayed?
           $login = false
         when false
-          $common_screen.verify_element_displayed_with_text("What can we help you with?")
+          Common.wait_for(15){@device_onboarding_objects.home_title.displayed?}
           $login = true
         end
         return true
@@ -467,15 +462,15 @@ class OnboardingScreens
         return true
       end
     rescue
-      if $common_screen.verify_element_displayed_with_text("What can we help you with?")
+      if Common.wait_for(5){@device_onboarding_objects.home_title.displayed?}
 
         $homescreen.verify_account_click
 
         assert_true($accountscreen.verify_sign_out, "Unable to see sign out button")
 
         $accountscreen.tap_sign_out
-        $login=false
 
+        $login=false
       end
 
     end

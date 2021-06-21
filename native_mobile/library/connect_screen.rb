@@ -33,7 +33,8 @@ class ConnectScreen
     @device_connect_objects.your_post.send_keys(message)
     $device=="ios"?$common_screen.swipeByLocation(50,150,50,$dimensions_height-10):Common.hideKeyboard
     $common_screen.find_element{$common_screen.click_element_with_text("Tag a house")}
-    $common_screen.click_element_with_text(post_house)
+    $common_screen.click_element_with_text(post_house.split("->")[0])
+    $common_screen.click_element_with_text(post_house.split("->")[1])
     $common_screen.click_element_with_text("Confirm")
     $common_screen.click_element_with_text("Tag a topic")
     $common_screen.click_element_with_text(topic)
@@ -42,12 +43,12 @@ class ConnectScreen
   end
 
   def verify_post_created
-
-    assert_true(@device_connect_objects.view_post_house($post_house).displayed?,"house")
+    sleep 5
+    assert_true(@device_connect_objects.view_post_house($post_house.split("->")[1]).displayed?,"house")
     assert_true(((@device_connect_objects.view_post_message.text).include?$message),"message")
     title=@device_connect_objects.view_post_title.text
     $device=="android"?(time=@device_connect_objects.view_post_time.text):(sleep 1)
-    $device=="ios"?assert_true((title.include?$name+" posted to "+$topic),"Title not correct"):assert_true((title.include?$name+" posted in "+$topic),"Title not correct")
+    $device=="ios"?assert_true((title.include?$name+" in "+$topic),"Title not correct"):assert_true((title.include?$name+" posted in "+$topic),"Title not correct")
     $device=="ios"?assert_true((title[-1,1].include? "s"),"Not recently created"):assert_true((time.include? "Now"),"Not recently created")
     $device=="ios"?assert_true((title[-3,2].to_i <60),"not less"):(sleep 1)
     return true
@@ -56,7 +57,8 @@ class ConnectScreen
   def apply_filters(house)
     sleep 5
     $common_screen.find_element{@device_connect_objects.refine.click}
-    $common_screen.find_element{$common_screen.click_element_with_text(house)}
+    $common_screen.find_element{$common_screen.click_element_with_text(house.split("->")[0])}
+    $common_screen.find_element{$common_screen.click_element_with_text(house.split("->")[1])}
     $common_screen.find_element{$common_screen.click_element_with_text("Apply filters")}
     sleep 20
 

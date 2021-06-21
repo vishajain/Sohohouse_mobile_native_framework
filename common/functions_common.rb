@@ -150,7 +150,8 @@ module Common
   def self.home_panel_swipe(section,direction)
     if direction == "left"
       if $device == "ios"
-        $action.press({:x => ($dimensions_width-160), :y => (section.location.y+15)}).wait(100).move_to({:x => 160, :y => (section.location.y+15)}).release.perform
+        print $dimensions_width
+        $action.press({:x => ($dimensions_width-170), :y => (section.location.y+20)}).wait(100).move_to({:x => 170, :y => (section.location.y+20)}).release.perform
 
       else
         sleep 2

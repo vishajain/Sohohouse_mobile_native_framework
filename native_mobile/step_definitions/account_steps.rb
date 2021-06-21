@@ -232,6 +232,8 @@ And(/^user goes back to the home screen$/) do
 
   $homescreen.go_back_to_home_screen
 
+  $homescreen.scrollTillUsername
+
   assert_true($homescreen.verify_greetings,"Greetings not present")
 
   $homescreen.event_swipe("right")
@@ -267,7 +269,13 @@ When(/^the user adds below favourite houses and clicks save button$/) do |table|
 
   $accountscreen.tap_favourite_houses
 
+  $common_screen.click_element_with_text("Reset")
+
+  $device=="ios"?(sleep 1): $common_screen.click_element_with_text("RESET")
+
   assert_true($accountscreen.verify_local_house_displayed, "Favourite houses reset is not working")
+
+  $device=="android"?$common_screen.click_element_with_partial_text("UK"):(sleep 1)
 
   data = table.hashes
   data.each do |row|
@@ -302,6 +310,8 @@ Then(/^I verify "([^"]*)" is displayed$/) do |value|
 
   $accountscreen.tap_save_changes
 
+  sleep 1
+
 end
 
 Then(/^the user navigates back$/) do
@@ -326,6 +336,10 @@ And(/^I verify all the links under account$/) do |table|
   $common_screen=CommonScreen.new
 
   sleep 3
+  if $device == "ios"
+    $common_screen.little_swipe_down
+  end
+
 
   data = table.hashes
 
@@ -345,15 +359,14 @@ And(/^I verify all the links under account$/) do |table|
 
       elsif key.eql?"Title"
 
-        sleep 2
-
+        (value.eql?"FAQ")?(sleep 4):(sleep 1)
         assert_true($common_screen.verify_element_displayed_with_text(value),value+" is not displayed")
 
       end
 
     end
 
-    $accountscreen.navigate_back_to_account
+    $accountscreen.back_to_account_page
 
   end
 

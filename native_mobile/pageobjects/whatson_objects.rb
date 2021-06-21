@@ -228,11 +228,11 @@ class Ios_Whatson_Objects
   end
 
   def ok_close_button
-    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name = 'Close']")
+    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name = 'Done']")
   end
 
   def booking_status1
-    @driver.find_element(:xpath => "//XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeButton/preceding::XCUIElementTypeStaticText[1]")
+    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name='Booking status']/following-sibling::XCUIElementTypeStaticText[1]")
   end
 
   def back_from_event

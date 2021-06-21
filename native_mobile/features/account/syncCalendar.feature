@@ -4,7 +4,7 @@ Feature: This feature enables us to test the sync calendar functionality
 
   @smoke @sync_calendar
   Scenario: Validate sync calendar
-    Given username is visible
+    Given greetings should be visible
     When I click on Account button on home screen
     And I tap on settings
     And I navigate to Sync calendar in Settings tab

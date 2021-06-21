@@ -41,7 +41,8 @@ class GuestInvitationScreen
 
       Common.wait_for(20){@device_guestinvitation_objects.select_location}.click
 
-      $common_screen.click_element_with_partial_text("Europe")
+      $common_screen.find_element{$common_screen.click_element_with_partial_text("UK")}
+      $common_screen.find_element{$common_screen.click_element_with_partial_text("Europe")}
 
       Common.wait_for(2){@device_guestinvitation_objects.select_house}.click
 
@@ -103,7 +104,7 @@ class GuestInvitationScreen
   end
 
   def add_guest
-
+    sleep 3
     Common.wait_for(5){@device_guestinvitation_objects.add_a_guest}.click
 
     if Common.wait_for(2){@device_guestinvitation_objects.add_guest}.displayed?
@@ -114,11 +115,13 @@ class GuestInvitationScreen
 
       $device == "ios"?(@device_guestinvitation_objects.save_continue.click):(@device_guestinvitation_objects.done.click)
 
-      if @device_account_objects.ElementsWithText("Test").displayed?
+      sleep 2
+
+      if $common_screen.wait_for(10){@device_account_objects.ElementsWithText("Test").displayed?}
 
         @device_guestinvitation_objects.done.click
 
-        sleep 3
+        sleep 2
 
         return true
       end

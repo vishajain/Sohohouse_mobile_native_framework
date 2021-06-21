@@ -2,17 +2,18 @@
 Feature: Home Screen all sections validation
 
   @smoke @ios
-  Scenario: Verify the 'What can we help you with section
+  Scenario: Verify the 'What can we help you with' section
     Given greetings should be visible
     And user verifies all sections of 'What can we help you with'
-      | Section                  | Links                 |
-      | Create a Room            |  Share your room link |
-      | Invite a Guest           |  New guest Invitation |
-      | Visit a House            |  House visit          |
-      | Stay with us             |  Bedrooms             |
-      | Book an event            |  Events               |
-      | Book a screening         |  Screenings           |
-      | Discover member benefits |  Benefits             |
+      | Section                  | Links                                                          |
+      | Share profile            |  Share your profile with members you know to connect instantly |
+      | Invite a guest           |  New guest Invitation                                          |
+      | Visit a House            |  No house visits match your search                             |
+      | Book a table             |  Check availability                                            |
+      | Book a bedroom           |  Stay with us                                                  |
+      | Book an event            |  Events                                                        |
+      | Book a screening         |  Screenings                                                    |
+      | Member benefits          |  Explore your benefits                                         |
     Then greetings should be visible
 
 
@@ -44,13 +45,9 @@ Feature: Home Screen all sections validation
     Given greetings should be visible
     When user sees all the sections on home screen
       | Section                     |
-      | SFFactory                   |
-      | What can we help you with?  |
-      | Noticeboard                 |
-      | Member events on demand     |
-      | Member Stories              |
-      | Our Houses                  |
-      | Member benefits             |
+      | Watch                  |
+      | Listen             |
+      | Read             |
     Then the user scrolls to the top
 
   @smoke @android

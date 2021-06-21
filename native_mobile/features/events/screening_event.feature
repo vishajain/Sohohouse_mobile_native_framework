@@ -18,7 +18,7 @@ Feature: Book Screening event
     Then I navigate to Home page
     Examples:
       | Event Type                        | Event Name                      | Book                        | Tickets | Status                      | No. of Guest |
-      | Priceless_lottery,Screening_Event | Monty Python and the Holy Grail | Join lottery                | 1       | YOU HAVE JOINED THE LOTTERY | 1            |
+     | Priceless_lottery,Screening_Event | Monty Python and the Holy Grail  | Join lottery                | 1       | YOU HAVE JOINED THE LOTTERY | 1            |
       | Paid,Screening_Event              | Avataar                         | Book & pay,Confirm deposit  | 2       | YOU AND 1 GUEST(S) ARE GOING| -1           |
       | ticketless,Screening_Event        | Red Rose                        | Book                        | NA      |                             | NA           |
 
