@@ -246,8 +246,85 @@ class Ios_Whatson_Objects
   def delete_guest
     @driver.find_element(:xpath => "//XCUIElementTypeStaticText[contains(@name,'Guest')]/following-sibling::XCUIElementTypeButton[@name='iconXSmall']")
   end
-end
 
+  def book_date(date)
+    @driver.find_element(:xpath => "//XCUIElementTypeOther[./XCUIElementTypeStaticText[@name='Select dates']]/following-sibling::XCUIElementTypeOther/XCUIElementTypeButton[contains(@name,'Select "+date+" as your start date')]")
+  end
+
+  def add_guest_adult
+    @driver.find_element(:name => "Increment Adults")
+  end
+
+  def select_dates
+    @driver.find_element(:xpath => "//XCUIElementTypeOther[./XCUIElementTypeButton[contains(@name , 'Select location')]]/following-sibling::XCUIElementTypeOther[1]")
+  end
+  def select_guests
+    @driver.find_element(:xpath => "//XCUIElementTypeOther[./XCUIElementTypeButton[contains(@name , 'Select location')]]/following-sibling::XCUIElementTypeOther[2]")
+  end
+  def browse_bedroom
+    @driver.find_element(:xpath => "//XCUIElementTypeOther[./XCUIElementTypeButton[contains(@name , 'Select location')]]/following-sibling::XCUIElementTypeOther[3]")
+  end
+  def room_type
+    @driver.find_elements(:xpath => "//XCUIElementTypeOther[./XCUIElementTypeOther/XCUIElementTypeButton[@name='Select bedroom']]/XCUIElementTypeOther[XCUIElementTypeStaticText][1]/XCUIElementTypeStaticText")
+  end
+  def select_bedroom(room_type)
+    @driver.find_element(:xpath => "//XCUIElementTypeOther[./XCUIElementTypeOther/XCUIElementTypeStaticText[@name='"+room_type+"']]//XCUIElementTypeButton[@name='Select bedroom']")
+  end
+
+  def view_details(room_type)
+    @driver.find_element(:xpath => "//XCUIElementTypeOther[./XCUIElementTypeOther/XCUIElementTypeStaticText[@name='"+room_type+"']]//XCUIElementTypeButton[@name='View more details']")
+  end
+
+  def check_in_out(type)
+    @driver.find_element(:xpath => "//XCUIElementTypeOther[./XCUIElementTypeStaticText[@name='"+type+"']]/following-sibling::XCUIElementTypeOther[1]/XCUIElementTypeStaticText")
+  end
+
+  def web_dialog
+    @driver.find_element(:name => "web dialog")
+  end
+
+  def web_back
+    @driver.find_element(:name => "webBack")
+  end
+
+  def web_fwd
+    @driver.find_element(:name => "webForward")
+  end
+
+  def term_n_conditions
+    @driver.find_elements(:xpath => "//XCUIElementTypeOther[@name='Terms and conditions']/following-sibling::XCUIElementTypeOther//XCUIElementTypeSwitch[2]")
+  end
+
+  def deposit(text)
+    @driver.find_element(:xpath => "//XCUIElementTypeButton[@name = '"+text+"']/following-sibling::XCUIElementTypeOther/XCUIElementTypeStaticText")
+  end
+
+  def card_number
+    @driver.find_element(:xpath => "//XCUIElementTypeOther[@name='Card Number']/preceding-sibling::XCUIElementTypeTextField[1]")
+  end
+
+  def card_expiry(text)
+    @driver.find_element(:xpath => "//XCUIElementTypeOther[@name='EXPIRY "+text+"']/preceding-sibling::XCUIElementTypeOther[1]")
+  end
+
+  def element_text(text)
+    @driver.find_element(:xpath => "//*[@text='"+text+"']")
+  end
+
+  def card_cvv
+    @driver.find_element(:xpath => "//XCUIElementTypeOther[@name='CVV']/preceding-sibling::XCUIElementTypeTextField[1]")
+  end
+
+  def picker
+    @driver.find_element(:xpath => "//XCUIElementTypePicker/XCUIElementTypePickerWheel")
+
+  end
+
+  def full_house_options
+    @driver.find_element(:xpath => "//XCUIElementTypeMenuItem[1]")
+  end
+
+end
 
 class Android_Whatson_Objects
 
@@ -480,8 +557,8 @@ class Android_Whatson_Objects
     @driver.find_element(:xpath => "//android.view.View[@text='Card Number']/parent::android.view.View/preceding-sibling::android.widget.EditText")
   end
 
-  def card_expiry
-    @driver.find_element(:xpath => "//android.view.View[@text='EXPIRY YEAR']/parent::android.view.View/preceding-sibling::android.widget.Spinner")
+  def card_expiry(text)
+    @driver.find_element(:xpath => "//android.view.View[@text='EXPIRY "+text+"']/parent::android.view.View/preceding-sibling::android.widget.Spinner")
   end
 
   def element_text(text)
@@ -514,4 +591,57 @@ class Android_Whatson_Objects
   def back_from_event
     @driver.find_element(:xpath => "//*[@content-desc = 'Go back']")
   end
+
+  def book_date(date)
+    @driver.find_element(:xpath => "//android.view.View[@text='Select dates']/following-sibling::android.view.View//android.widget.Button[@text='Select "+date+" as your start date ']")
+  end
+
+  def add_guest_adult
+    @driver.find_element(:xpath => "//*[@text='Increment Adults']")
+  end
+
+  def select_dates
+    @driver.find_element(:xpath => "//android.widget.Spinner[contains(@text,'Select dates')]")
+  end
+  def select_guests
+    @driver.find_element(:xpath => "//android.widget.Spinner[contains(@text,'Guests')]")
+  end
+  def browse_bedroom
+    @driver.find_element(:xpath => "//android.widget.Button[contains(@text , 'Browse bedrooms')]")
+  end
+  def room_type
+    @driver.find_elements(:xpath => "//android.view.View[./android.view.View/android.widget.Button[@text='Select bedroom']]/android.view.View[2]")
+  end
+  def select_bedroom(room_type)
+    @driver.find_element(:xpath => "//android.view.View[./android.view.View[@text='"+room_type+"']]//android.widget.Button[@text='Select bedroom']")
+  end
+
+  def view_details(room_type)
+    @driver.find_element(:xpath => "//android.view.View[@text='"+room_type+"']/following-sibling::android.widget.Button[@text='View more details']")
+  end
+
+  def check_in_out(type)
+    @driver.find_element(:xpath => "//android.view.View/android.view.View[contains(@text , '"+type+"')]")
+  end
+
+  def web_dialog
+    @driver.find_element(:name => "web dialog")
+  end
+
+  def web_back
+    @driver.find_element(:id => "#{$currentPackage+':id'+'/backward'}")
+  end
+
+  def web_fwd
+    @driver.find_element(:id => "#{$currentPackage+':id'+'/forward'}")
+  end
+
+  def term_n_conditions
+    @driver.find_elements(:xpath => "//XCUIElementTypeOther[@name='Terms and conditions']/following-sibling::XCUIElementTypeOther//XCUIElementTypeSwitch[@text='0' or @text ='1']")
+  end
+
+  def house(country, house)
+    @driver.find_element(:xpath => "//android.view.View[./android.widget.Button[@text ='"+country+"']]/android.view.MenuItem[contains(@text ,'"+house+"')]")
+  end
+
 end

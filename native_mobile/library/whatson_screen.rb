@@ -3,9 +3,11 @@ require 'appium_lib'
 require 'selenium-webdriver'
 require "test/unit"
 require 'yaml'
+require 'json'
 require_relative '../pageobjects/whatson_objects'
 require_relative '../../common/functions_common'
 require_relative '../../common/common_objects'
+require_relative '../../common/api_call'
 
 class WhatsonScreen
 
@@ -843,9 +845,9 @@ class WhatsonScreen
 
     @device_whatson_objects.card_number.send_keys("5111111111111100")
 
-    year=@device_whatson_objects.card_expiry.text.to_i+2
+    year=@device_whatson_objects.card_expiry("YEAR").text.to_i+2
 
-    @device_whatson_objects.card_expiry.click
+    @device_whatson_objects.card_expiry("YEAR").click
 
     Common.wait_for(5){@device_whatson_objects.element_text(year.to_s)}.click
 
@@ -954,5 +956,216 @@ class WhatsonScreen
 
       Common.wait_for(3){@device_whatson_objects.back_from_event}.click
 
+  end
+
+
+  def select_house(country,house)
+    print $android_dimensions_height
+    $common_screen=CommonScreen.new
+    $common_screen.click_element_with_text(country)
+    sleep 1
+    $device == "android"?$common_screen.swipeByLocation(50,$android_dimensions_height*0.75,50,20):(sleep 1)
+    $device == "ios"?$common_screen.click_element_with_partial_text(house):@device_whatson_objects.house(country,house).click
+    $common_screen.click_element_with_text("Confirm")
+  end
+
+  def select_date(start_date,end_date)
+    $common_screen.wait_for($common_screen.fiveSecondsTimeout){@device_whatson_objects.select_dates}.click
+    $common_screen=CommonScreen.new
+    str=Date.today
+    @date = [(str+start_date.to_i).strftime("%b %d %Y").to_s,(str+end_date.to_i).strftime("%b %d %Y").to_s]
+    @date.each_index do |j|
+      i=0
+      loop do
+        begin
+          @device_whatson_objects.book_date(@date[j]).click
+         break
+        rescue
+          $common_screen.swipeByLocation(50,$dimensions_height*0.75,50,$dimensions_height*0.65)
+          sleep 1
+        end
+        i= i+1
+        if i >2
+          break
+        end
+      end
+    end
+    $common_screen.click_element_with_text("Confirm")
+    sleep 2
+  end
+
+  def select_guest(guests_no)
+
+    @device_whatson_objects.select_guests.click
+    for i in 1..(guests_no.to_i-2)
+      @device_whatson_objects.add_guest_adult.click
+    end
+    $common_screen.click_element_with_text("Confirm")
+
+  end
+
+  def click_browse_bedroom
+    @device_whatson_objects.browse_bedroom.click
+  end
+
+  def click_select_bedroom
+    room_type=@device_whatson_objects.room_type
+    room_type_list=[]
+    for i in room_type
+      room_type_list.append(i.text)
+    end
+    room_type_name = room_type_list.sample
+    $common_screen.find_element{@device_whatson_objects.select_bedroom(room_type_name).displayed?}
+    $scenario.setContext('roomType',room_type_name)
+    @device_whatson_objects.view_details(room_type_name).click
+    $scenario.setContext('dateFrom',@device_whatson_objects.check_in_out("Check-in").text)
+    $scenario.setContext('dateTo',@device_whatson_objects.check_in_out("Checkout").text)
+    @device_whatson_objects.web_back.click
+    sleep 2
+    @device_whatson_objects.web_fwd.click
+    $common_screen.clickByCoordinated(50,$dimensions_height*0.25)
+    @device_whatson_objects.select_bedroom(room_type_name).click
+    $scenario.setContext("Room",room_type_name)
+  end
+
+  def verify_date_room
+
+    assert_true((@device_whatson_objects.check_in_out("Check-in").text).include?$scenario.getContext("dateFrom"))
+    assert_true((@device_whatson_objects.check_in_out("Checkout").text).include?$scenario.getContext("dateTo"))
+  end
+
+  def verify_room_type
+    assert_true((@device_whatson_objects.check_in_out("Bedroom type").text).include?$scenario.getContext("roomType"))
+  end
+
+  def accept_TnC
+
+    $common_screen.swipe_down
+    tnc = @device_whatson_objects.term_n_conditions
+    for element in tnc
+      $common_screen.find_element{element.click}
+    end
+
+  end
+
+  def clickonDeposit
+
+    @device_whatson_objects.deposit("Book and pay").click
+
+  end
+
+  def saveDepositAmount
+
+    $scenario.setContext("deposit", @device_whatson_objects.deposit("Select bedroom").text)
+
+  end
+
+  def verifySaveBookingSummary(value)
+    sleep 5
+
+    case value
+
+    when 'Booking Details'
+      assert_true((@device_whatson_objects.check_in_out("Check-in").text).include?($scenario.getContext("dateFrom")),"Check in date not correct")
+      assert_true((@device_whatson_objects.check_in_out("Checkout").text).include?($scenario.getContext("dateTo")),"Check in date not correct")
+    when 'Amend Booking'
+      assert_true($common_screen.find_element{$common_screen.verify_element_displayed_with_text("Find out more")},"Find out more not displayed")
+      assert_true($common_screen.find_element{$common_screen.verify_element_displayed_with_text("Change booking")},"Change booking not displayed")
+    when 'Cancel Booking'
+      assert_true($common_screen.find_element{$common_screen.verify_element_displayed_with_text("Cancel booking")},"Cancel booking displayed")
+    when 'Confirmation Number'
+      $scenario.setContext("confirmation_number",@device_whatson_objects.check_in_out("Confirmation Number").text)
+
+  end
+  end
+
+  def cancel_room_booking
+    sleep 5
+    $common_screen.click_button_with_text("Cancel booking")
+    assert_true($common_screen.verify_element_displayed_with_text("Booking details"),"Not Cancellation screen")
+    $common_screen.click_button_with_text("Cancel booking")
+    $common_screen.click_button_with_text("Confirm")
+    sleep 1
+    assert_true($common_screen.verify_element_displayed_with_text("Booking cancelled"),"Not Booking Cancellation Confirmation screen")
+    assert_true((@device_whatson_objects.check_in_out("Confirmation Number").text).include?($scenario.getContext("confirmation_number")),"Confirmation Number not correct")
+    $accountscreen.navigate_back_to_account
+    sleep 4
+  end
+
+  def getAllPaymentCards
+    $api=API_Functions.new
+    token=$api.generate_access_token($email,$password)
+    response=$api.get_request(ENV['API']+"/payments/cards?filter[venue]=GRS&filter[purpose]=TRANSACTIONAL",token)
+    return response
+  end
+
+  def getCardTypeViaAPI(type)
+    cardId=[]
+    card_data= JSON.parse(getAllPaymentCards.body)['data']
+    case type
+    when "master"
+      for card in card_data
+        if card['attributes']['card_type']=='MASTERCARD'
+          cardId.push(card['id'])
+        end
+      end
+    when "amex"
+      for card in card_data
+        if card['attributes']['card_type']=='AMEX'
+          cardId.push(card['id'])
+        end
+      end
+    when "visa"
+      for card in card_data
+        if card['attributes']['card_type']=='VISA'
+          cardId.push(card['id'])
+        end
+      end
+    end
+    return  cardId
+  end
+
+  def removeAllExistingCardsViaAPI(cards)
+    begin
+    for card in cards
+      token=$api.generate_access_token($email,$password)
+      response=$api.delete_request(ENV['API']+"/payments/cards/"+card,token)
+      assert_true(response.code.to_s.include?("204"),card+" Card not deleted")
+    end
+      return true
+    rescue
+      return false
+    end
+  end
+  def add_payment_details(cardType)
+    @config = JSON.parse(File.read('./config/jsonFiles/'+cardType+'_payment_card_details.json'))
+    sleep 5
+    Common.wait_for(20){@device_whatson_objects.card_number}.click
+    @device_whatson_objects.card_number.send_keys(@config["Card Number"])
+    $device=="ios"?$common_screen.click_element_with_text("Done"):(sleep 1)
+    month_year=["MONTH->"+ @config["Expiry Month"],"YEAR->"+ @config["Expiry Year"]]
+    for option in month_year
+      @device_whatson_objects.card_expiry(option.split("->")[0]).click
+      if $device == "ios"
+        @device_whatson_objects.picker.send_keys(option.split("->")[1])
+        $common_screen.click_element_with_text("Done")
+      else
+        Common.wait_for(5){@device_whatson_objects.element_text(option.split("->")[1])}.click
+      end
+    end
+    Common.wait_for(5){@device_whatson_objects.card_cvv}.click
+    @device_whatson_objects.card_cvv.send_keys(@config["CVV"])
+    $device=="ios"?$common_screen.click_element_with_text("Done"):(sleep 1)
+    $common_screen.click_button_with_text("Save card details")
+    $common_screen.click_button_with_text("Submit")
+    sleep 21
+
+  end
+
+  def verify_full_house_not_displayed
+    if $common_screen.verify_element_displayed_with_partial_text("Full house")
+      $common_screen.wait_for(15){@device_whatson_objects.full_house_options}.click
+      $common_screen.click_element_with_text("Confirm selection")
+    end
   end
 end

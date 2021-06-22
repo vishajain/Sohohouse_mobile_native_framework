@@ -152,11 +152,11 @@ And(/^tap on (.*) tab and set filter/) do |section|
    $filterEvent.to_s===""
   $accountscreen = AccountScreen.new
 
-  if !(($filterEvent.to_s).include?section) or $device=="ios"
+if !(($filterEvent.to_s).include?section) or $device=="ios"
+
 
     $common_screen.swipe_top
     $whatsonscreen.events_click(section)
-
 
   end
 
@@ -315,9 +315,6 @@ When(/^I book (.*) ticket for guests  and verify status for the "([^"]*)" of "([
 
       sleep 1
       $whatsonscreen.inviteGuest(event_type,1)
-      sleep 2
-
-      $device=="android"?($common_screen.click_element_with_text(event_name)):()
 
       sleep 2
 
@@ -362,4 +359,121 @@ And(/^I "([^"]*)" for "([^"]*)" of "([^"]*)"$/) do |button_name, event_name, eve
 
   assert_true($whatsonscreen.click_and_book_ticket(event_name,event_type,button_name,"NA"),"Ticket not Booked")
 
+end
+
+Then(/^I verify ([^"]*) is visible$/) do |arg|
+
+  assert_true($common_screen.verify_element_displayed_with_text(arg),arg+" is not visble")
+
+end
+
+And(/^I choose below options before browsing bedrooms$/) do |table|
+
+  $common_screen.find_element{$common_screen.click_element_with_text("Browse bedrooms")}
+  $whatsonscreen=WhatsonScreen.new
+  data = table.hashes
+  data.each do |row|
+    row.each do |key,value|
+      if key == "Location"
+        sleep 10
+        $common_screen.click_element_with_partial_text("Select location")
+        $whatsonscreen.select_house(value.split(",")[0],value.split(",")[1])
+      elsif key == "Dates"
+        $whatsonscreen.select_date(value.split("=>")[0].gsub('currentDate + ',""),value.split("=>")[1].gsub('currentDate + ',""))
+      elsif key == "Guests"
+        $scenario.setContext('noOfGuest',value)
+        $whatsonscreen.select_guest(value.split(" ")[0])
+      end
+    end
+  end
+
+end
+
+When(/^I click on Browse bedrooms and (continue bookings|select bedroom type)$/) do |options|
+  $whatsonscreen.click_browse_bedroom
+  if options.include?"continue bookings"
+    $common_screen.click_element_with_text("Continue search")
+  else
+    sleep 10
+    $whatsonscreen.verify_full_house_not_displayed
+    $whatsonscreen.click_select_bedroom
+  end
+end
+
+Then(/^I verify that I am taken to synxis website$/) do
+  $common_screen.verify_element_displayed_with_text("Select a Room")
+end
+
+Then(/^I verify and save booking details in availability page$/) do
+
+  assert_true($common_screen.verify_element_displayed_with_text("Guests: "+$scenario.getContext("noOfGuest")))
+  $whatsonscreen.verify_date_room
+
+end
+
+And(/^I click on book bedroom$/) do
+  sleep 2
+  $whatsonscreen.saveDepositAmount
+  $common_screen.click_element_with_text("Select bedroom")
+end
+
+Then(/^I verify below booking details matches the above saved details$/) do
+  sleep 2
+  $whatsonscreen.clickonDeposit
+  $common_screen.verify_element_displayed_with_text("Guests: "+$scenario.getContext("noOfGuest"))
+  $whatsonscreen.verify_date_room
+  $whatsonscreen.verify_room_type
+  $whatsonscreen.clickonDeposit
+
+end
+
+And(/^I book and pay using existing card$/) do
+  $common_screen.find_element{$common_screen.click_element_with_text("Terms and conditions")}
+  $whatsonscreen.accept_TnC
+  $common_screen.click_element_with_text("Book and pay")
+end
+
+And(/^I verify and save booking details in summary page$/) do |option|
+
+  data = option.hashes
+  data.each do |row|
+    row.each do |key,value|
+      $whatsonscreen.verifySaveBookingSummary(key.strip)
+    end
+  end
+
+end
+
+And(/^I cancel the above booking room from Booking page$/) do
+  $accountscreen.navigate_back_to_account
+  $whatsonscreen.cancel_room_booking
+end
+
+Then(/^I verify the "([^"]*)" is not displayed under Booking page$/) do |arg1|
+  assert_false($common_screen.verify_element_displayed_with_text(arg1),"Room Booking not cancelled")
+  $accountscreen.navigate_back_to_account
+end
+
+When(/^I cancel the above booking room from confirmation page$/) do
+  $whatsonscreen.cancel_room_booking
+end
+
+When(/^I remove existing (visa|master|amex) cards via API$/) do |type|
+  $scenario.setContext("cardType",type)
+  cards=$whatsonscreen.getCardTypeViaAPI(type)
+  if cards.length == 0
+    print 'No payment cards added for the account'
+  else
+      deletedCardsResponse = $whatsonscreen.removeAllExistingCardsViaAPI(cards)
+  end
+end
+
+And(/^I book and pay using new card$/) do
+  $scenario.getContext("cardType")
+  $common_screen.click_button_with_text("Add payment method")
+  $whatsonscreen.add_payment_details($scenario.getContext("cardType"))
+  sleep 2
+  $common_screen.find_element{$common_screen.click_element_with_text("Terms and conditions")}
+  $whatsonscreen.accept_TnC
+  $common_screen.click_element_with_text("Book and pay")
 end

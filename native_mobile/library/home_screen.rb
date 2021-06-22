@@ -334,6 +334,10 @@ class HomeScreen
 
             @device_account_objects.ElementsWithText(section).click
 
+            sleep 1
+
+            $common_screen.swipe_top
+
             if Common.wait_for(20) { @device_account_objects.ElementsWithText(heading) }.displayed?
 
               begin

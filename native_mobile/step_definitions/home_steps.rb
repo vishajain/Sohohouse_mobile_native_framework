@@ -32,8 +32,8 @@ Then("I verify the houseboard screen") do
 end
 
 Then("greetings should be visible") do
-
-    assert_true($homescreen.verify_greetings,"Greetings not present")
+  #assert_true($homescreen.verify_greetings,"Greetings not present")
+  assert_true($common_screen.verify_element_displayed_with_text("Visit a House"),"not home")
 end
 
 Then("username is visible") do
@@ -282,7 +282,6 @@ And(/^I navigate to connect screen$/) do
 end
 
 Then(/^I navigate to ([^"]*) page$/) do |arg|
-
   $common_screen=CommonScreen.new
   $common_screen.navigate_to_tabs(arg)
   $common_screen.swipe_top
