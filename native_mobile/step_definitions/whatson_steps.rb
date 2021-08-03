@@ -268,7 +268,7 @@ Then(/^I should be able to successfully book event for member with status "([^"]
 end
 
 Then(/^I navigate to home screen$/) do
-
+  sleep 3
   $accountscreen = AccountScreen.new
 
   $accountscreen.home_screen_navigate
@@ -476,4 +476,27 @@ And(/^I book and pay using new card$/) do
   $common_screen.find_element{$common_screen.click_element_with_text("Terms and conditions")}
   $whatsonscreen.accept_TnC
   $common_screen.click_element_with_text("Book and pay")
+end
+
+And(/^I clicked on Shop link & verify the shopLinks$/) do |table|
+
+  sleep 2
+
+  data = table.hashes
+
+  data.each do |row|
+
+    row.each do |key,value|
+      sleep 2
+      if key.eql?"Links"
+        assert_true($common_screen.find_element{$common_screen.click_element_with_text(value)},value+" is not clicked")
+      elsif key.eql?"Title"
+        sleep 5
+        assert_true($common_screen.find_element{$common_screen.verify_element_displayed_with_partial_text(value)},value+" is not displayed")
+        $whatsonscreen.back_to_shop_page
+        sleep 1
+      end
+    end
+  end
+  assert_true($common_screen.find_element{$common_screen.click_element_with_text("sideMenuClose")},"sideMenuClose is not clicked")
 end

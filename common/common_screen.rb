@@ -232,6 +232,8 @@ class CommonScreen
       ($device=="ios")?click_element_with_text("More from us"):wait_for(twentySecondsTimeout){@device_common_objects.tab_icons(4)}.click
     when "Account"
       ($device=="ios")?(wait_for(twentySecondsTimeout){@device_common_objects.account_menu}.click):wait_for(twentySecondsTimeout){@device_common_objects.tab_icons(5)}.click
+    when "Shop"
+      ($device=="ios")?(swipe_down; sleep 4; click_element_with_text("Shop"); sleep 4):()
     end
   end
 

@@ -1168,4 +1168,26 @@ class WhatsonScreen
       $common_screen.click_element_with_text("Confirm selection")
     end
   end
+
+  def back_to_shop_page
+
+    begin
+
+      sleep 2
+
+      $device=="ios"?$common_screen.click_element(@device_whatson_objects.navigate_back_to_shop):(sleep 1)
+
+    rescue
+
+      Common.swipe_top
+
+    end
+
+  end
+
+  def accept_the_cookies
+    puts "::inside accept cookies method::"
+    sleep 5
+    $device=="ios"?(sleep 10; $common_screen.click_element(@device_whatson_objects.accept_Cookies)):(sleep 1)
+  end
 end

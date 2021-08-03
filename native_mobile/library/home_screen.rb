@@ -184,7 +184,6 @@ class HomeScreen
     $common_screen=CommonScreen.new
     $common_screen.navigate_to_tabs("Account")
 
-
   end
 
   def go_back_to_home_screen

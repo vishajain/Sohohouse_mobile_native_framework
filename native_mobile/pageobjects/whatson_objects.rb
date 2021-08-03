@@ -324,6 +324,10 @@ class Ios_Whatson_Objects
     @driver.find_element(:xpath => "//XCUIElementTypeMenuItem[1]")
   end
 
+  def navigate_back_to_shop
+    @driver.find_element(:xpath => "//*[contains(@name , 'iconLeft') or contains(@name,'iconXLarge') or contains(@name , 'iconArrowLeft')]")
+  end
+
 end
 
 class Android_Whatson_Objects
@@ -643,5 +647,6 @@ class Android_Whatson_Objects
   def house(country, house)
     @driver.find_element(:xpath => "//android.view.View[./android.widget.Button[@text ='"+country+"']]/android.view.MenuItem[contains(@text ,'"+house+"')]")
   end
+
 
 end
