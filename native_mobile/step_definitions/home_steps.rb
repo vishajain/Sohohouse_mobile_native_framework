@@ -284,5 +284,7 @@ end
 Then(/^I navigate to ([^"]*) page$/) do |arg|
   $common_screen=CommonScreen.new
   $common_screen.navigate_to_tabs(arg)
+=begin
   $common_screen.swipe_top
+=end
 end

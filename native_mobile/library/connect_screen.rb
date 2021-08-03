@@ -106,4 +106,20 @@ class ConnectScreen
     end
 
   end
+
+  def verify_connect_click
+    $common_screen=CommonScreen.new
+    $common_screen.navigate_to_tabs("Connect with members")
+  end
+
+  def time_slot
+    if $device=="ios"
+      return @device_connect_objects.booking_time_slot
+    end
+  end
+
+  def get_text_element
+    sleep 5
+    return @device_connect_objects.booking_time_slot.text
+  end
 end

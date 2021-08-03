@@ -57,6 +57,9 @@ class Ios_Connect_Objects
   def reply_button
     @driver.find_element(:name => "Reply")
   end
+  def booking_time_slot
+  @driver.find_element(:xpath => "//XCUIElementTypeCell[5]//XCUIElementTypeButton[@enabled='true'][1]")
+end
 end
 
 class Android_Connect_Objects

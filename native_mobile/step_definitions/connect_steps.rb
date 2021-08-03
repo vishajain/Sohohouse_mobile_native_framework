@@ -73,3 +73,52 @@ end
 And(/^I verify post is deleted$/) do
   $connect_screen.verify_post_deleted
 end
+
+And(/^I verify the title on connect screen$/) do |table|
+
+  data = table.hashes
+  data.each do |row|
+    row.each do |key,value|
+      sleep 2
+      if $device == "ios"
+        if key.eql?"Title"
+          assert_true($common_screen.find_element{$common_screen.verify_element_displayed_with_text(value)},value+" is not displayed")
+        end
+      end
+    end
+  end
+end
+
+Then(/^I click on Join the Conversation and schedule the call$/) do |table|
+  $common_screen.click_element_with_text("Join a conversation")
+  data = table.hashes
+  data.each do |row|
+    row.each do |key,value|
+      sleep 2
+      if $device == "ios"
+        if key.eql?"Interests"
+          assert_true($common_screen.find_element{$common_screen.click_element_with_text(value)},value+" is not clicked")
+          $common_screen.click_element_with_text("Next")
+          sleep 5
+          $common_screen.click_element($connect_screen.time_slot)
+          selectedTimeSlot = $connect_screen.get_text_element
+          puts "selectedTimeSlot: "+selectedTimeSlot
+          sleep 2
+          $common_screen.click_element_with_text("Book")
+        end
+      end
+    end
+  end
+end
+
+And(/^I confirm call is scheduled$/) do
+  assert_true($common_screen.find_element{$common_screen.verify_element_displayed_with_text("Your video call is scheduled")},"Pop up is not displayed")
+  $common_screen.click_element_with_text("Done")
+  assert_true($common_screen.find_element{$common_screen.verify_element_displayed_with_text("Booked")},"Booked button is not displayed")
+end
+
+And(/^I cancelled the scheduled call$/) do
+  $common_screen.click_element_with_text("Booked")
+  $common_screen.click_element_with_text("Cancel video call")
+  $common_screen.click_element_with_text("Confirm cancellation")
+end
