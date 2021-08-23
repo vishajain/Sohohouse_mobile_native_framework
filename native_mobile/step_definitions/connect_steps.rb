@@ -122,3 +122,16 @@ And(/^I cancelled the scheduled call$/) do
   $common_screen.click_element_with_text("Cancel video call")
   $common_screen.click_element_with_text("Confirm cancellation")
 end
+
+Then(/^I navigate to blockedMembers screen$/) do
+  Common.swipe_down
+  $common_screen.click_element_with_text("My connections")
+  $common_screen.click_element_with_text("ellipse")
+  $common_screen.click_element_with_text("Blocked members")
+end
+
+And(/^I verify the title of blocked members screen$/) do
+  assert_true($common_screen.wait_for(10){$common_screen.verify_element_displayed_with_text("Blocked members")},"User is not on Blocked members screen")
+  $connect_screen.back_to_connect_page
+  $connect_screen.go_back
+end

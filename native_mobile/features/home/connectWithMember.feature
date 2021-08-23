@@ -15,3 +15,9 @@ Feature: This feature enables us to test the connect with members functionality
     And I cancelled the scheduled call
     And I navigate to Home page
 
+  Scenario: Navigate to blocked members screen
+    Given greetings should be visible
+    When I navigate to Connect page
+    Then I navigate to blockedMembers screen
+    And I verify the title of blocked members screen
+    And I navigate to Home page
