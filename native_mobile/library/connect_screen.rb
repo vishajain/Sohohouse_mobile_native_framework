@@ -150,4 +150,36 @@ class ConnectScreen
     Common.home_panel_swipe(@device_common_objects.element_with_text(value),"left")
     return  true
   end
+
+  def back_to_connect_page
+
+    begin
+
+      sleep 1
+
+      $device=="ios"?($common_screen.click_element(@device_connect_objects.navigate_back_to_connect)):(sleep 1)
+
+    rescue
+
+      Common.swipe_top
+
+    end
+
+  end
+
+  def go_back
+
+    begin
+
+      sleep 1
+
+      $device=="ios"?($common_screen.click_element(@device_connect_objects.back_to_previous_page)):(sleep 1)
+
+    rescue
+
+      Common.swipe_top
+
+    end
+
+  end
 end
