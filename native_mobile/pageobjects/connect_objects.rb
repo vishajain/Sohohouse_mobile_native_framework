@@ -69,7 +69,6 @@ class Ios_Connect_Objects
     @driver.find_element(:xpath => "//*[@name='Type a message']")
   end
 
-  end
   def navigate_back_to_connect
     @driver.find_element(:xpath => "//*[contains(@name , 'iconLeft') or contains(@name,'iconXLarge') or contains(@name , 'iconArrowLeft') or contains(@name, 'iconDarkSmallClose')]")
   end
