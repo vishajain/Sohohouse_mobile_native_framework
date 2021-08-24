@@ -372,6 +372,10 @@ class Ios_Home_Objects
     @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name='Connect']/preceding-sibling::XCUIElementTypeButton")
   end
 
+  def back_to_home
+    @driver.find_element(:xpath => "//*[contains(@name , 'iconLeft') or contains(@name,'iconXLarge') or contains(@name , 'iconArrowLeft') or contains(@name, 'iconDarkSmallClose') or contains(@name, 'Back')]")
+  end
+
 end
 
 class Android_Home_Objects

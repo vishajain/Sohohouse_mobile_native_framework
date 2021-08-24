@@ -559,4 +559,20 @@ class HomeScreen
     end
   end
 
+  def navigate_back_to_home
+
+    begin
+
+      sleep 1
+
+      $device=="ios"?($common_screen.click_element(@device_home_objects.back_to_home)):(sleep 1)
+
+    rescue
+
+      Common.swipe_top
+
+    end
+
+  end
+
 end

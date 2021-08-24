@@ -122,3 +122,63 @@ And(/^I cancelled the scheduled call$/) do
   $common_screen.click_element_with_text("Cancel video call")
   $common_screen.click_element_with_text("Confirm cancellation")
 end
+
+When(/^I verify liveStreamed Rooms heading and events available on the screen$/) do
+  assert_true($common_screen.find_element{$common_screen.verify_element_displayed_with_text("Live Rooms")},"Live Rooms not displayed")
+  assert_true($common_screen.find_element{$common_screen.verify_element_displayed_with_text("See all")},"See all link not displayed")
+end
+
+Then(/^I verify the Live event$/) do |table|
+  data = table.hashes
+  data.each do |row|
+    row.each do |key,value|
+      if key.eql?"Live stream event"
+        assert_true($common_screen.find_element{$common_screen.verify_element_displayed_with_text("LIVE NOW")},"LIVE NOW link not displayed")
+        assert_true($common_screen.find_element{$common_screen.click_element_with_text(value)},value+" is not clicked")
+        assert_true($common_screen.find_element{$common_screen.click_element_with_text(value)},value+" is not clicked")
+        assert_true($common_screen.find_element{$common_screen.verify_element_displayed_with_text("Vimeo")},"video is not displayed")
+        $connect_screen.exit_from_live_screen
+        $homescreen.navigate_back_to_home
+      end
+    end
+  end
+end
+
+And(/^I verify posting message$/) do |table|
+  data = table.hashes
+  data.each do |row|
+    row.each do |key,value|
+      if key.eql?"Live stream event"
+        assert_true($common_screen.find_element{$common_screen.click_element_with_text(value)},value+" is not clicked")
+        assert_true($common_screen.find_element{$common_screen.click_element_with_partial_text(value)},value+" is not clicked")
+        assert_true($common_screen.find_element{$common_screen.verify_element_displayed_with_text("Vimeo")},"video is not displayed")
+        $connect_screen=ConnectScreen.new
+        $connect_screen.send_message_to_event("Check in to the live stream event")
+        assert_true($common_screen.find_element{$common_screen.click_element_with_text("Send")},"Send is not clicked")
+      end
+      $connect_screen.exit_from_live_screen
+      $homescreen.navigate_back_to_home
+    end
+  end
+end
+
+And(/^I verify the non Live event$/) do |table|
+  data = table.hashes
+  data.each do |row|
+    row.each do |key,value|
+      if key.eql?"Live stream event"
+        if !($common_screen.verify_element_displayed_with_text(value))
+          sleep 4
+          assert_true($common_screen.find_element{$connect_screen.move_events_to_left(value)},value+" not displayed")
+        end
+          assert_true($common_screen.find_element{$common_screen.click_element_with_text(value)},value+" is not clicked")
+          assert_true($common_screen.find_element{$common_screen.click_element_with_text("Notify me before it starts")},+"Notify me before it starts is not clicked")
+          assert_true($common_screen.find_element{$common_screen.verify_element_displayed_with_text("You're all set")},"title is not displayed")
+          assert_true($common_screen.find_element{$common_screen.click_element_with_text("Done")},+"Notify me before it starts is not clicked")
+          assert_true($common_screen.find_element{$common_screen.click_element_with_text("Cancel reminder")}," Cancel reminder is not clicked")
+          $homescreen = HomeScreen.new
+          $homescreen.navigate_back_to_home
+      end
+    end
+  end
+end

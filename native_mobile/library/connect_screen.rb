@@ -122,4 +122,32 @@ class ConnectScreen
     sleep 5
     return @device_connect_objects.booking_time_slot.text
   end
+
+  def exit_from_live_screen
+
+    begin
+
+      sleep 1
+
+      $device=="ios"?($common_screen.click_element(@device_connect_objects.exit_from_live_window)):(sleep 1)
+
+    rescue
+
+      Common.swipe_top
+
+    end
+
+  end
+
+  def send_message_to_event(messageText)
+    sleep 2
+    $device=="ios"?(@device_connect_objects.messageBox.send_keys(messageText)):()
+  end
+
+  def move_events_to_left(value)
+    sleep 3
+    Common.swipe_top
+    Common.home_panel_swipe(@device_common_objects.element_with_text(value),"left")
+    return  true
+  end
 end
