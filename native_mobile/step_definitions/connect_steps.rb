@@ -138,6 +138,8 @@ Then(/^I verify the Live event$/) do |table|
         assert_true($common_screen.find_element{$common_screen.click_element_with_text(value)},value+" is not clicked")
         assert_true($common_screen.find_element{$common_screen.verify_element_displayed_with_text("Vimeo")},"video is not displayed")
         $connect_screen.exit_from_live_screen
+        $common_screen.click_element_with_text("Join Now")
+        $connect_screen.exit_from_live_screen
         $homescreen.navigate_back_to_home
       end
     end
@@ -181,4 +183,23 @@ And(/^I verify the non Live event$/) do |table|
       end
     end
   end
+end
+
+Then(/^I verify See all functionality$/) do |table|
+  data = table.hashes
+  data.each do |row|
+    row.each do |key,value|
+      if key.eql?"Link"
+        assert_true($common_screen.click_element_with_text(value),value+" is not clicked")
+      elsif key.eql? "Title"
+        sleep 1
+        assert_true($common_screen.verify_element_displayed_with_text(value),value+"  not displayed")
+      end
+    end
+  end
+  $homescreen.navigate_back_to_home
+end
+
+Then(/^I verify Re- Join the Live event$/) do
+
 end

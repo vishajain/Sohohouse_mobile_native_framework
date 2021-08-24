@@ -15,7 +15,7 @@ Feature: This feature enables us to test the connect with members functionality
     And I cancelled the scheduled call
     And I navigate to Home page
 
-
+  @smoke @connect @ios @regression234
   Scenario: Verify live stream event on home page
     Given greetings should be visible
     When I verify liveStreamed Rooms heading and events available on the screen
@@ -43,6 +43,14 @@ Feature: This feature enables us to test the connect with members functionality
   Scenario: Verify non Live stream event on Home screen
     Given greetings should be visible
     When I verify liveStreamed Rooms heading and events available on the screen
-    And I verify the non Live event
+    Then I verify the non Live event
       |Live stream event  |
       |Visha_test_non_live_event_1 |
+
+  Scenario: Verify See all functionality for Live event on Home Screen
+    Given greetings should be visible
+    When I verify liveStreamed Rooms heading and events available on the screen
+    Then I verify See all functionality
+      |Link    | Title      |
+      |See all | Live Rooms |
+
