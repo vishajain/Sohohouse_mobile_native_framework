@@ -117,21 +117,39 @@ And(/^user sees all the sections on home screen$/) do |table|
 end
 
 And(/^user verifies all sections of 'What can we help you with'$/) do |table|
-  sleep 5
   data = table.hashes
   data.each do |row|
-    icon=nil
-    link=nil
     row.each do |key,value|
       if key.eql?"Section"
-        icon = value
+        loop do
+          if ($common_screen.verify_element_displayed_with_text(value,10))
+            sleep 1
+          else
+            assert_true($homescreen.move_sections_to_left,value+" not displayed")
+          end
+            assert_true($common_screen.find_element{$common_screen.click_element_with_text(value)},value+" is not clicked")
+          break
+        end
       elsif key.eql?"Links"
-        link = value
+        assert_true($common_screen.wait_for(10){$common_screen.verify_element_displayed_with_text(value)},value+" is not displayed")
+        sleep 1
+        if $device == "ios"
+          if ($common_screen.verify_element_displayed_with_text("fab"))
+            $accountscreen.home_screen_navigation
+          else
+            $homescreen.navigate_back_to_home
+          end
+        else
+          $homescreen.go_Back
+        end
       end
     end
-    assert_true($homescreen.verifyIcons(icon,link),icon+" not displayed")
   end
-  $homescreen.create_aroom_carosal_move_right
+  if $device == "ios"
+    2.times{$homescreen.create_aroom_carosal_move_right}
+    sleep 1
+    $common_screen.swipeByLocation(50,$dimensions_height*0.60,50,$dimensions_height*0.80)
+  end
 end
 
 Then(/^the user scrolls to the top$/) do

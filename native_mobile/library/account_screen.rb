@@ -162,12 +162,12 @@ class AccountScreen
   end
 
   def home_screen_navigation
-    sleep 3
+    sleep 1
 
     $common_screen=CommonScreen.new
     $common_screen.navigate_to_tabs("Home")
 
-    sleep 2
+    sleep 1
 
     Common.swipe_top
     

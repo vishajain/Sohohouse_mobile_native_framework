@@ -12,6 +12,7 @@ Feature: Home Screen all sections validation
       | Book a table             |  Check availability                                            |
       | Book a bedroom           |  Stay with us                                                  |
       | Book an event            |  Events                                                        |
+      | Book a gym class         |  Gym classes                                                   |
       | Book a screening         |  Screenings                                                    |
       | Member benefits          |  Explore your benefits                                         |
     Then greetings should be visible
@@ -24,6 +25,7 @@ Feature: Home Screen all sections validation
       | Section                  | Links            |
       | Invite a Guest           |  New invitation  |
       | Visit a House            |  House visit     |
+      | Book a Table             |  Book a table    |
       | Stay with Us             |  Bedrooms        |
       | Book an Event            |  Events          |
       | Book a Gym Class         |  Gym             |
