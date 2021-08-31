@@ -154,4 +154,22 @@ class ConnectScreen
     end
 
   end
+
+  def verify_elements_share_room
+
+    assert_true(@device_connect_objects.switch_camera.displayed?,"Switch Camera not displayed?")
+    assert_true(@device_connect_objects.Members.displayed?,"Members not displayed?")
+    @device_connect_objects.Members.click
+    assert_true($common_screen.verify_element_displayed_with_text("Report this call"),"Report this call not displayed")
+    $common_screen.click_element_with_text("WhiteCloseButton")
+    assert_true(@device_connect_objects.mute.displayed?,"Mute not displayed?")
+    assert_true(@device_connect_objects.disable_video.displayed?,"Disable video not displayed?")
+
+  end
+
+  def verify_open_room_switch(text)
+
+    return $common_screen.wait_for(10){@device_connect_objects.open_room_switch(text)}.displayed?
+
+  end
 end

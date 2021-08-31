@@ -21,3 +21,17 @@ Feature: This feature enables us to test the connect with members functionality
     Then I navigate to blockedMembers screen
     And I verify the title of blocked members screen
     And I navigate to Home page
+
+  Scenario: Verify share your room functionality
+    Given greetings should be visible
+    When I navigate to Connect page
+    And I click on Share your room
+    And I navigate to room by clicking on open room
+    | Fields        |
+    | Camera        |
+    | Microphone    |
+    | Notifications |
+    And I verified I am in a room
+    And I come out of the room
+    Then I navigate to Home page
+

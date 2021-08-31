@@ -66,6 +66,21 @@ class Ios_Connect_Objects
   def back_to_previous_page
     @driver.find_element(:xpath => "//*[contains(@name , 'iconLeft') or contains(@name,'iconXLarge') or contains(@name , 'iconArrowLeft') or contains(@name, 'iconDarkSmallClose')]")
   end
+  def switch_camera
+    @driver.find_element(:name => "switch camera")
+  end
+  def Members
+    @driver.find_element(:name => "Members")
+  end
+  def mute
+    @driver.find_element(:name => "mute")
+  end
+  def disable_video
+    @driver.find_element(:name => "disable video")
+  end
+  def open_room_switch(text)
+    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name='"+text+"']/following-sibling::XCUIElementTypeButton")
+  end
 end
 
 class Android_Connect_Objects

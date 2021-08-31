@@ -135,3 +135,33 @@ And(/^I verify the title of blocked members screen$/) do
   $connect_screen.back_to_connect_page
   $connect_screen.go_back
 end
+And(/^I click on Share your room$/) do
+  $common_screen.click_element_with_text("Share your room")
+end
+
+And(/^I navigate to room by clicking on open room$/) do |table|
+  $common_screen.click_element_with_text("Open Room")
+  data = table.hashes
+
+  data.each do |row|
+
+    row.each do |value|
+
+      assert_true($connect_screen.verify_open_room_switch(value[1]),value[1]+" not displayed")
+
+    end
+
+  end
+
+  $common_screen.click_element_with_text("Continue")
+end
+
+And(/^I verified I am in a room$/) do
+  assert_true($common_screen.find_element{$common_screen.verify_element_displayed_with_text("Waiting for others to join…")},"Room is not displayed")
+  $connect_screen.verify_elements_share_room
+end
+
+And(/^I come out of the room$/) do
+  $common_screen.click_element_with_text("Leave call")
+  $common_screen.click_element_with_text("Yes, leave chat")
+end
