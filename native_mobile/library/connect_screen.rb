@@ -139,22 +139,6 @@ class ConnectScreen
 
   end
 
-  def go_back
-
-    begin
-
-      sleep 1
-
-      $device=="ios"?($common_screen.click_element(@device_connect_objects.back_to_previous_page)):(sleep 1)
-
-    rescue
-
-      Common.swipe_top
-
-    end
-
-  end
-
   def verify_elements_share_room
 
     assert_true(@device_connect_objects.switch_camera.displayed?,"Switch Camera not displayed?")
@@ -172,4 +156,29 @@ class ConnectScreen
     return $common_screen.wait_for(10){@device_connect_objects.open_room_switch(text)}.displayed?
 
   end
+
+  def exit_from_chat
+
+    begin
+
+      sleep 1
+
+      $device=="ios"?($common_screen.click_element(@device_connect_objects.exit_from_chat_window)):(sleep 1)
+
+    rescue
+
+      Common.swipe_top
+
+    end
+
+  end
+
+  def move_sections_to_right
+
+    Common.swipe_down
+    Common.home_panel_swipe(@device_connect_objects.connect_section,"left")
+    return  true
+
+  end
+
 end

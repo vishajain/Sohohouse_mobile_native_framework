@@ -1,7 +1,6 @@
 @connect-screen @regression
 Feature: This feature enables us to test the connect with members functionality
 
-  @smoke @connect @ios
   Scenario: Validate "Join a conversation" functionality
     Given greetings should be visible
     When I navigate to Connect page
@@ -34,4 +33,19 @@ Feature: This feature enables us to test the connect with members functionality
     And I verified I am in a room
     And I come out of the room
     Then I navigate to Home page
+
+  Scenario: Validate "Join a conversation" functionality
+    Given greetings should be visible
+    When I navigate to Connect page
+    Then I verify all the sections under connect
+      | Section               | Title           |
+      | Share your room       | Your room       |
+      | Join a conversation   | Interests       |
+      | Find members          | Find members    |
+      | Share profile         | Share profile   |
+    And I verify the sections under set up your account panel
+      | Section                                                        | Title           |
+      | Let other members know what you are interested in talking about| Let's chat      |
+      | Complete your profile                                          | Edit profile    |
+    And I navigate to Home page
 
