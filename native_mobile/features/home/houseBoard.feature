@@ -26,5 +26,5 @@ Feature: This feature enables us to test the house board functionality
       | Babington House | House          |
       | Membership card | 20001 123 566  |
       | Book a bedroom  | Stay with us   |
-      | House rules     | House Rules    |
+      | House rules     | Global House Rules    |
     Then I close the houseboard screen

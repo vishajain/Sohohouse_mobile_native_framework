@@ -1,4 +1,4 @@
-@roomBookings @regression
+@roomBookings @regression @ios @iOS_will_fail
 Feature: Room bookings
   As a member
   I navigate to Stay with us

@@ -217,9 +217,8 @@ class CommonScreen
       wait_for(10){@device_common_objects.tab_icon.displayed?}
       sleep 1
       @device_common_objects.tab_icon.click
-      sleep 2
     end
-
+    sleep 1
     case tab
 
     when "Home"

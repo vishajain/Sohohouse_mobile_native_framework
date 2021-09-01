@@ -201,7 +201,7 @@ class HomeScreen
 
     begin
 
-      $device=="ios"?$common_screen.find_element{@device_home_objects.event_name_field[0].click}:$common_screen.find_element{@device_home_objects.event_name_field[0].displayed?}
+      $device=="ios"?($action.move_to(@device_home_objects.event_name_field[0]).perform;@device_home_objects.event_name_field[0].displayed?):$common_screen.find_element{@device_home_objects.event_name_field[0].displayed?}
 
     rescue
           Common.little_swipe_down
@@ -218,7 +218,7 @@ class HomeScreen
               if !($device == "ios")
                 Common.verifyNavBar(@device_account_objects.element_contains_text(event_name))
               end
-              $common_screen.little_swipe_down
+
               @device_home_objects.event_name(event_name).click
 
             else
@@ -321,87 +321,6 @@ class HomeScreen
       end
 
   end
-
-    def verifyIcons(section, heading)
-      i = 0
-
-      loop do
-
-        begin
-
-          if Common.wait_for(10) { @device_account_objects.ElementsWithText(section) }.displayed?
-
-            @device_account_objects.ElementsWithText(section).click
-
-            sleep 1
-
-            $common_screen.swipe_top
-
-            if Common.wait_for(20) { @device_account_objects.ElementsWithText(heading) }.displayed?
-
-              begin
-                if $device == "ios"
-                  if !@device_common_objects.tab_icon.displayed?
-                    Common.swipe_top
-                  end
-                  if !@device_onboarding_objects.home_title.displayed?
-                    @device_common_objects.tab_icon.click
-
-                    (!(@device_common_objects.home_menu.displayed?))?($action.move_to(@device_common_objects.side_left_arrow).click.perform):(print "visible")
-
-                    @device_common_objects.home_menu.click
-                  end
-                else
-                  if !@device_home_objects.homeBtn.displayed?
-
-                    Common.swipe_top
-
-                  end
-
-                  Common.wait_for(3){@device_home_objects.homeBtn}.click
-
-                end
-
-              rescue StandardError => e
-
-                if $device=="ios"
-                  if @device_common_objects.tab_icon.displayed?
-                    @device_common_objects.tab_icon.click
-                    sleep 1
-                    @device_common_objects.home_menu.click
-                  end
-                else
-                  @device_home_objects.icon_left.click
-                end
-
-              end
-
-            end
-          else
-            raise StandardError.new "Element not visible"
-          end
-
-         return true
-
-      rescue StandardError => e
-
-        Common.home_panel_swipe(@device_home_objects.circle_icon[0],"left")
-
-        sleep 1
-
-        i = i + 1
-
-        if i > 2
-
-          return false
-
-        end
-
-        end
-
-      end
-
-    end
 
   def create_aroom_carosal_move_right
     Common.home_panel_swipe(@device_home_objects.circle_icon[0],"right")
@@ -530,7 +449,10 @@ class HomeScreen
 
   def cancel_booking
     Common.wait_for(10){@device_home_objects.cancel_event_booking}.click
-    $device=="ios"?(sleep 4):(Common.wait_for(10){@device_guestinvitation_objects.ButtonWithText("YES")}.click)
+    begin
+      $device=="ios"?(Common.wait_for(10){@device_guestinvitation_objects.ButtonWithText("Yes")}.click):(Common.wait_for(10){@device_guestinvitation_objects.ButtonWithText("YES")}.click)
+    rescue
+    end
     begin
       sleep 2
       if @device_home_objects.cancel_event_booking.displayed?
@@ -557,6 +479,30 @@ class HomeScreen
     else
       $homescreen.go_back_to_home_screen
     end
+  end
+
+  def move_sections_to_left
+    sleep 1
+    $device=="ios"?(Common.swipe_top):()
+    Common.home_panel_swipe(@device_home_objects.circle_icon[0],"left")
+
+    return  true
+  end
+
+  def navigate_back_to_home
+
+    begin
+
+      sleep 1
+
+      $device=="ios"?($common_screen.click_element(@device_home_objects.back_to_home)):(sleep 1)
+
+    rescue
+
+      Common.swipe_top
+
+    end
+
   end
 
 end

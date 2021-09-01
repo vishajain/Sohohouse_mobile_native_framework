@@ -54,7 +54,11 @@ Before do |scenario|
           raise "Uninstalled..Re-Launch"
 
         end
+      elsif $failed==true
 
+        $failed=false
+
+        $driver.activate_app($currentPackage)
       end
 
       assert_true($onboardingscreens.verify_app_launch_screen, "App installed successfully") #Checking if app is launched if yes, is it alreday logged in
@@ -100,6 +104,8 @@ Before do |scenario|
 
     $onboardingscreens.user_enters_email_password("valid")
 
+    !(scenario.feature.name.include?"On-boarding screens")?($common_screen.skip_Onboarding):()
+
   end
 
   $scenario=ScenarioContext.new
@@ -111,6 +117,8 @@ end
 After do |scenario|
 
   if scenario.failed?
+
+    $failed=true
 
     encoded_img = $driver.screenshot_as(:base64)
 

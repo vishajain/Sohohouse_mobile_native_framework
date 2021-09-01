@@ -38,7 +38,7 @@ class Ios_Common_Objects
     @driver.find_element(:name => "sideMenuAccount")
   end
   def skip_onboard
-    @driver.find_element(:xpath => "//*[@name=\"Next\" or @name=\"Continue\" or @name=\"Continue without syncing\" or @name=\"I'd rather opt out\" or @name=\"Dismiss\" or @name=\"Remind me later\" or @name=\"Update later\"]")
+    @driver.find_element(:xpath => "//*[@name=\"Next\" or @name=\"Continue\" or @name=\"Continue without syncing\" or @name=\"I'd rather opt out\" or @name=\"Dismiss\" or @name=\"Remind me later\" or @name=\"Update later\" or @name=\"Allow\"]")
   end
   def side_left_arrow
     @driver.find_element(:name => "sideMenuArrowLeft")

@@ -63,9 +63,28 @@ class Ios_Connect_Objects
   def navigate_back_to_connect
     @driver.find_element(:xpath => "//*[contains(@name , 'iconLeft') or contains(@name,'iconXLarge') or contains(@name , 'iconArrowLeft') or contains(@name, 'iconDarkSmallClose')]")
   end
-  def back_to_previous_page
-    @driver.find_element(:xpath => "//*[contains(@name , 'iconLeft') or contains(@name,'iconXLarge') or contains(@name , 'iconArrowLeft') or contains(@name, 'iconDarkSmallClose')]")
+  def switch_camera
+    @driver.find_element(:name => "switch camera")
   end
+  def Members
+    @driver.find_element(:name => "Members")
+  end
+  def mute
+    @driver.find_element(:name => "mute")
+  end
+  def disable_video
+    @driver.find_element(:name => "disable video")
+  end
+  def open_room_switch(text)
+    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name='"+text+"']/following-sibling::XCUIElementTypeButton")
+  end
+  def exit_from_chat_window
+    @driver.find_element(:xpath => "//*[contains(@name , 'iconLeft') or contains(@name,'iconXLarge') or contains(@name , 'iconArrowLeft')]")
+  end
+  def connect_section
+    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[contains(@name,'Let other') or @name='Complete your profile']")
+  end
+
 end
 
 class Android_Connect_Objects

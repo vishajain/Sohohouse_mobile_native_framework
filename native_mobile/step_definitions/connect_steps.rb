@@ -27,8 +27,8 @@ Given("I write a post") do |table|
     end
   end
   $common_screen=CommonScreen.new
-  $common_screen.find_element{$common_screen.click_element_with_text("Write a post")}
-  $common_screen.verify_element_displayed_with_text("New post")
+  $common_screen.wait_for(15){$common_screen.click_element_with_text("Write a post")}
+  $device=="ios"?$common_screen.verify_element_displayed_with_text("New post"):$common_screen.verify_element_displayed_with_text("Post")
   $connect_screen=ConnectScreen.new
   $connect_screen.create_post($message,$post_house,$topic)
 end
@@ -133,10 +133,82 @@ end
 And(/^I verify the title of blocked members screen$/) do
   assert_true($common_screen.wait_for(10){$common_screen.verify_element_displayed_with_text("Blocked members")},"User is not on Blocked members screen")
   $connect_screen.back_to_connect_page
-  $connect_screen.go_back
+  $connect_screen.back_to_connect_page
+end
+And(/^I click on Share your room$/) do
+  $common_screen.click_element_with_text("Share your room")
 end
 
-Then(/^I verify call history$/) do |table|
+And(/^I navigate to room by clicking on open room$/) do |table|
+  $common_screen.click_element_with_text("Open Room")
+  data = table.hashes
+
+  data.each do |row|
+
+    row.each do |value|
+
+      assert_true($connect_screen.verify_open_room_switch(value[1]),value[1]+" not displayed")
+
+    end
+
+  end
+
+  $common_screen.click_element_with_text("Continue")
+end
+
+And(/^I verified I am in a room$/) do
+  assert_true($common_screen.find_element{$common_screen.verify_element_displayed_with_text("Waiting for others to join…")},"Room is not displayed")
+  $connect_screen.verify_elements_share_room
+end
+
+And(/^I come out of the room$/) do
+  $common_screen.click_element_with_text("Leave call")
+  $common_screen.click_element_with_text("Yes, leave chat")
+end
+Then(/^I verify all the sections under connect$/) do |table|
+  data = table.hashes
+  data.each do |row|
+    row.each do |key,value|
+      if $device == "ios"
+        if key.eql?"Section"
+            assert_true($common_screen.find_element{$common_screen.click_element_with_text(value)},value+" is not clicked")
+        elsif key.eql?"Title"
+          assert_true($common_screen.find_element{$common_screen.verify_element_displayed_with_text(value)},value+" is not displayed")
+          $connect_screen.back_to_connect_page
+        end
+      end
+    end
+  end
+end
+
+And(/^I verify the sections under set up your account panel$/) do |table|
+  data = table.hashes
+  data.each do |row|
+    row.each do |key,value|
+        if key.eql?"Section"
+
+          (value.eql?"Complete your profile")?(assert_true($connect_screen.move_sections_to_right,value+" not displayed")):()
+
+            assert_true($common_screen.find_element{$common_screen.click_element_with_text(value)},value+" is not clicked")
+
+        elsif key.eql?"Title"
+
+          assert_true($common_screen.find_element{$common_screen.verify_element_displayed_with_text(value)},value+" is not displayed")
+
+          if value.eql?"Let's chat"
+
+            $connect_screen.exit_from_chat
+
+          end
+
+          $connect_screen.back_to_connect_page
+      end
+    end
+  end
+end
+
+
+Then(/^I verify connect sections$/) do |table|
   $common_screen.swipe_down
   data = table.hashes
   data.each do |row|

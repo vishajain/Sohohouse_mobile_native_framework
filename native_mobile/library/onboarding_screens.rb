@@ -36,7 +36,8 @@ class OnboardingScreens
 
   def close_app
 
-    $driver = $driver_appium.quit_driver
+    $driver.terminate_app($currentPackage)
+
     $filterEvent=nil
 
   end

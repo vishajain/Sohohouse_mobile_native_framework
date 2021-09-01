@@ -27,6 +27,10 @@ module Ios_driver
 
     $dimensions_height = $driver.manage.window.size.height
 
+    @config = {props: YAML.load_file(File.join(File.dirname(__FILE__), '../../../config/ios_device_details.yml'))}
+
+    $currentPackage  = @config[:props][$device]["bundle"][$env]
+
   end
 
 
@@ -59,7 +63,7 @@ module Ios_driver
                   'xcodeSigningId' => 'iPhone Developer',
                   'ConnectHardwareKeyboard' => true,
                   'waitForQuiescence' => false,
-                  'autoAcceptAlerts' => true,
+                  'autoAcceptAlerts' => false,
                   'autoWebview' => false,
                   'noReset' => $noreset
               }

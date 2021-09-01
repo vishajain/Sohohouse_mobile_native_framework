@@ -22,16 +22,46 @@ Feature: This feature enables us to test the connect with members functionality
     And I verify the title of blocked members screen
     And I navigate to Home page
 
+  Scenario: Verify share your room functionality
+    Given greetings should be visible
+    When I navigate to Connect page
+    And I click on Share your room
+    And I navigate to room by clicking on open room
+    | Fields        |
+    | Camera        |
+    | Microphone    |
+    | Notifications |
+    And I verified I am in a room
+    And I come out of the room
+    Then I navigate to Home page
+
+  Scenario: Validate "Join a conversation" functionality
+    Given greetings should be visible
+    When I navigate to Connect page
+    Then I verify all the sections under connect
+      | Section               | Title           |
+      | Share your room       | Your room       |
+      | Join a conversation   | Interests       |
+      | Find members          | Find members    |
+      | Share profile         | Share profile   |
+    And I verify the sections under set up your account panel
+      | Section                                                        | Title           |
+      | Let other members know what you are interested in talking about| Let's chat      |
+      | Complete your profile                                          | Edit profile    |
+    And I navigate to Home page
+
+
 
   Scenario: Verify Call history and My connections
     Given greetings should be visible
     When I navigate to Connect page
-    Then I verify call history
+    Then I verify connect sections
       | Section        | Title          |
       | Call history   | Your history   |
       | My connections | My connections |
     And I navigate to Home page
 
+    @regression234
   Scenario Outline: Block a member
     Given greetings should be visible
     When I navigate to Connect page
@@ -41,6 +71,7 @@ Feature: This feature enables us to test the connect with members functionality
       | Section     | Post                | Member              |
       | Noticeboard | test user for block | SFFactory TestUser  |
 
+  @regression234
   Scenario: Verify blocked member under my connections
     Given greetings should be visible
     When I navigate to Connect page
@@ -48,6 +79,7 @@ Feature: This feature enables us to test the connect with members functionality
     And I verify blocked member
     And I navigate to Home page
 
+  @regression234
   Scenario Outline: Unblock a member
     Given greetings should be visible
     When I navigate to Connect page
