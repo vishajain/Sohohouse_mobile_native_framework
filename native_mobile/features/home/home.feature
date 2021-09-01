@@ -1,7 +1,7 @@
 @home-screen @regression
 Feature: Home Screen all sections validation
 
-  @smoke @ios
+  @smoke @ios @iOS_will_fail
   Scenario: Verify the 'What can we help you with' section
     Given greetings should be visible
     And user verifies all sections of 'What can we help you with'
@@ -39,7 +39,7 @@ Feature: Home Screen all sections validation
     When user sees the sections and subheading
       | Section         |  SubHeading                   |  Title         |
       | Set up your app |  Complete Your Profile        |  Edit profile  |
-      | Set up your app |  Customise your notifications |  Settings      |
+      #| Set up your app |  Customise your notifications |  Settings      |
     Then the user scrolls to the top
 
   @smoke @ios

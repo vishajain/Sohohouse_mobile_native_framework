@@ -471,15 +471,15 @@ class Ios_Account_Objects
 
 
   def editProfileTextField
-    @driver.find_element(:xpath => "//XCUIElementTypeWindow/XCUIElementTypeOther[3]//XCUIElementTypeTextField")
+    @driver.find_element(:xpath => "//XCUIElementTypeTextField")
 
   end
   def editProfileTextView
-    @driver.find_element(:xpath => "//XCUIElementTypeWindow/XCUIElementTypeOther[3]//XCUIElementTypeTextView")
+    @driver.find_element(:xpath => "//XCUIElementTypeTextView")
 
   end
   def editProfilePicker
-    @driver.find_element(:xpath => "//XCUIElementTypeWindow/XCUIElementTypeOther[2]//XCUIElementTypePickerWheel")
+    @driver.find_element(:xpath => "//XCUIElementTypePickerWheel")
 
   end
 
@@ -489,7 +489,7 @@ class Ios_Account_Objects
 
   def editProfileLink(text)
 
-    @driver.find_element(:xpath => "//XCUIElementTypeWindow/XCUIElementTypeOther[2]//XCUIElementTypeTable/XCUIElementTypeCell/XCUIElementTypeStaticText[@name=\""+text+"\"]")
+    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name=\""+text+"\"]")
   end
 
   def editSocialMedia(text)
@@ -498,6 +498,18 @@ class Ios_Account_Objects
 
   def socialMediaValues(text)
     @driver.find_element(:xpath => "//XCUIElementTypeTable/XCUIElementTypeCell[3]/XCUIElementTypeButton[@name='"+text+"']")
+  end
+
+  def accept_sign_out
+    @driver.find_element(:xpath => "//XCUIElementTypeButton[@name='Sign out']")
+
+  end
+  def cancel_yes
+    @driver.find_element(:name => "Cancel")
+  end
+
+  def reset_popup
+    @driver.find_element(:name => "Reset")
   end
 end
 
@@ -979,6 +991,10 @@ class Android_Account_Objects
 
   def tap_europe
     @driver.find_element(:xpath => "//android.widget.TextView[contains(@text ,'Europe')]")
+  end
+
+  def accept_sign_out
+    @driver.find_element(:id => "android:id/button1")
   end
 
 end

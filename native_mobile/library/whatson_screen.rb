@@ -74,6 +74,9 @@ class WhatsonScreen
 
     else
       sleep 1
+
+      Common.home_panel_swipe(@device_whatson_objects.tabs,"right")
+
       i=0
 
       loop do
@@ -692,9 +695,12 @@ class WhatsonScreen
 
     @device_account_objects.ElementsWithText("Reset to defaults").click
 
-    $device == "ios" ?(sleep 2):(Common.wait_for(5){ @device_guestinvitation_objects.ButtonWithText(reset_text)}.click)
+    begin
+      (Common.wait_for(5){ @device_guestinvitation_objects.ButtonWithText(reset_text)}.click)
+    rescue
+    end
 
-    $device == "ios" ?(sleep 1):($common_screen.click_element_with_partial_text("UK"))
+    $device=="android"?$common_screen.click_element_with_partial_text("UK"):()
 
     element_count = Common.wait_for(10){@device_whatson_objects.filter_remove_house.size}
 
@@ -706,6 +712,7 @@ class WhatsonScreen
       loop do
 
         element[i].click
+        sleep 1
 
         i = i+1
 
@@ -863,8 +870,6 @@ class WhatsonScreen
 
     $homescreen.go_Back
 
-    $homescreen.go_Back
-
   end
 
   def whatson_to_home
@@ -908,7 +913,11 @@ class WhatsonScreen
     sleep 2
     Common.wait_for(5){@device_whatson_objects.cancel_event}.click
 
-    $device=="ios"?():(Common.wait_for(5){@device_guestinvitation_objects.ButtonWithText("YES")}.click)
+    $device=="ios"?(@popup_text="Yes"):(@popup_text="YES")
+    begin
+      Common.wait_for(5){@device_guestinvitation_objects.ButtonWithText(@popup_text)}.click
+    rescue
+    end
 
     sleep 2
 
@@ -924,9 +933,11 @@ class WhatsonScreen
 
         Common.wait_for(5){@device_whatson_objects.delete_guest}.click
 
-        $device == "ios"?(sleep 2):(@device_guestinvitation_objects.ButtonWithText("CONFIRM").click)
-
-        sleep 15
+        begin
+          $device == "ios"?(@device_guestinvitation_objects.ButtonWithText("Confirm").click):(@device_guestinvitation_objects.ButtonWithText("CONFIRM").click)
+        rescue
+        end
+        sleep 5
 
         Common.swipe_top
 
@@ -965,7 +976,7 @@ class WhatsonScreen
     $common_screen.click_element_with_text(country)
     sleep 1
     $device == "android"?$common_screen.swipeByLocation(50,$android_dimensions_height*0.75,50,20):(sleep 1)
-    $device == "ios"?$common_screen.click_element_with_partial_text(house):@device_whatson_objects.house(country,house).click
+    $device == "ios"?$common_screen.click_element_with_partial_text(house):$common_screen.click_element_with_partial_text(house)
     $common_screen.click_element_with_text("Confirm")
   end
 

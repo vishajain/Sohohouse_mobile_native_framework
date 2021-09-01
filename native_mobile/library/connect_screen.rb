@@ -31,36 +31,35 @@ class ConnectScreen
 
   def create_post(message,post_house,topic)
     @device_connect_objects.your_post.send_keys(message)
-    $device=="ios"?$common_screen.swipeByLocation(50,150,50,$dimensions_height-10):Common.hideKeyboard
+    $device=="ios"?($common_screen.find_element{$common_screen.click_element_with_text("Tag a house")}):()
     $common_screen.find_element{$common_screen.click_element_with_text("Tag a house")}
-    $common_screen.click_element_with_text(post_house.split("->")[0])
+    $common_screen.wait_for(10){$common_screen.click_element_with_text(post_house.split("->")[0])}
     $common_screen.click_element_with_text(post_house.split("->")[1])
     $common_screen.click_element_with_text("Confirm")
     $common_screen.click_element_with_text("Tag a topic")
-    $common_screen.click_element_with_text(topic)
+    $common_screen.wait_for(10){$common_screen.click_element_with_text(topic)}
     $common_screen.click_element_with_text("Confirm")
     @device_connect_objects.post_button.click
   end
 
   def verify_post_created
-    sleep 5
+    sleep 10
     assert_true(@device_connect_objects.view_post_house($post_house.split("->")[1]).displayed?,"house")
     assert_true(((@device_connect_objects.view_post_message.text).include?$message),"message")
     title=@device_connect_objects.view_post_title.text
     $device=="android"?(time=@device_connect_objects.view_post_time.text):(sleep 1)
     $device=="ios"?assert_true((title.include?$name+" in "+$topic),"Title not correct"):assert_true((title.include?$name+" posted in "+$topic),"Title not correct")
     $device=="ios"?assert_true((title[-1,1].include? "s"),"Not recently created"):assert_true((time.include? "Now"),"Not recently created")
-    $device=="ios"?assert_true((title[-3,2].to_i <60),"not less"):(sleep 1)
+    $device=="ios"?assert_true((title[-3,2].to_i <60),"not less"):()
     return true
   end
 
   def apply_filters(house)
-    sleep 5
+    sleep 20
     $common_screen.find_element{@device_connect_objects.refine.click}
     $common_screen.find_element{$common_screen.click_element_with_text(house.split("->")[0])}
     $common_screen.find_element{$common_screen.click_element_with_text(house.split("->")[1])}
     $common_screen.find_element{$common_screen.click_element_with_text("Apply filters")}
-    sleep 20
 
   end
 
@@ -88,7 +87,7 @@ class ConnectScreen
     $common_screen.find_element{$common_screen.verify_element_displayed_with_partial_text($name+" replied")}
   end
   def delete_current_post
-    @device_connect_objects.delete_button.click
+    $common_screen.wait_for(10){@device_connect_objects.delete_button}.click
     $common_screen.find_element{$common_screen.verify_element_displayed_with_text("Delete post")}
     $common_screen.find_element{$common_screen.click_element_with_text("Confirm")}
   end
@@ -96,12 +95,12 @@ class ConnectScreen
     if $device == "ios"
       sleep 2
       title=@device_connect_objects.view_post_title.text
-      (title[-1,1].include? "m")? assert_true((title[-3,2].to_i >2),"post not deleted 1"): assert_true((title[-3,2].to_i >1),"post not deleted 2")
+      (title[-1,1].include? "m")? assert_true((title[-3,2].to_i >2),"post not deleted"):()
       return true
     else
       title=@device_connect_objects.view_post_time.text
       if (title.include? "min")
-        (title[2,2].include?"m")?assert_true((title[1,1].to_i >2),"post not deleted 1"):assert_true((title[1,2].to_i >2),"post not deleted 2")
+        (title[2,2].include?"m")?assert_true((title[1,1].to_i >2),"post not deleted"):assert_true((title[1,2].to_i >2),"post not deleted")
       end
     end
 

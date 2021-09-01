@@ -320,7 +320,7 @@ class Ios_Home_Objects
   end
 
   def event_name_field
-    @driver.find_elements(:xpath => "//XCUIElementTypeCell[./XCUIElementTypeStaticText[@name='What’s happening?']]")
+    @driver.find_elements(:xpath => "//XCUIElementTypeCell[./*[@name='What’s happening?']]/following-sibling::XCUIElementTypeCell[1]/XCUIElementTypeStaticText")
   end
 
   def book_plus

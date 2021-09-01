@@ -121,6 +121,11 @@ class GuestInvitationScreen
 
         @device_guestinvitation_objects.done.click
 
+        begin
+          $common_screen.click_element_with_text("Yes")
+        rescue
+        end
+
         sleep 2
 
         return true
@@ -173,7 +178,10 @@ class GuestInvitationScreen
 
         Common.wait_for(5){@device_guestinvitation_objects.ButtonWithText(text)}.click
 
-        $device == "ios"?(sleep 1):(Common.wait_for(5){@device_guestinvitation_objects.confirm_selection}.click)
+        begin
+          Common.wait_for(5){@device_guestinvitation_objects.confirm_selection}.click
+        rescue
+        end
 
         i=i+1
 

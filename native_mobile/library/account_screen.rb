@@ -112,15 +112,15 @@ class AccountScreen
 
      when "Privacy"
 
-       index=1
+       index=2
 
      when "Sync calendar"
 
-       index=2
+       index=3
 
      when "Change Password"
 
-       ($device=="ios")?index=3:index=1
+       ($device=="ios")?index=4:index=1
 
      else
 
@@ -132,7 +132,7 @@ class AccountScreen
 
       Common.swipe_left(startY,endY)
 
-     sleep 5
+     sleep 3
 
     end
 
@@ -258,15 +258,11 @@ class AccountScreen
   end
 
   def tap_sign_out
-    if $device == "android"
-      sleep 1
-      Common.swipe_down
-    end
 
     Common.wait_for(10){@device_account_objects.sign_out_account}.click
-
-    if $device == "android"
-      Common.wait_for(10){@device_account_objects.cancel_yes}.click
+    begin
+      Common.wait_for(10){@device_account_objects.accept_sign_out}.click
+    rescue
     end
     $login=false
     sleep 2
@@ -298,15 +294,17 @@ class AccountScreen
       end
 
     end
+    sleep 1
 
   end
 
   def verify_subscribe
 
-    Common.wait_for(10) {@device_account_objects.subscribe.displayed?}
-    sleep 2
-    if $device == "android"
-      Common.wait_for(5){@device_account_objects.cancel_yes}.click
+    $run=="local"?(Common.wait_for(10) {@device_account_objects.subscribe.displayed?}):($common_screen.verify_element_displayed_with_text("Sorry"))
+    begin
+      $run=="local"?(Common.wait_for(5){@device_account_objects.cancel_yes}.click):( $common_screen.click_element_with_text("OK"))
+    rescue
+
     end
 
     return Common.wait_for(10){@device_account_objects.sync.displayed?}
@@ -528,6 +526,8 @@ class AccountScreen
 
     Common.swipe_down
 
+    sleep 1
+
     Common.wait_for(15){@device_account_objects.contact_us}.click
 
   end
@@ -545,6 +545,8 @@ class AccountScreen
         @device_account_objects.enquiry_type(name).click
 
         @device_account_objects.enquiry_picker.send_keys(input)
+
+        sleep 3
 
         $common_screen.click_element_with_text("Done")
 
@@ -615,7 +617,7 @@ class AccountScreen
       end
     rescue
       Common.little_swipe_down
-      ($common_screen.verify_element_displayed_with_text("Cancel"))?($common_screen.click_element_with_text("Cancel")):(sleep 1)
+      ($common_screen.verify_element_displayed_with_text("Confirm"))?($common_screen.click_element_with_text("Confirm")):(sleep 1)
       sleep 1
     end
      Common.wait_for(3){@device_account_objects.social_accounts}.click
@@ -831,6 +833,9 @@ class AccountScreen
 
 
     when "What do you do","City"
+      if text=="What do you do"
+        ($device=="android")?(value="Software analyst"):()
+      end
 
       $common_screen.wait_for($common_screen.fiveSecondsTimeout){@device_account_objects.editProfileTextField}.clear
 
@@ -870,15 +875,7 @@ end
 
   def clickEditProfileLink(text)
 
-    if $device == "ios"
-
-      $driver.action.move_to(@device_account_objects.editProfileLink(text)).click.perform
-
-    else
-
-      @device_account_objects.editProfileLink(text).click
-
-    end
+      $common_screen.wait_for(10){@device_account_objects.editProfileLink(text)}.click
 
   end
 

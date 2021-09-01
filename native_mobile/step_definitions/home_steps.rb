@@ -295,7 +295,7 @@ end
 And(/^I navigate to connect screen$/) do
   $common_screen=CommonScreen.new
   $common_screen.navigate_to_tabs("Connect")
-  $common_screen.click_element_with_text("Noticeboard")
+  $device=="ios"?$common_screen.click_element_with_text("Noticeboard"):()
 
 end
 

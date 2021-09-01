@@ -27,8 +27,8 @@ Given("I write a post") do |table|
     end
   end
   $common_screen=CommonScreen.new
-  $common_screen.find_element{$common_screen.click_element_with_text("Write a post")}
-  $common_screen.verify_element_displayed_with_text("New post")
+  $common_screen.wait_for(15){$common_screen.click_element_with_text("Write a post")}
+  $device=="ios"?$common_screen.verify_element_displayed_with_text("New post"):$common_screen.verify_element_displayed_with_text("Post")
   $connect_screen=ConnectScreen.new
   $connect_screen.create_post($message,$post_house,$topic)
 end

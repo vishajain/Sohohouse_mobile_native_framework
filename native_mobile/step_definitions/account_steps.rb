@@ -269,9 +269,7 @@ When(/^the user adds below favourite houses and clicks save button$/) do |table|
 
   $accountscreen.tap_favourite_houses
 
-  $common_screen.click_element_with_text("Reset")
-
-  $device=="ios"?(sleep 1): $common_screen.click_element_with_text("RESET")
+  $accountscreen.tap_reset
 
   assert_true($accountscreen.verify_local_house_displayed, "Favourite houses reset is not working")
 

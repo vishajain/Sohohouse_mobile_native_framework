@@ -201,7 +201,7 @@ class HomeScreen
 
     begin
 
-      $device=="ios"?$common_screen.find_element{@device_home_objects.event_name_field[0].click}:$common_screen.find_element{@device_home_objects.event_name_field[0].displayed?}
+      $device=="ios"?($action.move_to(@device_home_objects.event_name_field[0]).perform;@device_home_objects.event_name_field[0].displayed?):$common_screen.find_element{@device_home_objects.event_name_field[0].displayed?}
 
     rescue
           Common.little_swipe_down
@@ -218,7 +218,7 @@ class HomeScreen
               if !($device == "ios")
                 Common.verifyNavBar(@device_account_objects.element_contains_text(event_name))
               end
-              $common_screen.little_swipe_down
+
               @device_home_objects.event_name(event_name).click
 
             else
@@ -449,7 +449,10 @@ class HomeScreen
 
   def cancel_booking
     Common.wait_for(10){@device_home_objects.cancel_event_booking}.click
-    $device=="ios"?(sleep 4):(Common.wait_for(10){@device_guestinvitation_objects.ButtonWithText("YES")}.click)
+    begin
+      $device=="ios"?(Common.wait_for(10){@device_guestinvitation_objects.ButtonWithText("Yes")}.click):(Common.wait_for(10){@device_guestinvitation_objects.ButtonWithText("YES")}.click)
+    rescue
+    end
     begin
       sleep 2
       if @device_home_objects.cancel_event_booking.displayed?

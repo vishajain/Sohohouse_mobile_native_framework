@@ -32,7 +32,7 @@ class Ios_GuestInvitation_Objects
   end
 
   def confirm_selection
-    @driver.find_element(:name =>  "Confirm selection")
+    @driver.find_element(:xpath =>  "//XCUIElementTypeButton[@name='Confirm selection' or @name='Confirm']")
   end
 
   def today_date
