@@ -135,3 +135,50 @@ And(/^I verify the title of blocked members screen$/) do
   $connect_screen.back_to_connect_page
   $connect_screen.go_back
 end
+
+Then(/^I verify call history$/) do |table|
+  $common_screen.swipe_down
+  data = table.hashes
+  data.each do |row|
+    row.each do |key,value|
+      sleep 2
+      if key.eql?"Section"
+        assert_true($common_screen.find_element{$common_screen.click_element_with_text(value)},value+" is not clicked")
+      elsif key.eql?"Title"
+        assert_true($common_screen.wait_for(10){$common_screen.verify_element_displayed_with_text(value)}," is not displayed")
+        $connect_screen.back_to_connect_page
+      end
+    end
+  end
+
+end
+
+Then(/^I navigate to "([^"]*)" and selected "([^"]*)" and blocked a "([^"]*)"$/) do |section, post, member|
+  assert_true($common_screen.find_element{$common_screen.click_element_with_text(section)},section+" is not clicked")
+  sleep 2
+  assert_true($common_screen.find_element{$common_screen.click_element_with_text(post)},post+" is not clicked")
+  assert_true($common_screen.find_element{$common_screen.click_element_with_partial_text(member)},member+" is not clicked")
+  assert_true($common_screen.find_element{$common_screen.click_element_with_text("ellipse")},"ellipse is not clicked")
+  assert_true($common_screen.find_element{$common_screen.click_element_with_text("Block member")},"Block member is not clicked")
+  assert_true($common_screen.wait_for(10){$common_screen.verify_element_displayed_with_text("Unblock")},"Unblock is not displayed")
+  $common_screen.swipe_top
+  $connect_screen.back_to_connect_page
+end
+
+And(/^I verify blocked member$/) do
+  assert_true($common_screen.wait_for(10){$common_screen.verify_element_displayed_with_text("Blocked members")},"User is not on Blocked members screen")
+  assert_true($common_screen.wait_for(10){$common_screen.verify_element_displayed_with_text("Unblock")},"Unblock is not displayed")
+  $connect_screen.back_to_connect_page
+  $connect_screen.go_back
+
+end
+
+And(/^I navigate to "([^"]*)" and selected "([^"]*)" and unblocked a "([^"]*)"$/) do |section, post, member|
+  assert_true($common_screen.find_element{$common_screen.click_element_with_text(section)},section+" is not clicked")
+  sleep 2
+  assert_true($common_screen.find_element{$common_screen.click_element_with_text(post)},post+" is not clicked")
+  assert_true($common_screen.find_element{$common_screen.click_element_with_partial_text(member)},member+" is not clicked")
+  assert_true($common_screen.find_element{$common_screen.click_element_with_partial_text("Unblock")},"Unblock is not clicked")
+  $common_screen.swipe_top
+  $connect_screen.back_to_connect_page
+end
