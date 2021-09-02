@@ -241,7 +241,7 @@ And(/^I verify blocked member$/) do
   assert_true($common_screen.wait_for(10){$common_screen.verify_element_displayed_with_text("Blocked members")},"User is not on Blocked members screen")
   assert_true($common_screen.wait_for(10){$common_screen.verify_element_displayed_with_text("Unblock")},"Unblock is not displayed")
   $connect_screen.back_to_connect_page
-  $connect_screen.go_back
+  $connect_screen.back_to_connect_page
 
 end
 

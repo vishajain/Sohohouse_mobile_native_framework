@@ -61,7 +61,6 @@ Feature: This feature enables us to test the connect with members functionality
       | My connections | My connections |
     And I navigate to Home page
 
-    @regression234
   Scenario Outline: Block a member
     Given greetings should be visible
     When I navigate to Connect page
@@ -71,7 +70,6 @@ Feature: This feature enables us to test the connect with members functionality
       | Section     | Post                | Member              |
       | Noticeboard | test user for block | SFFactory TestUser  |
 
-  @regression234
   Scenario: Verify blocked member under my connections
     Given greetings should be visible
     When I navigate to Connect page
@@ -79,7 +77,6 @@ Feature: This feature enables us to test the connect with members functionality
     And I verify blocked member
     And I navigate to Home page
 
-  @regression234
   Scenario Outline: Unblock a member
     Given greetings should be visible
     When I navigate to Connect page
