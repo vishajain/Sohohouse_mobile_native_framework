@@ -180,4 +180,15 @@ class ConnectScreen
 
   end
 
+  def click_rate_your_experience_button
+    $device=="ios"?($common_screen.click_element(@device_connect_objects.rate_your_experience)):(sleep 1)
+  end
+
+  def verify_connections
+    return $common_screen.wait_for(10){@device_connect_objects.message_button}.displayed?
+  end
+
+  def verify_requests
+    return $common_screen.wait_for(10){@device_connect_objects.connection_request}.displayed?
+  end
 end
