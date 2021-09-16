@@ -206,3 +206,58 @@ And(/^I verify the sections under set up your account panel$/) do |table|
     end
   end
 end
+
+And(/^user post a "([^"]*)" in group chat under "([^"]*)"$/) do |message_text, live_event|
+  $common_screen.swipe_down
+  assert_true($common_screen.wait_for(10){$connect_screen.click_live_event(live_event)},live_event+" is not clicked")
+  sleep 1
+  $connect_screen.post_message_in_group_chat(message_text)
+  $common_screen.swipe_top
+  $common_screen.swipe_top
+  assert_true($common_screen.wait_for(10){$common_screen.click_element_with_text("Confirm")},"Confirm is not clicked")
+  assert_true($common_screen.wait_for(10){$common_screen.click_element_with_text("Skip")},"Skip is not clicked")
+  $connect_screen.back_to_connect_page
+end
+
+When(/^I verify the user open profile by clicking profile picture in "([^"]*)"$/) do |live_event|
+  $common_screen.swipe_down
+  assert_true($common_screen.wait_for(30){$connect_screen.click_live_event(live_event)},live_event+" is not clicked")
+  sleep 2
+  $connect_screen.user_click_profile_picture
+  sleep 1
+  $common_screen.swipe_top
+  $connect_screen.back_to_connect_page
+end
+
+And(/^user clicks on Member Sign in button$/) do
+  sleep 2
+  $connect_screen.click_member_sign_in_button
+end
+
+And(/^user captures the username under account screen$/) do
+  sleep 4
+
+  config     = {props: YAML.load_file(File.join(File.dirname(__FILE__), '../../config/testdata.yml'))}
+
+  email      = config[:props]["data"]["test-connect"]
+
+  config     = {props: YAML.load_file(File.join(File.dirname(__FILE__), '../../config/environments.yml'))}
+
+  $name = config[:props]["env"][$env][email]["name"]
+
+  $scenario.setContext("name",$name)
+
+
+end
+
+And(/^user verifies the name of the member under his message under "([^"]*)"$/) do |live_event|
+  $common_screen.swipe_down
+  assert_true($common_screen.wait_for(30){$connect_screen.click_live_event(live_event)},live_event+" is not clicked")
+  sleep 2
+  $memberName = $connect_screen.get_member_name
+  assert_true($memberName.eql?($scenario.getContext("name")),"name verification failed")
+  $common_screen.swipe_top
+  assert_true($common_screen.wait_for(10){$common_screen.click_element_with_text("Confirm")},"Confirm is not clicked")
+  assert_true($common_screen.wait_for(10){$common_screen.click_element_with_text("Skip")},"Skip is not clicked")
+  $connect_screen.back_to_connect_page
+end

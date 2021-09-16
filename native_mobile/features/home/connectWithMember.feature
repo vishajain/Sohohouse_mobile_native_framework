@@ -49,3 +49,38 @@ Feature: This feature enables us to test the connect with members functionality
       | Complete your profile                                          | Edit profile    |
     And I navigate to Home page
 
+
+  Scenario Outline: Validate open users profile by clicking on profile picture
+    Given user enters test-connect as email address
+    When user clicks on go button
+    And Skip the onboarding screen
+    And user post a "<Message_text>" in group chat under "<Live stream event>"
+    And the user signs out and closes the app
+    And user clicks on Member Sign in button
+    And user enters test-user as email address
+    And user clicks on go button
+    And Skip the onboarding screen
+    And greetings should be visible
+    And I verify the user open profile by clicking profile picture in "<Live stream event>"
+    Then I navigate to Home page
+    Examples:
+      | Live stream event    | Message_text  |
+      | Recurring_live_event | Hello!!       |
+
+
+  Scenario Outline: Validate user's name in group chat
+    Given user enters test-connect as email address
+    When user clicks on go button
+    And Skip the onboarding screen
+    And user post a "<Message_text>" in group chat under "<Live stream event>"
+    And user captures the username under account screen
+    And the user signs out and closes the app
+    And user clicks on Member Sign in button
+    And user enters test-user as email address
+    And user clicks on go button
+    And Skip the onboarding screen
+    And user verifies the name of the member under his message under "<Live stream event>"
+    Then I navigate to Home page
+    Examples:
+      | Live stream event    | Message_text  |
+      | Recurring_live_event | Hello!!       |

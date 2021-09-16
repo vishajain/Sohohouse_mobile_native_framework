@@ -61,7 +61,7 @@ class Ios_Connect_Objects
   @driver.find_element(:xpath => "//XCUIElementTypeCell[5]//XCUIElementTypeButton[@enabled='true'][1]")
   end
   def navigate_back_to_connect
-    @driver.find_element(:xpath => "//*[contains(@name , 'iconLeft') or contains(@name,'iconXLarge') or contains(@name , 'iconArrowLeft') or contains(@name, 'iconDarkSmallClose')]")
+    @driver.find_element(:xpath => "//*[contains(@name , 'iconLeft') or contains(@name,'iconXLarge') or contains(@name , 'iconArrowLeft') or contains(@name, 'iconDarkSmallClose') or contains(@name, 'Back')]")
   end
   def switch_camera
     @driver.find_element(:name => "switch camera")
@@ -84,7 +84,24 @@ class Ios_Connect_Objects
   def connect_section
     @driver.find_element(:xpath => "//XCUIElementTypeStaticText[contains(@name,'Let other') or @name='Complete your profile']")
   end
-
+  def post_message
+    @driver.find_element(:name => "Type a message")
+  end
+  def click_send_button
+    @driver.find_element(:xpath => "//XCUIElementTypeButton[@name='Send']")
+  end
+  def profile_picture
+    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name = 'SFFactory']/../preceding-sibling::XCUIElementTypeOther//XCUIElementTypeOther//XCUIElementTypeImage[1]")
+  end
+  def member_sign_in_button
+    @driver.find_element(:xpath => "//XCUIElementTypeButton[@name='Member sign in']")
+  end
+  def live_event(event_name)
+    @driver.find_element(:xpath => "//*[@name='Live Rooms']/../following-sibling::XCUIElementTypeCell/*[@name='"+event_name+"']")
+  end
+  def member_name
+    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name='SFFactory']")
+  end
 end
 
 class Android_Connect_Objects
