@@ -254,26 +254,3 @@ And(/^I navigate to "([^"]*)" and selected "([^"]*)" and unblocked a "([^"]*)"$/
   $common_screen.swipe_top
   $connect_screen.back_to_connect_page
 end
-
-And(/^I verify Call history details$/) do
-  $common_screen.swipe_down
-  assert_true($common_screen.find_element{$common_screen.click_element_with_text("Call history")},"Call history is not clicked")
-  assert_true($common_screen.wait_for(20){$common_screen.verify_element_displayed_with_text("Rate your Connect experience")},"Rate your Connect experience is not displayed")
-  sleep 2
-  $connect_screen.click_rate_your_experience_button
-  assert_true($common_screen.verify_element_displayed_with_text("The experience was..."),"The experience was... is not displayed")
-  assert_true($common_screen.verify_element_displayed_with_text("I rated the experience that way because..."),"I rated the experience that way because... is not displayed")
-  $common_screen.little_swipe_down
-  assert_true($common_screen.verify_element_displayed_with_text("We connected over..."),"We connected over... is not displayed")
-  assert_true($common_screen.find_element{$common_screen.click_element_with_text("Skip this for now")},"Skip this for now button is not clicked")
-  $connect_screen.back_to_connect_page
-end
-
-And(/^I verify the connection details under My connections$/) do
-  $common_screen.swipe_down
-  assert_true($common_screen.find_element{$common_screen.click_element_with_text("My connections")},"My connections is not clicked")
-  assert_true($connect_screen.verify_connections,"connections are not displayed")
-  assert_true($common_screen.find_element{$common_screen.click_element_with_text("Requests")},"Request is not clicked")
-  assert_true($connect_screen.verify_requests,"requests are not displayed")
-  $connect_screen.back_to_connect_page
-end

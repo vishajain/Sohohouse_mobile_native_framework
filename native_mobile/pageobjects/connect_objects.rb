@@ -84,15 +84,7 @@ class Ios_Connect_Objects
   def connect_section
     @driver.find_element(:xpath => "//XCUIElementTypeStaticText[contains(@name,'Let other') or @name='Complete your profile']")
   end
-  def rate_your_experience
-    @driver.find_element(:xpath => "//XCUIElementTypeTable/XCUIElementTypeCell[3]/XCUIElementTypeButton[@name='Rate your Connect experience']")
-  end
-  def message_button
-    @driver.find_element(:xpath => "//XCUIElementTypeCell[1]/XCUIElementTypeButton[@name='Message']")
-  end
-  def connection_request
-    @driver.find_element(:xpath => "//XCUIElementTypeCell[1]/XCUIElementTypeButton[@name='Connect']")
-  end
+
 end
 
 class Android_Connect_Objects

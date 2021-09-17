@@ -51,13 +51,15 @@ Feature: This feature enables us to test the connect with members functionality
     And I navigate to Home page
 
 
+
   Scenario: Verify Call history and My connections
     Given greetings should be visible
     When I navigate to Connect page
-    And I verify Call history details
-    And I verify the connection details under My connections
-    Then I navigate to Home page
-
+    Then I verify connect sections
+      | Section        | Title          |
+      | Call history   | Your history   |
+      | My connections | My connections |
+    And I navigate to Home page
 
   Scenario Outline: Block a member
     Given greetings should be visible
