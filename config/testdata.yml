@@ -58,8 +58,8 @@ data:
   house-members-only-status: 'HOUSE MEMBERS ONLY'
   change-password-ios: 'ios_changepassword@example.com'
   change-password-android: 'change_password_android@example.com'
-  need_signout: ["User updates their password","User reverts their password","User login with different accounts and verifies message","Validate open users profile by clicking on profile picture","Validate user's name in group chat"]
-  need_separate_sign_in: ["User login with different accounts and verifies message","Validate open users profile by clicking on profile picture","Validate user's name in group chat"]
+  need_signout: ["User updates their password","User reverts their password","User login with different accounts and verifies message","Validate open users profile by clicking on profile picture"]
+  need_separate_sign_in: ["User login with different accounts and verifies message","Validate open users profile by clicking on profile picture"]
   email-id:
     ios:
       User updates their password: 'ios_changepassword@example.com'
