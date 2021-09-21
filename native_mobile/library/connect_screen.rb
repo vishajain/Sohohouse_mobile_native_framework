@@ -182,4 +182,26 @@ class ConnectScreen
     end
 
   end
+
+  def click_live_event(event_name)
+    $device=="ios"?($common_screen.click_element(@device_connect_objects.live_event(event_name))):(sleep 1)
+  end
+  
+  def post_message_in_group_chat(message)
+  $device=="ios"?(@device_connect_objects.post_message.send_keys(message)):(sleep 1)
+  sleep 2
+  $device=="ios"?($driver.action.move_to(@device_connect_objects.click_send_button).click.perform):(sleep 1)
+
+  end
+
+  def click_join_now
+    $device=="ios"?($common_screen.click_element(@device_connect_objects.join_now)):(sleep 1)
+  end
+
+  def move_back_to_connect_page
+    puts ":::abcd::"
+    $device == "ios"?($driver.action.move_to(@device_connect_objects.back_to_connect).click.perform):( sleep 1)
+    return  true
+  end
+
 end

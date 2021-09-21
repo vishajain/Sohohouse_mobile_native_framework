@@ -15,42 +15,17 @@ Feature: This feature enables us to test the connect with members functionality
     And I cancelled the scheduled call
     And I navigate to Home page
 
-  @smoke @connect @ios @regression234
-  Scenario: Verify live stream event on home page
-    Given greetings should be visible
-    When I verify liveStreamed Rooms heading and events available on the screen
-    Then I verify the Live event
-      |Live stream event  |
-      |Visha_test_event_5 |
-
-
-  Scenario: Verify live stream event on connect screen
+    @regression234
+  Scenario Outline: Verify live stream event on connect screen
     Given greetings should be visible
     When I navigate to Connect page
     Then I verify liveStreamed Rooms heading and events available on the screen
-    And I verify the Live event
-      |Live stream event  |
-      |Visha_test_event_5 |
+    And I verify the "<Live event>" is displayed on the screen
+    And user post a "<Message_text>" in group chat
+    And I verify "<See all>" functionality and verify the screen "<Title>"
     And I navigate to Home page
+    Examples:
+      |Live event           | Message_text  | See all | Title      |
+      |Recurring_live_event | Hi everyone!! | See all | Live Rooms |
 
-
-  Scenario: Verify post message in live stream event
-    When I verify liveStreamed Rooms heading and events available on the screen
-    Then I verify posting message
-      |Live stream event  |
-      |Visha_test_event_5 |
-
-  Scenario: Verify non Live stream event on Home screen
-    Given greetings should be visible
-    When I verify liveStreamed Rooms heading and events available on the screen
-    Then I verify the non Live event
-      |Live stream event  |
-      |Visha_test_non_live_event_1 |
-
-  Scenario: Verify See all functionality for Live event on Home Screen
-    Given greetings should be visible
-    When I verify liveStreamed Rooms heading and events available on the screen
-    Then I verify See all functionality
-      |Link    | Title      |
-      |See all | Live Rooms |
 

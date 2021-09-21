@@ -70,10 +70,27 @@ class Ios_Connect_Objects
   end
 
   def navigate_back_to_connect
-    @driver.find_element(:xpath => "//*[contains(@name , 'iconLeft') or contains(@name,'iconXLarge') or contains(@name , 'iconArrowLeft') or contains(@name, 'iconDarkSmallClose')]")
+    @driver.find_element(:xpath => "//*[contains(@name , 'iconLeft') or contains(@name,'iconXLarge') or contains(@name , 'iconArrowLeft') or contains(@name, 'iconDarkSmallClose') or contains(@name, 'Back')]")
+  end
+  def back_to_connect
+    puts "::efgh::"
+    @driver.find_element(:xpath => "//XCUIElementTypeButton[@name='Back']")
   end
   def back_to_previous_page
     @driver.find_element(:xpath => "//*[contains(@name , 'iconLeft') or contains(@name,'iconXLarge') or contains(@name , 'iconArrowLeft') or contains(@name, 'iconDarkSmallClose')]")
+  end
+  def live_event(event_name)
+    @driver.find_element(:xpath =>"//*[@name='Live Rooms']/../following-sibling::XCUIElementTypeCell/*[@name='"+event_name+"']")
+  end
+
+  def post_message
+    @driver.find_element(:name => "Type a message")
+  end
+  def click_send_button
+    @driver.find_element(:xpath => "//XCUIElementTypeButton[@name='Send']")
+  end
+  def join_now
+    @driver.find_element(:xpath => "//XCUIElementTypeButton[@name='Join Now']")
   end
 end
 
