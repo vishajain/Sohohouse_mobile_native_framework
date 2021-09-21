@@ -1,4 +1,4 @@
-@zzactive-screen
+@zzactive-screen @iOS_will_fail @ios
 Feature: Active functionality
 
 

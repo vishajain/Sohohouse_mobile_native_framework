@@ -51,6 +51,8 @@ class ActiveScreens
 
       @device_onboarding_objects.email_textfield.click
 
+      @device_onboarding_objects.email_textfield.clear
+
     end
 
     @device_onboarding_objects.email_textfield.send_keys(email)

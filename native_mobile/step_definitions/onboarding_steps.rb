@@ -102,6 +102,8 @@ And(/^I enter change password email address and changed password$/) do
 
   $onboardingscreens.user_clicks_go
 
+  $device=="ios"?($common_screen.skip_Onboarding):()
+
 end
 
 Given(/^user sees T & C screen$/) do
@@ -303,7 +305,9 @@ Then(/^the user signs out and closes the app$/) do
 
   $accountscreen.tap_sign_out
 
+=begin
   $onboardingscreens.close_app
+=end
 
 end
 
@@ -391,8 +395,7 @@ And(/^user is shown with a validation message (.*) for the (.*) account$/) do |m
 
     $onboardingscreens.update_later_button
 
-    assert_true(($homescreen.verify_homescreen or $common_screen.verify_element_displayed_with_text("Welcome to Soho House")),"Username is not present")
-
+    $common_screen.skip_Onboarding
   end
 
 end
@@ -414,8 +417,6 @@ Then(/^the clicks on signs out and closes the app for (.*)$/) do |login|
     $homescreen.clickElement("Sign out")
     sleep 2
   end
-
-  $onboardingscreens.close_app
 
 end
 

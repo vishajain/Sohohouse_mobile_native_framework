@@ -320,7 +320,7 @@ class Ios_Home_Objects
   end
 
   def event_name_field
-    @driver.find_elements(:xpath => "//XCUIElementTypeCell[./XCUIElementTypeStaticText[@name='What’s happening?']]")
+    @driver.find_elements(:xpath => "//XCUIElementTypeCell[./*[@name='What’s happening?']]/following-sibling::XCUIElementTypeCell[1]/XCUIElementTypeStaticText")
   end
 
   def book_plus
@@ -693,4 +693,7 @@ class Android_Home_Objects
     @driver.find_elements(:id => "#{$currentPackage+':id'+'/event_image'}")
   end
 
+  def back_to_home
+    @driver.find_element(:xpath => "//*[contains(@name , 'iconLeft') or contains(@name,'iconXLarge') or contains(@name , 'iconArrowLeft') or contains(@name, 'iconDarkSmallClose')]")
+  end
 end
