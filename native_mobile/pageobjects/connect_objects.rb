@@ -60,6 +60,15 @@ class Ios_Connect_Objects
   def booking_time_slot
   @driver.find_element(:xpath => "//XCUIElementTypeCell[5]//XCUIElementTypeButton[@enabled='true'][1]")
   end
+
+  def exit_from_live_window
+    @driver.find_element(:xpath => "//*[contains(@name , 'iconLeft') or contains(@name,'iconXLarge') or contains(@name , 'iconArrowLeft') or contains(@name , 'roundCloseButton')]")
+  end
+
+  def messageBox
+    @driver.find_element(:xpath => "//*[@name='Type a message']")
+  end
+
   def navigate_back_to_connect
     @driver.find_element(:xpath => "//*[contains(@name , 'iconLeft') or contains(@name,'iconXLarge') or contains(@name , 'iconArrowLeft') or contains(@name, 'iconDarkSmallClose') or contains(@name, 'Back')]")
   end
@@ -93,6 +102,9 @@ class Ios_Connect_Objects
   def profile_picture
     @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name = 'SFFactory']/../preceding-sibling::XCUIElementTypeOther//XCUIElementTypeOther//XCUIElementTypeImage[1]")
   end
+  def back_to_previous_page
+    @driver.find_element(:xpath => "//*[contains(@name , 'iconLeft') or contains(@name,'iconXLarge') or contains(@name , 'iconArrowLeft') or contains(@name, 'iconDarkSmallClose')]")
+  end
   def member_sign_in_button
     @driver.find_element(:xpath => "//XCUIElementTypeButton[@name='Member sign in']")
   end
@@ -101,6 +113,15 @@ class Ios_Connect_Objects
   end
   def member_name
     @driver.find_element(:xpath => "//XCUIElementTypeCollectionView//XCUIElementTypeCell[last()]//XCUIElementTypeOther[2]/XCUIElementTypeStaticText")
+  end
+  def join_now
+    @driver.find_element(:xpath => "//XCUIElementTypeButton[@name='Join Now']")
+  end
+  def skip_button
+    @driver.find_element(:xpath => "//XCUIElementTypeOther/XCUIElementTypeStaticText[@name='Skip']")
+  end
+  def confirm_button
+    @driver.find_element(:xpath => "//XCUIElementTypeButton[@name='Confirm']")
   end
 end
 

@@ -122,6 +122,34 @@ class ConnectScreen
     return @device_connect_objects.booking_time_slot.text
   end
 
+  def exit_from_live_screen
+
+    begin
+
+      sleep 1
+
+      $device=="ios"?($common_screen.click_element(@device_connect_objects.exit_from_live_window)):(sleep 1)
+
+    rescue
+
+      Common.swipe_top
+
+    end
+
+  end
+
+  def send_message_to_event(messageText)
+    sleep 2
+    $device=="ios"?(@device_connect_objects.messageBox.send_keys(messageText)):()
+  end
+
+  def move_events_to_left(value)
+    sleep 3
+    Common.swipe_top
+    Common.home_panel_swipe(@device_common_objects.element_with_text(value),"left")
+    return  true
+  end
+
   def back_to_connect_page
 
     begin
@@ -203,4 +231,17 @@ class ConnectScreen
     return @device_connect_objects.member_name.text
   end
 
+  def click_join_now
+    $device=="ios"?($common_screen.click_element(@device_connect_objects.join_now)):(sleep 1)
+  end
+
+  def click_skip
+    $device == "ios"?($driver.action.move_to(@device_connect_objects.skip_button).click.perform):( sleep 1)
+    return true
+  end
+
+  def confirm_leaving_live_event
+    $device == "ios"?($driver.action.move_to(@device_connect_objects.confirm_button).click.perform):( sleep 1)
+    return true
+  end
 end

@@ -1,6 +1,7 @@
 @connect-screen @regression
 Feature: This feature enables us to test the connect with members functionality
 
+  @smoke @connect @ios
   Scenario: Validate "Join a conversation" functionality
     Given greetings should be visible
     When I navigate to Connect page
@@ -67,3 +68,15 @@ Feature: This feature enables us to test the connect with members functionality
     Examples:
       | Live stream event    | Message_text  |
       | Recurring_live_event | Hello!!       |
+
+  Scenario Outline: Verify live stream event on connect screen
+    Given greetings should be visible
+    When I navigate to Connect page
+    And I verify the "<Live event>" is displayed on the screen
+    And user post a "<Message_text>" in group chat
+    And I verify "<See all>" functionality and verify the screen "<Title>"
+    Then I navigate to Home page
+    Examples:
+      |Live event           | Message_text  | See all | Title      |
+      |Recurring_live_event | Hi!! | See all | Live Rooms |
+
