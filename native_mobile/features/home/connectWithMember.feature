@@ -19,13 +19,12 @@ Feature: This feature enables us to test the connect with members functionality
   Scenario Outline: Verify live stream event on connect screen
     Given greetings should be visible
     When I navigate to Connect page
-    Then I verify liveStreamed Rooms heading and events available on the screen
     And I verify the "<Live event>" is displayed on the screen
     And user post a "<Message_text>" in group chat
     And I verify "<See all>" functionality and verify the screen "<Title>"
-    And I navigate to Home page
+    Then I navigate to Home page
     Examples:
       |Live event           | Message_text  | See all | Title      |
-      |Recurring_live_event | Hi everyone!! | See all | Live Rooms |
+      |Recurring_live_event | Hi!! | See all | Live Rooms |
 
 

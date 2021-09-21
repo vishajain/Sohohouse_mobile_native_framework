@@ -123,13 +123,9 @@ And(/^I cancelled the scheduled call$/) do
   $common_screen.click_element_with_text("Confirm cancellation")
 end
 
-When(/^I verify liveStreamed Rooms heading and events available on the screen$/) do
-  assert_true($common_screen.find_element{$common_screen.verify_element_displayed_with_text("Live Rooms")},"Live Rooms not displayed")
-  assert_true($common_screen.find_element{$common_screen.verify_element_displayed_with_text("See all")},"See all link not displayed")
-end
-
 Then(/^I verify the "([^"]*)" is displayed on the screen$/) do |live_event|
   assert_true($common_screen.find_element{$common_screen.verify_element_displayed_with_text("Live Rooms")},"Live Rooms not displayed")
+  assert_true($common_screen.find_element{$common_screen.verify_element_displayed_with_text("See all")},"See all link not displayed")
   assert_true($common_screen.find_element{$common_screen.verify_element_displayed_with_text("LIVE NOW")},"LIVE NOW link not displayed")
   $connect_screen.click_live_event(live_event)
   assert_true($common_screen.find_element{$common_screen.verify_element_displayed_with_text(live_event)},live_event+ " is not displayed")
@@ -139,11 +135,18 @@ And(/^user post a "([^"]*)" in group chat$/) do |message|
   sleep 1
   $connect_screen.post_message_in_group_chat(message)
   $common_screen.swipe_top
+  puts "1"
   $common_screen.swipe_top
-  assert_true($common_screen.wait_for(10){$common_screen.click_element_with_text("Confirm")},"Confirm is not clicked")
-  sleep 1
-  assert_true($common_screen.click_element_with_text("Skip"),"Skip is not clicked")
-  $connect_screen.move_back_to_connect_page
+  puts "2"
+  $common_screen.swipe_top
+  puts "3"
+  $connect_screen.confirm_leaving_live_event
+  puts "4"
+  assert_true($common_screen.find_element{$common_screen.verify_element_displayed_with_text("Would you like to connect with these members?")},"post call connection screen is not clicked")
+  sleep 2
+  puts "::: in post call screen::"
+  $connect_screen.click_skip
+  $connect_screen.back_to_connect_page
 end
 
 Then(/^I verify "([^"]*)" functionality and verify the screen "([^"]*)"$/) do |see_all, title|
