@@ -35,7 +35,7 @@ class Ios_Common_Objects
   end
 
   def account_menu
-    @driver.find_element(:name => "sideMenuAccount")
+    @driver.find_element(:xpath => "//XCUIElementTypeScrollView[.//*[@name='sideMenuHome']]/preceding-sibling::XCUIElementTypeButton")
   end
   def skip_onboard
     @driver.find_element(:xpath => "//*[@name=\"Next\" or @name=\"Continue\" or @name=\"Continue without syncing\" or @name=\"I'd rather opt out\" or @name=\"Dismiss\" or @name=\"Remind me later\" or @name=\"Update later\" or @name=\"Allow\"]")

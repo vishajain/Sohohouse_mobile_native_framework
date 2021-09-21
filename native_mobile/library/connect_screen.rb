@@ -180,4 +180,27 @@ class ConnectScreen
 
   end
 
+  def post_message_in_group_chat(message)
+    $device=="ios"?(@device_connect_objects.post_message.send_keys(message)):(sleep 1)
+    sleep 2
+    $device=="ios"?($driver.action.move_to(@device_connect_objects.click_send_button).click.perform):(sleep 1)
+  end
+
+  def user_click_profile_picture
+    $device=="ios"?($driver.action.move_to(@device_connect_objects.profile_picture).click.perform):(sleep 1)
+  end
+
+  def click_member_sign_in_button
+    $device=="ios"?($driver.action.move_to(@device_connect_objects.member_sign_in_button).click.perform):(sleep 1)
+  end
+
+  def click_live_event(event_name)
+    $device=="ios"?($driver.action.move_to(@device_connect_objects.live_event(event_name)).click.perform):(sleep 1)
+    return  true
+  end
+
+  def get_member_name
+    return @device_connect_objects.member_name.text
+  end
+
 end
