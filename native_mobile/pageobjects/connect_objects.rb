@@ -100,7 +100,7 @@ class Ios_Connect_Objects
     @driver.find_element(:xpath => "//*[@name='Live Rooms']/../following-sibling::XCUIElementTypeCell/*[@name='"+event_name+"']")
   end
   def member_name
-    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name='SFFactory']")
+    @driver.find_element(:xpath => "//XCUIElementTypeCollectionView//XCUIElementTypeCell[last()]//XCUIElementTypeOther[2]/XCUIElementTypeStaticText")
   end
 end
 

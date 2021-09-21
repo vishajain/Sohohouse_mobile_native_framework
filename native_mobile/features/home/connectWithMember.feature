@@ -49,6 +49,7 @@ Feature: This feature enables us to test the connect with members functionality
       | Complete your profile                                          | Edit profile    |
     And I navigate to Home page
 
+
   Scenario Outline: Validate open users profile by clicking on profile picture
     Given user enters test-connect as email address
     When user clicks on go button
