@@ -53,7 +53,14 @@ Feature: This feature enables us to test the connect with members functionality
     Given user enters test-connect as email address
     When user clicks on go button
     And Skip the onboarding screen
-    When I verify the confirmation pop up on leaving a "<Live stream event>"
+    And user join the "<Live stream event>" and leave it
+    And the user signs out and closes the app
+    And user clicks on Member Sign in button
+    And user enters test-user as email address
+    And user clicks on go button
+    And Skip the onboarding screen
+    And greetings should be visible
+    And I verify the confirmation pop up on leaving a "<Live stream event>"
     And user verify the post call connection screen is displayed
     Then I navigate to Home page
     Examples:
