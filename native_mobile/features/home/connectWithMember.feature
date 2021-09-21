@@ -50,7 +50,9 @@ Feature: This feature enables us to test the connect with members functionality
     And I navigate to Home page
 
   Scenario Outline: Verify leaving a live stream room confirmation pop up and post call connection
-    Given greetings should be visible
+    Given user enters test-connect as email address
+    When user clicks on go button
+    And Skip the onboarding screen
     When I verify the confirmation pop up on leaving a "<Live stream event>"
     And user verify the post call connection screen is displayed
     Then I navigate to Home page
