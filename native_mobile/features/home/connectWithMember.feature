@@ -49,16 +49,11 @@ Feature: This feature enables us to test the connect with members functionality
       | Complete your profile                                          | Edit profile    |
     And I navigate to Home page
 
-  Scenario: Verify leaving a live stream room confirmation pop up
+  Scenario Outline: Verify leaving a live stream room confirmation pop up and post call connection
     Given greetings should be visible
-    When I verify the confirmation pop up on leaving a room
-      | Live stream event      |
-      | Live_stream_automation_only |
-    Then I navigate to Home page
-
-  Scenario: Verify post call connection screen
-    Given greetings should be visible
+    When I verify the confirmation pop up on leaving a "<Live stream event>"
     And user verify the post call connection screen is displayed
+    Then I navigate to Home page
+    Examples:
       | Live stream event    |
       | Recurring_live_event |
-    Then I navigate to Home page

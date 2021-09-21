@@ -207,41 +207,20 @@ And(/^I verify the sections under set up your account panel$/) do |table|
   end
 end
 
-When(/^I verify the confirmation pop up on leaving a room$/) do |table|
-  data = table.hashes
-  data.each do |row|
-    row.each do |key,value|
-      if key.eql?"Live stream event"
-        $common_screen.swipe_down
-        assert_true($common_screen.find_element{$common_screen.click_element_with_text(value)},value+" is not clicked")
-        sleep 2
-        $common_screen.swipe_top
-        assert_true($common_screen.find_element{$common_screen.verify_element_displayed_with_text("Are you sure you want to leave the room?")},"confirmation pop up not displayed")
-        assert_true($common_screen.find_element{$common_screen.click_element_with_text("Cancel")},"Confirm is not clicked")
-        assert_true($common_screen.find_element{$common_screen.verify_element_displayed_with_text(value)},value+" not displayed")
-        $common_screen.swipe_top
-        assert_true($common_screen.find_element{$common_screen.click_element_with_text("Confirm")},"Confirm is not clicked")
-        assert_true($common_screen.find_element{$common_screen.verify_element_displayed_with_text("Join Now")},"Join Now not displayed")
-        $connect_screen.back_to_connect_page
-      end
-    end
-  end
+When(/^I verify the confirmation pop up on leaving a "([^"]*)"$/) do |live_event|
+  $common_screen.swipe_down
+  assert_true($common_screen.find_element{$common_screen.click_element_with_text(live_event)},live_event+" is not clicked")
+  sleep 2
+  $common_screen.swipe_top
+  assert_true($common_screen.find_element{$common_screen.verify_element_displayed_with_text("Are you sure you want to leave the room?")},"confirmation pop up not displayed")
+  assert_true($common_screen.find_element{$common_screen.click_element_with_text("Cancel")},"Confirm is not clicked")
+  assert_true($common_screen.find_element{$common_screen.verify_element_displayed_with_text(value)},value+" not displayed")
+  $common_screen.swipe_top
+  assert_true($common_screen.find_element{$common_screen.click_element_with_text("Confirm")},"Confirm is not clicked")
 end
 
-And(/^user verify the post call connection screen is displayed$/) do |table|
-  data = table.hashes
-  data.each do |row|
-    row.each do |key,value|
-      if key.eql?"Live stream event"
-        $common_screen.swipe_down
-        assert_true($common_screen.find_element{$common_screen.click_element_with_text(value)},value+" is not clicked")
-        assert_true($common_screen.find_element{$common_screen.verify_element_displayed_with_text(value)},value+" not displayed")
-        $common_screen.swipe_top
-        assert_true($common_screen.find_element{$common_screen.click_element_with_text("Confirm")},"Confirm is not clicked")
-        assert_true($common_screen.find_element{$common_screen.verify_element_displayed_with_text("Would you like to connect with these members?")},"Would you like to connect with these members? not displayed")
-        assert_true($common_screen.find_element{$common_screen.click_element_with_text("Skip")},"Skip is not clicked")
-        $connect_screen.back_to_connect_page
-      end
-    end
-  end
+And(/^user verify the post call connection screen is displayed$/) do
+  assert_true($common_screen.find_element{$common_screen.verify_element_displayed_with_text("Would you like to connect with these members?")},"Would you like to connect with these members? not displayed")
+  assert_true($common_screen.find_element{$common_screen.click_element_with_text("Skip")},"Skip is not clicked")
+  $connect_screen.back_to_connect_page
 end
