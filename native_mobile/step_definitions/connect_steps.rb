@@ -134,17 +134,13 @@ Then(/^I verify the "([^"]*)" is displayed on the screen$/) do |live_event|
 And(/^user post a "([^"]*)" in group chat$/) do |message|
   sleep 1
   $connect_screen.post_message_in_group_chat(message)
-  $common_screen.swipe_top
-  puts "1"
-  $common_screen.swipe_top
-  puts "2"
-  $common_screen.swipe_top
-  puts "3"
+  3.times{$common_screen.swipe_top}
   $connect_screen.confirm_leaving_live_event
-  puts "4"
   assert_true($common_screen.find_element{$common_screen.verify_element_displayed_with_text("Would you like to connect with these members?")},"post call connection screen is not clicked")
-  sleep 2
-  puts "::: in post call screen::"
+  $connect_screen.click_skip
+  assert_true($common_screen.click_element_with_text("Join Now"),"Join Now is not clicked")
+  $common_screen.swipe_top
+  $connect_screen.confirm_leaving_live_event
   $connect_screen.click_skip
   $connect_screen.back_to_connect_page
 end

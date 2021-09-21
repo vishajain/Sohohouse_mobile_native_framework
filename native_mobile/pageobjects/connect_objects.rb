@@ -70,14 +70,9 @@ class Ios_Connect_Objects
   end
 
   def navigate_back_to_connect
-    puts "kjkl"
     @driver.find_element(:xpath => "//*[contains(@name , 'iconLeft') or contains(@name,'iconXLarge') or contains(@name , 'iconArrowLeft') or contains(@name, 'iconDarkSmallClose') or contains(@name, 'Back')]")
   end
 
-  def back_to_connect
-    puts "::efgh::"
-    @driver.find_element(:xpath => "//XCUIElementTypeButton[@name='Back']")
-  end
   def back_to_previous_page
     @driver.find_element(:xpath => "//*[contains(@name , 'iconLeft') or contains(@name,'iconXLarge') or contains(@name , 'iconArrowLeft') or contains(@name, 'iconDarkSmallClose')]")
   end
@@ -95,11 +90,9 @@ class Ios_Connect_Objects
     @driver.find_element(:xpath => "//XCUIElementTypeButton[@name='Join Now']")
   end
   def skip_button
-    puts "::skip button::"
     @driver.find_element(:xpath => "//XCUIElementTypeOther/XCUIElementTypeStaticText[@name='Skip']")
   end
   def confirm_button
-    puts "::confirm button::"
     @driver.find_element(:xpath => "//XCUIElementTypeButton[@name='Confirm']")
   end
 end

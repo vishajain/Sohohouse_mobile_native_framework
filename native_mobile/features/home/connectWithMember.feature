@@ -15,7 +15,6 @@ Feature: This feature enables us to test the connect with members functionality
     And I cancelled the scheduled call
     And I navigate to Home page
 
-    @regression234
   Scenario Outline: Verify live stream event on connect screen
     Given greetings should be visible
     When I navigate to Connect page

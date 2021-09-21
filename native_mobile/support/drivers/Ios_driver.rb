@@ -59,7 +59,7 @@ module Ios_driver
                   'xcodeSigningId' => 'iPhone Developer',
                   'ConnectHardwareKeyboard' => true,
                   'waitForQuiescence' => false,
-                  'autoAcceptAlerts' => true,
+                  'autoAcceptAlerts' => false,
                   'autoWebview' => false,
                   'noReset' => $noreset
               }

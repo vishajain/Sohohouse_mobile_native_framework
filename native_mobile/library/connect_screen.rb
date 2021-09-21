@@ -152,7 +152,6 @@ class ConnectScreen
   end
 
   def back_to_connect_page
-    puts" abskdj"
     begin
 
       sleep 1
@@ -198,20 +197,12 @@ class ConnectScreen
     $device=="ios"?($common_screen.click_element(@device_connect_objects.join_now)):(sleep 1)
   end
 
-  def move_back_to_connect_page
-    puts ":::abcd::"
-    $device == "ios"?($driver.action.move_to(@device_connect_objects.back_to_connect).click.perform):( sleep 1)
-    return  true
-  end
-
   def click_skip
-    puts ":::inside skip method:;"
     $device == "ios"?($driver.action.move_to(@device_connect_objects.skip_button).click.perform):( sleep 1)
     return true
   end
 
   def confirm_leaving_live_event
-    puts ":::inside confirm method:;"
     $device == "ios"?($driver.action.move_to(@device_connect_objects.confirm_button).click.perform):( sleep 1)
     return true
   end
