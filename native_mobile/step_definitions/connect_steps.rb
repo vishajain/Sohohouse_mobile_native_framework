@@ -207,6 +207,17 @@ And(/^I verify the sections under set up your account panel$/) do |table|
   end
 end
 
+And(/^user join the "([^"]*)", post a "([^"]*)" and leave it$/) do |live_event, message_text|
+  $common_screen.swipe_down
+  assert_true($common_screen.find_element{$common_screen.click_element_with_text(live_event)},live_event+" is not clicked")
+  sleep 2
+  $connect_screen.post_message_in_group_chat(message_text)
+  $common_screen.swipe_top
+  assert_true($common_screen.find_element{$common_screen.click_element_with_text("Confirm")},"Confirm is not clicked")
+  assert_true($common_screen.find_element{$common_screen.click_element_with_text("Skip")},"Skip is not clicked")
+  $connect_screen.back_to_connect_page
+end
+
 When(/^I verify the confirmation pop up on leaving a "([^"]*)"$/) do |live_event|
   $common_screen.swipe_down
   assert_true($common_screen.find_element{$common_screen.click_element_with_text(live_event)},live_event+" is not clicked")
@@ -224,3 +235,4 @@ And(/^user verify the post call connection screen is displayed$/) do
   assert_true($common_screen.find_element{$common_screen.click_element_with_text("Skip")},"Skip is not clicked")
   $connect_screen.back_to_connect_page
 end
+

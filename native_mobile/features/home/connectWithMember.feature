@@ -53,7 +53,7 @@ Feature: This feature enables us to test the connect with members functionality
     Given user enters test-connect as email address
     When user clicks on go button
     And Skip the onboarding screen
-    And user join the "<Live stream event>" and leave it
+    And user join the "<Live stream event>", post a "<Message>" and leave it
     And the user signs out and closes the app
     And user clicks on Member Sign in button
     And user enters test-user as email address
@@ -64,5 +64,5 @@ Feature: This feature enables us to test the connect with members functionality
     And user verify the post call connection screen is displayed
     Then I navigate to Home page
     Examples:
-      | Live stream event    |
-      | Recurring_live_event |
+      | Live stream event    | Message   |
+      | Recurring_live_event | Hi folks! |
