@@ -50,30 +50,29 @@ Feature: This feature enables us to test the connect with members functionality
       | Complete your profile                                          | Edit profile    |
     And I navigate to Home page
 
-
-  Scenario: Verify Call history and My connections
-    Given greetings should be visible
-    When I navigate to Connect page
-    And I verify Call history details
-    And I verify the connection details under My connections
+@regression234
+  Scenario Outline: Verify Call history and My connections and Block member functionality
+    Given user enters test-connect as email address
+    When user clicks on go button
+    And Skip the onboarding screen
+    And I navigate to connect screen
+    And I write a post
+      | Message           | House                    | Topic |
+      | How are you all   | UK->Babington House      | Music |
+    And the user signs out and closes the app
+    And user clicks on Member Sign in button
+    And user enters test-user as email address
+    And user clicks on go button
+    And Skip the onboarding screen
+    And I navigate to Connect page
+    And I navigate to "<Section>" and selected "<Post>" and blocked a "<Member>"
+    And I navigate to blockedMembers screen
+    And I unblock the member
     Then I navigate to Home page
+  Examples:
+    | Section     | Post                | Member              |
+    | Noticeboard | How are you all | SFFactory TestUser  |
 
-
-  Scenario Outline: Block a member
-    Given greetings should be visible
-    When I navigate to Connect page
-    Then I navigate to "<Section>" and selected "<Post>" and blocked a "<Member>"
-    And I navigate to Home page
-    Examples:
-      | Section     | Post                | Member              |
-      | Noticeboard | test user for block | SFFactory TestUser  |
-
-  Scenario: Verify blocked member under my connections
-    Given greetings should be visible
-    When I navigate to Connect page
-    Then I navigate to blockedMembers screen
-    And I verify blocked member
-    And I navigate to Home page
 
   Scenario Outline: Unblock a member
     Given greetings should be visible

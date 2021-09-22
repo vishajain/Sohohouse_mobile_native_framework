@@ -256,4 +256,14 @@ class ConnectScreen
   def verify_requests
     return $common_screen.wait_for(10){@device_connect_objects.connection_request}.displayed?
   end
+
+  def select_the_noticeboard_post
+    $device == "ios"?($driver.action.move_to(@device_connect_objects.click_noticeboard_post).click.perform):( sleep 1)
+    return true
+  end
+
+  def unblock_a_member
+    $device == "ios"?($driver.action.move_to(@device_connect_objects.click_unblock).click.perform):( sleep 1)
+    return true
+  end
 end

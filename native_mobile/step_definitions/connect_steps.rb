@@ -130,10 +130,13 @@ Then(/^I navigate to blockedMembers screen$/) do
   $common_screen.click_element_with_text("Blocked members")
 end
 
+And(/^I unblock the member$/) do
+  $connect_screen.unblock_a_member
+  $connect_screen.back_to_connect_page
+end
+
 And(/^I verify the title of blocked members screen$/) do
   assert_true($common_screen.wait_for(10){$common_screen.verify_element_displayed_with_text("Blocked members")},"User is not on Blocked members screen")
-  $connect_screen.back_to_connect_page
-  $connect_screen.back_to_connect_page
 end
 And(/^I click on Share your room$/) do
   $common_screen.click_element_with_text("Share your room")
@@ -174,7 +177,7 @@ Then(/^I verify all the sections under connect$/) do |table|
             assert_true($common_screen.find_element{$common_screen.click_element_with_text(value)},value+" is not clicked")
         elsif key.eql?"Title"
           assert_true($common_screen.find_element{$common_screen.verify_element_displayed_with_text(value)},value+" is not displayed")
-          $connect_screen.back_to_connect_page
+          2.times{$connect_screen.back_to_connect_page}
         end
       end
     end
@@ -232,7 +235,9 @@ Then(/^I navigate to "([^"]*)" and selected "([^"]*)" and blocked a "([^"]*)"$/)
   assert_true($common_screen.find_element{$common_screen.click_element_with_partial_text(member)},member+" is not clicked")
   assert_true($common_screen.find_element{$common_screen.click_element_with_text("ellipse")},"ellipse is not clicked")
   assert_true($common_screen.find_element{$common_screen.click_element_with_text("Block member")},"Block member is not clicked")
+=begin
   assert_true($common_screen.wait_for(10){$common_screen.verify_element_displayed_with_text("Unblock")},"Unblock is not displayed")
+=end
   $common_screen.swipe_top
   $connect_screen.back_to_connect_page
 end
@@ -344,4 +349,8 @@ Then(/^I verify "([^"]*)" functionality and verify the screen "([^"]*)"$/) do |s
   assert_true($common_screen.click_element_with_text(see_all),see_all+" is not clicked")
   assert_true($common_screen.verify_element_displayed_with_text(title),title+"  not displayed")
   $connect_screen.back_to_connect_page
+end
+
+And(/^I select the post and block the member$/)do
+  $connect_screen.select_the_noticeboard_post
 end

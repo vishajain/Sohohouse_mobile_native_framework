@@ -132,6 +132,12 @@ class Ios_Connect_Objects
   def confirm_button
     @driver.find_element(:xpath => "//XCUIElementTypeButton[@name='Confirm']")
   end
+  def click_noticeboard_post
+    @driver.find_element(:xpath => "//XCUIElementTypeTable/XCUIElementTypeCell[2]/XCUIElementTypeStaticText[contains(@name,'SFFactory TestUser')]")
+  end
+  def click_unblock
+    @driver.find_element(:xpath => "//*[@name='SFFactory TestUser']/following-sibling::XCUIElementTypeButton[@name='Unblock']")
+  end
 end
 
 class Android_Connect_Objects
