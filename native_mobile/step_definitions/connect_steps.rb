@@ -207,6 +207,75 @@ And(/^I verify the sections under set up your account panel$/) do |table|
   end
 end
 
+And(/^user post a "([^"]*)" in group chat under "([^"]*)"$/) do |message_text, live_event|
+  $common_screen.swipe_down
+  assert_true($common_screen.wait_for(10){$connect_screen.click_live_event(live_event)},live_event+" is not clicked")
+  $connect_screen.post_message_in_group_chat(message_text)
+  3.times{$common_screen.swipe_top}
+  assert_true($common_screen.wait_for(10){$common_screen.click_element_with_text("Confirm")},"Confirm is not clicked")
+  assert_true($common_screen.wait_for(10){$common_screen.click_element_with_text("Skip")},"Skip is not clicked")
+  $connect_screen.back_to_connect_page
+end
+
+When(/^I verify the username under the message and open profile by clicking profile picture in "([^"]*)"$/) do |live_event|
+  $common_screen.swipe_down
+  assert_true($common_screen.wait_for(30){$connect_screen.click_live_event(live_event)},live_event+" is not clicked")
+  $memberName = $connect_screen.get_member_name
+  assert_true($memberName.eql?($scenario.getContext("name")),"name verification failed")
+  $connect_screen.user_click_profile_picture
+  sleep 1
+  2.times{$common_screen.swipe_top}
+  assert_true($common_screen.wait_for(10){$common_screen.click_element_with_text("Confirm")},"Confirm is not clicked")
+  assert_true($common_screen.wait_for(10){$common_screen.click_element_with_text("Skip")},"Skip is not clicked")
+  $connect_screen.back_to_connect_page
+end
+
+And(/^user clicks on Member Sign in button$/) do
+  $connect_screen.click_member_sign_in_button
+end
+
+And(/^user captures the username under account screen$/) do
+
+  config     = {props: YAML.load_file(File.join(File.dirname(__FILE__), '../../config/testdata.yml'))}
+
+  email      = config[:props]["data"]["test-connect"]
+
+  config     = {props: YAML.load_file(File.join(File.dirname(__FILE__), '../../config/environments.yml'))}
+
+  $name = config[:props]["env"][$env][email]["name"]
+
+  $scenario.setContext("name",$name)
+
+
+end
+Then(/^I verify the "([^"]*)" is displayed on the screen$/) do |live_event|
+  assert_true($common_screen.find_element{$common_screen.verify_element_displayed_with_text("Live Rooms")},"Live Rooms not displayed")
+  assert_true($common_screen.find_element{$common_screen.verify_element_displayed_with_text("See all")},"See all link not displayed")
+  assert_true($common_screen.find_element{$common_screen.verify_element_displayed_with_text("LIVE NOW")},"LIVE NOW link not displayed")
+  $connect_screen.click_live_event(live_event)
+  assert_true($common_screen.find_element{$common_screen.verify_element_displayed_with_text(live_event)},live_event+ " is not displayed")
+end
+
+And(/^user post a "([^"]*)" in group chat$/) do |message|
+  sleep 1
+  $connect_screen.post_message_in_group_chat(message)
+  3.times{$common_screen.swipe_top}
+  $connect_screen.confirm_leaving_live_event
+  assert_true($common_screen.find_element{$common_screen.verify_element_displayed_with_text("Would you like to connect with these members?")},"post call connection screen is not clicked")
+  $connect_screen.click_skip
+  assert_true($common_screen.click_element_with_text("Join Now"),"Join Now is not clicked")
+  $common_screen.swipe_top
+  $connect_screen.confirm_leaving_live_event
+  $connect_screen.click_skip
+  $connect_screen.back_to_connect_page
+end
+
+Then(/^I verify "([^"]*)" functionality and verify the screen "([^"]*)"$/) do |see_all, title|
+  assert_true($common_screen.click_element_with_text(see_all),see_all+" is not clicked")
+  assert_true($common_screen.verify_element_displayed_with_text(title),title+"  not displayed")
+  $connect_screen.back_to_connect_page
+end
+
 And(/^user join the "([^"]*)", post a "([^"]*)" and leave it$/) do |live_event, message_text|
   $common_screen.swipe_down
   assert_true($common_screen.find_element{$common_screen.click_element_with_text(live_event)},live_event+" is not clicked")

@@ -305,7 +305,9 @@ Then(/^the user signs out and closes the app$/) do
 
   $accountscreen.tap_sign_out
 
+=begin
   $onboardingscreens.close_app
+=end
 
 end
 
