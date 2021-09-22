@@ -276,26 +276,13 @@ Then(/^I verify "([^"]*)" functionality and verify the screen "([^"]*)"$/) do |s
   $connect_screen.back_to_connect_page
 end
 
-And(/^user join the "([^"]*)", post a "([^"]*)" and leave it$/) do |live_event, message_text|
-  $common_screen.swipe_down
-  assert_true($common_screen.find_element{$common_screen.click_element_with_text(live_event)},live_event+" is not clicked")
-  sleep 2
-  $connect_screen.post_message_in_group_chat(message_text)
-  $common_screen.swipe_top
-  assert_true($common_screen.find_element{$common_screen.click_element_with_text("Confirm")},"Confirm is not clicked")
-  assert_true($common_screen.find_element{$common_screen.click_element_with_text("Skip")},"Skip is not clicked")
-  $connect_screen.back_to_connect_page
-end
-
 When(/^I verify the confirmation pop up on leaving a "([^"]*)"$/) do |live_event|
-  $common_screen.swipe_down
-  assert_true($common_screen.find_element{$common_screen.click_element_with_text(live_event)},live_event+" is not clicked")
+  assert_true($common_screen.wait_for(30){$connect_screen.click_live_event(live_event)},live_event+" is not clicked")
   sleep 2
   $common_screen.swipe_top
   assert_true($common_screen.find_element{$common_screen.verify_element_displayed_with_text("Are you sure you want to leave the room?")},"confirmation pop up not displayed")
   assert_true($common_screen.find_element{$common_screen.click_element_with_text("Cancel")},"Confirm is not clicked")
-  assert_true($common_screen.find_element{$common_screen.verify_element_displayed_with_text(value)},value+" not displayed")
-  $common_screen.swipe_top
+  2.times{$common_screen.swipe_top}
   assert_true($common_screen.find_element{$common_screen.click_element_with_text("Confirm")},"Confirm is not clicked")
 end
 

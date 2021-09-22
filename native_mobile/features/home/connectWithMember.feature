@@ -49,23 +49,16 @@ Feature: This feature enables us to test the connect with members functionality
       | Complete your profile                                          | Edit profile    |
     And I navigate to Home page
 
+    @regression234
   Scenario Outline: Verify leaving a live stream room confirmation pop up and post call connection
-    Given user enters test-connect as email address
-    When user clicks on go button
-    And Skip the onboarding screen
-    And user join the "<Live stream event>", post a "<Message>" and leave it
-    And the user signs out and closes the app
-    And user clicks on Member Sign in button
-    And user enters test-user as email address
-    And user clicks on go button
-    And Skip the onboarding screen
-    And greetings should be visible
+    Given  greetings should be visible
+    When I navigate to Connect page
     And I verify the confirmation pop up on leaving a "<Live stream event>"
     And user verify the post call connection screen is displayed
     Then I navigate to Home page
     Examples:
-      | Live stream event    | Message   |
-      | Recurring_live_event | Hi folks! |
+      | Live stream event    |
+      | Recurring_live_event |
 
   Scenario Outline: Validate open users profile by clicking on profile picture
     Given user enters test-connect as email address
