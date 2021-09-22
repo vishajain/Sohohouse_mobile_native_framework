@@ -83,3 +83,33 @@ Feature: This feature enables us to test the connect with members functionality
     Examples:
       | Section     | Post                | Member              |
       | Noticeboard | test user for block | SFFactory TestUser  |
+
+  Scenario Outline: Validate open users profile by clicking on profile picture
+    Given user enters test-connect as email address
+    When user clicks on go button
+    And Skip the onboarding screen
+    And user post a "<Message_text>" in group chat under "<Live stream event>"
+    And user captures the username under account screen
+    And the user signs out and closes the app
+    And user clicks on Member Sign in button
+    And user enters test-user as email address
+    And user clicks on go button
+    And Skip the onboarding screen
+    And greetings should be visible
+    And I verify the username under the message and open profile by clicking profile picture in "<Live stream event>"
+    Then I navigate to Home page
+    Examples:
+      | Live stream event    | Message_text  |
+      | Recurring_live_event | Hello!!       |
+
+  Scenario Outline: Verify live stream event on connect screen
+    Given greetings should be visible
+    When I navigate to Connect page
+    And I verify the "<Live event>" is displayed on the screen
+    And user post a "<Message_text>" in group chat
+    And I verify "<See all>" functionality and verify the screen "<Title>"
+    Then I navigate to Home page
+    Examples:
+      |Live event           | Message_text  | See all | Title      |
+      |Recurring_live_event | Hi!! | See all | Live Rooms |
+

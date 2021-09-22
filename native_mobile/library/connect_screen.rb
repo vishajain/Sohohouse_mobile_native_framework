@@ -122,6 +122,34 @@ class ConnectScreen
     return @device_connect_objects.booking_time_slot.text
   end
 
+  def exit_from_live_screen
+
+    begin
+
+      sleep 1
+
+      $device=="ios"?($common_screen.click_element(@device_connect_objects.exit_from_live_window)):(sleep 1)
+
+    rescue
+
+      Common.swipe_top
+
+    end
+
+  end
+
+  def send_message_to_event(messageText)
+    sleep 2
+    $device=="ios"?(@device_connect_objects.messageBox.send_keys(messageText)):()
+  end
+
+  def move_events_to_left(value)
+    sleep 3
+    Common.swipe_top
+    Common.home_panel_swipe(@device_common_objects.element_with_text(value),"left")
+    return  true
+  end
+
   def back_to_connect_page
 
     begin
@@ -178,6 +206,43 @@ class ConnectScreen
     Common.home_panel_swipe(@device_connect_objects.connect_section,"left")
     return  true
 
+  end
+
+  def post_message_in_group_chat(message)
+    $device=="ios"?(@device_connect_objects.post_message.send_keys(message)):(sleep 1)
+    sleep 2
+    $device=="ios"?($driver.action.move_to(@device_connect_objects.click_send_button).click.perform):(sleep 1)
+  end
+
+  def user_click_profile_picture
+    $device=="ios"?($driver.action.move_to(@device_connect_objects.profile_picture).click.perform):(sleep 1)
+  end
+
+  def click_member_sign_in_button
+    $device=="ios"?($driver.action.move_to(@device_connect_objects.member_sign_in_button).click.perform):(sleep 1)
+  end
+
+  def click_live_event(event_name)
+    $device=="ios"?($driver.action.move_to(@device_connect_objects.live_event(event_name)).click.perform):(sleep 1)
+    return  true
+  end
+
+  def get_member_name
+    return @device_connect_objects.member_name.text
+  end
+
+  def click_join_now
+    $device=="ios"?($common_screen.click_element(@device_connect_objects.join_now)):(sleep 1)
+  end
+
+  def click_skip
+    $device == "ios"?($driver.action.move_to(@device_connect_objects.skip_button).click.perform):( sleep 1)
+    return true
+  end
+
+  def confirm_leaving_live_event
+    $device == "ios"?($driver.action.move_to(@device_connect_objects.confirm_button).click.perform):( sleep 1)
+    return true
   end
 
   def click_rate_your_experience_button
