@@ -208,18 +208,20 @@ And(/^I verify the sections under set up your account panel$/) do |table|
 end
 
 And(/^user post a "([^"]*)" in group chat under "([^"]*)"$/) do |message_text, live_event|
-  $common_screen.swipe_down
+  2.times{$common_screen.swipe_down}
   assert_true($common_screen.wait_for(10){$connect_screen.click_live_event(live_event)},live_event+" is not clicked")
   $connect_screen.post_message_in_group_chat(message_text)
   3.times{$common_screen.swipe_top}
   assert_true($common_screen.wait_for(10){$common_screen.click_element_with_text("Confirm")},"Confirm is not clicked")
+  assert_true($common_screen.find_element{$common_screen.verify_element_displayed_with_text("Would you like to connect with these members?")},"Would you like to connect with these members? not displayed")
   assert_true($common_screen.wait_for(10){$common_screen.click_element_with_text("Skip")},"Skip is not clicked")
   $connect_screen.back_to_connect_page
 end
 
 When(/^I verify the username under the message and open profile by clicking profile picture in "([^"]*)"$/) do |live_event|
-  $common_screen.swipe_down
+  2.times{$common_screen.swipe_down}
   assert_true($common_screen.wait_for(30){$connect_screen.click_live_event(live_event)},live_event+" is not clicked")
+  sleep 1
   $memberName = $connect_screen.get_member_name
   assert_true($memberName.eql?($scenario.getContext("name")),"name verification failed")
   $connect_screen.user_click_profile_picture
@@ -270,25 +272,5 @@ And(/^user post a "([^"]*)" in group chat$/) do |message|
   $connect_screen.back_to_connect_page
 end
 
-Then(/^I verify "([^"]*)" functionality and verify the screen "([^"]*)"$/) do |see_all, title|
-  assert_true($common_screen.click_element_with_text(see_all),see_all+" is not clicked")
-  assert_true($common_screen.verify_element_displayed_with_text(title),title+"  not displayed")
-  $connect_screen.back_to_connect_page
-end
 
-When(/^I verify the confirmation pop up on leaving a "([^"]*)"$/) do |live_event|
-  assert_true($common_screen.wait_for(30){$connect_screen.click_live_event(live_event)},live_event+" is not clicked")
-  sleep 2
-  $common_screen.swipe_top
-  assert_true($common_screen.find_element{$common_screen.verify_element_displayed_with_text("Are you sure you want to leave the room?")},"confirmation pop up not displayed")
-  assert_true($common_screen.find_element{$common_screen.click_element_with_text("Cancel")},"Confirm is not clicked")
-  2.times{$common_screen.swipe_top}
-  assert_true($common_screen.find_element{$common_screen.click_element_with_text("Confirm")},"Confirm is not clicked")
-end
-
-And(/^user verify the post call connection screen is displayed$/) do
-  assert_true($common_screen.find_element{$common_screen.verify_element_displayed_with_text("Would you like to connect with these members?")},"Would you like to connect with these members? not displayed")
-  assert_true($common_screen.find_element{$common_screen.click_element_with_text("Skip")},"Skip is not clicked")
-  $connect_screen.back_to_connect_page
-end
 

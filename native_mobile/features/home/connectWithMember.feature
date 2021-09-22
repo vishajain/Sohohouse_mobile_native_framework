@@ -49,17 +49,6 @@ Feature: This feature enables us to test the connect with members functionality
       | Complete your profile                                          | Edit profile    |
     And I navigate to Home page
 
-    @regression234
-  Scenario Outline: Verify leaving a live stream room confirmation pop up and post call connection
-    Given  greetings should be visible
-    When I navigate to Connect page
-    And I verify the confirmation pop up on leaving a "<Live stream event>"
-    And user verify the post call connection screen is displayed
-    Then I navigate to Home page
-    Examples:
-      | Live stream event    |
-      | Recurring_live_event |
-
   Scenario Outline: Validate open users profile by clicking on profile picture
     Given user enters test-connect as email address
     When user clicks on go button
@@ -78,14 +67,4 @@ Feature: This feature enables us to test the connect with members functionality
       | Live stream event    | Message_text  |
       | Recurring_live_event | Hello!!       |
 
-  Scenario Outline: Verify live stream event on connect screen
-    Given greetings should be visible
-    When I navigate to Connect page
-    And I verify the "<Live event>" is displayed on the screen
-    And user post a "<Message_text>" in group chat
-    And I verify "<See all>" functionality and verify the screen "<Title>"
-    Then I navigate to Home page
-    Examples:
-      |Live event           | Message_text  | See all | Title      |
-      |Recurring_live_event | Hi!! | See all | Live Rooms |
 
