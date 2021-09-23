@@ -99,9 +99,6 @@ class Ios_Connect_Objects
   def message_button
     @driver.find_element(:xpath => "//XCUIElementTypeCell[1]/XCUIElementTypeButton[@name='Message']")
   end
-  def connection_request
-    @driver.find_element(:xpath => "//XCUIElementTypeCell[1]/XCUIElementTypeButton[@name='Connect']")
-  end
   def post_message
     @driver.find_element(:name => "Type a message")
   end
@@ -126,17 +123,14 @@ class Ios_Connect_Objects
   def join_now
     @driver.find_element(:xpath => "//XCUIElementTypeButton[@name='Join Now']")
   end
-  def skip_button
-    @driver.find_element(:xpath => "//XCUIElementTypeOther/XCUIElementTypeStaticText[@name='Skip']")
-  end
-  def confirm_button
-    @driver.find_element(:xpath => "//XCUIElementTypeButton[@name='Confirm']")
-  end
   def click_noticeboard_post
     @driver.find_element(:xpath => "//XCUIElementTypeTable/XCUIElementTypeCell[2]/XCUIElementTypeStaticText[contains(@name,'SFFactory TestUser')]")
   end
   def click_unblock
     @driver.find_element(:xpath => "//*[@name='SFFactory TestUser']/following-sibling::XCUIElementTypeButton[@name='Unblock']")
+  end
+  def ignore_button
+    @driver.find_element(:xpath => "//XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeButton[@name='Ignore']")
   end
 end
 

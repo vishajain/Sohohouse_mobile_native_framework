@@ -15,13 +15,6 @@ Feature: This feature enables us to test the connect with members functionality
     And I cancelled the scheduled call
     And I navigate to Home page
 
-  Scenario: Navigate to blocked members screen
-    Given greetings should be visible
-    When I navigate to Connect page
-    Then I navigate to blockedMembers screen
-    And I verify the title of blocked members screen
-    And I navigate to Home page
-
   Scenario: Verify share your room functionality
     Given greetings should be visible
     When I navigate to Connect page
@@ -50,12 +43,14 @@ Feature: This feature enables us to test the connect with members functionality
       | Complete your profile                                          | Edit profile    |
     And I navigate to Home page
 
-@regression234
+
+  @regression234
   Scenario Outline: Verify Call history and My connections and Block member functionality
     Given user enters test-connect as email address
     When user clicks on go button
     And Skip the onboarding screen
-    And I navigate to connect screen
+    And I navigate to Connect page
+    And I navigate to noticeboard screen
     And I write a post
       | Message           | House                    | Topic |
       | How are you all   | UK->Babington House      | Music |
@@ -66,22 +61,13 @@ Feature: This feature enables us to test the connect with members functionality
     And Skip the onboarding screen
     And I navigate to Connect page
     And I navigate to "<Section>" and selected "<Post>" and blocked a "<Member>"
-    And I navigate to blockedMembers screen
-    And I unblock the member
+    And I navigate to connect screen
+    And I verify Call history details
+    And I verify myConnections and block Member functionality
     Then I navigate to Home page
-  Examples:
-    | Section     | Post                | Member              |
-    | Noticeboard | How are you all | SFFactory TestUser  |
-
-
-  Scenario Outline: Unblock a member
-    Given greetings should be visible
-    When I navigate to Connect page
-    Then I navigate to "<Section>" and selected "<Post>" and unblocked a "<Member>"
-    And I navigate to Home page
     Examples:
-      | Section     | Post                | Member              |
-      | Noticeboard | test user for block | SFFactory TestUser  |
+      | Section     | Post            | Member              |
+      | Noticeboard | How are you all | SFFactory TestUser  |
 
   Scenario Outline: Validate open users profile by clicking on profile picture
     Given user enters test-connect as email address
@@ -101,14 +87,4 @@ Feature: This feature enables us to test the connect with members functionality
       | Live stream event    | Message_text  |
       | Recurring_live_event | Hello!!       |
 
-  Scenario Outline: Verify live stream event on connect screen
-    Given greetings should be visible
-    When I navigate to Connect page
-    And I verify the "<Live event>" is displayed on the screen
-    And user post a "<Message_text>" in group chat
-    And I verify "<See all>" functionality and verify the screen "<Title>"
-    Then I navigate to Home page
-    Examples:
-      |Live event           | Message_text  | See all | Title      |
-      |Recurring_live_event | Hi!! | See all | Live Rooms |
 

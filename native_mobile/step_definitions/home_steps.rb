@@ -294,9 +294,12 @@ end
 
 And(/^I navigate to connect screen$/) do
   $common_screen=CommonScreen.new
-  $common_screen.navigate_to_tabs("Connect")
-  $device=="ios"?$common_screen.click_element_with_text("Noticeboard"):()
+  $device=="ios"?$common_screen.click_element_with_text("Connect"):()
+end
 
+And(/^I navigate to noticeboard screen$/) do
+  $common_screen=CommonScreen.new
+  $device=="ios"?$common_screen.click_element_with_text("Noticeboard"):()
 end
 
 Then(/^I navigate to ([^"]*) page$/) do |arg|

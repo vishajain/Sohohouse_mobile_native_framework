@@ -123,21 +123,6 @@ And(/^I cancelled the scheduled call$/) do
   $common_screen.click_element_with_text("Confirm cancellation")
 end
 
-Then(/^I navigate to blockedMembers screen$/) do
-  Common.swipe_down
-  $common_screen.click_element_with_text("My connections")
-  $common_screen.click_element_with_text("ellipse")
-  $common_screen.click_element_with_text("Blocked members")
-end
-
-And(/^I unblock the member$/) do
-  $connect_screen.unblock_a_member
-  $connect_screen.back_to_connect_page
-end
-
-And(/^I verify the title of blocked members screen$/) do
-  assert_true($common_screen.wait_for(10){$common_screen.verify_element_displayed_with_text("Blocked members")},"User is not on Blocked members screen")
-end
 And(/^I click on Share your room$/) do
   $common_screen.click_element_with_text("Share your room")
 end
@@ -242,46 +227,6 @@ Then(/^I navigate to "([^"]*)" and selected "([^"]*)" and blocked a "([^"]*)"$/)
   $connect_screen.back_to_connect_page
 end
 
-And(/^I verify blocked member$/) do
-  assert_true($common_screen.wait_for(10){$common_screen.verify_element_displayed_with_text("Blocked members")},"User is not on Blocked members screen")
-  assert_true($common_screen.wait_for(10){$common_screen.verify_element_displayed_with_text("Unblock")},"Unblock is not displayed")
-  $connect_screen.back_to_connect_page
-  $connect_screen.back_to_connect_page
-
-end
-
-And(/^I navigate to "([^"]*)" and selected "([^"]*)" and unblocked a "([^"]*)"$/) do |section, post, member|
-  assert_true($common_screen.find_element{$common_screen.click_element_with_text(section)},section+" is not clicked")
-  sleep 2
-  assert_true($common_screen.find_element{$common_screen.click_element_with_text(post)},post+" is not clicked")
-  assert_true($common_screen.find_element{$common_screen.click_element_with_partial_text(member)},member+" is not clicked")
-  assert_true($common_screen.find_element{$common_screen.click_element_with_partial_text("Unblock")},"Unblock is not clicked")
-  $common_screen.swipe_top
-  $connect_screen.back_to_connect_page
-end
-
-And(/^I verify Call history details$/) do
-  $common_screen.swipe_down
-  assert_true($common_screen.find_element{$common_screen.click_element_with_text("Call history")},"Call history is not clicked")
-  assert_true($common_screen.wait_for(20){$common_screen.verify_element_displayed_with_text("Rate your Connect experience")},"Rate your Connect experience is not displayed")
-  sleep 2
-  $connect_screen.click_rate_your_experience_button
-  assert_true($common_screen.verify_element_displayed_with_text("The experience was..."),"The experience was... is not displayed")
-  assert_true($common_screen.verify_element_displayed_with_text("I rated the experience that way because..."),"I rated the experience that way because... is not displayed")
-  $common_screen.little_swipe_down
-  assert_true($common_screen.verify_element_displayed_with_text("We connected over..."),"We connected over... is not displayed")
-  assert_true($common_screen.find_element{$common_screen.click_element_with_text("Skip this for now")},"Skip this for now button is not clicked")
-  $connect_screen.back_to_connect_page
-end
-
-And(/^I verify the connection details under My connections$/) do
-  $common_screen.swipe_down
-  assert_true($common_screen.find_element{$common_screen.click_element_with_text("My connections")},"My connections is not clicked")
-  assert_true($connect_screen.verify_connections,"connections are not displayed")
-  assert_true($common_screen.find_element{$common_screen.click_element_with_text("Requests")},"Request is not clicked")
-  assert_true($connect_screen.verify_requests,"requests are not displayed")
-  $connect_screen.back_to_connect_page
-end
 And(/^user post a "([^"]*)" in group chat under "([^"]*)"$/) do |message_text, live_event|
   $common_screen.swipe_down
   assert_true($common_screen.wait_for(10){$connect_screen.click_live_event(live_event)},live_event+" is not clicked")
@@ -331,26 +276,33 @@ Then(/^I verify the "([^"]*)" is displayed on the screen$/) do |live_event|
   assert_true($common_screen.find_element{$common_screen.verify_element_displayed_with_text(live_event)},live_event+ " is not displayed")
 end
 
-And(/^user post a "([^"]*)" in group chat$/) do |message|
+And(/^I verify myConnections and block Member functionality$/) do
+  $common_screen.swipe_down
+  assert_true($common_screen.click_element_with_text("My connections"),"My connections is not clicked")
+  assert_true($common_screen.find_element{$common_screen.verify_element_displayed_with_text("My connections")},"My connections is not clicked")
+  assert_true($common_screen.click_element_with_text("Requests"),"Requests is not clicked")
+  $connect_screen.verify_connection_request
   sleep 1
-  $connect_screen.post_message_in_group_chat(message)
-  3.times{$common_screen.swipe_top}
-  $connect_screen.confirm_leaving_live_event
-  assert_true($common_screen.find_element{$common_screen.verify_element_displayed_with_text("Would you like to connect with these members?")},"post call connection screen is not clicked")
-  $connect_screen.click_skip
-  assert_true($common_screen.click_element_with_text("Join Now"),"Join Now is not clicked")
-  $common_screen.swipe_top
-  $connect_screen.confirm_leaving_live_event
-  $connect_screen.click_skip
+  $common_screen.click_element_with_text("ellipse")
+  $common_screen.click_element_with_text("Blocked members")
+  assert_true($common_screen.wait_for(10){$common_screen.verify_element_displayed_with_text("Blocked members")},"User is not on Blocked members screen")
+  $connect_screen.unblock_a_member
+  $common_screen.click_element_with_text("Unblock")
+  $connect_screen.back_to_connect_page
   $connect_screen.back_to_connect_page
 end
 
-Then(/^I verify "([^"]*)" functionality and verify the screen "([^"]*)"$/) do |see_all, title|
-  assert_true($common_screen.click_element_with_text(see_all),see_all+" is not clicked")
-  assert_true($common_screen.verify_element_displayed_with_text(title),title+"  not displayed")
+And(/^I verify Call history details$/) do
+  $common_screen.swipe_down
+  assert_true($common_screen.find_element{$common_screen.click_element_with_text("Call history")},"Call history is not clicked")
+  assert_true($common_screen.wait_for(20){$common_screen.verify_element_displayed_with_text("Rate your Connect experience")},"Rate your Connect experience is not displayed")
+  sleep 2
+  $connect_screen.click_rate_your_experience_button
+  assert_true($common_screen.verify_element_displayed_with_text("The experience was..."),"The experience was... is not displayed")
+  assert_true($common_screen.verify_element_displayed_with_text("I rated the experience that way because..."),"I rated the experience that way because... is not displayed")
+  $common_screen.little_swipe_down
+  assert_true($common_screen.verify_element_displayed_with_text("We connected over..."),"We connected over... is not displayed")
+  assert_true($common_screen.find_element{$common_screen.click_element_with_text("Skip this for now")},"Skip this for now button is not clicked")
   $connect_screen.back_to_connect_page
 end
 
-And(/^I select the post and block the member$/)do
-  $connect_screen.select_the_noticeboard_post
-end

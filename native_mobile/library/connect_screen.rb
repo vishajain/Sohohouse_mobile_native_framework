@@ -235,26 +235,12 @@ class ConnectScreen
     $device=="ios"?($common_screen.click_element(@device_connect_objects.join_now)):(sleep 1)
   end
 
-  def click_skip
-    $device == "ios"?($driver.action.move_to(@device_connect_objects.skip_button).click.perform):( sleep 1)
-    return true
-  end
-
-  def confirm_leaving_live_event
-    $device == "ios"?($driver.action.move_to(@device_connect_objects.confirm_button).click.perform):( sleep 1)
-    return true
-  end
-
   def click_rate_your_experience_button
     $device=="ios"?($common_screen.click_element(@device_connect_objects.rate_your_experience)):(sleep 1)
   end
 
   def verify_connections
     return $common_screen.wait_for(10){@device_connect_objects.message_button}.displayed?
-  end
-
-  def verify_requests
-    return $common_screen.wait_for(10){@device_connect_objects.connection_request}.displayed?
   end
 
   def select_the_noticeboard_post
@@ -265,5 +251,9 @@ class ConnectScreen
   def unblock_a_member
     $device == "ios"?($driver.action.move_to(@device_connect_objects.click_unblock).click.perform):( sleep 1)
     return true
+  end
+
+  def verify_connection_request
+    return $common_screen.wait_for(10){@device_connect_objects.ignore_button}.displayed?
   end
 end
