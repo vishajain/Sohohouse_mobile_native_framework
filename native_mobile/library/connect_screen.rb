@@ -228,7 +228,7 @@ class ConnectScreen
   end
 
   def get_member_name
-    return @device_connect_objects.member_name.text
+    return @device_connect_objects.member_name_in_group_chat.text
   end
 
   def click_join_now

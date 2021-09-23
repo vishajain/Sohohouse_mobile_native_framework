@@ -123,6 +123,18 @@ And(/^I cancelled the scheduled call$/) do
   $common_screen.click_element_with_text("Confirm cancellation")
 end
 
+Then(/^I navigate to blockedMembers screen$/) do
+  Common.swipe_down
+  $common_screen.click_element_with_text("My connections")
+  $common_screen.click_element_with_text("ellipse")
+  $common_screen.click_element_with_text("Blocked members")
+end
+
+And(/^I verify the title of blocked members screen$/) do
+  assert_true($common_screen.wait_for(10){$common_screen.verify_element_displayed_with_text("Blocked members")},"User is not on Blocked members screen")
+  $connect_screen.back_to_connect_page
+  $connect_screen.back_to_connect_page
+end
 And(/^I click on Share your room$/) do
   $common_screen.click_element_with_text("Share your room")
 end
@@ -228,18 +240,20 @@ Then(/^I navigate to "([^"]*)" and selected "([^"]*)" and blocked a "([^"]*)"$/)
 end
 
 And(/^user post a "([^"]*)" in group chat under "([^"]*)"$/) do |message_text, live_event|
-  $common_screen.swipe_down
+  2.times{$common_screen.swipe_down}
   assert_true($common_screen.wait_for(10){$connect_screen.click_live_event(live_event)},live_event+" is not clicked")
   $connect_screen.post_message_in_group_chat(message_text)
   3.times{$common_screen.swipe_top}
   assert_true($common_screen.wait_for(10){$common_screen.click_element_with_text("Confirm")},"Confirm is not clicked")
+  assert_true($common_screen.find_element{$common_screen.verify_element_displayed_with_text("Would you like to connect with these members?")},"Would you like to connect with these members? not displayed")
   assert_true($common_screen.wait_for(10){$common_screen.click_element_with_text("Skip")},"Skip is not clicked")
   $connect_screen.back_to_connect_page
 end
 
 When(/^I verify the username under the message and open profile by clicking profile picture in "([^"]*)"$/) do |live_event|
-  $common_screen.swipe_down
+  2.times{$common_screen.swipe_down}
   assert_true($common_screen.wait_for(30){$connect_screen.click_live_event(live_event)},live_event+" is not clicked")
+  sleep 1
   $memberName = $connect_screen.get_member_name
   assert_true($memberName.eql?($scenario.getContext("name")),"name verification failed")
   $connect_screen.user_click_profile_picture
@@ -305,4 +319,3 @@ And(/^I verify Call history details$/) do
   assert_true($common_screen.find_element{$common_screen.click_element_with_text("Skip this for now")},"Skip this for now button is not clicked")
   $connect_screen.back_to_connect_page
 end
-

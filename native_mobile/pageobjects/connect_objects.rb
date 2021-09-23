@@ -117,7 +117,7 @@ class Ios_Connect_Objects
   def live_event(event_name)
     @driver.find_element(:xpath => "//*[@name='Live Rooms']/../following-sibling::XCUIElementTypeCell/*[@name='"+event_name+"']")
   end
-  def member_name
+  def member_name_in_group_chat
     @driver.find_element(:xpath => "//XCUIElementTypeCollectionView//XCUIElementTypeCell[last()]//XCUIElementTypeOther[2]/XCUIElementTypeStaticText")
   end
   def join_now
