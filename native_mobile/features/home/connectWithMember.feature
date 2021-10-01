@@ -50,8 +50,6 @@ Feature: This feature enables us to test the connect with members functionality
       | Complete your profile                                          | Edit profile    |
     And I navigate to Home page
 
-
-  @regression234
   Scenario Outline: Verify Call history and My connections and Block member functionality
     Given user enters test-connect as email address
     When user clicks on go button

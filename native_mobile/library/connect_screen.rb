@@ -249,8 +249,9 @@ class ConnectScreen
   end
 
   def unblock_a_member
-    $device == "ios"?($driver.action.move_to(@device_connect_objects.click_unblock).click.perform):( sleep 1)
-    return true
+    $device=="ios"?(sleep 10;$common_screen.click_element(@device_connect_objects.click_unblock)):(sleep 1 )
+    sleep 1
+    $device=="ios"?(sleep 10;$common_screen.click_element(@device_connect_objects.click_unblock_on_popup)):(sleep 1 )
   end
 
   def verify_connection_request

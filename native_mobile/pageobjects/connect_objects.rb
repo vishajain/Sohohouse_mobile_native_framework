@@ -132,6 +132,10 @@ class Ios_Connect_Objects
   def ignore_button
     @driver.find_element(:xpath => "//XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeButton[@name='Ignore']")
   end
+
+  def click_unblock_on_popup
+    @driver.find_element(:xpath => "//XCUIElementTypeScrollView/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[3]/XCUIElementTypeButton[@name='Unblock']")
+  end
 end
 
 class Android_Connect_Objects

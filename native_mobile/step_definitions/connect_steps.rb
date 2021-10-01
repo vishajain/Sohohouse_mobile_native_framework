@@ -301,7 +301,6 @@ And(/^I verify myConnections and block Member functionality$/) do
   $common_screen.click_element_with_text("Blocked members")
   assert_true($common_screen.wait_for(10){$common_screen.verify_element_displayed_with_text("Blocked members")},"User is not on Blocked members screen")
   $connect_screen.unblock_a_member
-  $common_screen.click_element_with_text("Unblock")
   $connect_screen.back_to_connect_page
   $connect_screen.back_to_connect_page
 end
@@ -309,13 +308,6 @@ end
 And(/^I verify Call history details$/) do
   $common_screen.swipe_down
   assert_true($common_screen.find_element{$common_screen.click_element_with_text("Call history")},"Call history is not clicked")
-  assert_true($common_screen.wait_for(20){$common_screen.verify_element_displayed_with_text("Rate your Connect experience")},"Rate your Connect experience is not displayed")
-  sleep 2
-  $connect_screen.click_rate_your_experience_button
-  assert_true($common_screen.verify_element_displayed_with_text("The experience was..."),"The experience was... is not displayed")
-  assert_true($common_screen.verify_element_displayed_with_text("I rated the experience that way because..."),"I rated the experience that way because... is not displayed")
-  $common_screen.little_swipe_down
-  assert_true($common_screen.verify_element_displayed_with_text("We connected over..."),"We connected over... is not displayed")
-  assert_true($common_screen.find_element{$common_screen.click_element_with_text("Skip this for now")},"Skip this for now button is not clicked")
+  assert_true($common_screen.verify_element_displayed_with_text("Report"),"Report is not displayed")
   $connect_screen.back_to_connect_page
 end
