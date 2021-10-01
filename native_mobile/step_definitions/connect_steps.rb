@@ -232,9 +232,6 @@ Then(/^I navigate to "([^"]*)" and selected "([^"]*)" and blocked a "([^"]*)"$/)
   assert_true($common_screen.find_element{$common_screen.click_element_with_partial_text(member)},member+" is not clicked")
   assert_true($common_screen.find_element{$common_screen.click_element_with_text("ellipse")},"ellipse is not clicked")
   assert_true($common_screen.find_element{$common_screen.click_element_with_text("Block member")},"Block member is not clicked")
-=begin
-  assert_true($common_screen.wait_for(10){$common_screen.verify_element_displayed_with_text("Unblock")},"Unblock is not displayed")
-=end
   $common_screen.swipe_top
   $connect_screen.back_to_connect_page
 end

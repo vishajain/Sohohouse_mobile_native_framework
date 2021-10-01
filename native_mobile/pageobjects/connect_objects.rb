@@ -60,15 +60,6 @@ class Ios_Connect_Objects
   def booking_time_slot
   @driver.find_element(:xpath => "//XCUIElementTypeCell[5]//XCUIElementTypeButton[@enabled='true'][1]")
   end
-
-  def exit_from_live_window
-    @driver.find_element(:xpath => "//*[contains(@name , 'iconLeft') or contains(@name,'iconXLarge') or contains(@name , 'iconArrowLeft') or contains(@name , 'roundCloseButton')]")
-  end
-
-  def messageBox
-    @driver.find_element(:xpath => "//*[@name='Type a message']")
-  end
-
   def navigate_back_to_connect
     @driver.find_element(:xpath => "//*[contains(@name , 'iconLeft') or contains(@name,'iconXLarge') or contains(@name , 'iconArrowLeft') or contains(@name, 'iconDarkSmallClose') or contains(@name, 'Back')]")
   end
@@ -136,6 +127,7 @@ class Ios_Connect_Objects
   def click_unblock_on_popup
     @driver.find_element(:xpath => "//XCUIElementTypeScrollView/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[3]/XCUIElementTypeButton[@name='Unblock']")
   end
+
 end
 
 class Android_Connect_Objects
