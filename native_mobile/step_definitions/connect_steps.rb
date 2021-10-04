@@ -226,10 +226,12 @@ When(/^I verify the username under the message and open profile by clicking prof
   assert_true($memberName.eql?($scenario.getContext("name")),"name verification failed")
   $connect_screen.user_click_profile_picture
   sleep 1
-  2.times{$common_screen.swipe_top}
+  $common_screen.swipe_top
+=begin
   assert_true($common_screen.wait_for(10){$common_screen.click_element_with_text("Confirm")},"Confirm is not clicked")
   assert_true($common_screen.wait_for(10){$common_screen.click_element_with_text("Skip")},"Skip is not clicked")
   $connect_screen.back_to_connect_page
+=end
 end
 
 And(/^user clicks on Member Sign in button$/) do
@@ -272,5 +274,16 @@ And(/^user post a "([^"]*)" in group chat$/) do |message|
   $connect_screen.back_to_connect_page
 end
 
+And(/^I verify connect during a call functionality$/)do
+  assert_true($common_screen.click_element_with_text("iconInfoDark"),"info button is not clicked")
+  assert_true($common_screen.wait_for(10){$common_screen.verify_element_displayed_with_text("Currently watching")},"Currently watching is not displayed")
+  $memberName = $connect_screen.get_member_name
+  assert_true($memberName.eql?($scenario.getContext("name")),"name verification failed")
+  2.times{$common_screen.swipe_top}
+  assert_true($common_screen.wait_for(10){$common_screen.click_element_with_text("Confirm")},"Confirm is not clicked")
+  assert_true($common_screen.wait_for(10){$common_screen.click_element_with_text("Skip")},"Skip is not clicked")
+  $connect_screen.back_to_connect_page
+
+end
 
 
