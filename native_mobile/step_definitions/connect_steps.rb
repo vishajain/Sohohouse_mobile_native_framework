@@ -225,8 +225,7 @@ Then(/^I verify connect sections$/) do |table|
 
 end
 
-Then(/^I navigate to "([^"]*)" and selected "([^"]*)" and blocked a "([^"]*)"$/) do |section, post, member|
-  assert_true($common_screen.find_element{$common_screen.click_element_with_text(section)},section+" is not clicked")
+Then(/^I selected "([^"]*)" and blocked a "([^"]*)"$/) do |post, member|
   sleep 2
   assert_true($common_screen.find_element{$common_screen.click_element_with_text(post)},post+" is not clicked")
   assert_true($common_screen.find_element{$common_screen.click_element_with_partial_text(member)},member+" is not clicked")

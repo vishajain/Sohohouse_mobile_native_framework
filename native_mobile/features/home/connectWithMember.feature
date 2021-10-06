@@ -50,12 +50,12 @@ Feature: This feature enables us to test the connect with members functionality
       | Complete your profile                                          | Edit profile    |
     And I navigate to Home page
 
+
   Scenario Outline: Verify Call history and My connections and Block member functionality
     Given user enters test-connect as email address
     When user clicks on go button
     And Skip the onboarding screen
-    And I navigate to Connect page
-    And I navigate to noticeboard screen
+    And I navigate to Noticeboard page
     And I write a post
       | Message           | House                    | Topic |
       | How are you all   | UK->Babington House      | Music |
@@ -64,15 +64,15 @@ Feature: This feature enables us to test the connect with members functionality
     And user enters test-user as email address
     And user clicks on go button
     And Skip the onboarding screen
-    And I navigate to Connect page
-    And I navigate to "<Section>" and selected "<Post>" and blocked a "<Member>"
+    And I navigate to Noticeboard page
+    And I selected "<Post>" and blocked a "<Member>"
     And I navigate to connect screen
     And I verify Call history details
     And I verify myConnections and block Member functionality
     Then I navigate to Home page
     Examples:
-      | Section     | Post            | Member              |
-      | Noticeboard | How are you all | SFFactory TestUser  |
+      | Post            | Member              |
+      | How are you all | SFFactory TestUser  |
 
   Scenario Outline: Validate open users profile by clicking on profile picture
     Given user enters test-connect as email address
