@@ -210,6 +210,7 @@ end
 And(/^user post a "([^"]*)" in group chat under "([^"]*)"$/) do |message_text, live_event|
   2.times{$common_screen.swipe_down}
   assert_true($common_screen.wait_for(10){$connect_screen.click_live_event(live_event)},live_event+" is not clicked")
+  $connect_screen.click_join_now
   $connect_screen.post_message_in_group_chat(message_text)
   3.times{$common_screen.swipe_top}
   assert_true($common_screen.wait_for(10){$common_screen.click_element_with_text("Confirm")},"Confirm is not clicked")
@@ -221,6 +222,7 @@ end
 When(/^I verify the username under the message and open profile by clicking profile picture in "([^"]*)"$/) do |live_event|
   2.times{$common_screen.swipe_down}
   assert_true($common_screen.wait_for(30){$connect_screen.click_live_event(live_event)},live_event+" is not clicked")
+  $connect_screen.click_join_now
   sleep 1
   $memberName = $connect_screen.get_member_name
   assert_true($memberName.eql?($scenario.getContext("name")),"name verification failed")
