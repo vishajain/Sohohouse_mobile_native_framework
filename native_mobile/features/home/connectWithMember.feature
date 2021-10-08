@@ -49,6 +49,7 @@ Feature: This feature enables us to test the connect with members functionality
       | Complete your profile                                          | Edit profile    |
     And I navigate to Home page
 
+
   Scenario Outline: Validate open users profile by clicking on profile picture
     Given user enters test-connect as email address
     When user clicks on go button
@@ -62,6 +63,7 @@ Feature: This feature enables us to test the connect with members functionality
     And Skip the onboarding screen
     And greetings should be visible
     And I verify the username under the message and open profile by clicking profile picture in "<Live stream event>"
+    And I verify connect during a call functionality
     Then I navigate to Home page
     Examples:
       | Live stream event    | Message_text  |
