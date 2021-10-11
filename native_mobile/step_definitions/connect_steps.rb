@@ -174,7 +174,7 @@ Then(/^I verify all the sections under connect$/) do |table|
             assert_true($common_screen.find_element{$common_screen.click_element_with_text(value)},value+" is not clicked")
         elsif key.eql?"Title"
           assert_true($common_screen.find_element{$common_screen.verify_element_displayed_with_text(value)},value+" is not displayed")
-          $connect_screen.back_to_connect_page
+          2.times{$connect_screen.back_to_connect_page}
         end
       end
     end
@@ -205,6 +205,34 @@ And(/^I verify the sections under set up your account panel$/) do |table|
       end
     end
   end
+end
+
+
+Then(/^I verify connect sections$/) do |table|
+  $common_screen.swipe_down
+  data = table.hashes
+  data.each do |row|
+    row.each do |key,value|
+      sleep 2
+      if key.eql?"Section"
+        assert_true($common_screen.find_element{$common_screen.click_element_with_text(value)},value+" is not clicked")
+      elsif key.eql?"Title"
+        assert_true($common_screen.wait_for(10){$common_screen.verify_element_displayed_with_text(value)}," is not displayed")
+        $connect_screen.back_to_connect_page
+      end
+    end
+  end
+
+end
+
+Then(/^I selected "([^"]*)" and blocked a "([^"]*)"$/) do |post, member|
+  sleep 2
+  assert_true($common_screen.find_element{$common_screen.click_element_with_text(post)},post+" is not clicked")
+  assert_true($common_screen.find_element{$common_screen.click_element_with_partial_text(member)},member+" is not clicked")
+  assert_true($common_screen.find_element{$common_screen.click_element_with_text("ellipse")},"ellipse is not clicked")
+  assert_true($common_screen.find_element{$common_screen.click_element_with_text("Block member")},"Block member is not clicked")
+  $common_screen.swipe_top
+  $connect_screen.back_to_connect_page
 end
 
 And(/^user post a "([^"]*)" in group chat under "([^"]*)"$/) do |message_text, live_event|
@@ -262,17 +290,25 @@ Then(/^I verify the "([^"]*)" is displayed on the screen$/) do |live_event|
   assert_true($common_screen.find_element{$common_screen.verify_element_displayed_with_text(live_event)},live_event+ " is not displayed")
 end
 
-And(/^user post a "([^"]*)" in group chat$/) do |message|
+And(/^I verify myConnections and block Member functionality$/) do
+  $common_screen.swipe_down
+  assert_true($common_screen.click_element_with_text("My connections"),"My connections is not clicked")
+  assert_true($common_screen.find_element{$common_screen.verify_element_displayed_with_text("My connections")},"My connections is not clicked")
+  assert_true($common_screen.click_element_with_text("Requests"),"Requests is not clicked")
+  $connect_screen.verify_connection_request
   sleep 1
-  $connect_screen.post_message_in_group_chat(message)
-  3.times{$common_screen.swipe_top}
-  $connect_screen.confirm_leaving_live_event
-  assert_true($common_screen.find_element{$common_screen.verify_element_displayed_with_text("Would you like to connect with these members?")},"post call connection screen is not clicked")
-  $connect_screen.click_skip
-  assert_true($common_screen.click_element_with_text("Join Now"),"Join Now is not clicked")
-  $common_screen.swipe_top
-  $connect_screen.confirm_leaving_live_event
-  $connect_screen.click_skip
+  $common_screen.click_element_with_text("ellipse")
+  $common_screen.click_element_with_text("Blocked members")
+  assert_true($common_screen.wait_for(10){$common_screen.verify_element_displayed_with_text("Blocked members")},"User is not on Blocked members screen")
+  $connect_screen.unblock_a_member
+  $connect_screen.back_to_connect_page
+  $connect_screen.back_to_connect_page
+end
+
+And(/^I verify Call history details$/) do
+  $common_screen.swipe_down
+  assert_true($common_screen.find_element{$common_screen.click_element_with_text("Call history")},"Call history is not clicked")
+  assert_true($common_screen.verify_element_displayed_with_text("Report"),"Report is not displayed")
   $connect_screen.back_to_connect_page
 end
 

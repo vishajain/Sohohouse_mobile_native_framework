@@ -1,6 +1,7 @@
 @connect-screen @regression
 Feature: This feature enables us to test the connect with members functionality
 
+  @smoke @connect @ios
   Scenario: Validate "Join a conversation" functionality
     Given greetings should be visible
     When I navigate to Connect page
@@ -12,13 +13,6 @@ Feature: This feature enables us to test the connect with members functionality
       |Travel   |
     And I confirm call is scheduled
     And I cancelled the scheduled call
-    And I navigate to Home page
-
-  Scenario: Navigate to blocked members screen
-    Given greetings should be visible
-    When I navigate to Connect page
-    Then I navigate to blockedMembers screen
-    And I verify the title of blocked members screen
     And I navigate to Home page
 
   Scenario: Verify share your room functionality
@@ -48,6 +42,30 @@ Feature: This feature enables us to test the connect with members functionality
       | Let other members know what you are interested in talking about| Let's chat      |
       | Complete your profile                                          | Edit profile    |
     And I navigate to Home page
+
+
+  Scenario Outline: Verify Call history and My connections and Block member functionality
+    Given user enters test-connect as email address
+    When user clicks on go button
+    And Skip the onboarding screen
+    And I navigate to Noticeboard page
+    And I write a post
+      | Message           | House                    | Topic |
+      | How are you all   | UK->Babington House      | Music |
+    And the user signs out and closes the app
+    And user clicks on Member Sign in button
+    And user enters test-user as email address
+    And user clicks on go button
+    And Skip the onboarding screen
+    And I navigate to Noticeboard page
+    And I selected "<Post>" and blocked a "<Member>"
+    And I navigate to connect screen
+    And I verify Call history details
+    And I verify myConnections and block Member functionality
+    Then I navigate to Home page
+    Examples:
+      | Post            | Member              |
+      | How are you all | SFFactory TestUser  |
 
 
   Scenario Outline: Validate open users profile by clicking on profile picture

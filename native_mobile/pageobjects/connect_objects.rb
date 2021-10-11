@@ -60,15 +60,6 @@ class Ios_Connect_Objects
   def booking_time_slot
   @driver.find_element(:xpath => "//XCUIElementTypeCell[5]//XCUIElementTypeButton[@enabled='true'][1]")
   end
-
-  def exit_from_live_window
-    @driver.find_element(:xpath => "//*[contains(@name , 'iconLeft') or contains(@name,'iconXLarge') or contains(@name , 'iconArrowLeft') or contains(@name , 'roundCloseButton')]")
-  end
-
-  def messageBox
-    @driver.find_element(:xpath => "//*[@name='Type a message']")
-  end
-
   def navigate_back_to_connect
     @driver.find_element(:xpath => "//*[contains(@name , 'iconLeft') or contains(@name,'iconXLarge') or contains(@name , 'iconArrowLeft') or contains(@name, 'iconDarkSmallClose') or contains(@name, 'Back')]")
   end
@@ -92,6 +83,12 @@ class Ios_Connect_Objects
   end
   def connect_section
     @driver.find_element(:xpath => "//XCUIElementTypeStaticText[contains(@name,'Let other') or @name='Complete your profile']")
+  end
+  def rate_your_experience
+    @driver.find_element(:xpath => "//XCUIElementTypeTable/XCUIElementTypeCell[3]/XCUIElementTypeButton[@name='Rate your Connect experience']")
+  end
+  def message_button
+    @driver.find_element(:xpath => "//XCUIElementTypeCell[1]/XCUIElementTypeButton[@name='Message']")
   end
   def post_message
     @driver.find_element(:name => "Type a message")
@@ -117,12 +114,20 @@ class Ios_Connect_Objects
   def join_now
     @driver.find_element(:xpath => "//XCUIElementTypeButton[@name='Join Now']")
   end
-  def skip_button
-    @driver.find_element(:xpath => "//XCUIElementTypeOther/XCUIElementTypeStaticText[@name='Skip']")
+  def click_noticeboard_post
+    @driver.find_element(:xpath => "//XCUIElementTypeTable/XCUIElementTypeCell[2]/XCUIElementTypeStaticText[contains(@name,'SFFactory TestUser')]")
   end
-  def confirm_button
-    @driver.find_element(:xpath => "//XCUIElementTypeButton[@name='Confirm']")
+  def click_unblock
+    @driver.find_element(:xpath => "//*[@name='SFFactory TestUser']/following-sibling::XCUIElementTypeButton[@name='Unblock']")
   end
+  def ignore_button
+    @driver.find_element(:xpath => "//XCUIElementTypeTable/XCUIElementTypeCell[1]/XCUIElementTypeButton[@name='Ignore']")
+  end
+
+  def click_unblock_on_popup
+    @driver.find_element(:xpath => "//XCUIElementTypeScrollView/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[3]/XCUIElementTypeButton[@name='Unblock']")
+  end
+
 end
 
 class Android_Connect_Objects

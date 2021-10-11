@@ -939,7 +939,7 @@ class WhatsonScreen
         end
         sleep 5
 
-        Common.swipe_top
+        2.times{Common.swipe_top}
 
         sleep 2
 
