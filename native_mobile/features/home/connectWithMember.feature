@@ -15,13 +15,6 @@ Feature: This feature enables us to test the connect with members functionality
     And I cancelled the scheduled call
     And I navigate to Home page
 
-  Scenario: Navigate to blocked members screen
-    Given greetings should be visible
-    When I navigate to Connect page
-    Then I navigate to blockedMembers screen
-    And I verify the title of blocked members screen
-    And I navigate to Home page
-
   Scenario: Verify share your room functionality
     Given greetings should be visible
     When I navigate to Connect page
@@ -74,6 +67,7 @@ Feature: This feature enables us to test the connect with members functionality
       | Post            | Member              |
       | How are you all | SFFactory TestUser  |
 
+
   Scenario Outline: Validate open users profile by clicking on profile picture
     Given user enters test-connect as email address
     When user clicks on go button
@@ -87,7 +81,10 @@ Feature: This feature enables us to test the connect with members functionality
     And Skip the onboarding screen
     And greetings should be visible
     And I verify the username under the message and open profile by clicking profile picture in "<Live stream event>"
+    And I verify connect during a call functionality
     Then I navigate to Home page
     Examples:
       | Live stream event    | Message_text  |
       | Recurring_live_event | Hello!!       |
+
+
