@@ -6,7 +6,7 @@ Feature: Verify watch, listen and read screen
   @smoke @ios
   Scenario: Verify watch, listen and read screen
     Given greetings should be visible
-    When I navigate to Watch_listen_read page
+    When I navigate to Watch, Listen, Read page
     And I verify the watch screen
     |Topic | Title  |
     |Watch | Watch  |

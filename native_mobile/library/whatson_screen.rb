@@ -1186,7 +1186,7 @@ class WhatsonScreen
 
       sleep 2
 
-      $device=="ios"?$common_screen.click_element(@device_whatson_objects.navigate_back_to_shop):(sleep 1)
+      $device=="ios"?$common_screen.click_element(@device_whatson_objects.navigate_back_to_previous_page):(sleep 1)
 
     rescue
 
@@ -1200,5 +1200,18 @@ class WhatsonScreen
     puts "::inside accept cookies method::"
     sleep 5
     $device=="ios"?(sleep 10; $common_screen.click_element(@device_whatson_objects.accept_Cookies)):(sleep 1)
+  end
+
+  def back_to_watch_page
+    begin
+      sleep 2
+      $device=="ios"?$common_screen.click_element(@device_whatson_objects.navigate_back_to_previous_page):(sleep 1)
+    rescue
+      Common.swipe_top
+    end
+  end
+
+  def click_topic_related_see_all_button(value)
+    $device=="ios"?(sleep 10; $common_screen.click_element(@device_whatson_objects.see_all_button(value))):(sleep 1)
   end
 end

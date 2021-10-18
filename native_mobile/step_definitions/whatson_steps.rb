@@ -511,13 +511,14 @@ And(/^I verify the watch screen$/)do |table|
     row.each do |key,value|
       sleep 2
       if key.eql?"Topic"
-        assert_true($common_screen.click_element_with_text("See all"),"See all is not clicked")
+        assert_true($whatsonscreen.click_topic_related_see_all_button(value),"See all is not clicked")
       elsif key.eql?"Title"
         sleep 5
         assert_true($common_screen.find_element{$common_screen.verify_element_displayed_with_partial_text(value)},value+" is not displayed")
-        $whatsonscreen.back_to_shop_page
+        $whatsonscreen.back_to_watch_page
         sleep 1
       end
     end
   end
+  $homescreen.go_back_to_home
 end
