@@ -31,7 +31,7 @@ class Ios_Common_Objects
   end
 
   def home_menu
-    @driver.find_element(:name => "sideMenuHome")
+    @driver.find_element(:name => "Home")
   end
 
   def account_menu
