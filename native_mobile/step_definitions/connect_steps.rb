@@ -324,4 +324,15 @@ And(/^I verify connect during a call functionality$/)do
 
 end
 
+And(/^user send "([^"]*)" to a connection$/)do |message|
+  assert_true($common_screen.wait_for(10){$common_screen.click_element_with_text("iconEditOutline")},"iconEditOutline is not clicked")
+  $connect_screen.click_connection_name
+  $connect_screen.post_message_in_group_chat(message)
+  $common_screen.swipe_top
+end
 
+And(/^user verify new message received from "([^"]*)"$/) do |connection|
+  $connect_screen.new_message_indicator
+  assert_true($common_screen.wait_for(10){$common_screen.click_element_with_text(connection)},connection+" is not clicked")
+  $connect_screen.back_to_connect_page
+end

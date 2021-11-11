@@ -15,6 +15,7 @@ Feature: This feature enables us to test the connect with members functionality
     And I cancelled the scheduled call
     And I navigate to Home page
 
+  @smoke @connect @ios
   Scenario: Verify share your room functionality
     Given greetings should be visible
     When I navigate to Connect page
@@ -28,6 +29,7 @@ Feature: This feature enables us to test the connect with members functionality
     And I come out of the room
     Then I navigate to Home page
 
+  @smoke @connect @ios
   Scenario: Validate "Join a conversation" functionality
     Given greetings should be visible
     When I navigate to Connect page
@@ -43,7 +45,7 @@ Feature: This feature enables us to test the connect with members functionality
       | Complete your profile                                          | Edit profile    |
     And I navigate to Home page
 
-
+  @smoke @connect @ios
   Scenario Outline: Verify Call history and My connections and Block member functionality
     Given user enters test-connect as email address
     When user clicks on go button
@@ -67,7 +69,7 @@ Feature: This feature enables us to test the connect with members functionality
       | Post            | Member              |
       | How are you all | SFFactory TestUser  |
 
-
+  @smoke @connect @ios
   Scenario Outline: Validate open users profile by clicking on profile picture
     Given user enters test-connect as email address
     When user clicks on go button
@@ -87,4 +89,23 @@ Feature: This feature enables us to test the connect with members functionality
       | Live stream event    | Message_text  |
       | Recurring_live_event | Hello!!       |
 
+  @smoke @connect @ios
+  Scenario Outline: Verify messages from side bar navigation
+    Given user enters test-connect as email address
+    When user clicks on go button
+    And Skip the onboarding screen
+    And I navigate to Message page
+    And user send "<Message>" to a connection
+    And the user signs out and closes the app
+    And user clicks on Member Sign in button
+    And user enters test-user as email address
+    And user clicks on go button
+    And Skip the onboarding screen
+    And greetings should be visible
+    And I navigate to Message page
+    And user verify new message received from "<Connection>"
+    Then I navigate to Home page
+  Examples:
+    | Connection         | Message           |
+    | SFFactory TestUser | Hi! How are you ? |
 

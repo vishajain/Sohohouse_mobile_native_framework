@@ -51,15 +51,15 @@ data:
   suspended: 'suspended.sample@sffactory.com'
   frozen: 'frozen.sample@sffactory.com'
   expired: 'expired.sample@sffactory.com'
-  test-connect: 'visha.jain@sohohouse.com'
+  test-connect: 'new_test_v@example.com'
   test-user: 'mobile_automation@sohohouse.com'
   active-plus-every: 'app.active-plus.every.local@example.com'
   active-members-only-status: 'ACTIVE MEMBERS ONLY'
   house-members-only-status: 'HOUSE MEMBERS ONLY'
   change-password-ios: 'ios_changepassword@example.com'
   change-password-android: 'change_password_android@example.com'
-  need_signout: ["User updates their password","User reverts their password","User login with different accounts and verifies message","Validate open users profile by clicking on profile picture", "Verify leaving a live stream room confirmation pop up and post call connection", "Verify Call history and My connections and Block member functionality"]
-  need_separate_sign_in: ["User login with different accounts and verifies message","Validate open users profile by clicking on profile picture", "Verify leaving a live stream room confirmation pop up and post call connection", "Verify Call history and My connections and Block member functionality"]
+  need_signout: ["User updates their password","User reverts their password","User login with different accounts and verifies message","Validate open users profile by clicking on profile picture", "Verify leaving a live stream room confirmation pop up and post call connection", "Verify Call history and My connections and Block member functionality", "Verify messages from side bar navigation"]
+  need_separate_sign_in: ["User login with different accounts and verifies message","Validate open users profile by clicking on profile picture", "Verify leaving a live stream room confirmation pop up and post call connection", "Verify Call history and My connections and Block member functionality", "Verify messages from side bar navigation"]
   email-id:
     ios:
       User updates their password: 'ios_changepassword@example.com'
