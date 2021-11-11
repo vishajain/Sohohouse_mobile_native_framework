@@ -235,6 +235,10 @@ class CommonScreen
       ($device=="ios")?(swipe_down; sleep 4; click_element_with_text("Shop"); sleep 4):()
     when "Noticeboard"
       ($device=="ios")?click_element_with_text("Noticeboard"):wait_for(twentySecondsTimeout){@device_common_objects.tab_icons(3)}.click
+    when "Watch, Listen, Read"
+      ($device=="ios")?(swipe_down; sleep 4; click_element_with_text("Watch, Listen, Read"); sleep 4):()
+    when "Soho Works"
+      ($device=="ios")?(swipe_down; sleep 4; click_element_with_text("Soho Works"); sleep 4):()
     when "Message"
       ($device=="ios")?(wait_for(twentySecondsTimeout){@device_common_objects.message_icon}.click):wait_for(twentySecondsTimeout){@device_common_objects.tab_icons(5)}.click
     end

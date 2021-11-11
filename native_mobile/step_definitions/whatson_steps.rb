@@ -500,3 +500,25 @@ And(/^I clicked on Shop link & verify the shopLinks$/) do |table|
   end
   assert_true($common_screen.find_element{$common_screen.click_element_with_text("sideMenuClose")},"sideMenuClose is not clicked")
 end
+
+And(/^I verify the watch screen$/)do |table|
+  sleep 2
+
+  data = table.hashes
+
+  data.each do |row|
+
+    row.each do |key,value|
+      sleep 2
+      if key.eql?"Topic"
+        assert_true($whatsonscreen.click_topic_related_see_all_button(value),"See all is not clicked")
+      elsif key.eql?"Title"
+        sleep 5
+        assert_true($common_screen.find_element{$common_screen.verify_element_displayed_with_partial_text(value)},value+" is not displayed")
+        $whatsonscreen.back_to_watch_page
+        sleep 1
+      end
+    end
+  end
+  $homescreen.go_back_to_home
+end

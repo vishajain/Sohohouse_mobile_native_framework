@@ -324,8 +324,12 @@ class Ios_Whatson_Objects
     @driver.find_element(:xpath => "//XCUIElementTypeMenuItem[1]")
   end
 
-  def navigate_back_to_shop
-    @driver.find_element(:xpath => "//*[contains(@name , 'iconLeft') or contains(@name,'iconXLarge') or contains(@name , 'iconArrowLeft')]")
+  def navigate_back_to_previous_page
+    @driver.find_element(:xpath => "//*[contains(@name , 'iconLeft') or contains(@name,'iconXLarge') or contains(@name , 'iconArrowLeft') or contains(@name, 'iconNavigateBackArrow')]")
+  end
+
+  def see_all_button(value)
+    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name='"+value+"']/following-sibling::XCUIElementTypeButton[@name='See all']");
   end
 
 end
