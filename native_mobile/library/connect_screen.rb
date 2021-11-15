@@ -257,4 +257,13 @@ class ConnectScreen
   def verify_connection_request
     return $common_screen.wait_for(10){@device_connect_objects.ignore_button}.displayed?
   end
+
+  def new_message_indicator
+    return $common_screen.wait_for(10){@device_connect_objects.new_message_dot_indicator}.displayed?
+  end
+
+  def click_connection_name
+    $device=="ios"?(sleep 10;$common_screen.click_element(@device_connect_objects.connection_name)):(sleep 1)
+  end
+
 end

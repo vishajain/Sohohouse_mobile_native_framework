@@ -239,6 +239,8 @@ class CommonScreen
       ($device=="ios")?(swipe_down; sleep 4; click_element_with_text("Watch, Listen, Read"); sleep 4):()
     when "Soho Works"
       ($device=="ios")?(swipe_down; sleep 4; click_element_with_text("Soho Works"); sleep 4):()
+    when "Message"
+      ($device=="ios")?(wait_for(twentySecondsTimeout){@device_common_objects.message_icon}.click):wait_for(twentySecondsTimeout){@device_common_objects.tab_icons(5)}.click
     end
 
   end
@@ -289,9 +291,4 @@ class CommonScreen
     rescue
     end
   end
-
-  def click_fab_icon
-    @device_common_objects.tab_icon.click
-  end
-
 end

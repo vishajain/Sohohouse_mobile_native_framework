@@ -128,6 +128,14 @@ class Ios_Connect_Objects
     @driver.find_element(:xpath => "//XCUIElementTypeScrollView/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[3]/XCUIElementTypeButton[@name='Unblock']")
   end
 
+  def new_message_dot_indicator
+    @driver.find_element(:xpath => "//XCUIElementTypeButton[@name='iconEditOutline']/following-sibling::XCUIElementTypeCell/XCUIElementTypeOther[2]")
+  end
+
+  def connection_name
+    @driver.find_element(:xpath => "//XCUIElementTypeStaticText[@name='My connections']/preceding-sibling::XCUIElementTypeCell/XCUIElementTypeStaticText[1]")
+  end
+
 end
 
 class Android_Connect_Objects
